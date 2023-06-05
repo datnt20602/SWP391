@@ -35,7 +35,29 @@ public class AccountDBContext extends DBContext {
         return null;
     }
 
+    public Account checkAccountExistByUserPass(String username, String password) {
+        try {
+            String sql = "SELECT * FROM Account where username= ? and password = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, password);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Account a = new Account();
+                a.setaID(rs.getInt(1));
+                a.setName(rs.getString(2));
+                a.setUsername(rs.getString(3));
+                a.setPassword(rs.getString(4));
+                a.setAdmin(rs.getBoolean(5));
+                a.setActive(rs.getBoolean(6));
 
+                return a;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public Account checkAccountExist(String username) {
         try {
             String sql = "SELECT * FROM account where username = ?";
@@ -108,4 +130,6 @@ public class AccountDBContext extends DBContext {
             System.out.println("update: " + ex.getMessage());
         }
     }
+
+
 }

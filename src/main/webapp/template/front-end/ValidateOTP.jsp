@@ -1,10 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: jiggnguyen
-  Date: 6/2/2023
-  Time: 11:27 AM
+  Date: 6/5/2023
+  Time: 9:27 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html>
@@ -399,7 +400,7 @@
                                     <i class="fa-solid fa-house"></i>
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active">Log In</li>
+                            <li class="breadcrumb-item active">Home</li>
                         </ol>
                     </nav>
                 </div>
@@ -428,11 +429,11 @@
                     </div>
 
                     <div class="input-box">
-                        <form class="row g-4" action="activeAccount" method="post">
+                        <form class="row g-4" action="validateOTP" method="post">
                             <div class="col-12">
                                 <div class="form-floating theme-form-floating log-in-form">
                                     <input type="email" class="form-control" id="email" placeholder="Email Address"
-                                           name="email" readonly value="${email}">
+                                           name="email" readonly value="${a.getUsername()}">
                                     <label for="email">Email Address</label>
                                 </div>
                             </div>
@@ -449,7 +450,7 @@
                             </div>
 
                             <div class="col-12">
-                                <button class="btn btn-animation w-100 justify-content-center" name="option" value="active" type="submit">Active
+                                <button class="btn btn-animation w-100 justify-content-center" name="option" value="enter" type="submit">Enter OTP
                                 </button>
                             </div>
                             <div class="col-12">
@@ -766,3 +767,4 @@
 </body>
 
 </html>
+

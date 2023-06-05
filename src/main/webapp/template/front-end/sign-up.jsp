@@ -305,7 +305,7 @@
                                                 </li>
 
                                                 <li class="product-box-contain">
-                                                    <a href="forgot.html">Forgot Password</a>
+                                                    <a href="forgot.jsp">Forgot Password</a>
                                                 </li>
                                             </ul>
                                         </div>

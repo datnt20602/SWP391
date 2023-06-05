@@ -1,11 +1,10 @@
 <%--
   Created by IntelliJ IDEA.
   User: jiggnguyen
-  Date: 6/2/2023
-  Time: 11:27 AM
+  Date: 6/5/2023
+  Time: 1:18 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +17,7 @@
     <meta name="keywords" content="Fastkart">
     <meta name="author" content="Fastkart">
     <link rel="icon" href="${pageContext.request.contextPath}/template/assets/images/favicon/1.png" type="image/x-icon">
-    <title>Log In</title>
+    <title>Change Password</title>
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -27,29 +26,16 @@
             rel="stylesheet">
 
     <!-- bootstrap css -->
-    <link id="rtl-link" rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/template/assets/css/vendors/bootstrap.css">
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/vendors/bootstrap.css">
 
     <!-- font-awesome css -->
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/template/assets/css/vendors/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/vendors/font-awesome.css">
 
     <!-- feather icon css -->
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/template/assets/css/vendors/feather-icon.css">
-
-    <!-- slick css -->
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/template/assets/css/vendors/slick/slick.css">
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/template/assets/css/vendors/slick/slick-theme.css">
-
-    <!-- Iconly css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/bulk-style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/vendors/feather-icon.css">
 
     <!-- Template css -->
-    <link id="color-link" rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/template/assets/css/style.css">
+    <link id="color-link" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/style.css">
 </head>
 
 <body>
@@ -175,8 +161,7 @@
                                 </span>
                         </button>
                         <a href="home" class="web-logo nav-logo">
-                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png"
-                                 class="img-fluid blur-up lazyload" alt="">
+                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png" class="img-fluid blur-up lazyload" alt="">
                         </a>
 
                         <div class="middle-box">
@@ -319,11 +304,11 @@
                                         <ul class="user-box-name">
                                             <li class="product-box-contain">
                                                 <i></i>
-                                                <a href="login">Log In</a>
+                                                <a href="home">Back to Home</a>
                                             </li>
 
                                             <li class="product-box-contain">
-                                                <a href="sign-up.jsp">Register</a>
+                                                <a href="logout">Log out</a>
                                             </li>
 
                                             <li class="product-box-contain">
@@ -340,7 +325,455 @@
         </div>
     </div>
 
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="header-nav">
+                    <div class="header-nav-left">
+                        <button class="dropdown-category">
+                            <i data-feather="align-left"></i>
+                            <span>All Categories</span>
+                        </button>
 
+                        <div class="category-dropdown">
+                            <div class="category-title">
+                                <h5>Categories</h5>
+                                <button type="button" class="btn p-0 close-button text-content">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+
+                            <ul class="category-list">
+                                <li class="onhover-category-list">
+                                    <a href="javascript:void(0)" class="category-name">
+                                        <img src="${pageContext.request.contextPath}/template/assets/svg/1/vegetable.svg" alt="">
+                                        <h6>Vegetables & Fruit</h6>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+
+                                    <div class="onhover-category-box">
+                                        <div class="list-1">
+                                            <div class="category-title-box">
+                                                <h5>Organic Vegetables</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Potato & Tomato</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Cucumber & Capsicum</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Leafy Vegetables</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Root Vegetables</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Beans & Okra</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Cabbage & Cauliflower</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Gourd & Drumstick</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Specialty</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="list-2">
+                                            <div class="category-title-box">
+                                                <h5>Fresh Fruit</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Banana & Papaya</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Kiwi, Citrus Fruit</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Apples & Pomegranate</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Seasonal Fruits</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Mangoes</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Fruit Baskets</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="onhover-category-list">
+                                    <a href="javascript:void(0)" class="category-name">
+                                        <img src="${pageContext.request.contextPath}/template/assets/svg/1/cup.svg" alt="">
+                                        <h6>Beverages</h6>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+
+                                    <div class="onhover-category-box w-100">
+                                        <div class="list-1">
+                                            <div class="category-title-box">
+                                                <h5>Energy & Soft Drinks</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Soda & Cocktail Mix</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Soda & Cocktail Mix</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Sports & Energy Drinks</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Non Alcoholic Drinks</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Packaged Water</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Spring Water</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Flavoured Water</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="onhover-category-list">
+                                    <a href="javascript:void(0)" class="category-name">
+                                        <img src="${pageContext.request.contextPath}/template/assets/svg/1/meats.svg" alt="">
+                                        <h6>Meats & Seafood</h6>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+
+                                    <div class="onhover-category-box">
+                                        <div class="list-1">
+                                            <div class="category-title-box">
+                                                <h5>Meat</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Fresh Meat</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Frozen Meat</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Marinated Meat</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Fresh & Frozen Meat</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="list-2">
+                                            <div class="category-title-box">
+                                                <h5>Seafood</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Fresh Water Fish</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Dry Fish</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Frozen Fish & Seafood</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Marine Water Fish</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Canned Seafood</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Prawans & Shrimps</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Other Seafood</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="onhover-category-list">
+                                    <a href="javascript:void(0)" class="category-name">
+                                        <img src="${pageContext.request.contextPath}/template/assets/svg/1/breakfast.svg" alt="">
+                                        <h6>Breakfast & Dairy</h6>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+
+                                    <div class="onhover-category-box">
+                                        <div class="list-1">
+                                            <div class="category-title-box">
+                                                <h5>Breakfast Cereals</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Oats & Porridge</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Kids Cereal</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Muesli</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Flakes</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Granola & Cereal Bars</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Instant Noodles</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Pasta & Macaroni</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Frozen Non-Veg Snacks</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="list-2">
+                                            <div class="category-title-box">
+                                                <h5>Dairy</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Milk</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Curd</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Paneer, Tofu & Cream</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Butter & Margarine</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Condensed, Powdered Milk</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Buttermilk & Lassi</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Yogurt & Shrikhand</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Flavoured, Soya Milk</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="onhover-category-list">
+                                    <a href="javascript:void(0)" class="category-name">
+                                        <img src="${pageContext.request.contextPath}/template/assets/svg/1/frozen.svg" alt="">
+                                        <h6>Frozen Foods</h6>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+
+                                    <div class="onhover-category-box w-100">
+                                        <div class="list-1">
+                                            <div class="category-title-box">
+                                                <h5>Noodle, Pasta</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Instant Noodles</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Hakka Noodles</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Cup Noodles</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Vermicelli</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Instant Pasta</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="onhover-category-list">
+                                    <a href="javascript:void(0)" class="category-name">
+                                        <img src="${pageContext.request.contextPath}/template/assets/svg/1/biscuit.svg" alt="">
+                                        <h6>Biscuits & Snacks</h6>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+
+                                    <div class="onhover-category-box">
+                                        <div class="list-1">
+                                            <div class="category-title-box">
+                                                <h5>Biscuits & Cookies</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Salted Biscuits</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Marie, Health, Digestive</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Cream Biscuits & Wafers</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Glucose & Milk Biscuits</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Cookies</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="list-2">
+                                            <div class="category-title-box">
+                                                <h5>Bakery Snacks</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Bread Sticks & Lavash</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Cheese & Garlic Bread</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Puffs, Patties, Sandwiches</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Breadcrumbs & Croutons</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="onhover-category-list">
+                                    <a href="javascript:void(0)" class="category-name">
+                                        <img src="${pageContext.request.contextPath}/template/assets/svg/1/grocery.svg" alt="">
+                                        <h6>Grocery & Staples</h6>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+
+                                    <div class="onhover-category-box">
+                                        <div class="list-1">
+                                            <div class="category-title-box">
+                                                <h5>Grocery</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Lemon, Ginger & Garlic</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Indian & Exotic Herbs</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Vegetables</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Fruits</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="list-2">
+                                            <div class="category-title-box">
+                                                <h5>Organic Staples</h5>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Dry Fruits</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Dals & Pulses</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Millet & Flours</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Sugar, Jaggery</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Masalas & Spices</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Rice, Other Rice</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Flours</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)">Organic Edible Oil, Ghee</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="header-nav-middle">
+                        <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+                            <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
+                                <div class="offcanvas-header navbar-shadow">
+                                    <h5>Menu</h5>
+                                    <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-nav-right">
+                        <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
+                            <i data-feather="zap"></i>
+                            <span>Deal Today</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 <!-- Header End -->
 
@@ -348,7 +781,7 @@
 <div class="mobile-menu d-md-none d-block mobile-cart">
     <ul>
         <li class="active">
-            <a href="home.jsp">
+            <a href="home">
                 <i class="iconly-Home icli"></i>
                 <span>Home</span>
             </a>
@@ -391,7 +824,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="breadscrumb-contain">
-                    <h2 class="mb-2">Enter Your OTP</h2>
+                    <h2>Change Password</h2>
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
@@ -399,7 +832,7 @@
                                     <i class="fa-solid fa-house"></i>
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active">Log In</li>
+                            <li class="breadcrumb-item active">Change Password</li>
                         </ol>
                     </nav>
                 </div>
@@ -410,13 +843,12 @@
 <!-- Breadcrumb Section End -->
 
 <!-- log in section start -->
-<section class="log-in-section background-image-2 section-b-space">
+<section class="log-in-section section-b-space">
     <div class="container-fluid-lg w-100">
         <div class="row">
             <div class="col-xxl-6 col-xl-5 col-lg-6 d-lg-block d-none ms-auto">
                 <div class="image-contain">
-                    <img src="${pageContext.request.contextPath}/template/assets/images/inner-page/log-in.png"
-                         class="img-fluid" alt="">
+                    <img src="${pageContext.request.contextPath}/template/assets/images/inner-page/sign-up.png" class="img-fluid" alt="">
                 </div>
             </div>
 
@@ -424,55 +856,49 @@
                 <div class="log-in-box">
                     <div class="log-in-title">
                         <h3>Welcome To Fastkart</h3>
-                        <h4>Enter Your OTP</h4>
+                        <h4>Change Your Password</h4>
                     </div>
 
                     <div class="input-box">
-                        <form class="row g-4" action="activeAccount" method="post">
+                        <form class="row g-4" action="resetpassword" method="post">
+
                             <div class="col-12">
-                                <div class="form-floating theme-form-floating log-in-form">
-                                    <input type="email" class="form-control" id="email" placeholder="Email Address"
-                                           name="email" readonly value="${email}">
-                                    <label for="email">Email Address</label>
+                                <div class="form-floating theme-form-floating">
+                                    <input type="password" class="form-control" id="newpassword"
+                                           placeholder="New Password" name = "newpass" required>
+                                    <label for="newpassword">New Password</label>
                                 </div>
                             </div>
-
                             <div class="col-12">
-                                <div class="form-floating theme-form-floating log-in-form">
-                                    <input type="text" class="form-control" id="opt"
-                                           placeholder="Opt" name="opt" maxlength="6">
-                                    <label for="opt">Opt</label>
-                                    <h3>${mess}</h3>
-
+                                <div class="form-floating theme-form-floating">
+                                    <input type="password" class="form-control" id="renewpassword"
+                                           placeholder="Re-New Password" name = "renewpass" required>
+                                    <label for="renewpassword">Re-New Password</label>
                                 </div>
-
+                                <h4>${mess}</h4>
                             </div>
 
+
+
                             <div class="col-12">
-                                <button class="btn btn-animation w-100 justify-content-center" name="option" value="active" type="submit">Active
-                                </button>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-animation w-100 justify-content-center" name="option" value="sendAgain" type="submit">Send mail again
-                                </button>
+                                <button class="btn btn-animation w-100" type="submit">Reset Password</button>
                             </div>
                         </form>
                     </div>
 
-
-                    <div class="other-log-in">
-                        <h6></h6>
+                    <div class="sign-up-box">
+                        <h4>Back to Login.</h4>
+                        <a href="login">Log In</a>
                     </div>
-
-
                 </div>
             </div>
+
+            <div class="col-xxl-7 col-xl-6 col-lg-6"></div>
+
         </div>
     </div>
 </section>
 <!-- log in section end -->
-
-<!-- Footer Section Start -->
 <footer class="section-t-space">
     <div class="container-fluid-lg">
         <div class="service-section">
@@ -481,8 +907,7 @@
                     <div class="service-contain">
                         <div class="service-box">
                             <div class="service-image">
-                                <img src="${pageContext.request.contextPath}/template/assets/svg/product.svg"
-                                     class="blur-up lazyload" alt="">
+                                <img src="${pageContext.request.contextPath}/template/assets/svg/product.svg" class="blur-up lazyload" alt="">
                             </div>
 
                             <div class="service-detail">
@@ -492,8 +917,7 @@
 
                         <div class="service-box">
                             <div class="service-image">
-                                <img src="${pageContext.request.contextPath}/template/assets/svg/delivery.svg"
-                                     class="blur-up lazyload" alt="">
+                                <img src="${pageContext.request.contextPath}/template/assets/svg/delivery.svg" class="blur-up lazyload" alt="">
                             </div>
 
                             <div class="service-detail">
@@ -503,8 +927,7 @@
 
                         <div class="service-box">
                             <div class="service-image">
-                                <img src="${pageContext.request.contextPath}/template/assets/svg/discount.svg"
-                                     class="blur-up lazyload" alt="">
+                                <img src="${pageContext.request.contextPath}/template/assets/svg/discount.svg" class="blur-up lazyload" alt="">
                             </div>
 
                             <div class="service-detail">
@@ -514,8 +937,7 @@
 
                         <div class="service-box">
                             <div class="service-image">
-                                <img src="${pageContext.request.contextPath}/template/assets/svg/market.svg"
-                                     class="blur-up lazyload" alt="">
+                                <img src="${pageContext.request.contextPath}/template/assets/svg/market.svg" class="blur-up lazyload" alt="">
                             </div>
 
                             <div class="service-detail">
@@ -533,8 +955,7 @@
                     <div class="footer-logo">
                         <div class="theme-logo">
                             <a href="home">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png"
-                                     class="blur-up lazyload" alt="">
+                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png" class="blur-up lazyload" alt="">
                             </a>
                         </div>
 
@@ -668,15 +1089,13 @@
                                 <ul>
                                     <li class="mb-0">
                                         <a href="https://play.google.com/store/apps" target="_blank">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/playstore.svg"
-                                                 class="blur-up lazyload"
+                                            <img src="${pageContext.request.contextPath}/template/assets/images/playstore.svg" class="blur-up lazyload"
                                                  alt="">
                                         </a>
                                     </li>
                                     <li class="mb-0">
                                         <a href="https://www.apple.com/in/app-store/" target="_blank">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/appstore.svg"
-                                                 class="blur-up lazyload"
+                                            <img src="${pageContext.request.contextPath}/template/assets/images/appstore.svg" class="blur-up lazyload"
                                                  alt="">
                                         </a>
                                     </li>
@@ -694,8 +1113,7 @@
             </div>
 
             <div class="payment">
-                <img src="${pageContext.request.contextPath}/template/assets/images/payment/1.png"
-                     class="blur-up lazyload" alt="">
+                <img src="${pageContext.request.contextPath}/template/assets/images/payment/1.png" class="blur-up lazyload" alt="">
             </div>
 
             <div class="social-link">
@@ -726,8 +1144,6 @@
         </div>
     </div>
 </footer>
-<!-- Footer Section End -->
-
 <!-- Tap to top start -->
 <div class="theme-option">
     <div class="back-to-top">

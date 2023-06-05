@@ -326,11 +326,17 @@
                                                     <a href="signup">Register</a>
                                                 </li>
 
+
+
                                                 <li class="product-box-contain">
-                                                    <a href="forgot.html">Forgot Password</a>
+                                                    <a href="forgotpass">Forgot Password</a>
                                                 </li>
                                             </c:if>
                                             <c:if test="${acc != null}">
+                                                <li class="product-box-contain">
+                                                    <a href="changepass">Change Password</a>
+                                                </li>
+
                                                 <li class="product-box-contain">
                                                     <a href="logout">Log out</a>
                                                 </li>

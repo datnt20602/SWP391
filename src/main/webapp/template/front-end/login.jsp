@@ -312,7 +312,7 @@
                                                 </li>
 
                                                 <li class="product-box-contain">
-                                                    <a href="forgot.html">Forgot Password</a>
+                                                    <a href="forgot.jsp">Forgot Password</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -409,6 +409,7 @@
                         <div class="log-in-title">
                             <h3>Welcome To Fastkart</h3>
                             <h4>Log In Your Account</h4>
+                            <h4>${resetmess}</h4>
                         </div>
 
                         <div class="input-box">
@@ -438,7 +439,7 @@
                                                 id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">Remember me</label>
                                         </div>
-                                        <a href="forgot.html" class="forgot-password">Forgot Password?</a>
+                                        <a href="forgot.jsp" class="forgot-password">Forgot Password?</a>
                                     </div>
                                 </div>
 
