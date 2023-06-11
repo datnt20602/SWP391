@@ -10,6 +10,17 @@ public class Product {
     private String describe;
     private int quantity;
 
+    public Product(int product_id, String product_name, String date_of_manufacture, String category_name, double price, String image, String describe, int quantity) {
+        this.product_id = product_id;
+        this.product_name = product_name;
+        this.date_of_manufacture = date_of_manufacture;
+        this.category_name = category_name;
+        this.price = price;
+        this.image = image;
+        this.describe = describe;
+        this.quantity = quantity;
+    }
+
     public Product() {
     }
 
