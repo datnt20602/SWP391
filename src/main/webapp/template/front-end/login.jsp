@@ -312,7 +312,7 @@
                                                 </li>
 
                                                 <li class="product-box-contain">
-                                                    <a href="forgot.jsp">Forgot Password</a>
+                                                    <a href="forgotpass">Forgot Password</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -439,7 +439,7 @@
                                                 id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">Remember me</label>
                                         </div>
-                                        <a href="forgot.jsp" class="forgot-password">Forgot Password?</a>
+                                        <a href="forgotpass" class="forgot-password">Forgot Password?</a>
                                     </div>
                                 </div>
 
@@ -460,7 +460,7 @@
 
                         <div class="sign-up-box">
                             <h4>Don't have an account?</h4>
-                            <a href="sign-up.jsp">Sign Up</a>
+                            <a href="signup">Sign Up</a>
                         </div>
                     </div>
                 </div>

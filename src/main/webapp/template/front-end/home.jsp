@@ -393,7 +393,7 @@
 <div class="mobile-menu d-md-none d-block mobile-cart">
     <ul>
         <li class="active">
-            <a href="index.html">
+            <a href="home">
                 <i class="iconly-Home icli"></i>
                 <span>Home</span>
             </a>
@@ -455,13 +455,13 @@
                 <div class="slider-1 slider-animate product-wrapper no-arrow">
                     <div>
                         <div class="banner-contain-2 hover-effect">
-                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/1.jpg"
+                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/latte.jpg"
                                  class="bg-img rounded-3 blur-up lazyload" alt="">
                             <div
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
-                                    <h2>Healthy, nutritious & Tasty Fruits & Veggies</h2>
-                                    <h3>Save upto 50%</h3>
+                                    <h2>Start your day with our coffee !</h2>
+                                    <h3>Save upto 30%</h3>
                                 </div>
                             </div>
                         </div>
@@ -469,13 +469,13 @@
 
                     <div>
                         <div class="banner-contain-2 hover-effect">
-                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/1.jpg"
+                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/coffee1.jpeg"
                                  class="bg-img rounded-3 blur-up lazyload" alt="">
                             <div
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
-                                    <h2>Healthy, nutritious & Tasty Fruits & Veggies</h2>
-                                    <h3>Save upto 50%</h3>
+                                    <h2>Make your working day perfect ! </h2>
+                                    <h3>Save upto 30%</h3>
                                 </div>
                             </div>
                         </div>
@@ -483,13 +483,13 @@
 
                     <div>
                         <div class="banner-contain-2 hover-effect">
-                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/1.jpg"
+                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/coffee2.jpeg"
                                  class="bg-img rounded-3 blur-up lazyload" alt="">
                             <div
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
-                                    <h2>Healthy, nutritious & Tasty Fruits & Veggies</h2>
-                                    <h3>Save upto 50%</h3>
+                                    <h2>Refresh your mind when drink our coffee !</h2>
+                                    <h3>Please choose your favorite drink below.</h3>
                                 </div>
                             </div>
                         </div>
