@@ -1,5 +1,7 @@
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +13,7 @@
     <meta name="keywords" content="Fastkart">
     <meta name="author" content="Fastkart">
     <link rel="icon" href="${pageContext.request.contextPath}/template/assets/images/favicon/1.png" type="image/x-icon">
-    <title>Shop Left Sidebar</title>
+    <title>cofPhe Shop</title>
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -66,101 +68,7 @@
 
 <!-- Header Start -->
 <header class="pb-md-4 pb-0">
-    <div class="header-top">
-        <div class="container-fluid-lg">
-            <div class="row">
-                <div class="col-xxl-3 d-xxl-block d-none">
-                    <div class="top-left-header">
-                        <i class="iconly-Location icli text-white"></i>
-                        <span class="text-white">1418 Riverwood Drive, CA 96052, US</span>
-                    </div>
-                </div>
 
-                <div class="col-xxl-6 col-lg-9 d-lg-block d-none">
-                    <div class="header-offer">
-                        <div class="notification-slider">
-                            <div>
-                                <div class="timer-notification">
-                                    <h6><strong class="me-1">Welcome to Fastkart!</strong>Wrap new offers/gift
-                                        every signle day on Weekends.<strong class="ms-1">New Coupon Code: Fast024
-                                        </strong>
-
-                                    </h6>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="timer-notification">
-                                    <h6>Something you love is now on sale!
-                                        <a href="home" class="text-white">Buy Now
-                                            !</a>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <ul class="about-list right-nav-about">
-                        <li class="right-nav-list">
-                            <div class="dropdown theme-form-select">
-                                <button class="btn dropdown-toggle" type="button" id="select-language"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/country/united-states.png"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                    <span>English</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="select-language">
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="english">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/country/united-kingdom.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>English</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="france">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/country/germany.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>Germany</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="chinese">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/country/turkish.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>Turki</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="right-nav-list">
-                            <div class="dropdown theme-form-select">
-                                <button class="btn dropdown-toggle" type="button" id="select-dollar"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span>USD</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end sm-dropdown-menu"
-                                    aria-labelledby="select-dollar">
-                                    <li>
-                                        <a class="dropdown-item" id="aud" href="javascript:void(0)">AUD</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="eur" href="javascript:void(0)">EUR</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="cny" href="javascript:void(0)">CNY</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="top-nav top-header sticky-header">
         <div class="container-fluid-lg">
@@ -174,25 +82,23 @@
                                 </span>
                         </button>
                         <a href="home" class="web-logo nav-logo">
-                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png"
+                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
                                  class="img-fluid blur-up lazyload" alt="">
                         </a>
 
                         <div class="middle-box">
                             <div class="location-box">
-                                <button class="btn location-button" data-bs-toggle="modal"
+                                <button class="btn location-button" data-bs-toggle=""
                                         data-bs-target="#locationModal">
-                                        <span class="location-arrow">
-                                            <i data-feather="map-pin"></i>
-                                        </span>
-                                    <span class="locat-name">Your Location</span>
-                                    <i class="fa-solid fa-angle-down"></i>
+
+                                    <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
+
                                 </button>
                             </div>
 
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="I'm searching for..."
+                                    <input type="search" class="form-control" placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
@@ -235,7 +141,7 @@
                                     </a>
                                 </li>
                                 <li class="right-side">
-                                    <a href="wishlist.html" class="btn p-0 position-relative header-wishlist">
+                                    <a href="wishlist" class="btn p-0 position-relative header-wishlist">
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
@@ -252,13 +158,13 @@
                                             <ul class="cart-list">
                                                 <li class="product-box-contain">
                                                     <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
+                                                        <a href="productdetail" class="drop-image">
                                                             <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
                                                                  class="blur-up lazyload" alt="">
                                                         </a>
 
                                                         <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
+                                                            <a href="productdetail">
                                                                 <h5>Fantasy Crunchy Choco Chip Cookies</h5>
                                                             </a>
                                                             <h6><span>1 x</span> $80.58</h6>
@@ -271,13 +177,13 @@
 
                                                 <li class="product-box-contain">
                                                     <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
+                                                        <a href="productdetail" class="drop-image">
                                                             <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
                                                                  class="blur-up lazyload" alt="">
                                                         </a>
 
                                                         <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
+                                                            <a href="productdetail">
                                                                 <h5>Peanut Butter Bite Premium Butter Cookies 600 g
                                                                 </h5>
                                                             </a>
@@ -291,14 +197,12 @@
                                             </ul>
 
                                             <div class="price-box">
-                                                <h5>Total :</h5>
-                                                <h4 class="theme-color fw-bold">$106.58</h4>
+                                                <h5>Tổng :</h5>
+                                                <h4 class="theme-color fw-bold">50.000 VND</h4>
                                             </div>
 
                                             <div class="button-group">
-                                                <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
-                                                <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Checkout</a>
+                                                <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -319,26 +223,26 @@
                                             <c:if test="${acc == null}">
                                                 <li class="product-box-contain">
                                                     <i></i>
-                                                    <a href="login">Log In</a>
+                                                    <a href="login">Đăng nhập</a>
                                                 </li>
 
                                                 <li class="product-box-contain">
-                                                    <a href="signup">Register</a>
+                                                    <a href="signup">Đăng kí</a>
                                                 </li>
 
 
 
                                                 <li class="product-box-contain">
-                                                    <a href="forgotpass">Forgot Password</a>
+                                                    <a href="forgotpass">Quên mật khẩu</a>
                                                 </li>
                                             </c:if>
                                             <c:if test="${acc != null}">
                                                 <li class="product-box-contain">
-                                                    <a href="changepass">Change Password</a>
+                                                    <a href="changepass">Đổi mật khẩu</a>
                                                 </li>
 
                                                 <li class="product-box-contain">
-                                                    <a href="logout">Log out</a>
+                                                    <a href="logout">Đăng xuất</a>
                                                 </li>
                                             </c:if>
                                         </ul>
@@ -379,7 +283,7 @@
                     <div class="header-nav-right">
                         <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
                             <i data-feather="zap"></i>
-                            <span>Deal Today</span>
+                            <span>Giảm giá hôm nay</span>
                         </button>
                     </div>
                 </div>
@@ -414,16 +318,16 @@
         </li>
 
         <li>
-            <a href="wishlist.html" class="notifi-wishlist">
+            <a href="wishlist" class="notifi-wishlist">
                 <i class="iconly-Heart icli"></i>
                 <span>My Wish</span>
             </a>
         </li>
 
         <li>
-            <a href="cart.html">
+            <a href="cart">
                 <i class="iconly-Bag-2 icli fly-cate"></i>
-                <span>Cart</span>
+                <span>Giỏ hàng</span>
             </a>
         </li>
     </ul>
@@ -436,10 +340,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="breadscrumb-contain">
-                    <h2>Welcome to Fastkart.</h2>
-                    <nav>
+                    <h2>Chào mừng tới cofPhe.</h2>
 
-                    </nav>
                 </div>
             </div>
         </div>
@@ -460,8 +362,8 @@
                             <div
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
-                                    <h2>Start your day with our coffee !</h2>
-                                    <h3>Save upto 30%</h3>
+                                    <h2>Bắt đầu ngày mới với 1 ly cà phê !</h2>
+                                    <h3>Giảm giá tới 25%</h3>
                                 </div>
                             </div>
                         </div>
@@ -474,8 +376,8 @@
                             <div
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
-                                    <h2>Make your working day perfect ! </h2>
-                                    <h3>Save upto 30%</h3>
+                                    <h2>Đồ uống cho một ngày tuyệt vời !</h2>
+                                    <h3>Mời bạn và bạn bè cùng thưởng thức.</h3>
                                 </div>
                             </div>
                         </div>
@@ -488,8 +390,8 @@
                             <div
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
-                                    <h2>Refresh your mind when drink our coffee !</h2>
-                                    <h3>Please choose your favorite drink below.</h3>
+                                    <h2>Đồng hành cùng bạn là đồ uống của chúng tôi !</h2>
+                                    <h3>Làm ơn chọn đồ uống phía dưới.</h3>
                                 </div>
                             </div>
                         </div>
@@ -519,7 +421,7 @@
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseOne" aria-expanded="true"
                                             aria-controls="collapseOne">
-                                        <span>Categories</span>
+                                        <span>Danh mục</span>
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
@@ -528,7 +430,7 @@
                                         <div class="form-floating theme-form-floating-2 search-box">
                                             <input type="search" class="form-control" id="search"
                                                    placeholder="Search ..">
-                                            <label for="search">Search</label>
+                                            <label for="search">Tìm...</label>
                                         </div>
 
                                         <ul class="category-list custom-padding custom-height">
@@ -536,26 +438,18 @@
                                                 <div class="form-check ps-0 m-0 category-list-box">
                                                     <input class="checkbox_animated" type="checkbox" id="fruit">
                                                     <label class="form-check-label" for="fruit">
-                                                        <span class="name">Fruits & Vegetables</span>
-                                                        <span class="number">(15)</span>
+                                                        <span class="name"> Coffee</span>
+
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="cake">
-                                                    <label class="form-check-label" for="cake">
-                                                        <span class="name">Bakery, Cake & Dairy</span>
-                                                        <span class="number">(12)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
+
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
                                                     <input class="checkbox_animated" type="checkbox" id="behe">
                                                     <label class="form-check-label" for="behe">
-                                                        <span class="name">Beverages</span>
-                                                        <span class="number">(20)</span>
+                                                        <span class="name">Matcha</span>
+
                                                     </label>
                                                 </div>
                                             </li>
@@ -563,8 +457,8 @@
                                                 <div class="form-check ps-0 m-0 category-list-box">
                                                     <input class="checkbox_animated" type="checkbox" id="snacks">
                                                     <label class="form-check-label" for="snacks">
-                                                        <span class="name">Snacks & Branded Foods</span>
-                                                        <span class="number">(05)</span>
+                                                        <span class="name">Trà sữa</span>
+
                                                     </label>
                                                 </div>
                                             </li>
@@ -572,98 +466,18 @@
                                                 <div class="form-check ps-0 m-0 category-list-box">
                                                     <input class="checkbox_animated" type="checkbox" id="beauty">
                                                     <label class="form-check-label" for="beauty">
-                                                        <span class="name">Beauty & Household</span>
-                                                        <span class="number">(30)</span>
+                                                        <span class="name">Nước ép</span>
+
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="pets">
-                                                    <label class="form-check-label" for="pets">
-                                                        <span class="name">Kitchen, Garden & Pets</span>
-                                                        <span class="number">(50)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="egg">
-                                                    <label class="form-check-label" for="egg">
-                                                        <span class="name">Eggs, Meat & Fish</span>
-                                                        <span class="number">(19)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="food">
-                                                    <label class="form-check-label" for="food">
-                                                        <span class="name">Gourment & World Food</span>
-                                                        <span class="number">(30)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="care">
-                                                    <label class="form-check-label" for="care">
-                                                        <span class="name">Baby Care</span>
-                                                        <span class="number">(20)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="fish">
-                                                    <label class="form-check-label" for="fish">
-                                                        <span class="name">Fish & Seafood</span>
-                                                        <span class="number">(10)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="marinades">
-                                                    <label class="form-check-label" for="marinades">
-                                                        <span class="name">Marinades</span>
-                                                        <span class="number">(05)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="lamb">
-                                                    <label class="form-check-label" for="lamb">
-                                                        <span class="name">Mutton & Lamb</span>
-                                                        <span class="number">(09)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="other">
-                                                    <label class="form-check-label" for="other">
-                                                        <span class="name">Port & other Meats</span>
-                                                        <span class="number">(06)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="pour">
-                                                    <label class="form-check-label" for="pour">
-                                                        <span class="name">Pourltry</span>
-                                                        <span class="number">(01)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
+
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
                                                     <input class="checkbox_animated" type="checkbox" id="salami">
                                                     <label class="form-check-label" for="salami">
-                                                        <span class="name">Sausages, bacon & Salami</span>
-                                                        <span class="number">(03)</span>
+                                                        <span class="name"> Trà </span>
+
                                                     </label>
                                                 </div>
                                             </li>
@@ -672,66 +486,15 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                        <span>Food Preference</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse show"
-                                     aria-labelledby="headingTwo">
-                                    <div class="accordion-body">
-                                        <ul class="category-list custom-padding">
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="veget">
-                                                    <label class="form-check-label" for="veget">
-                                                        <span class="name">Vegetarian</span>
-                                                        <span class="number">(08)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
 
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="non">
-                                                    <label class="form-check-label" for="non">
-                                                        <span class="name">Non Vegetarian</span>
-                                                        <span class="number">(09)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                            aria-expanded="false" aria-controls="collapseThree">
-                                        <span>Price</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse show"
-                                     aria-labelledby="headingThree">
-                                    <div class="accordion-body">
-                                        <div class="range-slider">
-                                            <input type="text" class="js-range-slider" value="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingSix">
                                     <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapseSix"
                                             aria-expanded="false" aria-controls="collapseSix">
-                                        <span>Rating</span>
+                                        <span>Đánh giá</span>
                                     </button>
                                 </h2>
                                 <div id="collapseSix" class="accordion-collapse collapse show"
@@ -759,7 +522,7 @@
                                                                 <i data-feather="star" class="fill"></i>
                                                             </li>
                                                         </ul>
-                                                        <span class="text-content">(5 Star)</span>
+                                                        <span class="text-content">(5 Sao)</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -785,7 +548,7 @@
                                                                 <i data-feather="star"></i>
                                                             </li>
                                                         </ul>
-                                                        <span class="text-content">(4 Star)</span>
+                                                        <span class="text-content">(4 Sao)</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -811,7 +574,7 @@
                                                                 <i data-feather="star"></i>
                                                             </li>
                                                         </ul>
-                                                        <span class="text-content">(3 Star)</span>
+                                                        <span class="text-content">(3 Sao)</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -837,7 +600,7 @@
                                                                 <i data-feather="star"></i>
                                                             </li>
                                                         </ul>
-                                                        <span class="text-content">(2 Star)</span>
+                                                        <span class="text-content">(2 Sao)</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -863,7 +626,7 @@
                                                                 <i data-feather="star"></i>
                                                             </li>
                                                         </ul>
-                                                        <span class="text-content">(1 Star)</span>
+                                                        <span class="text-content">(1 Sao)</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -877,7 +640,7 @@
                                     <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapseFour"
                                             aria-expanded="false" aria-controls="collapseFour">
-                                        <span>Discount</span>
+                                        <span>Giảm giá</span>
                                     </button>
                                 </h2>
                                 <div id="collapseFour" class="accordion-collapse collapse show"
@@ -889,8 +652,8 @@
                                                     <input class="checkbox_animated" type="checkbox"
                                                            id="flexCheckDefault">
                                                     <label class="form-check-label" for="flexCheckDefault">
-                                                        <span class="name">upto 5%</span>
-                                                        <span class="number">(06)</span>
+                                                        <span class="name"> 5%</span>
+
                                                     </label>
                                                 </div>
                                             </li>
@@ -901,7 +664,7 @@
                                                            id="flexCheckDefault1">
                                                     <label class="form-check-label" for="flexCheckDefault1">
                                                         <span class="name">5% - 10%</span>
-                                                        <span class="number">(08)</span>
+
                                                     </label>
                                                 </div>
                                             </li>
@@ -912,7 +675,7 @@
                                                            id="flexCheckDefault2">
                                                     <label class="form-check-label" for="flexCheckDefault2">
                                                         <span class="name">10% - 15%</span>
-                                                        <span class="number">(10)</span>
+
                                                     </label>
                                                 </div>
                                             </li>
@@ -923,7 +686,7 @@
                                                            id="flexCheckDefault3">
                                                     <label class="form-check-label" for="flexCheckDefault3">
                                                         <span class="name">15% - 25%</span>
-                                                        <span class="number">(14)</span>
+
                                                     </label>
                                                 </div>
                                             </li>
@@ -933,8 +696,8 @@
                                                     <input class="checkbox_animated" type="checkbox"
                                                            id="flexCheckDefault4">
                                                     <label class="form-check-label" for="flexCheckDefault4">
-                                                        <span class="name">More than 25%</span>
-                                                        <span class="number">(13)</span>
+                                                        <span class="name"> 25% trở lên</span>
+
                                                     </label>
                                                 </div>
                                             </li>
@@ -943,243 +706,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseFive"
-                                            aria-expanded="false" aria-controls="collapseFive">
-                                        <span>Pack Size</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseFive" class="accordion-collapse collapse show"
-                                     aria-labelledby="headingFive">
-                                    <div class="accordion-body">
-                                        <ul class="category-list custom-padding custom-height">
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault5">
-                                                    <label class="form-check-label" for="flexCheckDefault5">
-                                                        <span class="name">400 to 500 g</span>
-                                                        <span class="number">(05)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
 
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault6">
-                                                    <label class="form-check-label" for="flexCheckDefault6">
-                                                        <span class="name">500 to 700 g</span>
-                                                        <span class="number">(02)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault7">
-                                                    <label class="form-check-label" for="flexCheckDefault7">
-                                                        <span class="name">700 to 1 kg</span>
-                                                        <span class="number">(04)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault8">
-                                                    <label class="form-check-label" for="flexCheckDefault8">
-                                                        <span class="name">120 - 150 g each Vacuum 2 pcs</span>
-                                                        <span class="number">(06)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault9">
-                                                    <label class="form-check-label" for="flexCheckDefault9">
-                                                        <span class="name">1 pc</span>
-                                                        <span class="number">(09)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault10">
-                                                    <label class="form-check-label" for="flexCheckDefault10">
-                                                        <span class="name">1 to 1.2 kg</span>
-                                                        <span class="number">(06)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault11">
-                                                    <label class="form-check-label" for="flexCheckDefault11">
-                                                        <span class="name">2 x 24 pcs Multipack</span>
-                                                        <span class="number">(03)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault12">
-                                                    <label class="form-check-label" for="flexCheckDefault12">
-                                                        <span class="name">2x6 pcs Multipack</span>
-                                                        <span class="number">(04)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault13">
-                                                    <label class="form-check-label" for="flexCheckDefault13">
-                                                        <span class="name">4x6 pcs Multipack</span>
-                                                        <span class="number">(05)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault14">
-                                                    <label class="form-check-label" for="flexCheckDefault14">
-                                                        <span class="name">5x6 pcs Multipack</span>
-                                                        <span class="number">(09)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault15">
-                                                    <label class="form-check-label" for="flexCheckDefault15">
-                                                        <span class="name">Combo 2 Items</span>
-                                                        <span class="number">(10)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault16">
-                                                    <label class="form-check-label" for="flexCheckDefault16">
-                                                        <span class="name">Combo 3 Items</span>
-                                                        <span class="number">(14)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault17">
-                                                    <label class="form-check-label" for="flexCheckDefault17">
-                                                        <span class="name">2 pcs</span>
-                                                        <span class="number">(19)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault18">
-                                                    <label class="form-check-label" for="flexCheckDefault18">
-                                                        <span class="name">3 pcs</span>
-                                                        <span class="number">(14)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault19">
-                                                    <label class="form-check-label" for="flexCheckDefault19">
-                                                            <span class="name">2 pcs Vacuum (140 g to 180 g each
-                                                                )</span>
-                                                        <span class="number">(13)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault20">
-                                                    <label class="form-check-label" for="flexCheckDefault20">
-                                                        <span class="name">4 pcs</span>
-                                                        <span class="number">(18)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault21">
-                                                    <label class="form-check-label" for="flexCheckDefault21">
-                                                            <span class="name">4 pcs Vacuum (140 g to 180 g each
-                                                                )</span>
-                                                        <span class="number">(07)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault22">
-                                                    <label class="form-check-label" for="flexCheckDefault22">
-                                                        <span class="name">6 pcs</span>
-                                                        <span class="number">(09)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault23">
-                                                    <label class="form-check-label" for="flexCheckDefault23">
-                                                        <span class="name">6 pcs carton</span>
-                                                        <span class="number">(11)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault24">
-                                                    <label class="form-check-label" for="flexCheckDefault24">
-                                                        <span class="name">6 pcs Pouch</span>
-                                                        <span class="number">(16)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1195,37 +722,23 @@
 
                     <div class="top-filter-menu">
                         <div class="category-dropdown">
-                            <h5 class="text-content">Sort By :</h5>
+                            <h5 class="text-content">Sắp xếp theo:</h5>
                             <div class="dropdown">
                                 <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
                                         data-bs-toggle="dropdown">
-                                    <span>Most Popular</span> <i class="fa-solid fa-angle-down"></i>
+                                    <span>Phổ biến nhất</span> <i class="fa-solid fa-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
                                     <li>
-                                        <a class="dropdown-item" id="pop" href="javascript:void(0)">Popularity</a>
+                                        <a class="dropdown-item" id="low" href="javascript:void(0)">Giá thấp - cao</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" id="low" href="javascript:void(0)">Low - High
-                                            Price</a>
+                                        <a class="dropdown-item" id="high" href="javascript:void(0)">Giá cao - thấp</a>
                                     </li>
+
                                     <li>
-                                        <a class="dropdown-item" id="high" href="javascript:void(0)">High - Low
-                                            Price</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="rating" href="javascript:void(0)">Average
-                                            Rating</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="aToz" href="javascript:void(0)">A - Z Order</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="zToa" href="javascript:void(0)">Z - A Order</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="off" href="javascript:void(0)">% Off - Hight To
-                                            Low</a>
+                                        <a class="dropdown-item" id="off" href="javascript:void(0)">% giảm - Cao-Thấp</a>
                                     </li>
                                 </ul>
                             </div>
@@ -1264,27 +777,15 @@
                         <div class="product-box-3 h-100 wow fadeInUp">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/2.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
-
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -1294,7 +795,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Fresh Bread and Pastry Flour 200 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Cheesy feet cheesy grin brie.
@@ -1354,27 +855,15 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.05s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/3.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
-
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -1385,7 +874,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Peanut Butter Bite Premium Butter Cookies 600 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Feta taleggio croque monsieur
@@ -1445,27 +934,15 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/4.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
-
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -1476,7 +953,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Snacks</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">SnackAmor Combo Pack of Jowar Stick and Jowar Chips</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Lancashire hard cheese
@@ -1538,27 +1015,18 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.15s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/5.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
 
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
+
+
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -1569,7 +1037,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Snacks</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Yumitos Chilli Sprinkled Potato Chips 100 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Cheddar cheddar pecorino hard
@@ -1629,27 +1097,16 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.2s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/6.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
 
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -1660,7 +1117,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Fantasy Crunchy Choco Chip Cookies</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Bavarian bergkase smelly
@@ -1723,27 +1180,15 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.25s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/7.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
-
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -1754,7 +1199,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Fresh Bread and Pastry Flour 200 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Melted cheese babybel chalk
@@ -1816,27 +1261,15 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.3s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/2.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
-
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -1846,7 +1279,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Fresh Bread and Pastry Flour 200 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Squirty cheese cottage cheese
@@ -1906,27 +1339,16 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.35s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/3.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
 
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -1937,7 +1359,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Peanut Butter Bite Premium Butter Cookies 600 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Swiss ricotta cauliflower
@@ -1998,27 +1420,15 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.4s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/4.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
-
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -2029,7 +1439,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Snacks</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">SnackAmor Combo Pack of Jowar Stick and Jowar Chips</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Boursin the big cheese
@@ -2090,27 +1500,16 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.45s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/5.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
 
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -2121,7 +1520,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Snacks</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Yumitos Chilli Sprinkled Potato Chips 100 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Halloumi mozzarella monterey
@@ -2182,27 +1581,16 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.5s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/6.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
 
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -2213,7 +1601,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Fantasy Crunchy Choco Chip Cookies</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Manchego cow cheddar.
@@ -2275,27 +1663,16 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.55s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/7.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
 
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -2306,7 +1683,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Fresh Bread and Pastry Flour 200 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Roquefort say cheese the big
@@ -2368,27 +1745,15 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.6">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/2.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
-
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -2398,7 +1763,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Fresh Bread and Pastry Flour 200 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Lancashire when the cheese
@@ -2458,27 +1823,17 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.65s">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/3.png"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                               data-bs-target="#view">
-                                                <i data-feather="eye"></i>
-                                            </a>
-                                        </li>
 
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                            <a href="compare.html">
-                                                <i data-feather="refresh-cw"></i>
-                                            </a>
-                                        </li>
+
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a href="wishlist.html" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -2489,7 +1844,7 @@
                             <div class="product-footer">
                                 <div class="product-detail">
                                     <span class="span-name">Vegetable</span>
-                                    <a href="product-left-thumbnail.html">
+                                    <a href="productdetail">
                                         <h5 class="name">Peanut Butter Bite Premium Butter Cookies 600 g</h5>
                                     </a>
                                     <p class="text-content mt-1 mb-2 product-content">Say cheese cheese and biscuits
@@ -2590,7 +1945,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Every Fresh Products</h5>
+                                <h5>Đồ uống chất lượng</h5>
                             </div>
                         </div>
 
@@ -2601,7 +1956,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Free Delivery For Order Over $50</h5>
+                                <h5>Miễn phí vận chuyển trong vòng 3km</h5>
                             </div>
                         </div>
 
@@ -2612,7 +1967,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Daily Mega Discounts</h5>
+                                <h5>Nhiều ưu đãi</h5>
                             </div>
                         </div>
 
@@ -2623,7 +1978,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Best Price On The Market</h5>
+                                <h5>Phù hợp với túi tiền</h5>
                             </div>
                         </div>
                     </div>
@@ -2636,24 +1991,23 @@
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="footer-logo">
                         <div class="theme-logo">
-                            <a href="home.jsp">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png"
+                            <a href="home">
+                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
                                      class="blur-up lazyload" alt="">
                             </a>
                         </div>
 
                         <div class="footer-logo-contain">
-                            <p>We are a friendly bar serving a variety of cocktails, wines and beers. Our bar is a
-                                perfect place for a couple.</p>
+                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
 
                             <ul class="address">
                                 <li>
                                     <i data-feather="home"></i>
-                                    <a href="javascript:void(0)">1418 Riverwood Drive, CA 96052, US</a>
+                                    <a href="javascript:void(0)">Hòa Lạc, Thạch Thất, Hà Nội</a>
                                 </li>
                                 <li>
                                     <i data-feather="mail"></i>
-                                    <a href="javascript:void(0)">support@fastkart.com</a>
+                                    <a href="javascript:void(0)">cofphe@gmail.com</a>
                                 </li>
                             </ul>
                         </div>
@@ -2663,25 +2017,21 @@
 
                 <div class="col-xl col-lg-2 col-sm-3">
                     <div class="footer-title">
-                        <h4>Useful Links</h4>
+                        <h4>Đường dẫn hữu dụng</h4>
                     </div>
 
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="index.html" class="text-content">Home</a>
+                                <a href="home" class="text-content">Trang chủ</a>
                             </li>
+
                             <li>
-                                <a href="home.jsp" class="text-content">Shop</a>
+                                <a href="about-us.html" class="text-content">Về chúng tôi</a>
                             </li>
+
                             <li>
-                                <a href="about-us.html" class="text-content">About Us</a>
-                            </li>
-                            <li>
-                                <a href="blog-list.html" class="text-content">Blog</a>
-                            </li>
-                            <li>
-                                <a href="contact-us.html" class="text-content">Contact Us</a>
+                                <a href="contact-us.html" class="text-content">Liên lạc</a>
                             </li>
                         </ul>
                     </div>
@@ -2689,25 +2039,20 @@
 
                 <div class="col-xl-2 col-sm-3">
                     <div class="footer-title">
-                        <h4>Help Center</h4>
+                        <h4>Xem thông tin</h4>
                     </div>
 
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="order-success.html" class="text-content">Your Order</a>
+                                <a href="order-success.html" class="text-content">Bạn đã mua</a>
                             </li>
                             <li>
-                                <a href="user-dashboard.html" class="text-content">Your Account</a>
+                                <a href="user-dashboard.html" class="text-content">Tài khoản</a>
                             </li>
+
                             <li>
-                                <a href="order-tracking.html" class="text-content">Track Order</a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html" class="text-content">Your Wishlist</a>
-                            </li>
-                            <li>
-                                <a href="search.html" class="text-content">Search</a>
+                                <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
                             </li>
                             <li>
                                 <a href="faq.html" class="text-content">FAQ</a>
@@ -2718,7 +2063,7 @@
 
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="footer-title">
-                        <h4>Contact Us</h4>
+                        <h4>Liên lạc với chúng tôi:</h4>
                     </div>
 
                     <div class="footer-contact">
@@ -2728,7 +2073,7 @@
                                     <i data-feather="phone"></i>
                                     <div class="contact-number">
                                         <h6 class="text-content">Hotline 24/7 :</h6>
-                                        <h5>+91 888 104 2340</h5>
+                                        <h5>+84 376597711</h5>
                                     </div>
                                 </div>
                             </li>
@@ -2737,8 +2082,8 @@
                                 <div class="footer-number">
                                     <i data-feather="mail"></i>
                                     <div class="contact-number">
-                                        <h6 class="text-content">Email Address :</h6>
-                                        <h5>fastkart@hotmail.com</h5>
+                                        <h6 class="text-content">Địa chỉ email:</h6>
+                                        <h5>cofphe@gmail.com</h5>
                                     </div>
                                 </div>
                             </li>
@@ -2750,42 +2095,7 @@
             </div>
         </div>
 
-        <div class="sub-footer section-small-space">
-            <div class="reserve">
-                <h6 class="text-content">©2022 Fastkart All rights reserved</h6>
-            </div>
 
-            <div class="payment">
-                <img src="${pageContext.request.contextPath}/template/assets/images/payment/1.png"
-                     class="blur-up lazyload" alt="">
-            </div>
-
-            <div class="social-link">
-                <h6 class="text-content">Stay connected :</h6>
-                <ul>
-                    <li>
-                        <a href="https://www.facebook.com/" target="_blank">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/" target="_blank">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/" target="_blank">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://in.pinterest.com/" target="_blank">
-                            <i class="fa-brands fa-pinterest-p"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
 </footer>
 <!-- Footer Section End -->
@@ -2880,7 +2190,7 @@
                             </div>
 
                             <div class="modal-button">
-                                <button onclick="location.href = 'cart.html';"
+                                <button onclick="location.href = 'cart';"
                                         class="btn btn-md add-cart-button icon">Add
                                     To Cart
                                 </button>
@@ -2904,96 +2214,13 @@
     <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Choose your Delivery Location</h5>
-                <p class="mt-1 text-content">Enter your address and we will specify the offer for your area.</p>
+                <h5 class="modal-title" id="exampleModalLabel">Mời bạn chọn vị trí</h5>
+                <p class="mt-1 text-content">Nhập vị trí để xem ưu đãi hấp dẫn</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="location-list">
-                    <div class="search-input">
-                        <input type="search" class="form-control" placeholder="Search Your Area">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
 
-                    <div class="disabled-box">
-                        <h6>Select a Location</h6>
-                    </div>
-
-                    <ul class="location-select custom-height">
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Alabama</h6>
-                                <span>Min: $130</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Arizona</h6>
-                                <span>Min: $150</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>California</h6>
-                                <span>Min: $110</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Colorado</h6>
-                                <span>Min: $140</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Florida</h6>
-                                <span>Min: $160</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Georgia</h6>
-                                <span>Min: $120</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Kansas</h6>
-                                <span>Min: $170</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Minnesota</h6>
-                                <span>Min: $120</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>New York</h6>
-                                <span>Min: $110</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Washington</h6>
-                                <span>Min: $130</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -3006,8 +2233,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h5 class="modal-title w-100" id="deal_today">Deal Today</h5>
-                    <p class="mt-1 text-content">Recommended deals for you.</p>
+                    <h5 class="modal-title w-100" id="deal_today">Giảm giá</h5>
+                    <p class="mt-1 text-content">Đề xuất cho bạn.</p>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>

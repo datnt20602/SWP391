@@ -1,4 +1,6 @@
 <%@page isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +12,7 @@
     <meta name="keywords" content="Fastkart">
     <meta name="author" content="Fastkart">
     <link rel="icon" href="${pageContext.request.contextPath}/template/assets/images/favicon/1.png" type="image/x-icon">
-    <title>Register</title>
+    <title>Đăng kí</title>
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -60,24 +62,15 @@
                                 </span>
                             </button>
                             <a href="home" class="web-logo nav-logo">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png" class="img-fluid blur-up lazyload" alt="">
+                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" class="img-fluid blur-up lazyload" alt="">
                             </a>
 
                             <div class="middle-box">
-                                <div class="location-box">
-                                    <button class="btn location-button" data-bs-toggle="modal"
-                                        data-bs-target="#locationModal">
-                                        <span class="location-arrow">
-                                            <i data-feather="map-pin"></i>
-                                        </span>
-                                        <span class="locat-name">Your Location</span>
-                                        <i class="fa-solid fa-angle-down"></i>
-                                    </button>
-                                </div>
+
 
                                 <div class="search-box">
                                     <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="I'm searching for..."
+                                        <input type="search" class="form-control" placeholder="Tìm kiếm..."
                                             aria-label="Recipient's username" aria-describedby="button-addon2">
                                         <button class="btn" type="button" id="button-addon2">
                                             <i data-feather="search"></i>
@@ -92,7 +85,7 @@
                                         <span class="input-group-text">
                                             <i data-feather="search" class="font-light"></i>
                                         </span>
-                                        <input type="text" class="form-control search-type" placeholder="Search here..">
+                                        <input type="text" class="form-control search-type" placeholder="Tìm kiếm...">
                                         <span class="input-group-text close-search">
                                             <i data-feather="x" class="font-light"></i>
                                         </span>
@@ -120,7 +113,7 @@
                                         </a>
                                     </li>
                                     <li class="right-side">
-                                        <a href="wishlist.html" class="btn p-0 position-relative header-wishlist">
+                                        <a href="wishlist.jsp" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="heart"></i>
                                         </a>
                                     </li>
@@ -137,13 +130,13 @@
                                                 <ul class="cart-list">
                                                     <li class="product-box-contain">
                                                         <div class="drop-cart">
-                                                            <a href="product-left-thumbnail.html" class="drop-image">
+                                                            <a href="product-detail.jsp" class="drop-image">
                                                                 <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
                                                                     class="blur-up lazyload" alt="">
                                                             </a>
 
                                                             <div class="drop-contain">
-                                                                <a href="product-left-thumbnail.html">
+                                                                <a href="product-detail.jsp">
                                                                     <h5>Fantasy Crunchy Choco Chip Cookies</h5>
                                                                 </a>
                                                                 <h6><span>1 x</span> $80.58</h6>
@@ -156,13 +149,13 @@
 
                                                     <li class="product-box-contain">
                                                         <div class="drop-cart">
-                                                            <a href="product-left-thumbnail.html" class="drop-image">
+                                                            <a href="product-detail.jsp" class="drop-image">
                                                                 <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
                                                                     class="blur-up lazyload" alt="">
                                                             </a>
 
                                                             <div class="drop-contain">
-                                                                <a href="product-left-thumbnail.html">
+                                                                <a href="product-detail.jsp">
                                                                     <h5>Peanut Butter Bite Premium Butter Cookies 600 g
                                                                     </h5>
                                                                 </a>
@@ -181,7 +174,7 @@
                                                 </div>
 
                                                 <div class="button-group">
-                                                    <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
+                                                    <a href="cart.jsp" class="btn btn-sm cart-button">View Cart</a>
                                                     <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
                                                     text-white">Checkout</a>
                                                 </div>
@@ -203,15 +196,15 @@
                                             <ul class="user-box-name">
                                                 <li class="product-box-contain">
                                                     <i></i>
-                                                    <a href="login">Log In</a>
+                                                    <a href="login">Đăng nhập</a>
                                                 </li>
 
                                                 <li class="product-box-contain">
-                                                    <a href="signup">Register</a>
+                                                    <a href="signup">Đăng kí</a>
                                                 </li>
 
                                                 <li class="product-box-contain">
-                                                    <a href="forgot.jsp">Forgot Password</a>
+                                                    <a href="forgotpass">Quên mật khẩu</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -297,14 +290,14 @@
             </li>
 
             <li>
-                <a href="wishlist.html" class="notifi-wishlist">
+                <a href="wishlist.jsp" class="notifi-wishlist">
                     <i class="iconly-Heart icli"></i>
                     <span>My Wish</span>
                 </a>
             </li>
 
             <li>
-                <a href="cart.html">
+                <a href="cart.jsp">
                     <i class="iconly-Bag-2 icli fly-cate"></i>
                     <span>Cart</span>
                 </a>
@@ -319,7 +312,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadscrumb-contain">
-                        <h2>Sign In</h2>
+                        <h2>Đăng kí</h2>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
@@ -327,7 +320,7 @@
                                         <i class="fa-solid fa-house"></i>
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item active">Home</li>
+                                <li class="breadcrumb-item active">Trang chủ</li>
                             </ol>
                         </nav>
                     </div>
@@ -350,8 +343,8 @@
                 <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
                     <div class="log-in-box">
                         <div class="log-in-title">
-                            <h3>Welcome To Fastkart</h3>
-                            <h4>Create New Account</h4>
+                            <h3>Chào mừng tới cofPhe.</h3>
+                            <h4>Tạo tài khoản mới</h4>
                         </div>
 
                         <div class="input-box">
@@ -359,13 +352,13 @@
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
                                         <input type="text" class="form-control" id="fullname" placeholder="Full Name" name = "fullname">
-                                        <label for="fullname">Full Name</label>
+                                        <label for="fullname">Họ Tên</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
                                         <input type="email" class="form-control" id="email" placeholder="Email Address" name = "email">
-                                        <label for="email">Email Address</label>
+                                        <label for="email">Địa chỉ email</label>
                                     </div>
                                 </div>
 
@@ -373,14 +366,14 @@
                                     <div class="form-floating theme-form-floating">
                                         <input type="password" class="form-control" id="password"
                                             placeholder="Password" name = "password" required>
-                                        <label for="password">Password</label>
+                                        <label for="password">Mật khẩu</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
                                         <input type="password" class="form-control" id="repass"
                                                placeholder="Re-Password" name = "repass" required>
-                                        <label for="password">Re-Password</label>
+                                        <label for="password">Nhập lại mật khẩu</label>
                                     </div>
                                     <h4>${mess}</h4>
                                 </div>
@@ -390,14 +383,14 @@
                                         <div class="form-check ps-0 m-0 remember-box">
                                             <input class="checkbox_animated check-box" type="checkbox"
                                                 id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">I agree with
-                                                <span>Terms</span> and <span>Privacy</span></label>
+                                            <label class="form-check-label" for="flexCheckDefault">Tôi đồng ý với
+                                                <span>Điều khoản</span> và <span>Bảo mật</span></label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
-                                    <button class="btn btn-animation w-100" type="submit">Sign Up</button>
+                                    <button class="btn btn-animation w-100" type="submit">Đăng kí</button>
                                 </div>
                             </form>
                         </div>
@@ -411,8 +404,8 @@
                         </div>
 
                         <div class="sign-up-box">
-                            <h4>Already have an account?</h4>
-                            <a href="login">Log In</a>
+                            <h4>Đã có tài khoản?</h4>
+                            <a href="login">Đăng nhập</a>
                         </div>
                     </div>
                 </div>
@@ -432,41 +425,45 @@
                         <div class="service-contain">
                             <div class="service-box">
                                 <div class="service-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/svg/product.svg" class="blur-up lazyload" alt="">
+                                    <img src="${pageContext.request.contextPath}/template/assets/svg/product.svg"
+                                         class="blur-up lazyload" alt="">
                                 </div>
 
                                 <div class="service-detail">
-                                    <h5>Every Fresh Products</h5>
+                                    <h5>Đồ uống chất lượng</h5>
                                 </div>
                             </div>
 
                             <div class="service-box">
                                 <div class="service-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/svg/delivery.svg" class="blur-up lazyload" alt="">
+                                    <img src="${pageContext.request.contextPath}/template/assets/svg/delivery.svg"
+                                         class="blur-up lazyload" alt="">
                                 </div>
 
                                 <div class="service-detail">
-                                    <h5>Free Delivery For Order Over $50</h5>
+                                    <h5>Miễn phí vận chuyển trong vòng 3km</h5>
                                 </div>
                             </div>
 
                             <div class="service-box">
                                 <div class="service-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/svg/discount.svg" class="blur-up lazyload" alt="">
+                                    <img src="${pageContext.request.contextPath}/template/assets/svg/discount.svg"
+                                         class="blur-up lazyload" alt="">
                                 </div>
 
                                 <div class="service-detail">
-                                    <h5>Daily Mega Discounts</h5>
+                                    <h5>Nhiều ưu đãi</h5>
                                 </div>
                             </div>
 
                             <div class="service-box">
                                 <div class="service-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/svg/market.svg" class="blur-up lazyload" alt="">
+                                    <img src="${pageContext.request.contextPath}/template/assets/svg/market.svg"
+                                         class="blur-up lazyload" alt="">
                                 </div>
 
                                 <div class="service-detail">
-                                    <h5>Best Price On The Market</h5>
+                                    <h5>Phù hợp với túi tiền</h5>
                                 </div>
                             </div>
                         </div>
@@ -480,74 +477,46 @@
                         <div class="footer-logo">
                             <div class="theme-logo">
                                 <a href="home">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png" class="blur-up lazyload" alt="">
+                                    <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
+                                         class="blur-up lazyload" alt="">
                                 </a>
                             </div>
 
                             <div class="footer-logo-contain">
-                                <p>We are a friendly bar serving a variety of cocktails, wines and beers. Our bar is a
-                                    perfect place for a couple.</p>
+                                <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
 
                                 <ul class="address">
                                     <li>
                                         <i data-feather="home"></i>
-                                        <a href="javascript:void(0)">1418 Riverwood Drive, CA 96052, US</a>
+                                        <a href="javascript:void(0)">Hòa Lạc, Thạch Thất, Hà Nội</a>
                                     </li>
                                     <li>
                                         <i data-feather="mail"></i>
-                                        <a href="javascript:void(0)">support@fastkart.com</a>
+                                        <a href="javascript:void(0)">cofphe@gmail.com</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer-title">
-                            <h4>Categories</h4>
-                        </div>
-
-                        <div class="footer-contain">
-                            <ul>
-                                <li>
-                                    <a href="home.jsp" class="text-content">Vegetables & Fruit</a>
-                                </li>
-                                <li>
-                                    <a href="home.jsp" class="text-content">Beverages</a>
-                                </li>
-                                <li>
-                                    <a href="home.jsp" class="text-content">Meats & Seafood</a>
-                                </li>
-                                <li>
-                                    <a href="home.jsp" class="text-content">Frozen Foods</a>
-                                </li>
-                                <li>
-                                    <a href="home.jsp" class="text-content">Biscuits & Snacks</a>
-                                </li>
-                                <li>
-                                    <a href="home.jsp" class="text-content">Grocery & Staples</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
                     <div class="col-xl col-lg-2 col-sm-3">
                         <div class="footer-title">
-                            <h4>Useful Links</h4>
+                            <h4>Đường dẫn hữu dụng</h4>
                         </div>
 
                         <div class="footer-contain">
                             <ul>
                                 <li>
-                                    <a href="home.jsp" class="text-content">Home</a>
+                                    <a href="home" class="text-content">Trang chủ</a>
                                 </li>
 
                                 <li>
-                                    <a href="about-us.html" class="text-content">About Us</a>
+                                    <a href="about-us.html" class="text-content">Về chúng tôi</a>
                                 </li>
 
                                 <li>
-                                    <a href="contact-us.html" class="text-content">Contact Us</a>
+                                    <a href="contact-us.html" class="text-content">Liên lạc</a>
                                 </li>
                             </ul>
                         </div>
@@ -555,25 +524,20 @@
 
                     <div class="col-xl-2 col-sm-3">
                         <div class="footer-title">
-                            <h4>Help Center</h4>
+                            <h4>Xem thông tin</h4>
                         </div>
 
                         <div class="footer-contain">
                             <ul>
                                 <li>
-                                    <a href="order-success.html" class="text-content">Your Order</a>
+                                    <a href="order-success.html" class="text-content">Bạn đã mua</a>
                                 </li>
                                 <li>
-                                    <a href="user-dashboard.html" class="text-content">Your Account</a>
+                                    <a href="user-dashboard.html" class="text-content">Tài khoản</a>
                                 </li>
+
                                 <li>
-                                    <a href="order-tracking.html" class="text-content">Track Order</a>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html" class="text-content">Your Wishlist</a>
-                                </li>
-                                <li>
-                                    <a href="search.html" class="text-content">Search</a>
+                                    <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
                                 </li>
                                 <li>
                                     <a href="faq.html" class="text-content">FAQ</a>
@@ -584,7 +548,7 @@
 
                     <div class="col-xl-3 col-lg-4 col-sm-6">
                         <div class="footer-title">
-                            <h4>Contact Us</h4>
+                            <h4>Liên lạc với chúng tôi:</h4>
                         </div>
 
                         <div class="footer-contact">
@@ -594,7 +558,7 @@
                                         <i data-feather="phone"></i>
                                         <div class="contact-number">
                                             <h6 class="text-content">Hotline 24/7 :</h6>
-                                            <h5>+91 888 104 2340</h5>
+                                            <h5>+84 376597711</h5>
                                         </div>
                                     </div>
                                 </li>
@@ -603,70 +567,20 @@
                                     <div class="footer-number">
                                         <i data-feather="mail"></i>
                                         <div class="contact-number">
-                                            <h6 class="text-content">Email Address :</h6>
-                                            <h5>fastkart@hotmail.com</h5>
+                                            <h6 class="text-content">Địa chỉ email:</h6>
+                                            <h5>cofphe@gmail.com</h5>
                                         </div>
                                     </div>
                                 </li>
 
-                                <li class="social-app">
-                                    <h5 class="mb-2 text-content">Download App :</h5>
-                                    <ul>
-                                        <li class="mb-0">
-                                            <a href="https://play.google.com/store/apps" target="_blank">
-                                                <img src="${pageContext.request.contextPath}/template/assets/images/playstore.svg" class="blur-up lazyload"
-                                                     alt="">
-                                            </a>
-                                        </li>
-                                        <li class="mb-0">
-                                            <a href="https://www.apple.com/in/app-store/" target="_blank">
-                                                <img src="${pageContext.request.contextPath}/template/assets/images/appstore.svg" class="blur-up lazyload"
-                                                     alt="">
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="sub-footer section-small-space">
-                <div class="reserve">
-                    <h6 class="text-content">©2022 Fastkart All rights reserved</h6>
-                </div>
 
-                <div class="payment">
-                    <img src="${pageContext.request.contextPath}/template/assets/images/payment/1.png" class="blur-up lazyload" alt="">
-                </div>
-
-                <div class="social-link">
-                    <h6 class="text-content">Stay connected :</h6>
-                    <ul>
-                        <li>
-                            <a href="https://www.facebook.com/" target="_blank">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/" target="_blank">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/" target="_blank">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://in.pinterest.com/" target="_blank">
-                                <i class="fa-brands fa-pinterest-p"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </footer>
     <!-- Footer Section End -->

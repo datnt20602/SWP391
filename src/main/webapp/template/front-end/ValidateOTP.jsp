@@ -5,7 +5,7 @@
   Time: 9:27 PM
   To change this template use File | Settings | File Templates.
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
     <meta name="keywords" content="Fastkart">
     <meta name="author" content="Fastkart">
     <link rel="icon" href="${pageContext.request.contextPath}/template/assets/images/favicon/1.png" type="image/x-icon">
-    <title>Log In</title>
+    <title>Xác thực OTP</title>
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -68,101 +68,7 @@
 
 <!-- Header Start -->
 <header class="pb-md-4 pb-0">
-    <div class="header-top">
-        <div class="container-fluid-lg">
-            <div class="row">
-                <div class="col-xxl-3 d-xxl-block d-none">
-                    <div class="top-left-header">
-                        <i class="iconly-Location icli text-white"></i>
-                        <span class="text-white">1418 Riverwood Drive, CA 96052, US</span>
-                    </div>
-                </div>
 
-                <div class="col-xxl-6 col-lg-9 d-lg-block d-none">
-                    <div class="header-offer">
-                        <div class="notification-slider">
-                            <div>
-                                <div class="timer-notification">
-                                    <h6><strong class="me-1">Welcome to Fastkart!</strong>Wrap new offers/gift
-                                        every signle day on Weekends.<strong class="ms-1">New Coupon Code: Fast024
-                                        </strong>
-
-                                    </h6>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="timer-notification">
-                                    <h6>Something you love is now on sale!
-                                        <a href="home" class="text-white">Buy Now
-                                            !</a>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <ul class="about-list right-nav-about">
-                        <li class="right-nav-list">
-                            <div class="dropdown theme-form-select">
-                                <button class="btn dropdown-toggle" type="button" id="select-language"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/country/united-states.png"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                    <span>English</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="select-language">
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="english">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/country/united-kingdom.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>English</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="france">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/country/germany.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>Germany</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0)" id="chinese">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/country/turkish.png"
-                                                 class="img-fluid blur-up lazyload" alt="">
-                                            <span>Turki</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="right-nav-list">
-                            <div class="dropdown theme-form-select">
-                                <button class="btn dropdown-toggle" type="button" id="select-dollar"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span>USD</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end sm-dropdown-menu"
-                                    aria-labelledby="select-dollar">
-                                    <li>
-                                        <a class="dropdown-item" id="aud" href="javascript:void(0)">AUD</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="eur" href="javascript:void(0)">EUR</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" id="cny" href="javascript:void(0)">CNY</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="top-nav top-header sticky-header">
         <div class="container-fluid-lg">
@@ -175,8 +81,8 @@
                                     <i class="fa-solid fa-bars"></i>
                                 </span>
                         </button>
-                        <a href="home" class="web-logo nav-logo">
-                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png"
+                        <a href="" class="web-logo nav-logo">
+                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
                                  class="img-fluid blur-up lazyload" alt="">
                         </a>
 
@@ -187,14 +93,14 @@
                                         <span class="location-arrow">
                                             <i data-feather="map-pin"></i>
                                         </span>
-                                    <span class="locat-name">Your Location</span>
+                                    <span class="locat-name">Vị trí của bạn</span>
                                     <i class="fa-solid fa-angle-down"></i>
                                 </button>
                             </div>
 
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="I'm searching for..."
+                                    <input type="search" class="form-control" placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
@@ -215,125 +121,139 @@
                                         </span>
                                 </div>
                             </div>
-                            <ul class="right-side-menu">
-                                <li class="right-side">
-                                    <div class="delivery-login-box">
-                                        <div class="delivery-icon">
-                                            <div class="search-box">
-                                                <i data-feather="search"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="right-side">
-                                    <a href="contact-us.html" class="delivery-login-box">
-                                        <div class="delivery-icon">
-                                            <i data-feather="phone-call"></i>
-                                        </div>
-                                        <div class="delivery-detail">
-                                            <h6>24/7 Delivery</h6>
-                                            <h5>+91 888 104 2340</h5>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="right-side">
-                                    <a href="wishlist.html" class="btn p-0 position-relative header-wishlist">
-                                        <i data-feather="heart"></i>
-                                    </a>
-                                </li>
-                                <li class="right-side">
-                                    <div class="onhover-dropdown header-badge">
-                                        <button type="button" class="btn p-0 position-relative header-wishlist">
-                                            <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">2
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
-                                        </button>
+<%--                            <ul class="right-side-menu">--%>
+<%--                                <li class="right-side">--%>
+<%--                                    <div class="delivery-login-box">--%>
+<%--                                        <div class="delivery-icon">--%>
+<%--                                            <div class="search-box">--%>
+<%--                                                <i data-feather="search"></i>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
+<%--                                <li class="right-side">--%>
+<%--                                    <a href="contact-us.html" class="delivery-login-box">--%>
+<%--                                        <div class="delivery-icon">--%>
+<%--                                            <i data-feather="phone-call"></i>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="delivery-detail">--%>
+<%--                                            <h6>24/7 Delivery</h6>--%>
+<%--                                            <h5>+91 888 104 2340</h5>--%>
+<%--                                        </div>--%>
+<%--                                    </a>--%>
+<%--                                </li>--%>
+<%--                                <li class="right-side">--%>
+<%--                                    <a href="wishlist" class="btn p-0 position-relative header-wishlist">--%>
+<%--                                        <i data-feather="heart"></i>--%>
+<%--                                    </a>--%>
+<%--                                </li>--%>
+<%--                                <li class="right-side">--%>
+<%--                                    <div class="">--%>
+<%--&lt;%&ndash;                                        onhover-dropdown header-badge&ndash;%&gt;--%>
+<%--                                        <button type="button" class="btn p-0 position-relative header-wishlist">--%>
+<%--                                            <i data-feather="shopping-cart"></i>--%>
+<%--&lt;%&ndash;                                            <span class="position-absolute top-0 start-100 translate-middle badge">&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                                                    <span class="visually-hidden">unread messages</span>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                </span>&ndash;%&gt;--%>
+<%--                                        </button>--%>
 
-                                        <div class="onhover-div">
-                                            <ul class="cart-list">
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
-                                                            <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
-                                                                 class="blur-up lazyload" alt="">
-                                                        </a>
+<%--&lt;%&ndash;                                        <div class="onhover-div">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <ul class="cart-list">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <li class="product-box-contain">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    <div class="drop-cart">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <a href="product-detail.jsp" class="drop-image">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                                 class="blur-up lazyload" alt="">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        </a>&ndash;%&gt;--%>
 
-                                                        <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
-                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $80.58</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
+<%--&lt;%&ndash;                                                        <div class="drop-contain">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            <a href="product-detail.jsp">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            <h6><span>1 x</span> $80.58</h6>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            <button class="close-button close_button">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                                <i class="fa-solid fa-xmark"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            </button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        </div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    </div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                </li>&ndash;%&gt;--%>
 
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
-                                                            <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                                                 class="blur-up lazyload" alt="">
-                                                        </a>
+<%--&lt;%&ndash;                                                <li class="product-box-contain">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    <div class="drop-cart">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        <a href="product-detail.jsp" class="drop-image">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                                 class="blur-up lazyload" alt="">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        </a>&ndash;%&gt;--%>
 
-                                                        <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
-                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                </h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $25.68</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+<%--&lt;%&ndash;                                                        <div class="drop-contain">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            <a href="product-detail.jsp">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                                </h5>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            </a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            <h6><span>1 x</span> $25.68</h6>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            <button class="close-button close_button">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                                <i class="fa-solid fa-xmark"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                            </button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                        </div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    </div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                </li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </ul>&ndash;%&gt;--%>
 
-                                            <div class="price-box">
-                                                <h5>Total :</h5>
-                                                <h4 class="theme-color fw-bold">$106.58</h4>
-                                            </div>
+<%--&lt;%&ndash;                                            <div class="price-box">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <h5>Total :</h5>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <h4 class="theme-color fw-bold">$106.58</h4>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </div>&ndash;%&gt;--%>
 
-                                            <div class="button-group">
-                                                <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
-                                                <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="right-side onhover-dropdown">
-                                    <div class="delivery-login-box">
-                                        <div class="delivery-icon">
-                                            <i data-feather="user"></i>
-                                        </div>
-                                        <div class="delivery-detail">
-                                            <h6>Hello,</h6>
-                                            <h5>My Account</h5>
-                                        </div>
-                                    </div>
+<%--&lt;%&ndash;                                            <div class="button-group">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                                                <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;&lt;%&ndash;                                                    text-white">Thanh toán</a>&ndash;%&gt;&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </div>&ndash;%&gt;--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
+<%--                                <li class="right-side onhover-dropdown">--%>
+<%--                                    <div class="delivery-login-box">--%>
+<%--                                        <div class="delivery-icon">--%>
+<%--                                            <i data-feather="user"></i>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="delivery-detail">--%>
+<%--                                            <h6>Hello,</h6>--%>
+<%--                                            <h5>My Account</h5>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
 
-                                    <div class="onhover-div onhover-div-login">
-                                        <ul class="user-box-name">
-                                            <li class="product-box-contain">
-                                                <i></i>
-                                                <a href="login">Log In</a>
-                                            </li>
+<%--                                    <div class="onhover-div onhover-div-login">--%>
+<%--                                        <ul class="user-box-name">--%>
+<%--                                            <c:if test="${acc == null}">--%>
+<%--                                                <li class="product-box-contain">--%>
+<%--                                                    <i></i>--%>
+<%--                                                    <a href="login">Đăng nhập</a>--%>
+<%--                                                </li>--%>
 
-                                            <li class="product-box-contain">
-                                                <a href="sign-up.jsp">Register</a>
-                                            </li>
+<%--                                                <li class="product-box-contain">--%>
+<%--                                                    <a href="signup">Đăng kí</a>--%>
+<%--                                                </li>--%>
 
-                                            <li class="product-box-contain">
-                                                <a href="forgot.jsp">Forgot Password</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
+
+
+<%--                                                <li class="product-box-contain">--%>
+<%--                                                    <a href="forgotpass">Quên mật khẩu</a>--%>
+<%--                                                </li>--%>
+<%--                                            </c:if>--%>
+<%--                                            <c:if test="${acc != null}">--%>
+<%--                                                <li class="product-box-contain">--%>
+<%--                                                    <a href="changepass">Đổi mật khẩu</a>--%>
+<%--                                                </li>--%>
+
+<%--                                                <li class="product-box-contain">--%>
+<%--                                                    <a href="logout">Đăng xuất</a>--%>
+<%--                                                </li>--%>
+<%--                                            </c:if>--%>
+<%--                                        </ul>--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
+<%--                            </ul>--%>
                         </div>
                     </div>
                 </div>
@@ -341,7 +261,40 @@
         </div>
     </div>
 
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="header-nav">
 
+
+                    <div class="header-nav-middle">
+                        <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+                            <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
+                                <div class="offcanvas-header navbar-shadow">
+                                    <h5>Menu</h5>
+                                    <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav">
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-nav-right">
+                        <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
+                            <i data-feather="zap"></i>
+                            <span>Giảm giá hôm nay</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 <!-- Header End -->
 
@@ -349,7 +302,7 @@
 <div class="mobile-menu d-md-none d-block mobile-cart">
     <ul>
         <li class="active">
-            <a href="home.jsp">
+            <a href="">
                 <i class="iconly-Home icli"></i>
                 <span>Home</span>
             </a>
@@ -370,14 +323,14 @@
         </li>
 
         <li>
-            <a href="wishlist.html" class="notifi-wishlist">
+            <a href="/ODShop/template/front-end//ODShop/template/front-end/wishlist.html" class="notifi-wishlist">
                 <i class="iconly-Heart icli"></i>
                 <span>My Wish</span>
             </a>
         </li>
 
         <li>
-            <a href="cart.html">
+            <a href="cart.jsp">
                 <i class="iconly-Bag-2 icli fly-cate"></i>
                 <span>Cart</span>
             </a>
@@ -392,15 +345,15 @@
         <div class="row">
             <div class="col-12">
                 <div class="breadscrumb-contain">
-                    <h2 class="mb-2">Enter Your OTP</h2>
+                    <h2 class="mb-2">Nhập mã OTP</h2>
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a href="home">
+                                <a href="">
                                     <i class="fa-solid fa-house"></i>
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active">Home</li>
+                            <li class="breadcrumb-item active">Trang chủ</li>
                         </ol>
                     </nav>
                 </div>
@@ -424,8 +377,8 @@
             <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
                 <div class="log-in-box">
                     <div class="log-in-title">
-                        <h3>Welcome To Fastkart</h3>
-                        <h4>Enter Your OTP</h4>
+                        <h3>Chào mừng tới cofPhe</h3>
+                        <h4>Nhập mã OTP của bạn</h4>
                     </div>
 
                     <div class="input-box">
@@ -434,7 +387,7 @@
                                 <div class="form-floating theme-form-floating log-in-form">
                                     <input type="email" class="form-control" id="email" placeholder="Email Address"
                                            name="email" readonly value="${a.getUsername()}">
-                                    <label for="email">Email Address</label>
+                                    <label for="email">Địa chỉ email</label>
                                 </div>
                             </div>
 
@@ -442,7 +395,7 @@
                                 <div class="form-floating theme-form-floating log-in-form">
                                     <input type="text" class="form-control" id="opt"
                                            placeholder="Opt" name="opt" maxlength="6">
-                                    <label for="opt">Opt</label>
+                                    <label for="opt">OTP</label>
                                     <h3>${mess}</h3>
 
                                 </div>
@@ -487,7 +440,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Every Fresh Products</h5>
+                                <h5>Đồ uống chất lượng</h5>
                             </div>
                         </div>
 
@@ -498,7 +451,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Free Delivery For Order Over $50</h5>
+                                <h5>Miễn phí vận chuyển trong vòng 3km</h5>
                             </div>
                         </div>
 
@@ -509,7 +462,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Daily Mega Discounts</h5>
+                                <h5>Nhiều ưu đãi</h5>
                             </div>
                         </div>
 
@@ -520,7 +473,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Best Price On The Market</h5>
+                                <h5>Phù hợp với túi tiền</h5>
                             </div>
                         </div>
                     </div>
@@ -533,76 +486,47 @@
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="footer-logo">
                         <div class="theme-logo">
-                            <a href="home">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/1.png"
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
                                      class="blur-up lazyload" alt="">
                             </a>
                         </div>
 
                         <div class="footer-logo-contain">
-                            <p>We are a friendly bar serving a variety of cocktails, wines and beers. Our bar is a
-                                perfect place for a couple.</p>
+                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
 
                             <ul class="address">
                                 <li>
-                                    <i data-feather="home"></i>
-                                    <a href="javascript:void(0)">1418 Riverwood Drive, CA 96052, US</a>
+                                    <i data-feather=""></i>
+                                    <a href="javascript:void(0)">Hòa Lạc, Thạch Thất, Hà Nội</a>
                                 </li>
                                 <li>
                                     <i data-feather="mail"></i>
-                                    <a href="javascript:void(0)">support@fastkart.com</a>
+                                    <a href="javascript:void(0)">cofphe@gmail.com</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                    <div class="footer-title">
-                        <h4>Categories</h4>
-                    </div>
-
-                    <div class="footer-contain">
-                        <ul>
-                            <li>
-                                <a href="home.jsp" class="text-content">Vegetables & Fruit</a>
-                            </li>
-                            <li>
-                                <a href="home.jsp" class="text-content">Beverages</a>
-                            </li>
-                            <li>
-                                <a href="home.jsp" class="text-content">Meats & Seafood</a>
-                            </li>
-                            <li>
-                                <a href="home.jsp" class="text-content">Frozen Foods</a>
-                            </li>
-                            <li>
-                                <a href="home.jsp" class="text-content">Biscuits & Snacks</a>
-                            </li>
-                            <li>
-                                <a href="home.jsp" class="text-content">Grocery & Staples</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
                 <div class="col-xl col-lg-2 col-sm-3">
                     <div class="footer-title">
-                        <h4>Useful Links</h4>
+                        <h4>Đường dẫn hữu dụng</h4>
                     </div>
 
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="home.jsp" class="text-content">Home</a>
+                                <a href="" class="text-content">Trang chủ</a>
                             </li>
 
                             <li>
-                                <a href="about-us.html" class="text-content">About Us</a>
+                                <a href="about-us.html" class="text-content">Về chúng tôi</a>
                             </li>
 
                             <li>
-                                <a href="contact-us.html" class="text-content">Contact Us</a>
+                                <a href="contact-us.html" class="text-content">Liên lạc</a>
                             </li>
                         </ul>
                     </div>
@@ -610,25 +534,20 @@
 
                 <div class="col-xl-2 col-sm-3">
                     <div class="footer-title">
-                        <h4>Help Center</h4>
+                        <h4>Xem thông tin</h4>
                     </div>
 
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="order-success.html" class="text-content">Your Order</a>
+                                <a href="order-success.html" class="text-content">Bạn đã mua</a>
                             </li>
                             <li>
-                                <a href="user-dashboard.html" class="text-content">Your Account</a>
+                                <a href="user-dashboard.html" class="text-content">Tài khoản</a>
                             </li>
+
                             <li>
-                                <a href="order-tracking.html" class="text-content">Track Order</a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html" class="text-content">Your Wishlist</a>
-                            </li>
-                            <li>
-                                <a href="search.html" class="text-content">Search</a>
+                                <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
                             </li>
                             <li>
                                 <a href="faq.html" class="text-content">FAQ</a>
@@ -639,7 +558,7 @@
 
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="footer-title">
-                        <h4>Contact Us</h4>
+                        <h4>Liên lạc với chúng tôi:</h4>
                     </div>
 
                     <div class="footer-contact">
@@ -649,7 +568,7 @@
                                     <i data-feather="phone"></i>
                                     <div class="contact-number">
                                         <h6 class="text-content">Hotline 24/7 :</h6>
-                                        <h5>+91 888 104 2340</h5>
+                                        <h5>+84 376597711</h5>
                                     </div>
                                 </div>
                             </li>
@@ -658,73 +577,20 @@
                                 <div class="footer-number">
                                     <i data-feather="mail"></i>
                                     <div class="contact-number">
-                                        <h6 class="text-content">Email Address :</h6>
-                                        <h5>fastkart@hotmail.com</h5>
+                                        <h6 class="text-content">Địa chỉ email:</h6>
+                                        <h5>cofphe@gmail.com</h5>
                                     </div>
                                 </div>
                             </li>
 
-                            <li class="social-app">
-                                <h5 class="mb-2 text-content">Download App :</h5>
-                                <ul>
-                                    <li class="mb-0">
-                                        <a href="https://play.google.com/store/apps" target="_blank">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/playstore.svg"
-                                                 class="blur-up lazyload"
-                                                 alt="">
-                                        </a>
-                                    </li>
-                                    <li class="mb-0">
-                                        <a href="https://www.apple.com/in/app-store/" target="_blank">
-                                            <img src="${pageContext.request.contextPath}/template/assets/images/appstore.svg"
-                                                 class="blur-up lazyload"
-                                                 alt="">
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="sub-footer section-small-space">
-            <div class="reserve">
-                <h6 class="text-content">©2022 Fastkart All rights reserved</h6>
-            </div>
 
-            <div class="payment">
-                <img src="${pageContext.request.contextPath}/template/assets/images/payment/1.png"
-                     class="blur-up lazyload" alt="">
-            </div>
-
-            <div class="social-link">
-                <h6 class="text-content">Stay connected :</h6>
-                <ul>
-                    <li>
-                        <a href="https://www.facebook.com/" target="_blank">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/" target="_blank">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/" target="_blank">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://in.pinterest.com/" target="_blank">
-                            <i class="fa-brands fa-pinterest-p"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
 </footer>
 <!-- Footer Section End -->

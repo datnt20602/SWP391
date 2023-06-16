@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -221,7 +223,7 @@
                                     </a>
                                 </li>
                                 <li class="right-side">
-                                    <a href="wishlist.html" class="btn p-0 position-relative header-wishlist">
+                                    <a href="wishlist.jsp" class="btn p-0 position-relative header-wishlist">
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
@@ -238,13 +240,13 @@
                                             <ul class="cart-list">
                                                 <li class="product-box-contain">
                                                     <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
+                                                        <a href="product-detail.jsp" class="drop-image">
                                                             <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
                                                                  class="blur-up lazyload" alt="">
                                                         </a>
 
                                                         <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
+                                                            <a href="product-detail.jsp">
                                                                 <h5>Fantasy Crunchy Choco Chip Cookies</h5>
                                                             </a>
                                                             <h6><span>1 x</span> $80.58</h6>
@@ -257,13 +259,13 @@
 
                                                 <li class="product-box-contain">
                                                     <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
+                                                        <a href="product-detail.jsp" class="drop-image">
                                                             <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
                                                                  class="blur-up lazyload" alt="">
                                                         </a>
 
                                                         <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
+                                                            <a href="product-detail.jsp">
                                                                 <h5>Peanut Butter Bite Premium Butter Cookies 600 g
                                                                 </h5>
                                                             </a>
@@ -282,7 +284,7 @@
                                             </div>
 
                                             <div class="button-group">
-                                                <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
+                                                <a href="cart.jsp" class="btn btn-sm cart-button">View Cart</a>
                                                 <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
                                                     text-white">Checkout</a>
                                             </div>
@@ -802,14 +804,14 @@
         </li>
 
         <li>
-            <a href="wishlist.html" class="notifi-wishlist">
+            <a href="wishlist.jsp" class="notifi-wishlist">
                 <i class="iconly-Heart icli"></i>
                 <span>My Wish</span>
             </a>
         </li>
 
         <li>
-            <a href="cart.html">
+            <a href="cart.jsp">
                 <i class="iconly-Bag-2 icli fly-cate"></i>
                 <span>Cart</span>
             </a>
@@ -1045,7 +1047,7 @@
                                 <a href="order-tracking.html" class="text-content">Track Order</a>
                             </li>
                             <li>
-                                <a href="wishlist.html" class="text-content">Your Wishlist</a>
+                                <a href="wishlist.jsp" class="text-content">Your Wishlist</a>
                             </li>
                             <li>
                                 <a href="search.html" class="text-content">Search</a>
