@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'ODShop'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C7EBFDC6B0144A5DA9A51ED119768AFD }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9516700FB82C4C33B7F5CD45483D488B }}
           package: '*.war'
