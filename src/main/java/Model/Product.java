@@ -3,25 +3,21 @@ package Model;
 public class Product {
     private int product_id;
     private String product_name;
-    private String date_of_manufacture;
     private String category_name;
     private double price;
     private String image;
     private String describe;
-    private int quantity;
 
-    public Product(int product_id, String product_name, String date_of_manufacture, String category_name, double price, String image, String describe, int quantity) {
+    public Product() {
+    }
+
+    public Product(int product_id, String product_name, String category_name, double price, String image, String describe) {
         this.product_id = product_id;
         this.product_name = product_name;
-        this.date_of_manufacture = date_of_manufacture;
         this.category_name = category_name;
         this.price = price;
         this.image = image;
         this.describe = describe;
-        this.quantity = quantity;
-    }
-
-    public Product() {
     }
 
     public int getProduct_id() {
@@ -38,14 +34,6 @@ public class Product {
 
     public void setProduct_name(String product_name) {
         this.product_name = product_name;
-    }
-
-    public String getDate_of_manufacture() {
-        return date_of_manufacture;
-    }
-
-    public void setDate_of_manufacture(String date_of_manufacture) {
-        this.date_of_manufacture = date_of_manufacture;
     }
 
     public String getCategory_name() {
@@ -78,13 +66,5 @@ public class Product {
 
     public void setDescribe(String describe) {
         this.describe = describe;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 }

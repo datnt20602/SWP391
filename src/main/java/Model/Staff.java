@@ -2,24 +2,25 @@ package Model;
 
 public class Staff {
     private int staff_id;
-    private String first_name;
-    private String last_name;
+    private String name;
     private String email;
     private String phone;
     private int status;
     private int active;
+    private String pass;
+
 
     public Staff() {
     }
 
-    public Staff(int staff_id, String first_name, String last_name, String email, String phone, int status, int active) {
+    public Staff(int staff_id, String name, String email, String phone, int status, int active, String pass) {
         this.staff_id = staff_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.name = name;
         this.email = email;
         this.phone = phone;
         this.status = status;
         this.active = active;
+        this.pass = pass;
     }
 
     public int getStaff_id() {
@@ -30,20 +31,20 @@ public class Staff {
         this.staff_id = staff_id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getName() {
+        return name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getPass() {
+        return pass;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public String getEmail() {
