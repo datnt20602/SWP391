@@ -20,6 +20,18 @@ public class Product {
         this.describe = describe;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "product_id=" + product_id +
+                ", product_name='" + product_name + '\'' +
+                ", category_name='" + category_name + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", describe='" + describe + '\'' +
+                '}';
+    }
+
     public int getProduct_id() {
         return product_id;
     }
