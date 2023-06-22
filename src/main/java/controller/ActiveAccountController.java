@@ -21,7 +21,7 @@ public class ActiveAccountController extends HttpServlet {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                mail.authenEmail("qwertyy.no01@gmail.com", "rcugxvbbbsugvvyf", acc.getUsername(), opt);
+                mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", acc.getUsername(), opt);
             }
         };
         thread.start();
@@ -41,7 +41,7 @@ public class ActiveAccountController extends HttpServlet {
             if (optInput.equals(optValue)) {
                 acc.setActive(true);
                 AccountDBContext ad = new AccountDBContext();
-                ad.update(acc, acc.getaID());
+                ad.updateCustomer(acc, acc.getaID());
                 response.sendRedirect("home");
             } else {
                 String mess = "Opt incorrect! Please check again or click send again to have a new opt";

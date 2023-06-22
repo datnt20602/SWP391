@@ -23,7 +23,7 @@ public class ForgotPassController extends HttpServlet {
         AccountDBContext adb = new AccountDBContext();
         Account a = adb.getAccountByEmail(username);
         if(a == null){
-            request.setAttribute("mess", "Username doesn't exist !");
+            request.setAttribute("mess", "Tài khoản không tồn tại !");
 
             request.getRequestDispatcher("template/front-end/forgot.jsp").forward(request, response);
 

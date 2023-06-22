@@ -27,22 +27,27 @@ public class ChangePassController extends HttpServlet {
         AccountDBContext adb = new AccountDBContext();
 
         if (!oldpass.equals(a.getPassword())) {
-
-            request.setAttribute("mess", "Wrong old-password !");
+            request.setAttribute("mess", "Mật khẩu cũ không đúng!");
             request.getRequestDispatcher("template/front-end/change-password.jsp").forward(request, response);
             return;
         }
         if (!newpass.equals(renewpass)) {
-            request.setAttribute("mess", "Re-Password does not match!");
+            request.setAttribute("mess", "Mật khẩu không khớp!");
             request.getRequestDispatcher("template/front-end/change-password.jsp").forward(request, response);
             return;
         }
         if (newpass.equals(renewpass)) {
-            a.setPassword(newpass);
-            adb.update(a,a.getaID());
-
-            request.setAttribute("mess", "Change Password successfully!");
-            request.getRequestDispatcher("template/front-end/change-password.jsp").forward(request, response);
+            if (session.getAttribute("isStaff") != null) {
+                a.setPassword(newpass);
+                adb.updateStaff(a, a.getaID());
+                request.setAttribute("mess", "Đổi mật khẩu thành công!");
+                request.getRequestDispatcher("template/front-end/change-password.jsp").forward(request, response);
+            } else {
+                a.setPassword(newpass);
+                adb.updateCustomer(a, a.getaID());
+                request.setAttribute("mess", "Đổi mật khẩu thành công!");
+                request.getRequestDispatcher("template/front-end/change-password.jsp").forward(request, response);
+            }
         }
 
 
