@@ -18,7 +18,7 @@ import java.util.logging.Logger;
             try {
                 String user = "root";
                 String pass = "dat2062002";
-                String url = "jdbc:mysql://localhost:3306/Drink_Online_Shop";
+                String url = "jdbc:mysql://localhost:3306/drink_online_shop1";
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, pass);
             } catch (ClassNotFoundException ex) {
