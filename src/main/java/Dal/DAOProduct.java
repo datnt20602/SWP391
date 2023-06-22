@@ -49,8 +49,9 @@ public class DAOProduct extends DBContext{
                 String categoryName = rs.getString("category_name");
                 String image = rs.getString("image");
                 String describe = rs.getString("describe");
-
-                Product pro = new Product(id,name, categoryName, price, image, describe);
+                int volume = rs.getInt("volume");
+                Product pro = new Product(id,name, categoryName, price, image, describe,volume);
+//                System.out.println(pro.toString());
                 vector.add(pro);
             }
         } catch (SQLException e) {
@@ -68,6 +69,7 @@ public class DAOProduct extends DBContext{
                 "`category_name` = ?,\n" +
                 "`image` = ?,\n" +
                 "`describe` = ?\n" +
+                "`volume` = ?\n" +
                 "WHERE `product_id` = ?;";
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
@@ -77,7 +79,8 @@ public class DAOProduct extends DBContext{
             pre.setString(3, pro.getCategory_name());
             pre.setString(4, pro.getImage());
             pre.setString(5, pro.getDescribe());
-            pre.setInt(6, pro.getProduct_id());
+            pre.setInt(6, pro.getVolume());
+            pre.setInt(7, pro.getProduct_id());
             //run
             n = pre.executeUpdate();
         } catch (SQLException ex) {

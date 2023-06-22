@@ -8,16 +8,20 @@ public class Product {
     private String image;
     private String describe;
 
+    private int volume;
+
+
     public Product() {
     }
 
-    public Product(int product_id, String product_name, String category_name, double price, String image, String describe) {
+    public Product(int product_id, String product_name, String category_name, double price, String image, String describe, int volume) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.category_name = category_name;
         this.price = price;
         this.image = image;
         this.describe = describe;
+        this.volume = volume;
     }
 
     @Override
@@ -29,7 +33,16 @@ public class Product {
                 ", price=" + price +
                 ", image='" + image + '\'' +
                 ", describe='" + describe + '\'' +
+                ", volume=" + volume +
                 '}';
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 
     public int getProduct_id() {

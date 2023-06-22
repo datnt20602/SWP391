@@ -133,7 +133,6 @@ public class AccountDBContext extends DBContext {
     }
 
 //    public static void main(String[] args) {
-//        Product pro = new Product(111,"sdbdsf","dfygdf",23.3,"dfgsd","ydgfsdf");
 //        Dal.DAOProduct dao = new DAOProduct();
 ////        int n = dao.addProductbyPre(pro);
 //        dao.getAll();
