@@ -28,7 +28,6 @@ public class MailSending {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", port); // for TLS
         props.put("mail.smtp.starttls.enable", "true"); // for TLS
-
         Session session = Session.getInstance(props, new jakarta.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(fromEmail, password);
@@ -52,8 +51,8 @@ public class MailSending {
     }
 
     public void resetPasswordMail(String toEmail, String token) {
-        String fromEmail = "qwertyy.no01@gmail.com";
-        String password = "rcugxvbbbsugvvyf";
+        String fromEmail = "datnguyentien.20602@gmail.com";
+        String password = "lygzmpkipxtylicx";
         String host = "smtp.gmail.com";
         String port = "587";
 
@@ -71,7 +70,7 @@ public class MailSending {
 
         try {
             String content = "Bạn đang thực hiện việc reset mật khẩu. Đây là mã xác thực: " + token +
-                    "\nLưu ý: Mã xác thực chỉ có hiệu nghiệm trong vòng 30 phút và bạn sẽ chỉ có thể nhận được mail mã xác thực mới sau 30 phút";
+                    "\n Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!";
 
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(fromEmail));
@@ -105,8 +104,8 @@ public class MailSending {
         });
 
         try {
-            String content = "Thank you for sign up our website. Below is your token to authenticate email:\nToken: " + token +
-                    "\nNote: You can only use this token for 30 minutes and during this period you will not be able to receive any more tokens";
+            String content = "Cảm ơn bạn đã đăng ký tài khoản. Dưới đây là chuỗi OTP xác thực:\nOTP: " + token +
+                    "\nNote: Hân hạnh được phục vụ !";
 
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(fromEmail));

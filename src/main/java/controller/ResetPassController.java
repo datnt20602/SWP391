@@ -26,13 +26,13 @@ public class ResetPassController extends HttpServlet {
         Account a = (Account) session.getAttribute("a");
         if(newpass.equals(renewpass)){
             a.setPassword(newpass);
-            adb.update(a,a.getaID());
+            adb.updateCustomer(a,a.getaID());
 
             session.removeAttribute("a");
-            session.setAttribute("resetmess","Reset password SUCCESSFULLY! Please login again !");
+            session.setAttribute("resetmess","Thành công! Mời đăng nhập lại !");
             response.sendRedirect("login");
         }else {
-            String mess = "Password doesn't match !";
+            String mess = "Mật khẩu không khớp !";
             request.setAttribute("mess",mess);
             request.getRequestDispatcher("template/front-end/reset-password.jsp").forward(request,response);
         }

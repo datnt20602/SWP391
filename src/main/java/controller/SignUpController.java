@@ -36,7 +36,6 @@ public class SignUpController extends HttpServlet {
             Account a = adb.checkAccountExist(user);
             if (a == null) {
                 Account b = new Account();
-
                 b.setName(fullname);
                 b.setUsername(user);
                 b.setPassword(pass);
@@ -44,7 +43,6 @@ public class SignUpController extends HttpServlet {
                 HttpSession session = request.getSession();
                 Account acc = adb.getAccountByEmail(user);
                 session.setAttribute("acc", acc);
-
                 response.sendRedirect("activeAccount");
             } else {
                 request.setAttribute("mess", "Account Exist!");
