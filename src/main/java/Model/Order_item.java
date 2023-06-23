@@ -2,12 +2,70 @@ package Model;
 
 public class Order_item {
     private int item_id;
+    private int order_id;
+    private Product product;
     private int quantity;
     private double price;
     private double discount;
-    private String product_name;
+
+    private String feedback;
+    private String feedback_date;
+    private double start_rating;
+
 
     public Order_item() {
+    }
+
+    public Order_item(int item_id, int order_id, Product product, int quantity, double price,
+                      double discount, String feedback, String feedback_date, double start_rating) {
+        this.item_id = item_id;
+        this.order_id = order_id;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.discount = discount;
+        this.feedback = feedback;
+        this.feedback_date = feedback_date;
+        this.start_rating = start_rating;
+    }
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public String getFeedback_date() {
+        return feedback_date;
+    }
+
+    public void setFeedback_date(String feedback_date) {
+        this.feedback_date = feedback_date;
+    }
+
+    public double getStart_rating() {
+        return start_rating;
+    }
+
+    public void setStart_rating(double start_rating) {
+        this.start_rating = start_rating;
     }
 
     public int getItem_id() {
@@ -42,11 +100,4 @@ public class Order_item {
         this.discount = discount;
     }
 
-    public String getProduct_name() {
-        return product_name;
-    }
-
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
-    }
 }

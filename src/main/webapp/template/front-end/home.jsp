@@ -1,6 +1,9 @@
+<%@ page import="Model.Product" %>
+<%@ page import="java.util.Vector" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import =" java.util.Vector,Model.Product" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -434,11 +437,12 @@
                                         </div>
 
                                         <ul class="category-list custom-padding custom-height">
+
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="coffee">
-                                                    <label class="form-check-label" for="coffee">
-                                                        <span class="name"> Cà phê</span>
+                                                    <input class="checkbox_animated" type="checkbox" id="fruit">
+                                                    <label class="form-check-label" for="fruit">
+                                                        <span class="name"> Coffee</span>
 
                                                     </label>
                                                 </div>
@@ -678,7 +682,7 @@
                 <div class="show-button">
                     <div class="filter-button-group mt-0">
                         <div class="filter-button d-inline-block d-lg-none">
-                            <a><i class="fa-solid fa-filter"></i> Bộ lọc</a>
+                            <a><i class="fa-solid fa-filter"></i> Filter Menu</a>
                         </div>
                     </div>
 
@@ -732,15 +736,21 @@
                         </div>
                     </div>
                 </div>
-
+                    <%
+                        Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
+                    %>
                 <div
                         class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
+                    <%
+                        for(Product temp : vector ){
+
+                    %>
                     <div>
-                        <div class="product-box-3 h-100 wow fadeInUp">
+                        <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.6">
                             <div class="product-header">
                                 <div class="product-image">
                                     <a href="productdetail">
-                                        <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/2.png"
+                                        <img src="<%=temp.getImage()%>"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
@@ -756,6 +766,11 @@
                             </div>
                             <div class="product-footer">
                                 <div class="product-detail">
+                                    <span class="span-name"><%=temp.getCategory_name()%></span>
+                                    <a href="productdetail">
+                                        <h5 class="name"><%=temp.getProduct_name()%></h5>
+                                    </a>
+                                    <p class="text-content mt-1 mb-2 product-content"><%=temp.getDescribe()%></p>
                                     <div class="product-rating mt-2">
                                         <ul class="rating">
                                             <li>
@@ -776,7 +791,9 @@
                                         </ul>
                                         <span>(4.0)</span>
                                     </div>
-
+                                    <h6 class="unit"><%= temp.getVolume()%>ml</h6>
+                                    <h5 class="price"><span class="theme-color"><%= temp.getPrice()%></span>
+                                        <del>$15.15</del>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
                                         <button class="btn btn-add-cart addcart-button">Add
@@ -790,7 +807,7 @@
                                                         data-type="minus" data-field="">
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                 </button>
-                                                <input class="form-control input-number qty-input" type="text"
+                                                <input onchange="var a = document.querySelector('form-control input-number qty-input'); console.log(a.target.value)" class="form-control input-number qty-input" type="text"
                                                        name="quantity" value="0">
                                                 <button type="button" class="qty-right-plus bg-gray"
                                                         data-type="plus" data-field="">
@@ -803,6 +820,7 @@
                             </div>
                         </div>
                     </div>
+                    <% } %>
                 </div>
 
                 <nav class="custome-pagination">

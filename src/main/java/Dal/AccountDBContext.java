@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import Model.Account;
+import Model.Product;
 
 public class AccountDBContext extends DBContext {
 
@@ -214,5 +215,10 @@ public class AccountDBContext extends DBContext {
         }
     }
 
+//    public static void main(String[] args) {
+//        Dal.DAOProduct dao = new DAOProduct();
+////        int n = dao.addProductbyPre(pro);
+//        dao.getAll();
+//    }
 
 }
