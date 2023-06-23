@@ -37,6 +37,7 @@ import java.util.logging.Logger;
             }
             return rs;
         }
+
         public static void main(String[] args) {
             DBContext a = new DBContext();
             System.out.println(a.connection);

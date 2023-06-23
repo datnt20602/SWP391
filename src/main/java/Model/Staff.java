@@ -5,7 +5,6 @@ public class Staff {
     private String name;
     private String email;
     private String phone;
-    private int status;
     private int active;
     private String pass;
 
@@ -13,12 +12,11 @@ public class Staff {
     public Staff() {
     }
 
-    public Staff(int staff_id, String name, String email, String phone, int status, int active, String pass) {
+    public Staff(int staff_id, String name, String email, String phone, int active, String pass) {
         this.staff_id = staff_id;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.status = status;
         this.active = active;
         this.pass = pass;
     }
@@ -61,14 +59,6 @@ public class Staff {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public int getActive() {
