@@ -807,7 +807,7 @@
                                                         data-type="minus" data-field="">
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                 </button>
-                                                <input class="form-control input-number qty-input" type="text"
+                                                <input onchange="var a = document.querySelector('form-control input-number qty-input'); console.log(a.target.value)" class="form-control input-number qty-input" type="text"
                                                        name="quantity" value="0">
                                                 <button type="button" class="qty-right-plus bg-gray"
                                                         data-type="plus" data-field="">
