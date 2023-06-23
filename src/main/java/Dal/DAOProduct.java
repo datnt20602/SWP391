@@ -92,7 +92,11 @@ public class DAOProduct extends DBContext{
 
 
     public static void main(String[] args) {
-        Product pro = new Product();
+
+        DAOCustomer dao = new DAOCustomer();
+        if(dao.login("minhdnhe161535@fpt.edu.vn", "Minh2002") == null){
+            System.out.println( "nullllll");
+        }
     }
 
 }
