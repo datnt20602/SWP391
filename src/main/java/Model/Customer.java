@@ -5,19 +5,17 @@ public class Customer {
     private String name;
     private String phone;
     private String email;
-    private String address;
     private String pass;
     private int status;
 
     public Customer() {
     }
 
-    public Customer(int customer_id, String name, String phone, String email, String address, String pass, int status) {
+    public Customer(int customer_id, String name, String phone, String email, String pass, int status) {
         this.customer_id = customer_id;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.pass = pass;
         this.status = status;
     }
@@ -52,14 +50,6 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPass() {
