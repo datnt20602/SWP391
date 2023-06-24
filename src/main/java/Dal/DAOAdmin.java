@@ -48,13 +48,16 @@ public class DAOAdmin extends DBContext{
             pre.setString(1, email);
             pre.setString(2, pass);
             ResultSet rs =  pre.executeQuery();
-            int id = rs.getInt("admin_id");
-            String name = rs.getString("name");
-            String phone = rs.getString("phone");
-            int status = rs.getInt("status");
-            String street  =  rs.getString("street");
-            String city = rs.getString("city");
-            Admin ad = new Admin(id,name,email,phone,status,street,city,pass);
+            while (rs.next()){
+                int id = rs.getInt("admin_id");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                int status = rs.getInt("status");
+                String street  =  rs.getString("street");
+                String city = rs.getString("city");
+                Admin ad = new Admin(id,name,email,phone,status,street,city,pass);
+                return ad;
+            }
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }

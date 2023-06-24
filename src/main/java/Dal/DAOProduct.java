@@ -37,9 +37,8 @@ public class DAOProduct extends DBContext{
         return n;
     }
 
-    public Vector<Product> getAll() {
+    public Vector<Product> getAll(String sql) {
         Vector<Product> vector = new Vector<Product>();
-        String sql = "select * from product";
         ResultSet rs = this.getData(sql);
         try {
             while (rs.next()) {
@@ -58,6 +57,19 @@ public class DAOProduct extends DBContext{
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }
         return vector;
+    }
+    public int returnSoLuong() {
+        String sql = "select COUNT(*) as soluong from products";
+        ResultSet rs = this.getData(sql);
+        int n = 0;
+        try {
+            while (rs.next()) {
+                n = rs.getInt("soluong");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return n;
     }
     public int updateProduct(Product pro) {
         int n = 0;
@@ -91,12 +103,6 @@ public class DAOProduct extends DBContext{
     }
 
 
-    public static void main(String[] args) {
 
-        DAOCustomer dao = new DAOCustomer();
-        if(dao.login("minhdnhe161535@fpt.edu.vn", "Minh2002") == null){
-            System.out.println( "nullllll");
-        }
-    }
 
 }
