@@ -27,22 +27,26 @@ public class HomeController extends HttpServlet {
         if(service.equals("displayAll")) {
             String pageSt = request.getParameter("page");
             if (pageSt == null) {
-                System.out.println("dsghf");
                 pageSt = "1";
             }
             int quantityPage = 0;
-//            if(dao.returnSoLuong() % 9 != 0){
-//                quantityPage = (dao.returnSoLuong() / 9) + 1;
-//            }else{
-//                quantityPage = (dao.returnSoLuong() / 9);
-//            }
+            if(dao.returnSoLuong() % 9 != 0){
+                quantityPage = (dao.returnSoLuong() / 9) + 1;
+            }else{
+                quantityPage = (dao.returnSoLuong() / 9);
+            }
             int page = Integer.parseInt(pageSt);
-//            if(page <= quantityPage || page < 0) {
-                Vector<Product> vector = dao.getAll("SELECT * FROM product ORDER BY product_id LIMIT " + page + ", 9;");
-                request.setAttribute("pageIndex", page);
+            if(page <= quantityPage || page < 0) {
+                Vector<Product> vector;
+                if(page == 1) {
+                    vector = dao.getAll("SELECT * FROM product ORDER BY product_id LIMIT 0, 9;");
+                }else{
+                    vector = dao.getAll("SELECT * FROM product ORDER BY product_id LIMIT " + (page * 9) + ", 9;");
+
+                }
                 request.setAttribute("data", vector);
                 dispath(request, response, "template/front-end/home.jsp");
-//            }
+            }
         }
         if(service.equals("displayAllReduce")){
             Vector<Product> vector = dao.getAll("select * from product order by price DESC");

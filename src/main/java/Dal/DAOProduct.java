@@ -50,7 +50,6 @@ public class DAOProduct extends DBContext{
                 String describe = rs.getString("describe");
                 int volume = rs.getInt("volume");
                 Product pro = new Product(id,name, categoryName, price, image, describe,volume);
-//                System.out.println(pro.toString());
                 vector.add(pro);
             }
         } catch (SQLException e) {
@@ -58,8 +57,27 @@ public class DAOProduct extends DBContext{
         }
         return vector;
     }
+    public Product getProductByID(int pro_id) {
+        Product pro = new Product();
+        ResultSet rs = this.getData("select * from product where product_id ="+pro_id+"");
+        try {
+            while (rs.next()) {
+                String name = rs.getString("product_name");
+                Double price = rs.getDouble("price");
+                String categoryName = rs.getString("category_name");
+                String image = rs.getString("image");
+                String describe = rs.getString("describe");
+                int volume = rs.getInt("volume");
+                pro = new Product(pro_id,name, categoryName, price, image, describe,volume);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return pro;
+    }
+
     public int returnSoLuong() {
-        String sql = "select COUNT(*) as soluong from products";
+        String sql = "select COUNT(*) as soluong from product";
         ResultSet rs = this.getData(sql);
         int n = 0;
         try {

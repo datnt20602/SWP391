@@ -3,8 +3,9 @@
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import =" java.util.Vector,Model.Product,java.util.List" %>
+<%@page import =" java.util.Vector,Model.Product" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="Model.Customer" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -771,9 +772,20 @@
                                     <ul class="product-option">
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
+                            <%
+                                if(session.getAttribute("customer") != null){
+                                    Customer customer = (Customer) session.getAttribute("customer");
+                            %>
+                                            <a style="padding-left: 95px" href="wishlist?service=addToWislist&cus_id=<%=customer.getCustomer_id()%>&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
+                            <%
+                                }else{
+                            %>
+                                            <a style="padding-left: 95px" href="login" class="notifi-wishlist">
+                                                <i data-feather="heart"></i>
+                                            </a>
+                            <%}%>
                                         </li>
                                     </ul>
                                 </div>
@@ -821,7 +833,7 @@
                                                         data-type="minus" data-field="">
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                 </button>
-                                                <input onchange="var a = document.querySelector('form-control input-number qty-input'); console.log(a.target.value)" class="form-control input-number qty-input" type="text"
+                                                <input  class="form-control input-number qty-input" type="text"
                                                        name="quantity" value="0">
                                                 <button type="button" class="qty-right-plus bg-gray"
                                                         data-type="plus" data-field="">
@@ -836,25 +848,27 @@
                     </div>
                     <% } %>
                 </div>
-            <%int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));%>
+
                 <nav class="custome-pagination">
+
                     <ul class="pagination justify-content-center">
+
                         <li class="page-item disabled">
-                            <a class="page-link" href="home?service=displayAll&page=<%=(pageIndex-1)%>" tabindex="-1" aria-disabled="true">
+                            <a class="page-link" href="" tabindex="-1" aria-disabled="true">
                                 <i class="fa-solid fa-angles-left"></i>
                             </a>
                         </li>
                         <li class="page-item active">
-                            <a class="page-item" href="home?service=displayAll">1</a>
+                            <a class="page-item" href=""></a>
                         </li>
                         <li class="page-item" aria-current="page">
-                            <a class="page-link" href="home?service=displayAll&page=2">2</a>
+                            <a class="page-link" href=""></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="home?service=displayAll&page=2">3</a>
+                            <a class="page-link" href=""></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="home?service=displayAll&page=<%=(pageIndex+1)%>">
+                            <a class="page-link" href="">
                                 <i class="fa-solid fa-angles-right"></i>
                             </a>
                         </li>
