@@ -1,5 +1,11 @@
 package controller;
 
+import Dal.DAOAdmin;
+import Dal.DAOCustomer;
+import Dal.DAOStaff;
+import Model.Admin;
+import Model.Customer;
+import Model.Staff;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -16,29 +22,27 @@ public class LoginController extends HttpServlet {
         HttpSession session = request.getSession();
         String user = request.getParameter("Username");
         String pass = request.getParameter("Password");
-        AccountDBContext adb = new AccountDBContext();
-        Account a = adb.getAdmin(user, pass);
-        if (a==null) {
-            a = adb.getStaff(user, pass);
-            if (a == null) {
-                a = adb.getCustomer(user, pass);
-                if (a == null) {
-                    request.setAttribute("mess", "Wrong Username or Password");
-                    request.getRequestDispatcher("template/front-end/login.jsp").forward(request, response);
-                } else {
-                    session.setAttribute("acc", a);
+        DAOCustomer DaoC = new DAOCustomer();
+        if(DaoC.login(user,pass) != null){
+            Customer cus = DaoC.login(user,pass);
+            session.setAttribute("customer", cus);
+            response.sendRedirect("home");
+        }else{
+            DAOStaff DaoS = new DAOStaff();
+            if(DaoS.login(user, pass) != null){
+                Staff st = DaoS.login(user, pass);
+                session.setAttribute("staff", st);
+
+            }else{
+                DAOAdmin DaoA = new DAOAdmin();
+                if(DaoA.login(user, pass) != null){
+                    Admin ad = DaoA.login(user, pass);
+                    session.setAttribute("admin", ad);
+
+                }else{
                     response.sendRedirect("home");
                 }
             }
-            else {
-                session.setAttribute("acc", a);
-                session.setAttribute("isStaff", true);
-                response.sendRedirect("home");
-            }
-        }else{
-            session.setAttribute("acc", a);
-            session.setAttribute("isAdmin", true);
-            response.sendRedirect("home");
         }
 
     }
