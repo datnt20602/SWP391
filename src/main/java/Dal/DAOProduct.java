@@ -1,5 +1,4 @@
 package Dal;
-import Model.Customer;
 import Model.Product;
 
 import java.sql.PreparedStatement;
@@ -146,11 +145,7 @@ public class DAOProduct extends DBContext{
         return n;
     }
 
-    public static void main(String[] args) {
-        DAOCustomer dao = new DAOCustomer();
-        Customer cus = dao.login("minhdnhe161535@fpt.edu.vn", "Minh2002");
-        System.out.println(cus.toString());
-    }
+
 
 
 }
