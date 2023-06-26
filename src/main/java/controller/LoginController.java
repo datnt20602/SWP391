@@ -33,13 +33,13 @@ public class LoginController extends HttpServlet {
             Admin ad = DaoA.login(user,pass);
             if(ad != null){
                 session.setAttribute("admin", ad);
-
+                request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
             }else{
                 DAOStaff DaoS = new DAOStaff();
                 Staff st = DaoS.login(user,pass);
                 if(st != null){
                     session.setAttribute("staff",st);
-
+                    request.getRequestDispatcher("template/front-end/staff-home.jsp").forward(request, response);
                 }
                 else{
                     request.setAttribute("mess", "Wrong Username or Password");

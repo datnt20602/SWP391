@@ -32,7 +32,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="product">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">My Store</span>
 				</a>
