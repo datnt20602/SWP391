@@ -4,6 +4,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import =" java.util.Vector,Model.Product" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="Model.Customer" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +103,7 @@
 
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Tìm kiếm..."
+                                    <input onchange="searchByName(this)" type="search" class="form-control" placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
@@ -223,7 +225,7 @@
 
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
-                                            <c:if test="${acc == null}">
+                                            <c:if test="${customer == null}">
                                                 <li class="product-box-contain">
                                                     <i></i>
                                                     <a href="login">Đăng nhập</a>
@@ -239,11 +241,13 @@
                                                     <a href="forgotpass">Quên mật khẩu</a>
                                                 </li>
                                             </c:if>
-                                            <c:if test="${acc != null}">
+                                            <c:if test="${customer != null}">
+                                                <li class="product-box-contain">
+                                                    <a href="changepass">Thông tin cá nhân</a>
+                                                </li>
                                                 <li class="product-box-contain">
                                                     <a href="changepass">Đổi mật khẩu</a>
                                                 </li>
-
                                                 <li class="product-box-contain">
                                                     <a href="logout">Đăng xuất</a>
                                                 </li>
@@ -436,14 +440,25 @@
                                             <label for="search">Tìm...</label>
                                         </div>
 
-                                        <ul class="category-list custom-padding custom-height">
-
+                                        <ul class="category-list custom-padding custom-height" >
+                                           <%
+                                               ResultSet rs = (ResultSet) request.getAttribute("category_name");
+                                               while (rs.next()){
+                                           %>
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
                                                     <input class="checkbox_animated" type="checkbox" id="fruit">
                                                     <label class="form-check-label" for="fruit">
-                                                        <span class="name"> Coffee</span>
-
+                                                        <span class="name"> <%=rs.getString("category_name")%></span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <%}%>
+                                            <li>
+                                                <div class="form-check ps-0 m-0 category-list-box">
+                                                    <input class="checkbox_animated" type="checkbox" >
+                                                    <label class="form-check-label" for="fruit">
+                                                        <span class="name"> Trà Chanh</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -697,10 +712,10 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                                     <li>
-                                        <a class="dropdown-item" id="low" href="javascript:void(0)">Giá thấp - cao</a>
+                                        <a class="dropdown-item" id="low" href="home?service=displayAllUp">Giá thấp - cao</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" id="high" href="javascript:void(0)">Giá cao - thấp</a>
+                                        <a class="dropdown-item" id="high" href="home?service=displayAllReduce">Giá cao - thấp</a>
                                     </li>
 
                                     <li>
@@ -739,7 +754,7 @@
                     <%
                         Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
                     %>
-                <div
+                <div id="content"
                         class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
                     <%
                         for(Product temp : vector ){
@@ -757,9 +772,20 @@
                                     <ul class="product-option">
 
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a style="padding-left: 95px" href="wishlist" class="notifi-wishlist">
+                            <%
+                                if(session.getAttribute("customer") != null){
+                                    Customer customer = (Customer) session.getAttribute("customer");
+                            %>
+                                            <a style="padding-left: 95px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
+                            <%
+                                }else{
+                            %>
+                                            <a style="padding-left: 95px" href="login" class="notifi-wishlist">
+                                                <i data-feather="heart"></i>
+                                            </a>
+                            <%}%>
                                         </li>
                                     </ul>
                                 </div>
@@ -807,7 +833,7 @@
                                                         data-type="minus" data-field="">
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                 </button>
-                                                <input onchange="var a = document.querySelector('form-control input-number qty-input'); console.log(a.target.value)" class="form-control input-number qty-input" type="text"
+                                                <input  class="form-control input-number qty-input" type="text"
                                                        name="quantity" value="0">
                                                 <button type="button" class="qty-right-plus bg-gray"
                                                         data-type="plus" data-field="">
@@ -824,23 +850,25 @@
                 </div>
 
                 <nav class="custome-pagination">
+
                     <ul class="pagination justify-content-center">
+
                         <li class="page-item disabled">
-                            <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true">
+                            <a class="page-link" href="" tabindex="-1" aria-disabled="true">
                                 <i class="fa-solid fa-angles-left"></i>
                             </a>
                         </li>
                         <li class="page-item active">
-                            <a class="page-link" href="javascript:void(0)">1</a>
+                            <a class="page-item" href=""></a>
                         </li>
                         <li class="page-item" aria-current="page">
-                            <a class="page-link" href="javascript:void(0)">2</a>
+                            <a class="page-link" href=""></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">3</a>
+                            <a class="page-link" href=""></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">
+                            <a class="page-link" href="">
                                 <i class="fa-solid fa-angles-right"></i>
                             </a>
                         </li>
@@ -1267,6 +1295,25 @@
 <!-- Bg overlay End -->
 
 <!-- latest jquery-->
+<script>
+    function searchByName(param){
+        var txtSearch = param.valueOf;
+        $ .ajax({
+            url : "home?service=search",
+            type: "get",
+            data:{
+                txt : txtSearch
+            },
+            success : function (data){
+                var row = document.getElementById("content");
+                row.innerHTML = data;
+            },
+            error: function (xhr){
+
+            }
+        });
+    }
+</script>
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
 
 <!-- jquery ui-->
