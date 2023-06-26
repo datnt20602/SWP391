@@ -33,7 +33,6 @@ import java.util.logging.Logger;
                         ResultSet.CONCUR_UPDATABLE);
 
                 rs=state.executeQuery(sql);
-                System.out.println("cvdfssfdf");
             } catch (SQLException ex) {
                 Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
             }

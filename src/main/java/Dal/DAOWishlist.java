@@ -7,6 +7,8 @@ import Model.Wishlist;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -34,34 +36,46 @@ public class DAOWishlist extends  DBContext{
     }
 
     public Wishlist getAll(int cus_id) {
-        Wishlist wishlist ;
-        ResultSet rs = this.getData("Select * from wishlist where idwishlist = "+cus_id);
-        List<Integer> pro_list = null;
+        Wishlist wishlist = new Wishlist() ;
+        ResultSet rs = this.getData("Select * from wishlist where customer_id = "+cus_id);
+        ArrayList<Integer> pro_list = new ArrayList<>();
         int wishlist_id = 0;
         try {
             int i = 0;
             while (rs.next()) {
                 pro_list.add(Integer.parseInt(rs.getString("product_id")));
                 wishlist_id = Integer.parseInt(rs.getString("idwishlist"));
+                System.out.println(rs.getString("idwishlist"));
             }
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }
-        wishlist = new Wishlist(wishlist_id,pro_list,cus_id);
+        wishlist.setWishlist_id(wishlist_id);
+        wishlist.setPro_list(pro_list);
+        wishlist.setCus(cus_id);
         return wishlist;
     }
     public int quantityWishList (){
-        String sql = "select COUNT(*) as soluong from wishlist";
+        String sql = "SELECT * FROM wishlist ORDER BY idwishlist DESC LIMIT 1;";
         ResultSet rs = this.getData(sql);
         int n = 0;
-
-        try {
+        try{
             while (rs.next()){
-                 n = rs.getInt("soluong");
+                n = Integer.parseInt(rs.getString("idwishlist"));
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        }catch (SQLException e){
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }
         return n;
+    }
+    public void removeWishlist(int cus_id, int pro_id){
+        String sql = "DELETE FROM `drink_online_shop1`.`wishlist`\n" +
+                "WHERE customer_id = "+cus_id+" and product_id ="+pro_id+"";
+        try {
+            Statement state = connection.createStatement();
+            state.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

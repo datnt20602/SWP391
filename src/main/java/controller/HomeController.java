@@ -58,6 +58,7 @@ public class HomeController extends HttpServlet {
             request.setAttribute("data", vector);
             dispath(request, response, "template/front-end/home.jsp");
         }
+
 //        response.sendRedirect("template/front-end/login.jsp");
     }
 

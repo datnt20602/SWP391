@@ -30,6 +30,7 @@ public class WishlistController extends HttpServlet {
                 Wishlist wishlist = dao.getAll(cus.getCustomer_id());
                 for(Integer i : wishlist.getPro_list()){
                     vector.add(daoP.getProductByID(i));
+                    System.out.println(daoP.getProductByID(i).getProduct_name());
                 }
                 request.setAttribute("data", vector);
                 request.getRequestDispatcher("template/front-end/wishlist.jsp").forward(request, response);
@@ -38,10 +39,23 @@ public class WishlistController extends HttpServlet {
             }
         }
         if(service.equals("addToWislist")){
-            int cus_id = Integer.parseInt(request.getParameter("cus_id"));
+            HttpSession session = request.getSession();
+            Customer cus = (Customer) session.getAttribute("customer");
             int pro_id = Integer.parseInt(request.getParameter("pro_id"));
             int wishlist_id = dao.quantityWishList()+1;
-            dao.insertWishList(cus_id, pro_id,wishlist_id);
+            Wishlist wishlist = dao.getAll(cus.getCustomer_id());
+            boolean check = true;
+            for(Integer i : wishlist.getPro_list()) {
+                if(pro_id == i) check = false;
+            }
+            if(check) dao.insertWishList(cus.getCustomer_id(), pro_id, wishlist_id);
+            response.sendRedirect("home");
+        }
+        if(service.equals("cancelWishlist")){
+            HttpSession session = request.getSession();
+            Customer cus = (Customer) session.getAttribute("customer");
+            int pro_id = Integer.parseInt(request.getParameter("cancel"));
+            dao.removeWishlist(cus.getCustomer_id(), pro_id);
             response.sendRedirect("wishlist");
         }
 

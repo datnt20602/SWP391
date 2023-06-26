@@ -103,7 +103,7 @@
 
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Tìm kiếm..."
+                                    <input onchange="searchByName(this)" type="search" class="form-control" placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
@@ -754,7 +754,7 @@
                     <%
                         Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
                     %>
-                <div
+                <div id="content"
                         class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
                     <%
                         for(Product temp : vector ){
@@ -776,7 +776,7 @@
                                 if(session.getAttribute("customer") != null){
                                     Customer customer = (Customer) session.getAttribute("customer");
                             %>
-                                            <a style="padding-left: 95px" href="wishlist?service=addToWislist&cus_id=<%=customer.getCustomer_id()%>&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                             <%
@@ -1295,6 +1295,16 @@
 <!-- Bg overlay End -->
 
 <!-- latest jquery-->
+<script>
+    function searchByName(param){
+        var txtSearch = param.valueOf;
+        $ .ajax({
+            url : "",
+            type: "get",
+            data
+        })
+    }
+</script>
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
 
 <!-- jquery ui-->

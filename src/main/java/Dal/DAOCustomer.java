@@ -53,7 +53,6 @@ public class DAOCustomer extends DBContext{
                 String phone = rs.getString("phone");
                 int active = rs.getInt("active");
                 Customer cus = new Customer(id,name,phone,email,pass,active);
-                System.out.println(cus.toString());
                 return cus;
             }
 

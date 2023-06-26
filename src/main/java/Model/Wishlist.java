@@ -1,16 +1,17 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Wishlist {
     private int wishlist_id ;
-    private List<Integer> pro_list;
-    private Customer cus;
+    private ArrayList<Integer> pro_list = new ArrayList<>();
+    private int cus;
 
-    public Wishlist(int wishlist_id, List<Integer> pro_list, int cus_id) {
+    public Wishlist() {
     }
 
-    public Wishlist(int wishlist_id, List<Integer> pro_list, Customer cus) {
+    public Wishlist(int wishlist_id, ArrayList<Integer> pro_list, int cus) {
         this.wishlist_id = wishlist_id;
         this.pro_list = pro_list;
         this.cus = cus;
@@ -24,19 +25,19 @@ public class Wishlist {
         this.wishlist_id = wishlist_id;
     }
 
-    public List<Integer> getPro_list() {
+    public ArrayList<Integer> getPro_list() {
         return pro_list;
     }
 
-    public void setPro_list(List<Integer> pro_list) {
+    public void setPro_list(ArrayList<Integer> pro_list) {
         this.pro_list = pro_list;
     }
 
-    public Customer getCus() {
+    public int getCus() {
         return cus;
     }
 
-    public void setCus(Customer cus) {
+    public void setCus(int cus) {
         this.cus = cus;
     }
 }

@@ -2,6 +2,7 @@ package Dal;
 
 import Model.Customer;
 import Model.Staff;
+import Model.Wishlist;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -87,5 +88,7 @@ public class DAOStaff extends DBContext{
         }
         return n;
     }
+
+
 
 }
