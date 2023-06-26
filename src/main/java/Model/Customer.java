@@ -60,6 +60,18 @@ public class Customer {
         this.pass = pass;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customer_id=" + customer_id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", pass='" + pass + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
     public int getStatus() {
         return status;
     }

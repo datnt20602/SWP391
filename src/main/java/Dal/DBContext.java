@@ -31,12 +31,14 @@ import java.util.logging.Logger;
                 Statement state = connection.createStatement(
                         ResultSet.TYPE_SCROLL_SENSITIVE,
                         ResultSet.CONCUR_UPDATABLE);
+
                 rs=state.executeQuery(sql);
             } catch (SQLException ex) {
                 Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
             return rs;
         }
+
         public static void main(String[] args) {
             DBContext a = new DBContext();
             System.out.println(a.connection);
