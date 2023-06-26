@@ -1299,10 +1299,19 @@
     function searchByName(param){
         var txtSearch = param.valueOf;
         $ .ajax({
-            url : "",
+            url : "home?service=search",
             type: "get",
-            data
-        })
+            data:{
+                txt : txtSearch
+            },
+            success : function (data){
+                var row = document.getElementById("content");
+                row.innerHTML = data;
+            },
+            error: function (xhr){
+
+            }
+        });
     }
 </script>
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>

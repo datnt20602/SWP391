@@ -37,6 +37,31 @@ public class DAOProduct extends DBContext{
         return n;
     }
 
+    public Vector<Product> searchByName(String name){
+        String sql = "SELECT * FROM drink_online_shop1.product where product_name like ?";
+        Vector<Product> vector = new Vector<Product>();
+
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setString(1, "'%"+name+"%'");
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("product_id");
+                String nameP = rs.getString("product_name");
+                Double price = rs.getDouble("price");
+                String categoryName = rs.getString("category_name");
+                String image = rs.getString("image");
+                String describe = rs.getString("describe");
+                int volume = rs.getInt("volume");
+                Product pro = new Product(id,nameP, categoryName, price, image, describe,volume);
+                vector.add(pro);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return vector;
+    }
+
     public Vector<Product> getAll(String sql) {
         Vector<Product> vector = new Vector<Product>();
         ResultSet rs = this.getData(sql);
