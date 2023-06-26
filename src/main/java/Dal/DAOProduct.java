@@ -37,9 +37,33 @@ public class DAOProduct extends DBContext{
         return n;
     }
 
-    public Vector<Product> getAll() {
+    public Vector<Product> searchByName(String name){
+        String sql = "SELECT * FROM drink_online_shop1.product where product_name like ?";
         Vector<Product> vector = new Vector<Product>();
-        String sql = "select * from product";
+
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setString(1, "'%"+name+"%'");
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("product_id");
+                String nameP = rs.getString("product_name");
+                Double price = rs.getDouble("price");
+                String categoryName = rs.getString("category_name");
+                String image = rs.getString("image");
+                String describe = rs.getString("describe");
+                int volume = rs.getInt("volume");
+                Product pro = new Product(id,nameP, categoryName, price, image, describe,volume);
+                vector.add(pro);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return vector;
+    }
+
+    public Vector<Product> getAll(String sql) {
+        Vector<Product> vector = new Vector<Product>();
         ResultSet rs = this.getData(sql);
         try {
             while (rs.next()) {
@@ -51,13 +75,44 @@ public class DAOProduct extends DBContext{
                 String describe = rs.getString("describe");
                 int volume = rs.getInt("volume");
                 Product pro = new Product(id,name, categoryName, price, image, describe,volume);
-//                System.out.println(pro.toString());
                 vector.add(pro);
             }
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }
         return vector;
+    }
+    public Product getProductByID(int pro_id) {
+        Product pro = new Product();
+        ResultSet rs = this.getData("select * from product where product_id ="+pro_id+"");
+        try {
+            while (rs.next()) {
+                String name = rs.getString("product_name");
+                Double price = rs.getDouble("price");
+                String categoryName = rs.getString("category_name");
+                String image = rs.getString("image");
+                String describe = rs.getString("describe");
+                int volume = rs.getInt("volume");
+                pro = new Product(pro_id,name, categoryName, price, image, describe,volume);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return pro;
+    }
+
+    public int returnSoLuong() {
+        String sql = "select COUNT(*) as soluong from product";
+        ResultSet rs = this.getData(sql);
+        int n = 0;
+        try {
+            while (rs.next()) {
+                n = rs.getInt("soluong");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return n;
     }
     public int updateProduct(Product pro) {
         int n = 0;
@@ -91,8 +146,6 @@ public class DAOProduct extends DBContext{
     }
 
 
-    public static void main(String[] args) {
-        Product pro = new Product();
-    }
+
 
 }
