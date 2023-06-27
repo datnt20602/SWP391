@@ -1,7 +1,9 @@
 package controller;
 
 import Dal.AccountDBContext;
+import Dal.DAOCustomer;
 import Model.Account;
+import Model.Customer;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -20,15 +22,15 @@ public class ResetPassController extends HttpServlet {
         String newpass = request.getParameter("newpass");
         String renewpass = request.getParameter("renewpass");
 
-        AccountDBContext adb = new AccountDBContext();
+        DAOCustomer daoC = new DAOCustomer();
 
         HttpSession session = request.getSession();
-        Account a = (Account) session.getAttribute("a");
+        Customer a = (Customer) session.getAttribute("customer");
         if(newpass.equals(renewpass)){
-            a.setPassword(newpass);
-            adb.updateCustomer(a,a.getaID());
+            a.setPass(newpass);
+            daoC.updateCustomerByPre(a);
 
-            session.removeAttribute("a");
+            session.removeAttribute("customer");
             session.setAttribute("resetmess","Thành công! Mời đăng nhập lại !");
             response.sendRedirect("login");
         }else {
