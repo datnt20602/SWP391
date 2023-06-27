@@ -754,7 +754,7 @@
                     <%
                         Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
                     %>
-                <div id="content"
+                <div id="contentSearch"
                         class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
                     <%
                         for(Product temp : vector ){
@@ -770,22 +770,10 @@
                                     </a>
 
                                     <ul class="product-option">
-
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                            <%
-                                if(session.getAttribute("customer") != null){
-                                    Customer customer = (Customer) session.getAttribute("customer");
-                            %>
                                             <a style="padding-left: 95px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
-                            <%
-                                }else{
-                            %>
-                                            <a style="padding-left: 95px" href="login" class="notifi-wishlist">
-                                                <i data-feather="heart"></i>
-                                            </a>
-                            <%}%>
                                         </li>
                                     </ul>
                                 </div>
@@ -834,7 +822,7 @@
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                 </button>
                                                 <input  class="form-control input-number qty-input" type="text"
-                                                       name="quantity" value="0">
+                                                        name="quantity" value="0">
                                                 <button type="button" class="qty-right-plus bg-gray"
                                                         data-type="plus" data-field="">
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -848,7 +836,7 @@
                     </div>
                     <% } %>
                 </div>
-
+                <button onclick="loadMore()" style="background-color: blue; color: white; font-size: 16px;">Load More</button>
                 <nav class="custome-pagination">
 
                     <ul class="pagination justify-content-center">
@@ -1295,17 +1283,31 @@
 <!-- Bg overlay End -->
 
 <!-- latest jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    function loadMore(){
+        $.ajax({
+            url: 'SWP391/home?service=load', // Đường dẫn xử lý yêu cầu
+            type: 'get',
+            success: function(response) {
+                // Xử lý phản hồi từ máy chủ
+                var row =  $('#contentSearch');
+                row.innerHTML += response;
+            }
+        });
+    }
+</script>
 <script>
     function searchByName(param){
-        var txtSearch = param.valueOf;
+        const txtSearch = param.valueOf;
         $ .ajax({
-            url : "home?service=search",
+            url : "/SWP391/SreachController",
             type: "get",
             data:{
                 txt : txtSearch
             },
             success : function (data){
-                var row = document.getElementById("content");
+                const row = document.getElementById("contentSearch");
                 row.innerHTML = data;
             },
             error: function (xhr){
