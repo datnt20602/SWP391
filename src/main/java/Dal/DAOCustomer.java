@@ -66,6 +66,42 @@ public class DAOCustomer extends DBContext{
 
         return null;
     }
+    public Customer searchByEmail (String email){
+        String sql = "select * from customer where email = ? ";
+
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setString(1, email);
+            ResultSet rs =  pre.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("customer_id");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                int active = rs.getInt("active");
+                String pass = rs.getString("pass");
+                Customer cus = new Customer(id,name,phone,email,pass,active);
+                return cus;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
+
+    public int getIdCustomer (){
+        String sql = "SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1;";
+        ResultSet rs = this.getData(sql);
+        int n = 0;
+        try{
+            while (rs.next()){
+                n = Integer.parseInt(rs.getString("customer_id"));
+            }
+        }catch (SQLException e){
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return n;
+    }
 
     public int updateCustomerByPre(Customer cus) {
         int n = 0;

@@ -64,4 +64,28 @@ public class DAOAdmin extends DBContext{
         return null;
     }
 
+    public Admin searchByEmail(String email){
+        String sql = "select * from admin where email = ? ";
+
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setString(1, email);
+            ResultSet rs =  pre.executeQuery();
+            while (rs.next()){
+                int id = rs.getInt("admin_id");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                int status = rs.getInt("status");
+                String street  =  rs.getString("street");
+                String city = rs.getString("city");
+                String pass = rs.getString("pass");
+                Admin ad = new Admin(id,name,email,phone,status,street,city,pass);
+                return ad;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
+
 }

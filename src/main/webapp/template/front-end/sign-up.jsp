@@ -357,6 +357,12 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone" name = "phone">
+                                        <label for="phone">Phone</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating">
                                         <input type="email" class="form-control" id="email" placeholder="Email Address" name = "email">
                                         <label for="email">Địa chỉ email</label>
                                     </div>

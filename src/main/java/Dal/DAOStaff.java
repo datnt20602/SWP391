@@ -84,5 +84,23 @@ public class DAOStaff extends DBContext{
         }
         return n;
     }
+    public Staff searchByEmail(String email){
+        String sql = "select * from staff where email = ? and pass = ?";
+
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setString(1, email);
+            ResultSet rs =  pre.executeQuery();
+            int id = rs.getInt("staff_id");
+            String name = rs.getString("name");
+            String phone = rs.getString("phone");
+            int active = rs.getInt("active");
+            String pass = rs.getString("pass");
+            Staff staff = new Staff(id,name,email,phone,active,pass);
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
 
 }
