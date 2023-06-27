@@ -13,9 +13,7 @@ public class LogoutController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        session.removeAttribute("acc");
-        session.removeAttribute("admin");
-        session.removeAttribute("staff");
+        session.invalidate();
         //session.removeAttribute("carts");
         response.sendRedirect("home");
     }

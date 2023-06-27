@@ -103,7 +103,7 @@
 
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input onchange="searchByName(this)" type="search" class="form-control" placeholder="Tìm kiếm..."
+                                    <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
