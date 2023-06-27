@@ -115,4 +115,19 @@ public class DAOCustomer extends DBContext{
     }
 
 
+    public void updateCustomer(Customer c, int customerId) {
+        try {
+            String sql = "UPDATE customer SET name = ?, phone = ?, email = ?, active = ?, pass = ? WHERE customer_id = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, c.getName());
+            stm.setString(2, c.getPhone());
+            stm.setString(3, c.getEmail());
+            stm.setInt(4, c.getStatus());
+            stm.setString(5, c.getPass());
+            stm.setInt(6, customerId);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("updateCustomer: " + ex.getMessage());
+        }
+    }
 }

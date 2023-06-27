@@ -386,7 +386,7 @@
                             <div class="col-12">
                                 <div class="form-floating theme-form-floating log-in-form">
                                     <input type="email" class="form-control" id="email" placeholder="Email Address"
-                                           name="email" readonly value="${a.getUsername()}">
+                                           name="email" readonly value="${customer.getEmail()}">
                                     <label for="email">Địa chỉ email</label>
                                 </div>
                             </div>
