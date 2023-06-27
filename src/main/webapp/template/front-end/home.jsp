@@ -217,10 +217,19 @@
                                         <div class="delivery-icon">
                                             <i data-feather="user"></i>
                                         </div>
+
                                         <div class="delivery-detail">
-                                            <h6>Hello,</h6>
-                                            <h5>My Account</h5>
+                                            <%
+                                                Customer cus = (Customer) session.getAttribute("customer");
+                                                if(cus != null)
+                                                {
+                                            %>
+                                            <h5><%=cus.getName()%></h5>
+                                            <%
+                                                }
+                                            %>
                                         </div>
+
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -243,7 +252,7 @@
                                             </c:if>
                                             <c:if test="${customer != null}">
                                                 <li class="product-box-contain">
-                                                    <a href="changepass">Thông tin cá nhân</a>
+                                                    <a href="customer">Thông tin cá nhân</a>
                                                 </li>
                                                 <li class="product-box-contain">
                                                     <a href="changepass">Đổi mật khẩu</a>
@@ -441,10 +450,10 @@
                                         </div>
 
                                         <ul class="category-list custom-padding custom-height" >
-                                           <%
-                                               ResultSet rs = (ResultSet) request.getAttribute("category_name");
-                                               while (rs.next()){
-                                           %>
+                                            <%
+                                                ResultSet rs = (ResultSet) request.getAttribute("category_name");
+                                                while (rs.next()){
+                                            %>
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
                                                     <input class="checkbox_animated" type="checkbox" id="fruit">
@@ -751,11 +760,11 @@
                         </div>
                     </div>
                 </div>
-                    <%
-                        Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
-                    %>
-                <div id="content"
-                        class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
+                <%
+                    Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
+                %>
+                <div id="contentSearch"
+                     class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
                     <%
                         for(Product temp : vector ){
 
@@ -764,28 +773,16 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.6">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="productdetail">
+                                    <a href="productdetail?pro_id=<%=temp.getProduct_id()%>">
                                         <img src="<%=temp.getImage()%>"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
-
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                            <%
-                                if(session.getAttribute("customer") != null){
-                                    Customer customer = (Customer) session.getAttribute("customer");
-                            %>
                                             <a style="padding-left: 95px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
-                            <%
-                                }else{
-                            %>
-                                            <a style="padding-left: 95px" href="login" class="notifi-wishlist">
-                                                <i data-feather="heart"></i>
-                                            </a>
-                            <%}%>
                                         </li>
                                     </ul>
                                 </div>
@@ -822,25 +819,26 @@
                                         <del>$15.15</del>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
-                                        <button class="btn btn-add-cart addcart-button">Add
-                                            <span class="add-icon bg-light-gray">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </span>
+                                        <button onclick="location.href = 'cart?service=addToCart&pro_id=<%=temp.getProduct_id()%>';"
+                                                class="btn btn-add-cart addcart-button">Add
+                                            <%--                                            <span class="add-icon bg-light-gray">--%>
+                                            <%--                                                    <i class="fa-solid fa-plus"></i>--%>
+                                            <%--                                            </span>--%>
                                         </button>
-                                        <div class="cart_qty qty-box">
-                                            <div class="input-group bg-white">
-                                                <button type="button" class="qty-left-minus bg-gray"
-                                                        data-type="minus" data-field="">
-                                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                                </button>
-                                                <input  class="form-control input-number qty-input" type="text"
-                                                       name="quantity" value="0">
-                                                <button type="button" class="qty-right-plus bg-gray"
-                                                        data-type="plus" data-field="">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <%--                                        <div class="cart_qty qty-box">--%>
+                                        <%--                                            <div class="input-group bg-white">--%>
+                                        <%--                                                <button type="button" class="qty-left-minus bg-gray"--%>
+                                        <%--                                                        data-type="minus" data-field="">--%>
+                                        <%--                                                    <i class="fa fa-minus" aria-hidden="true"></i>--%>
+                                        <%--                                                </button>--%>
+                                        <%--                                                <input  class="form-control input-number qty-input" type="text"--%>
+                                        <%--                                                        name="quantity" value="0">--%>
+                                        <%--                                                <button type="button" class="qty-right-plus bg-gray"--%>
+                                        <%--                                                        data-type="plus" data-field="">--%>
+                                        <%--                                                    <i class="fa fa-plus" aria-hidden="true"></i>--%>
+                                        <%--                                                </button>--%>
+                                        <%--                                            </div>--%>
+                                        <%--                                        </div>--%>
                                     </div>
                                 </div>
                             </div>
@@ -848,7 +846,7 @@
                     </div>
                     <% } %>
                 </div>
-
+                <button onclick="loadMore()" style="background-color: blue; color: white; font-size: 16px;">Load More</button>
                 <nav class="custome-pagination">
 
                     <ul class="pagination justify-content-center">
@@ -1295,17 +1293,31 @@
 <!-- Bg overlay End -->
 
 <!-- latest jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    function loadMore(){
+        $.ajax({
+            url: 'SWP391/home?service=load', // Đường dẫn xử lý yêu cầu
+            type: 'get',
+            success: function(response) {
+                // Xử lý phản hồi từ máy chủ
+                var row =  $('#contentSearch');
+                row.innerHTML += response;
+            }
+        });
+    }
+</script>
 <script>
     function searchByName(param){
-        var txtSearch = param.valueOf;
+        const txtSearch = param.valueOf;
         $ .ajax({
-            url : "home?service=search",
+            url : "/SWP391/SreachController",
             type: "get",
             data:{
                 txt : txtSearch
             },
             success : function (data){
-                var row = document.getElementById("content");
+                const row = document.getElementById("contentSearch");
                 row.innerHTML = data;
             },
             error: function (xhr){
