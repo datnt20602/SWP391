@@ -2,6 +2,7 @@ package controller;
 
 import Dal.AccountDBContext;
 import Model.Account;
+import Model.Customer;
 import OTPFunction.MailSending;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -14,18 +15,18 @@ public class ActiveAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Account acc = (Account) session.getAttribute("acc");
+        Customer acc = (Customer) session.getAttribute("customer");
         MailSending mail = new MailSending();
         String opt = mail.generateOtp();
         session.setAttribute("optValue", opt);
         Thread thread = new Thread() {
             @Override
             public void run() {
-                mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", acc.getUsername(), opt);
+                mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", acc.getEmail(), opt);
             }
         };
         thread.start();
-        request.setAttribute("email" , acc.getUsername());
+        request.setAttribute("email" , acc.getEmail());
         request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
     }
 

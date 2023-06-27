@@ -1,6 +1,7 @@
 package controller;
 
 import Model.Account;
+import Model.Customer;
 import OTPFunction.MailSending;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -16,15 +17,15 @@ public class ValidateOTPController extends HttpServlet {
         MailSending mail = new MailSending();
         String opt = mail.generateOtp();
         session.setAttribute("optValue", opt);
-        Account a = (Account) session.getAttribute("a");
+        Customer a = (Customer) session.getAttribute("customer");
         Thread thread = new Thread() {
             @Override
             public void run() {
-                mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", a.getUsername(), opt);
+                mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", a.getEmail(), opt);
             }
         };
         thread.start();
-        request.setAttribute("email" , a.getUsername());
+        request.setAttribute("email" , a.getEmail());
         request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
     }
 

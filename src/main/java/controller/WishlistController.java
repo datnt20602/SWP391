@@ -40,16 +40,22 @@ public class WishlistController extends HttpServlet {
         }
         if(service.equals("addToWislist")){
             HttpSession session = request.getSession();
-            Customer cus = (Customer) session.getAttribute("customer");
-            int pro_id = Integer.parseInt(request.getParameter("pro_id"));
-            int wishlist_id = dao.quantityWishList()+1;
-            Wishlist wishlist = dao.getAll(cus.getCustomer_id());
-            boolean check = true;
-            for(Integer i : wishlist.getPro_list()) {
-                if(pro_id == i) check = false;
+
+            if(session.getAttribute("customer") != null) {
+                Customer customer = (Customer) session.getAttribute("customer");
+                int pro_id = Integer.parseInt(request.getParameter("pro_id"));
+                int wishlist_id = dao.quantityWishList() + 1;
+                Wishlist wishlist = dao.getAll(customer.getCustomer_id());
+                boolean check = true;
+                for (Integer i : wishlist.getPro_list()) {
+                    if (pro_id == i) check = false;
+                }
+                if (check) dao.insertWishList(customer.getCustomer_id(), pro_id, wishlist_id);
+                response.sendRedirect("home");
             }
-            if(check) dao.insertWishList(cus.getCustomer_id(), pro_id, wishlist_id);
-            response.sendRedirect("home");
+            else {
+                response.sendRedirect("login");
+            }
         }
         if(service.equals("cancelWishlist")){
             HttpSession session = request.getSession();

@@ -1,7 +1,9 @@
 package controller;
 
 import Dal.AccountDBContext;
+import Dal.DAOCustomer;
 import Model.Account;
+import Model.Customer;
 import OTPFunction.MailSending;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -20,8 +22,8 @@ public class ForgotPassController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
-        AccountDBContext adb = new AccountDBContext();
-        Account a = adb.getAccountByEmail(username);
+        DAOCustomer daoC = new DAOCustomer();
+        Customer a = daoC.searchByEmail(username);
         if(a == null){
             request.setAttribute("mess", "Tài khoản không tồn tại !");
 
