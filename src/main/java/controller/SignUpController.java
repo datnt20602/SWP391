@@ -47,7 +47,7 @@ public class SignUpController extends HttpServlet {
             if(DaoA.searchByEmail(user) != null) check = false;
             if(check == true){
                 HttpSession session = request.getSession();
-                int id = DaoC.getIdCustomer();
+                int id = DaoC.getIdCustomer()+1;
                 Customer cus = new Customer(id,fullname,phone,user,pass,0);
                 DaoC.insertCustomer(cus);
                 session.setAttribute("customer", cus);
