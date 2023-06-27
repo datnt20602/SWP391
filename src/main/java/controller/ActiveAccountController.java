@@ -1,6 +1,7 @@
 package controller;
 
 import Dal.AccountDBContext;
+import Dal.DAOCustomer;
 import Model.Account;
 import Model.Customer;
 import OTPFunction.MailSending;
@@ -36,16 +37,18 @@ public class ActiveAccountController extends HttpServlet {
         String optValue = (String) session.getAttribute("optValue");
         String optInput = request.getParameter("opt");
         String email = request.getParameter("email");
-        Account acc = (Account) session.getAttribute("acc");
+        Customer acc = (Customer) session.getAttribute("customer");
         String option = request.getParameter("option");
         if (option.equals("active")) {
             if (optInput.equals(optValue)) {
-                acc.setActive(true);
-                AccountDBContext ad = new AccountDBContext();
-                ad.updateCustomer(acc, acc.getaID());
+                acc.setStatus(1);
+                DAOCustomer daoC = new DAOCustomer();
+                daoC.updateCustomerByPre(acc);
+                session.setAttribute("customer", acc);
+
                 response.sendRedirect("home");
             } else {
-                String mess = "Opt incorrect! Please check again or click send again to have a new opt";
+                String mess = "Sai mã OTP, Xin hãy nhập lại";
                 request.setAttribute("mess", mess);
                 request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
             }

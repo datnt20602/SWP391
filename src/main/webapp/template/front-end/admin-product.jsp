@@ -1,0 +1,546 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: jiggnguyen
+  Date: 6/26/2023
+  Time: 10:02 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@page isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" href="/ODShop/template/assets/css/style-admin.css">
+    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+
+    <title> Sản phẩm </title>
+    <style>
+        .wave-group {
+            position: relative;
+        }
+
+        .wave-group .input {
+            font-size: 16px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 200px;
+            border: none;
+            border-bottom: 1px solid #515151;
+            background: transparent;
+        }
+
+        .wave-group .input:focus {
+            outline: none;
+        }
+
+        .wave-group .label {
+            color: #999;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            display: flex;
+        }
+
+        .wave-group .label-char {
+            transition: 0.2s ease all;
+            transition-delay: calc(var(--index) * .05s);
+        }
+
+        .wave-group .input:focus ~ label .label-char,
+        .wave-group .input:valid ~ label .label-char {
+            transform: translateY(-20px);
+            font-size: 14px;
+            color: #5264AE;
+        }
+
+        .wave-group .bar {
+            position: relative;
+            display: block;
+            width: 200px;
+        }
+
+        .wave-group .bar:before, .wave-group .bar:after {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 1px;
+            position: absolute;
+            background: #5264AE;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        .wave-group .bar:before {
+            left: 50%;
+        }
+
+        .wave-group .bar:after {
+            right: 50%;
+        }
+
+        .wave-group .input:focus ~ .bar:before,
+        .wave-group .input:focus ~ .bar:after {
+            width: 50%;
+        }
+
+        #search-button:active {
+            background-color: #bdbdbd;
+        }
+
+        #blur.active {
+            filter: blur(20px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        #popup {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: fit-content;
+            padding: 50px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, .30);
+            background: #ffffff;
+            visibility: hidden;
+            opacity: 0.5;
+            transition: 0.5s;
+            z-index: 9999;
+        }
+
+        #popup.active {
+            top: 50%;
+            visibility: visible;
+            opacity: 1;
+            transform: 0.5s;
+        }
+
+        #deleteDiv {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: fit-content;
+            padding: 50px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, .30);
+            background: #ffffff;
+            visibility: hidden;
+            opacity: 0.5;
+            transition: 0.5s;
+            z-index: 9999;
+        }
+
+        #deleteDiv.active {
+            top: 50%;
+            visibility: visible;
+            opacity: 1;
+            transform: 0.5s;
+        }
+    </style>
+</head>
+<body>
+<div id="deleteDiv">
+    <form action="product" method="post">
+        <h3>Bạn muốn xóa sản phẩm này ?</h3>
+        <input id="deleteId" name="productId" style="display: none">
+        <div class="" style="margin-top: 20px;">
+            <button type="submit" name="option" value="delete"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
+                Delete
+            </button>
+            <button type="button" onclick="toggleDelete()"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
+            </button>
+        </div>
+    </form>
+</div>
+<div id="popup">
+    <form action="product" method="post">
+        <div class="wave-group">
+            <label class="label">
+                <span class="label-char" style="--index: 0">I</span>
+                <span class="label-char" style="--index: 1">d</span>
+            </label><br>
+            <input type="text" class="input" id="detailId" name="productId" readonly>
+            <span class="bar"></span>
+
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailName" name="productName" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">N</span>
+                <span class="label-char" style="--index: 1">a</span>
+                <span class="label-char" style="--index: 2">m</span>
+                <span class="label-char" style="--index: 3">e</span>
+            </label>
+        </div>
+        <div class="wave-group">
+            <label class="label">
+                Category
+            </label><br>
+            <input type="text" class="input" id="detailCategory" name="productCategory" readonly
+                   style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <br>
+
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailPrice" name="productPrice" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">P</span>
+                <span class="label-char" style="--index: 1">r</span>
+                <span class="label-char" style="--index: 2">i</span>
+                <span class="label-char" style="--index: 3">c</span>
+                <span class="label-char" style="--index: 4">e</span>
+            </label>
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailImage" name="productImage" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">I</span>
+                <span class="label-char" style="--index: 1">m</span>
+                <span class="label-char" style="--index: 2">a</span>
+                <span class="label-char" style="--index: 3">g</span>
+                <span class="label-char" style="--index: 4">e</span>
+            </label>
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailVolume" name="productVolume" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">V</span>
+                <span class="label-char" style="--index: 1">o</span>
+                <span class="label-char" style="--index: 2">l</span>
+                <span class="label-char" style="--index: 3">u</span>
+                <span class="label-char" style="--index: 4">m</span>
+                <span class="label-char" style="--index: 5">e</span>
+            </label>
+        </div>
+        <div class="wave-group" style="margin-top: 20px;">
+            <label>
+                Describe
+            </label><br>
+            <textarea rows="10" cols="25" id="detailDescribe" name="productDescribe" style="width: 80%;font-size: 16px;"
+                      placeholder="Describe">
+
+            </textarea>
+
+        </div>
+        <div class="" style="margin-top: 20px;">
+            <button type="submit" name="option" value="update"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
+                Update
+            </button>
+            <button type="button" onclick="toggle()"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
+            </button>
+        </div>
+    </form>
+</div>
+<div id="blur" class="container">
+    <section id="sidebar" class="">
+        <c:if test="${admin != null}">
+            <a href="product" class="brand">
+                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"  style="width: 30%">
+                <span class="text">Admin</span>
+            </a>
+        </c:if>
+        <c:if test="${staff != null}">
+            <a href="product" class="brand">
+                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"  style="width: 30%">
+                <span class="text">Staff</span>
+            </a>
+        </c:if>
+        <ul class="side-menu top">
+            <li class="">
+                <a href="#">
+                    <i class="bx bxs-dashboard"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="product">
+                    <i class="bx bxs-shopping-bag-alt"></i>
+                    <span class="text">My Store</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bxs-doughnut-chart"></i>
+                    <span class="text">Analytics</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bxs-message-dots"></i>
+                    <span class="text">Message</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bxs-group"></i>
+                    <span class="text">Team</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#">
+                    <i class="bx bxs-cog"></i>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="logout" class="logout">
+                    <i class="bx bxs-log-out-circle"></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class="bx bx-menu"></i>
+            <a href="#" class="nav-link">Categories</a>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class="bx bx-search"></i></button>
+                </div>
+            </form>
+
+            <a href="#" class="profile">
+                <img src="/ODShop\template\assets\images\people\people.png">
+            </a>
+        </nav>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>My Store</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li><i class="bx bx-chevron-right"></i></li>
+                        <li>
+                            <a class="active" href="#">Home</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="table-data">
+                <div class="order">
+                    <form class="" action="product" method="get">
+                        <div class="head">
+                            <h3>Products</h3>
+
+                            <select name="category" id="selectCategory"
+                                    style="font-size: 16px;height: 100%;padding: 10px;border-radius: 5px;width: 15%;cursor: pointer">
+                                <option selected value="all">Category</option>
+                                <c:forEach var="category" items="${listCategory}">
+                                    <option ${param.category.equals(category) ? "selected" : ""}
+                                            value="${category}">${category}</option>
+                                </c:forEach>
+                            </select>
+                            <div class="wave-group">
+                                <input type="text" class="input" id="inputSearchName" name="name" value="${param.name}">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">N</span>
+                                    <span class="label-char" style="--index: 1">a</span>
+                                    <span class="label-char" style="--index: 2">m</span>
+                                    <span class="label-char" style="--index: 3">e</span>
+                                </label>
+                            </div>
+                            <button id="search-button"
+                                    style="border: 1px solid #5c636a; border-radius: 5px;height: 39px;width: 39px;cursor: pointer;"
+                                    class="">
+                                <i class="bx bx-search"></i>
+                            </button>
+
+                            <%--                    <i class="bx bx-filter"></i>--%>
+                        </div>
+                    </form>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Volume</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="product" items="${listProduct}">
+                            <tr>
+                                <td>
+                                    <img style="max-height: 68px;" src="${product.getImage()}">
+                                </td>
+                                <td>
+                                    <h4>${product.getProduct_name()}</h4>
+                                </td>
+                                <td>
+                                    <h5 class="priceValue">${product.getPrice()}</h5>
+                                </td>
+                                <td>
+                                    <h5>${product.getVolume()}</h5>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                            onclick='toggle();loadData(JSON.stringify(${product.toJson()}))'
+                                            style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
+                                        Detail
+                                    </button>
+                                </td>
+                                <td>
+                                    <button onclick="toggleDelete();alertDelete(${product.getProduct_id()})" style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="pagination">
+            </div>
+        </main>
+        <!-- MAIN -->
+    </section>
+</div>
+<script>
+    function loadData(product) {
+        var data = JSON.parse(product);
+        console.log(data);
+        document.getElementById("detailId").value = data.product_id;
+        document.getElementById("detailName").value = data.product_name;
+        document.getElementById("detailPrice").value = parseInt(data.price).toLocaleString();
+        document.getElementById("detailImage").value = data.image;
+        document.getElementById("detailVolume").value = data.volume;
+        document.getElementById("detailDescribe").value = data.describe;
+        document.getElementById("detailCategory").value = data.category_name;
+    }
+
+    function alertDelete(id) {
+        document.getElementById("deleteId").value = id;
+    }
+
+    function toggleDelete() {
+        var blur = document.getElementById('blur');
+        blur.classList.toggle('active');
+        var deleteDiv = document.getElementById('deleteDiv');
+        deleteDiv.classList.toggle('active');
+    }
+
+    function toggle() {
+        var blur = document.getElementById('blur');
+        blur.classList.toggle('active');
+        var popup = document.getElementById('popup');
+        popup.classList.toggle('active');
+    }
+
+    var priceValue = document.querySelectorAll(".priceValue");
+    priceValue.forEach(p => {
+        p.innerText = parseInt(p.innerText).toLocaleString();
+    });
+    let pages = ${totalPages};
+
+    document.getElementById('pagination').innerHTML = createPagination(pages, ${pageNumber});
+
+    function createPagination(pages, page) {
+        let str = '<ul class="page">';
+        let active;
+        let pageCutLow = page - 1;
+        let pageCutHigh = page + 1;
+        var name = document.getElementById("inputSearchName");
+        var category = document.getElementById("selectCategory");
+        // Show the Previous button only if you are on a page other than the first
+        if (page > 1) {
+            str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
+        }
+        // Show all the pagination elements if there are less than 6 pages total
+        if (pages < 6) {
+            for (let p = 1; p <= pages; p++) {
+                active = page == p ? "active" : "";
+                str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+            }
+        }
+        // Use "..." to collapse pages outside of a certain range
+        else {
+            // Show the very first page followed by a "..." at the beginning of the
+            // pagination section (after the Previous button)
+            if (page > 2) {
+                str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
+                if (page > 3) {
+                    str += `<li class="page__dots"><span>...</span></li>`;
+                }
+            }
+            // Determine how many pages to show after the current page index
+            if (page === 1) {
+                pageCutHigh += 2;
+            } else if (page === 2) {
+                pageCutHigh += 1;
+            }
+            // Determine how many pages to show before the current page index
+            if (page === pages) {
+                pageCutLow -= 2;
+            } else if (page === pages - 1) {
+                pageCutLow -= 1;
+            }
+            // Output the indexes for pages that fall inside the range of pageCutLow
+            // and pageCutHigh
+            for (let p = pageCutLow; p <= pageCutHigh; p++) {
+                if (p === 0) {
+                    p += 1;
+                }
+                if (p > pages) {
+                    continue
+                }
+                active = page == p ? "active" : "";
+                str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+            }
+            // Show the very last page preceded by a "..." at the end of the pagination
+            // section (before the Next button)
+            if (page < pages - 1) {
+                if (page < pages - 2) {
+                    str += '<li class="page__dots"><span>...</span></li>';
+                }
+                str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
+            }
+        }
+        // Show the Next button only if you are on a page other than the last
+        if (page < pages) {
+            str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
+        }
+        str += '</ul>';
+        // Return the pagination string to be outputted in the pug templates
+        document.getElementById('pagination').innerHTML = str;
+        return str;
+    }
+</script>
+</body>
+</html>

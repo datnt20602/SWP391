@@ -45,11 +45,11 @@ public class SignUpController extends HttpServlet {
             if(DaoS.searchByEmail(user) != null) check = false;
             DAOAdmin DaoA = new DAOAdmin();
             if(DaoA.searchByEmail(user) != null) check = false;
-            if(check == true){
+            if(check){
                 HttpSession session = request.getSession();
-                int id = DaoC.getIdCustomer();
-                Customer cus = new Customer(id,fullname,phone,user,pass,0);
-                DaoC.insertCustomer(cus);
+                Customer newCustomer = new Customer(fullname, phone, user, pass, 0);
+                DaoC.insertCustomer(newCustomer);
+                Customer cus = DaoC.login(user, pass);
                 session.setAttribute("customer", cus);
                 response.sendRedirect("activeAccount");
             }
