@@ -31,7 +31,7 @@ public class ForgotPassController extends HttpServlet {
 
         }else {
             HttpSession session = request.getSession();
-            session.setAttribute("a",a);
+            session.setAttribute("customer",a);
             response.sendRedirect("validateOTP");
 
         }
