@@ -172,7 +172,7 @@ public class AccountDBContext extends DBContext {
 
     public void insertAccount(String name, String username, String password) {
         try {
-            String sql = "INSERT INTO customer(name,email,password,active) values (?,?,?,0)";
+            String sql = "INSERT INTO customer(name,email,pass,active) values (?,?,?,0)";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, name);
             stm.setString(2, username);

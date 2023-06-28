@@ -20,6 +20,14 @@ public class Customer {
         this.status = status;
     }
 
+    public Customer(String name, String phone, String email, String pass, int status) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.pass = pass;
+        this.status = status;
+    }
+
     public String getName() {
         return name;
     }

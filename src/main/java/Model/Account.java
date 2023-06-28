@@ -5,7 +5,7 @@ public class Account {
     private String phone;
     private String name;
     private String username;
-    private String password;
+    private String pass;
     private boolean isAdmin;
     private boolean isStaff;
     private boolean isActive = false;
@@ -64,11 +64,11 @@ public class Account {
     }
 
     public String getPassword() {
-        return password;
+        return pass;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.pass = pass;
     }
 
     public boolean isAdmin() {

@@ -15,25 +15,23 @@ import java.util.logging.Logger;
 public class DAOCustomer extends DBContext{
     public int insertCustomer(Customer cus) {
         int n = 0;
-        String sql = "INSERT INTO `drink_online_shop1`.`customer`\n" +
-                "(`customer_id`,\n" +
+        String sql = "INSERT INTO `drink_online_shop1`.`customer`(" +
                 "`name`,\n" +
                 "`phone`,\n" +
                 "`email`,\n" +
                 "`active`,\n" +
                 "`pass`)\n" +
                 "VALUES\n" +
-                "(?,?,?,?,?,?);";
+                "(?,?,?,?,?);";
 
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
-            pre.setInt(1, cus.getCustomer_id());
-            pre.setString(2, cus.getName());
-            pre.setString(3, cus.getPhone());
-            pre.setString(4, cus.getEmail());
-            pre.setInt(5, cus.getStatus());
-            pre.setString(6,cus.getPass());
-            n = pre.executeUpdate();
+            pre.setString(1, cus.getName());
+            pre.setString(2, cus.getPhone());
+            pre.setString(3, cus.getEmail());
+            pre.setBoolean(4, false);
+            pre.setString(5,cus.getPass());
+            pre.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -89,20 +87,6 @@ public class DAOCustomer extends DBContext{
         return null;
     }
 
-    public int getIdCustomer (){
-        String sql = "SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1;";
-        ResultSet rs = this.getData(sql);
-        int n = 0;
-        try{
-            while (rs.next()){
-                n = Integer.parseInt(rs.getString("customer_id"));
-            }
-        }catch (SQLException e){
-            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return n;
-    }
-
     public int updateCustomerByPre(Customer cus) {
         int n = 0;
         String sql = "UPDATE `drink_online_shop1`.`customer`\n" +
@@ -123,7 +107,7 @@ public class DAOCustomer extends DBContext{
             pre.setInt(4, cus.getStatus());
             pre.setString(5,cus.getPass());
 
-            n = pre.executeUpdate();
+            pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOCustomer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -131,4 +115,19 @@ public class DAOCustomer extends DBContext{
     }
 
 
+    public void updateCustomer(Customer c, int customerId) {
+        try {
+            String sql = "UPDATE customer SET name = ?, phone = ?, email = ?, active = ?, pass = ? WHERE customer_id = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, c.getName());
+            stm.setString(2, c.getPhone());
+            stm.setString(3, c.getEmail());
+            stm.setInt(4, c.getStatus());
+            stm.setString(5, c.getPass());
+            stm.setInt(6, customerId);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("updateCustomer: " + ex.getMessage());
+        }
+    }
 }
