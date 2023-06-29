@@ -1,13 +1,14 @@
 package controller;
 
-import Dal.AccountDBContext;
+
 import Dal.DAOAdmin;
 import Dal.DAOCustomer;
 import Dal.DAOStaff;
-import Model.Account;
+import Dal.DAOProduct;
 import Model.Customer;
 import Model.Staff;
 import OTPFunction.MailSending;
+import com.mysql.cj.xdevapi.Schema;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -34,18 +35,32 @@ public class SignUpController extends HttpServlet {
         String phone = request.getParameter("phone");
         String pass = request.getParameter("password");
         String repass = request.getParameter("repass");
-        if (!pass.equals(repass)) {
-            request.setAttribute("mess", "Pass not match!");
+
+        DAOCustomer customer = new DAOCustomer();
+
+        boolean password = customer.isSecurePassword(pass);
+        if(!password){
+            request.setAttribute("mess", "Mật khẩu phải gồm 8 kí tự (Gồm 1 chữ hoa,chữ thường và kí tự đặc biệt)!");
+            request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
+        }
+        else if (!pass.equals(repass)) {
+            request.setAttribute("mess", "Mật khẩu không khớp!");
             request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
         } else {
             boolean check = true;
             DAOCustomer DaoC = new DAOCustomer();
-            if(DaoC.searchByEmail(user) != null)check = false;
+            if (DaoC.searchByEmail(user) != null) {
+                check = false;
+            }
             DAOStaff DaoS = new DAOStaff();
-            if(DaoS.searchByEmail(user) != null) check = false;
+            if (DaoS.searchByEmail(user) != null) {
+                check = false;
+            }
             DAOAdmin DaoA = new DAOAdmin();
-            if(DaoA.searchByEmail(user) != null) check = false;
-            if(check){
+            if (DaoA.searchByEmail(user) != null) {
+                check = false;
+            }
+            if (check) {
                 HttpSession session = request.getSession();
                 Customer newCustomer = new Customer(fullname, phone, user, pass, 0);
                 DaoC.insertCustomer(newCustomer);
@@ -53,8 +68,9 @@ public class SignUpController extends HttpServlet {
                 session.setAttribute("customer", cus);
                 response.sendRedirect("activeAccount");
             }
+
             else {
-                request.setAttribute("mess", "Account Exist!");
+                request.setAttribute("mess", "Email đã tồn tại!");
                 request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
             }
         }

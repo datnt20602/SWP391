@@ -1,8 +1,8 @@
 package controller;
 
-import Dal.AccountDBContext;
+
 import Dal.DAOCustomer;
-import Model.Account;
+
 import Model.Customer;
 import OTPFunction.MailSending;
 import jakarta.servlet.*;

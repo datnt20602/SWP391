@@ -5,7 +5,7 @@ import Model.Product;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-
+import Dal.DAOProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Vector;

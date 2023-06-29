@@ -191,7 +191,7 @@
         </div>
         <div class="wave-group">
             <label class="label">
-                Category
+                Danh mục
             </label><br>
             <input type="text" class="input" id="detailCategory" name="productCategory" readonly
                    style="margin-top: 20px;width: 80%">
@@ -243,7 +243,9 @@
             </textarea>
 
         </div>
+
         <div class="" style="margin-top: 20px;">
+
             <button type="submit" name="option" value="update"
                     style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
                 Update
@@ -269,48 +271,36 @@
             </a>
         </c:if>
         <ul class="side-menu top">
-            <li class="">
-                <a href="#">
-                    <i class="bx bxs-dashboard"></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li class="active">
+
+            <li>
                 <a href="product">
-                    <i class="bx bxs-shopping-bag-alt"></i>
-                    <span class="text">My Store</span>
+                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <span class="text">Cửa hàng</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class="bx bxs-doughnut-chart"></i>
-                    <span class="text">Analytics</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bxs-message-dots"></i>
-                    <span class="text">Message</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bxs-group"></i>
-                    <span class="text">Team</span>
-                </a>
-            </li>
+
+            <c:if test="${admin != null}">
+                <li>
+                    <a href="admin">
+                        <i class='bx bxs-doughnut-chart'></i>
+                        <span class="text">Khách hàng</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-group'></i>
+                        <span class="text">Nhân viên</span>
+                    </a>
+                </li>
+            </c:if>
+
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#">
-                    <i class="bx bxs-cog"></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
                 <a href="logout" class="logout">
                     <i class="bx bxs-log-out-circle"></i>
-                    <span class="text">Logout</span>
+                    <span class="text">Đăng xuất</span>
                 </a>
             </li>
         </ul>
@@ -318,14 +308,7 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-            <i class="bx bx-menu"></i>
-            <a href="#" class="nav-link">Categories</a>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button type="submit" class="search-btn"><i class="bx bx-search"></i></button>
-                </div>
-            </form>
+
 
             <a href="#" class="profile">
                 <img src="/ODShop\template\assets\images\people\people.png">
@@ -337,14 +320,14 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>My Store</h1>
+                    <h1>Cửa hàng</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="#">Dashboard</a>
+                            <a href="admin">Cửa hàng</a>
                         </li>
                         <li><i class="bx bx-chevron-right"></i></li>
                         <li>
-                            <a class="active" href="#">Home</a>
+                            <a class="active" href="admin">Trang chủ</a>
                         </li>
                     </ul>
                 </div>
@@ -355,11 +338,11 @@
                 <div class="order">
                     <form class="" action="product" method="get">
                         <div class="head">
-                            <h3>Products</h3>
-
+                            <h3>Sản phẩm</h3>
+                            <h2>${errorMessage}</h2>
                             <select name="category" id="selectCategory"
                                     style="font-size: 16px;height: 100%;padding: 10px;border-radius: 5px;width: 15%;cursor: pointer">
-                                <option selected value="all">Category</option>
+                                <option selected value="all">Danh mục</option>
                                 <c:forEach var="category" items="${listCategory}">
                                     <option ${param.category.equals(category) ? "selected" : ""}
                                             value="${category}">${category}</option>
@@ -369,10 +352,10 @@
                                 <input type="text" class="input" id="inputSearchName" name="name" value="${param.name}">
                                 <span class="bar"></span>
                                 <label class="label">
-                                    <span class="label-char" style="--index: 0">N</span>
-                                    <span class="label-char" style="--index: 1">a</span>
-                                    <span class="label-char" style="--index: 2">m</span>
-                                    <span class="label-char" style="--index: 3">e</span>
+                                    <span class="label-char" style="--index: 0">T</span>
+                                    <span class="label-char" style="--index: 1">ê</span>
+                                    <span class="label-char" style="--index: 2">n</span>
+
                                 </label>
                             </div>
                             <button id="search-button"
@@ -387,10 +370,10 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Volume</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên</th>
+                            <th>Giá</th>
+                            <th>Thể tích</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -412,13 +395,14 @@
                                     <button type="button"
                                             onclick='toggle();loadData(JSON.stringify(${product.toJson()}))'
                                             style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
-                                        Detail
+                                        Chi tiết
                                     </button>
                                 </td>
                                 <td>
                                     <button onclick="toggleDelete();alertDelete(${product.getProduct_id()})" style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
-                                        Delete
+                                        Xóa
                                     </button>
+
                                 </td>
                             </tr>
                         </c:forEach>
@@ -465,8 +449,12 @@
 
     var priceValue = document.querySelectorAll(".priceValue");
     priceValue.forEach(p => {
-        p.innerText = parseInt(p.innerText).toLocaleString();
+        var number = parseFloat(p.innerText);
+        if (!isNaN(number)) {
+            p.innerText = number.toLocaleString();
+        }
     });
+
     let pages = ${totalPages};
 
     document.getElementById('pagination').innerHTML = createPagination(pages, ${pageNumber});

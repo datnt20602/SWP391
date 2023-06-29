@@ -1,6 +1,6 @@
 package controller;
 
-import Dal.ProductDAO;
+import Dal.DAOProduct;
 import Model.Product;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -19,7 +19,7 @@ public class ProductController extends HttpServlet {
         String name = "%";
         String category = "%";
         int page = 1;
-        ProductDAO productDAO = new ProductDAO();
+        DAOProduct DAOProduct = new DAOProduct();
         if (page_raw != null && !page_raw.equals("1")) {
             page = Integer.parseInt(page_raw);
         }
@@ -29,10 +29,10 @@ public class ProductController extends HttpServlet {
         if (category_raw != null && !category_raw.equals("all")) {
             category = category_raw + "%";
         }
-        List<Product> listProduct = productDAO.searchProduct(name, category, ((page - 1) * 5));
-        List<String> listCategory = productDAO.getListCategory();
-        int totalProduct = productDAO.getTotalProduct(name, category);
-        double totalPages = Math.ceil((double) totalProduct/5);
+        List<Product> listProduct = DAOProduct.searchProduct(name, category, ((page - 1) * 5));
+        List<String> listCategory = DAOProduct.getListCategory();
+        int totalProduct = DAOProduct.getTotalProduct(name, category);
+        double totalPages = Math.ceil((double) totalProduct / 5);
 
         request.setAttribute("listProduct", listProduct);
         request.setAttribute("listCategory", listCategory);
@@ -50,7 +50,7 @@ public class ProductController extends HttpServlet {
         String name = "%";
         String category = "%";
         int page = 1;
-        ProductDAO productDAO = new ProductDAO();
+        DAOProduct DAOProduct = new DAOProduct();
         if (page_raw != null && !page_raw.equals("1")) {
             page = Integer.parseInt(page_raw);
         }
@@ -61,6 +61,7 @@ public class ProductController extends HttpServlet {
             category = category_raw + "%";
         }
         if (option.equals("update")) {
+
             String id_raw = request.getParameter("productId");
             String productName_raw = request.getParameter("productName");
             String price_raw = request.getParameter("productPrice");
@@ -69,20 +70,27 @@ public class ProductController extends HttpServlet {
             String describe = request.getParameter("productDescribe");
             String productCategory = request.getParameter("productCategory");
 
-            int id = Integer.parseInt(id_raw);
-            double price = Double.parseDouble(price_raw);
-            int volume = Integer.parseInt(volume_raw);
-            Product newProduct = new Product(id, productName_raw, productCategory, price, image_raw, describe, volume);
-            productDAO.update(newProduct);
+            price_raw = price_raw.replaceAll("[^0-9,]", "");
+            volume_raw = volume_raw.replaceAll("[^0-9,]", "");
+            price_raw = price_raw.replace(",", "");
+
+                int id = Integer.parseInt(id_raw);
+                double price = Double.parseDouble(price_raw);
+                int volume = Integer.parseInt(volume_raw);
+                Product newProduct = new Product(id, productName_raw, productCategory, price, image_raw, describe, volume);
+                DAOProduct.update(newProduct);
+
+
+
         } else {
             String id_raw = request.getParameter("productId");
             int id = Integer.parseInt(id_raw);
-            productDAO.delete(id);
+            DAOProduct.delete(id);
         }
-        List<Product> listProduct = productDAO.searchProduct(name, category, ((page - 1) * 5));
-        List<String> listCategory = productDAO.getListCategory();
-        int totalProduct = productDAO.getTotalProduct(name, category);
-        double totalPages = Math.ceil((double) totalProduct/5);
+        List<Product> listProduct = DAOProduct.searchProduct(name, category, ((page - 1) * 5));
+        List<String> listCategory = DAOProduct.getListCategory();
+        int totalProduct = DAOProduct.getTotalProduct(name, category);
+        double totalPages = Math.ceil((double) totalProduct / 5);
 
         request.setAttribute("listProduct", listProduct);
         request.setAttribute("listCategory", listCategory);

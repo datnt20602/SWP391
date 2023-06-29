@@ -1,6 +1,6 @@
 package Dal;
 
-import Model.Account;
+
 import Model.Customer;
 import Model.Product;
 import Model.Staff;
@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DAOCustomer extends DBContext{
     public int insertCustomer(Customer cus) {
@@ -129,5 +131,12 @@ public class DAOCustomer extends DBContext{
         } catch (SQLException ex) {
             System.out.println("updateCustomer: " + ex.getMessage());
         }
+    }
+
+    public boolean isSecurePassword(String password) {
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
     }
 }

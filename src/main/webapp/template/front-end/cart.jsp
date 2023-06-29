@@ -79,13 +79,11 @@
 
                             <div class="middle-box">
                                 <div class="location-box">
-                                    <button class="btn location-button" data-bs-toggle="modal"
+                                    <button class="btn location-button" data-bs-toggle=""
                                             data-bs-target="#locationModal">
-                                        <span class="location-arrow">
-                                            <i data-feather="map-pin"></i>
-                                        </span>
-                                        <span class="locat-name">Vị trí của bạn</span>
-                                        <i class="fa-solid fa-angle-down"></i>
+
+                                        <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
+
                                     </button>
                                 </div>
 
@@ -122,17 +120,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="right-side">
-                                        <a href="contact-us.html" class="delivery-login-box">
-                                            <div class="delivery-icon">
-                                                <i data-feather="phone-call"></i>
-                                            </div>
-                                            <div class="delivery-detail">
-                                                <h6>24/7 Delivery</h6>
-                                                <h5>+91 888 104 2340</h5>
-                                            </div>
-                                        </a>
-                                    </li>
+
                                     <li class="right-side">
                                         <a href="wishlist" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="heart"></i>
@@ -723,11 +711,9 @@
                                 </li>
 
                                 <li>
-                                    <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
+                                    <a href="wishlist" class="text-content"> Wishlist</a>
                                 </li>
-                                <li>
-                                    <a href="faq.html" class="text-content">FAQ</a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -739,15 +725,6 @@
 
                         <div class="footer-contact">
                             <ul>
-                                <li>
-                                    <div class="footer-number">
-                                        <i data-feather="phone"></i>
-                                        <div class="contact-number">
-                                            <h6 class="text-content">Hotline 24/7 :</h6>
-                                            <h5>+84 376597711</h5>
-                                        </div>
-                                    </div>
-                                </li>
 
                                 <li>
                                     <div class="footer-number">
