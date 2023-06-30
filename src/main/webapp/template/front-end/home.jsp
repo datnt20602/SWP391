@@ -764,7 +764,7 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.6">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="productdetail">
+                                    <a href="productdetail?pro_id=<%=temp.getProduct_id()%>">
                                         <img src="<%=temp.getImage()%>"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>

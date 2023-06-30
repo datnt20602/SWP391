@@ -115,6 +115,7 @@ public class DAOProduct extends DBContext{
         }
         return n;
     }
+
     public int updateProduct(Product pro) {
         int n = 0;
 

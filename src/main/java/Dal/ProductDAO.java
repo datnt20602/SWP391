@@ -5,6 +5,7 @@ import Model.Product;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 public class ProductDAO extends DBContext{
@@ -92,5 +93,12 @@ public class ProductDAO extends DBContext{
         } catch (SQLException e) {
             System.err.println("ProductDAO-delete: " + e.getMessage());
         }
+    }
+
+    public static void main(String[] args) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        System.out.println(currentDateTime.toString());
+        LocalDateTime specificDateTime = LocalDateTime.of(2023, 6, 29, 15, 30, 45);
+        System.out.println(specificDateTime.toString());
     }
 }

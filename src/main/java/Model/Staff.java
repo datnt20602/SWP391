@@ -35,17 +35,7 @@ public class Staff {
     }
 
 
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "staff_id=" + staff_id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", active=" + active +
-                ", pass='" + pass + '\'' +
-                '}';
-    }
+
 
     public int getStaff_id() {
         return staff_id;

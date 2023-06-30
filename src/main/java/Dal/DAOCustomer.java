@@ -37,6 +37,21 @@ public class DAOCustomer extends DBContext{
         }
         return n;
     }
+    public int getIdCustomer(){
+        String sql = "SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1;";
+        ResultSet rs = this.getData(sql);
+        int n = 0;
+        try {
+            while (rs.next()) {
+                n = rs.getInt("customer_id");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return n;
+
+    }
+
     public Customer login(String email, String pass) {
         String sql = "select * from customer where email = ? and pass = ?";
 
