@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
                 if(DaoA.login(user, pass) != null){
                     Admin ad = DaoA.login(user, pass);
                     session.setAttribute("admin", ad);
-
+                    request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
                 }else{
                     response.sendRedirect("home");
                 }
