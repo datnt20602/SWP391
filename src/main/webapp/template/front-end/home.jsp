@@ -217,10 +217,19 @@
                                         <div class="delivery-icon">
                                             <i data-feather="user"></i>
                                         </div>
+
                                         <div class="delivery-detail">
-                                            <h6>Hello,</h6>
-                                            <h5>My Account</h5>
+                                        <%
+                                        Customer cus = (Customer) session.getAttribute("customer");
+                                        if(cus != null)
+                                        {
+                                        %>
+                                            <h5><%=cus.getName()%></h5>
+                                        <%
+                                        }
+                                        %>
                                         </div>
+
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -810,25 +819,26 @@
                                         <del>$15.15</del>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
-                                        <button class="btn btn-add-cart addcart-button">Add
-                                            <span class="add-icon bg-light-gray">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </span>
+                                        <button onclick="location.href = 'cart?service=addToCart&pro_id=<%=temp.getProduct_id()%>';"
+                                                class="btn btn-add-cart addcart-button">Add
+<%--                                            <span class="add-icon bg-light-gray">--%>
+<%--                                                    <i class="fa-solid fa-plus"></i>--%>
+<%--                                            </span>--%>
                                         </button>
-                                        <div class="cart_qty qty-box">
-                                            <div class="input-group bg-white">
-                                                <button type="button" class="qty-left-minus bg-gray"
-                                                        data-type="minus" data-field="">
-                                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                                </button>
-                                                <input  class="form-control input-number qty-input" type="text"
-                                                        name="quantity" value="0">
-                                                <button type="button" class="qty-right-plus bg-gray"
-                                                        data-type="plus" data-field="">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+<%--                                        <div class="cart_qty qty-box">--%>
+<%--                                            <div class="input-group bg-white">--%>
+<%--                                                <button type="button" class="qty-left-minus bg-gray"--%>
+<%--                                                        data-type="minus" data-field="">--%>
+<%--                                                    <i class="fa fa-minus" aria-hidden="true"></i>--%>
+<%--                                                </button>--%>
+<%--                                                <input  class="form-control input-number qty-input" type="text"--%>
+<%--                                                        name="quantity" value="0">--%>
+<%--                                                <button type="button" class="qty-right-plus bg-gray"--%>
+<%--                                                        data-type="plus" data-field="">--%>
+<%--                                                    <i class="fa fa-plus" aria-hidden="true"></i>--%>
+<%--                                                </button>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
                                     </div>
                                 </div>
                             </div>

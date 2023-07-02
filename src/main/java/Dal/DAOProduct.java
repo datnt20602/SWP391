@@ -1,5 +1,7 @@
 package Dal;
 import Model.Customer;
+import Model.Order;
+import Model.Order_item;
 import Model.Product;
 
 import java.sql.PreparedStatement;
@@ -148,9 +150,15 @@ public class DAOProduct extends DBContext{
     }
 
     public static void main(String[] args) {
-        DAOCustomer dao = new DAOCustomer();
-        Customer cus = dao.login("minhdnhe161535@fpt.edu.vn", "Minh2002");
-        System.out.println(cus.toString());
+        DAOOrder daoOrder = new DAOOrder();
+        DAOOrder_Item daoOrder_item = new DAOOrder_Item();
+        Order order = new Order(10,"e","s","sd",1);
+        Product pro = new Product(1,"sd", "wd",2,"ds","dfs",1);
+        Order_item order_item = new Order_item(11,3,pro,2,2,2);
+        int n = daoOrder.insertOrder(order,1);
+        int a = daoOrder_item.insertOrder_Item(order_item,1);
+        System.out.println(order_item.toString());
+        System.out.println(a);
     }
 
 

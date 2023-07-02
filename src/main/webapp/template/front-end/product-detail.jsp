@@ -1,3 +1,4 @@
+<%@ page import="Model.Product" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -318,12 +319,15 @@
     <!-- mobile fix menu end -->
 
     <!-- Breadcrumb Section Start -->
+    <%
+        Product product = (Product) request.getAttribute("product");
+    %>
     <section class="breadscrumb-section pt-0">
         <div class="container-fluid-lg">
             <div class="row">
                 <div class="col-12">
                     <div class="breadscrumb-contain">
-                        <h2>Creamy Chocolate Cake</h2>
+                        <h2><%=product.getProduct_name()%></h2>
                         <nav>
 
                         </nav>
@@ -347,95 +351,7 @@
                                         <div class="product-main-2 no-arrow">
                                             <div>
                                                 <div class="slider-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/1.jpg" id="img-1"
-                                                        data-zoom-image="${pageContext.request.contextPath}/template/assets/images/product/category/1.jpg"
-                                                        class="img-fluid image_zoom_cls-0 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/2.jpg"
-                                                        data-zoom-image="${pageContext.request.contextPath}/template/assets/images/product/category/2.jpg"
-                                                        class="img-fluid image_zoom_cls-1 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/3.jpg"
-                                                        data-zoom-image="${pageContext.request.contextPath}/template/assets/images/product/category/3.jpg"
-                                                        class="img-fluid image_zoom_cls-2 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/4.jpg"
-                                                        data-zoom-image="${pageContext.request.contextPath}/template/assets/images/product/category/4.jpg"
-                                                        class="img-fluid image_zoom_cls-3 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/5.jpg"
-                                                        data-zoom-image="${pageContext.request.contextPath}/template/assets/images/product/category/5.jpg"
-                                                        class="img-fluid image_zoom_cls-4 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/6.jpg"
-                                                        data-zoom-image="${pageContext.request.contextPath}/template/assets/images/product/category/6.jpg"
-                                                        class="img-fluid image_zoom_cls-5 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xxl-2 col-lg-12 col-md-2 order-xxl-1 order-lg-2 order-md-1">
-                                        <div class="left-slider-image-2 left-slider no-arrow slick-top">
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/1.jpg"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/2.jpg"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/3.jpg"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/4.jpg"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/5.jpg"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/product/category/6.jpg"
-                                                        class="img-fluid blur-up lazyload" alt="">
+                                                    <img src="<%= product.getImage()%>" id="img-1" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -447,9 +363,9 @@
                         <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="right-box-contain">
                                 <h6 class="offer-top">30% Off</h6>
-                                <h2 class="name">Creamy Chocolate Cake</h2>
+                                <h2 class="name"><%= product.getProduct_name()%></h2>
                                 <div class="price-rating">
-                                    <h3 class="theme-color price">$49.50 <del class="text-content">$58.46</del> <span
+                                    <h3 class="theme-color price">$49.50 <del class="text-content"><%=product.getPrice()%></del> <span
                                             class="offer theme-color">(8% off)</span></h3>
                                     <div class="product-rating custom-rate">
                                         <ul class="rating">
@@ -474,15 +390,10 @@
                                 </div>
 
                                 <div class="procuct-contain">
-                                    <p>Lollipop cake chocolate chocolate cake dessert jujubes. Shortbread sugar plum
-                                        dessert
-                                        powder cookie sweet brownie. Cake cookie apple pie dessert sugar plum muffin
-                                        cheesecake.
+                                    <p>
+                                        <%=product.getDescribe()%>>
                                     </p>
                                 </div>
-
-
-
                                 <div class="time deal-timer product-deal-timer mx-md-0 mx-auto" id="clockdiv-1"
                                     data-hours="1" data-minutes="2" data-seconds="3">
                                     <div class="product-title">
@@ -523,40 +434,32 @@
                                         </li>
                                     </ul>
                                 </div>
-
-
-
-                                <div class="note-box product-packege">
-                                    <div class="cart_qty qty-box product-qty">
-                                        <div class="input-group">
-                                            <button type="button" class="qty-right-plus" data-type="plus" data-field="">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
-                                            <input class="form-control input-number qty-input" type="text"
-                                                name="quantity" value="0">
-                                            <button type="button" class="qty-left-minus" data-type="minus"
-                                                data-field="">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </button>
+                                <form >
+                                    <div class="note-box product-packege">
+                                        <div class="cart_qty qty-box product-qty">
+                                            <div class="input-group">
+                                                <button type="button" class="qty-right-plus" data-type="plus" data-field="">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                                <input class="form-control input-number qty-input" type="text"
+                                                       name="quantity" value="0">
+                                                <button type="button" class="qty-left-minus" data-type="minus"
+                                                        data-field="">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
                                         </div>
+
+                                        <button onclick="location.href = 'cart';"
+                                                class="btn btn-md bg-dark cart-button text-white w-100">Thêm vào giỏ hàng</button>
                                     </div>
-
-                                    <button onclick="location.href = 'cart';"
-                                        class="btn btn-md bg-dark cart-button text-white w-100">Thêm vào giỏ hàng</button>
-                                </div>
-
+                                </form>
                                 <div class="buy-box">
                                     <a href="wishlist">
                                         <i data-feather="heart"></i>
                                         <span>Thêm vào wishlist</span>
                                     </a>
-
-
                                 </div>
-
-
-
-
                             </div>
                         </div>
 
@@ -2047,7 +1950,7 @@
                             <img src="${pageContext.request.contextPath}/template/assets/images/product/category/1.jpg" class="img-fluid blur-up lazyload"
                                 alt="">
                             <div class="content">
-                                <h5>Creamy Chocolate Cake</h5>
+                                <h5><%= product.getProduct_name()%></h5>
                                 <h6>$32.96<del class="text-danger">$96.00</del><span>55% off</span></h6>
                             </div>
                         </div>

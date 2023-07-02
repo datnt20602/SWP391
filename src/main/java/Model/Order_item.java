@@ -8,16 +8,25 @@ public class Order_item {
     private double price;
     private double discount;
 
-    private String feedback;
-    private String feedback_date;
-    private double start_rating;
+    private String feedback  = null;
+    private String feedback_date = null;
+    private double start_rating = 0;
 
 
     public Order_item() {
     }
 
     public Order_item(int item_id, int order_id, Product product, int quantity, double price,
-                      double discount, String feedback, String feedback_date, double start_rating) {
+                      double discount) {
+        this.item_id = item_id;
+        this.order_id = order_id;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.discount = discount;
+    }
+
+    public Order_item(int item_id, int order_id, Product product, int quantity, double price, double discount, String feedback, String feedback_date, double start_rating) {
         this.item_id = item_id;
         this.order_id = order_id;
         this.product = product;
@@ -28,6 +37,19 @@ public class Order_item {
         this.feedback_date = feedback_date;
         this.start_rating = start_rating;
     }
+
+    @Override
+    public String toString() {
+        return "Order_item{" +
+                "item_id=" + item_id +
+                ", order_id=" + order_id +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", discount=" + discount +
+                '}';
+    }
+
     public int getOrder_id() {
         return order_id;
     }

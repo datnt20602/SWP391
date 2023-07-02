@@ -348,8 +348,10 @@
                 <div class="col-xxl-9">
                     <div class="cart-table">
                         <div class="table-responsive-xl">
+
                             <table class="table">
                                 <tbody>
+
                                     <tr class="product-box-contain">
                                         <td class="product-detail">
                                             <div class="product border-0">
@@ -436,7 +438,7 @@
 
                                         <td class="save-remove">
                                             <h4 class="table-title text-content">Tùy chọn</h4>
-
+                                            <a class="save notifi-wishlist" href="wishlist?service=addToWislist">Save for later</a>
                                             <a class="remove close_button" href="javascript:void(0)">Hủy</a>
                                         </td>
                                     </tr>
