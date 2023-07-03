@@ -19,6 +19,21 @@
     <c:if test="${staff != null}">
         <title>Staff</title>
     </c:if>
+
+    <style>
+        #options {
+            display: none;
+            position: absolute;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid black;
+            top: 100%;
+            left: 0;
+        }
+        .profile {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,13 +42,13 @@
 <section id="sidebar">
 
     <c:if test="${admin != null}">
-        <a href="admin" class="brand">
+        <a href="home" class="brand">
             <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"  style="width: 30%">
             <span class="text">Admin</span>
         </a>
     </c:if>
     <c:if test="${staff != null}">
-        <a href="admin" class="brand">
+        <a href="home" class="brand">
             <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"  style="width: 30%">
             <span class="text">Staff</span>
         </a>
@@ -50,14 +65,14 @@
 
         <c:if test="${admin != null}">
             <li>
-        <a href="admin">
+        <a href="user">
             <i class='bx bxs-doughnut-chart'></i>
             <span class="text">Khách hàng</span>
         </a>
     </li>
 
         <li>
-            <a href="#">
+            <a href="staff">
                 <i class='bx bxs-group'></i>
                 <span class="text">Nhân viên</span>
             </a>
@@ -82,14 +97,15 @@
 <section id="content">
     <!-- NAVBAR -->
     <nav>
-        <i class='bx bx-menu'></i>
+        <div class="profile" onclick="showOptions()">
+            <img src="/ODShop/template/assets/images/people/people.png">
+        </div>
+        <div id="options" style="display: none; border-radius: 10px">
+            <a href="#">Thông tin cá nhân</a><br>
+            <a href="changepass">Đổi mật khẩu</a><br>
+            <a href="forgotpass">Quên mật khẩu</a>
 
-
-
-
-        <a href="#" class="profile">
-            <img src="${pageContext.request.contextPath}\template\assets\images\people\people.png">
-        </a>
+        </div>
     </nav>
     <!-- NAVBAR -->
 
@@ -97,10 +113,10 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Khách hàng</h1>
+                <h1>Trang chủ</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="admin">Khách hàng</a>
+                        <a href="user">Trang chủ</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
@@ -113,24 +129,24 @@
 
         <ul class="box-info">
             <li>
-                <i class='bx bxs-calendar-check'></i>
+                <i class='bx bx-store-alt'></i>
                 <span class="text">
-						<h3>1020</h3>
-						<p>New Order</p>
+						<h3>${totalProduct}</h3>
+						<p>Tổng sản phẩm</p>
 					</span>
             </li>
             <li>
                 <i class='bx bxs-group'></i>
                 <span class="text">
-						<h3>2834</h3>
-						<p>Visitors</p>
+						<h3>${totalCustomer}</h3>
+						<p>Tổng số người dùng</p>
 					</span>
             </li>
             <li>
-                <i class='bx bxs-dollar-circle'></i>
+                <i class='bx bxs-group'></i>
                 <span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
+						<h3>${totalStaff}</h3>
+						<p>Tổng số nhân viên</p>
 					</span>
             </li>
         </ul>
@@ -232,5 +248,16 @@
 
 
 <script src="${pageContext.request.contextPath}/template/assets/js/script-admin.js"></script>
+<script>
+    function showOptions() {
+        var optionsDiv = document.getElementById("options");
+        if (optionsDiv.style.display === "none") {
+            optionsDiv.style.display = "block";
+        } else {
+            optionsDiv.style.display = "none";
+        }
+
+    }
+</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package controller;
-
+import Dal.DAOCustomer;
 import Dal.DAOProduct;
+import Dal.DAOStaff;
 import Model.Admin;
 import Model.Product;
 import Model.Staff;
@@ -34,6 +35,15 @@ public class HomeController extends HttpServlet {
         if (session.getAttribute("staff") != null) {
             request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
         } else if (session.getAttribute("admin") != null) {
+            DAOCustomer DAOCustomer = new DAOCustomer();
+            DAOProduct DAOProduct = new DAOProduct();
+            DAOStaff DAOStaff = new DAOStaff();
+            int totalCustomer = DAOCustomer.getNumberCustomer();
+            int totalProduct = DAOProduct.getNumberProduct();
+            int totalStaff = DAOStaff.getNumberStaff();
+            request.setAttribute("totalCustomer", totalCustomer);
+            request.setAttribute("totalProduct", totalProduct);
+            request.setAttribute("totalStaff", totalStaff);
             request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
         } else {
             request.setAttribute("category_name", rs);

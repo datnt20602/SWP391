@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DAOAdmin extends DBContext{
     public int insertAdmin (Admin ad){
@@ -88,4 +90,59 @@ public class DAOAdmin extends DBContext{
         return null;
     }
 
+    public void updateAdmin(Admin a, int adminId) {
+        try {
+            String sql = "UPDATE admin SET name = ?, email = ?, phone = ?, status = ?, street = ?, city = ?, pass = ? WHERE admin_id = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, a.getName());
+            stm.setString(2, a.getEmail());
+            stm.setString(3, a.getPhone());
+            stm.setInt(4, a.getStatus());
+            stm.setString(5, a.getStreet());
+            stm.setString(6, a.getCity());
+            stm.setString(7, a.getPass());
+            stm.setInt(8, adminId);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("updateAdmin: " + ex.getMessage());
+        }
+    }
+
+    public boolean isSecurePassword(String password) {
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+    public int updateAdminByPre(Admin admin) {
+        int n = 0;
+        String sql = "UPDATE `drink_online_shop1`.`admin`\n" +
+                "SET\n" +
+                "`name` = ?,\n" +
+                "`email` = ?,\n" +
+                "`phone` = ?,\n" +
+                "`status` = ?,\n" +
+                "`street` = ?,\n" +
+                "`city` = ?,\n" +
+                "`pass` = ?\n" +
+                "WHERE `admin_id` = ?;";
+
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setInt(8, admin.getAdmin_id());
+            pre.setString(1, admin.getName());
+            pre.setString(2, admin.getEmail());
+            pre.setString(3, admin.getPhone());
+            pre.setInt(4, admin.getStatus());
+            pre.setString(5, admin.getStreet());
+            pre.setString(6, admin.getCity());
+            pre.setString(7,admin.getPass());
+
+            pre.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("updateAdminByPre" + ex.getMessage());
+        }
+        return n;
+    }
 }
