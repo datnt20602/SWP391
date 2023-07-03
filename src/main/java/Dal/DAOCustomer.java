@@ -8,6 +8,8 @@ import Model.Staff;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,6 +91,57 @@ public class DAOCustomer extends DBContext{
         return null;
     }
 
+    public List<Customer> searchCustomer(String name, int page) {
+        List<Customer> listCustomer = new ArrayList<>();
+        try {
+            String query = "select * from customer\n" +
+                    "where name like ?\n" +
+                    "limit 5 offset ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setInt(2, page);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listCustomer.add(new Customer(rs.getInt("customer_id"), rs.getString("name"), rs.getString("phone"),
+                        rs.getString("email"), rs.getString("pass"), rs.getInt("active")));
+            }
+        } catch (SQLException e) {
+            System.err.println("searchCustomer: " + e.getMessage());
+        }
+        return listCustomer;
+    }
+
+    public int getTotalCustomer(String name) {
+        try {
+            String query = "select count(customer_id) from customer\n" +
+                    "where name like ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, name);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count(customer_id)");
+            }
+        } catch (SQLException e) {
+            System.err.println("getTotalCustomer: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public int getNumberCustomer() {
+        try {
+            String query = "select count(customer_id) from customer";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count(customer_id)");
+            }
+        } catch (SQLException e) {
+            System.err.println("getNumberCustomer: " + e.getMessage());
+        }
+        return 0;
+    }
+
     public int updateCustomerByPre(Customer cus) {
         int n = 0;
         String sql = "UPDATE `drink_online_shop1`.`customer`\n" +
@@ -138,5 +191,16 @@ public class DAOCustomer extends DBContext{
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
+    }
+
+    public void delete(int id) {
+        try {
+            String query = "delete from customer where customer_id = ?;";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("DAOCustomer-delete: " + e.getMessage());
+        }
     }
 }

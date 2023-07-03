@@ -217,6 +217,19 @@ public class DAOProduct extends DBContext{
         }
         return 0;
     }
+    public int getNumberProduct() {
+        try {
+            String query = "select count(product_id) from product";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count(product_id)");
+            }
+        } catch (SQLException e) {
+            System.err.println("getNumberProduct: " + e.getMessage());
+        }
+        return 0;
+    }
 
     public Product update(Product product) {
         try {
