@@ -50,25 +50,43 @@ public class CartController extends HttpServlet {
             if(cus == null){
                 response.sendRedirect("login");
             }else {
-                int pro_id = Integer.parseInt(request.getParameter("pro_id"));
-                DAOProduct daoProduct = new DAOProduct();
-                DAOOrder daoOrder = new DAOOrder();
+
+                int prod_id = Integer.parseInt(request.getParameter("pro_id"));
+                System.out.println(prod_id);
+                String quantity = request.getParameter("quantity");
+                int quan;
                 DAOOrder_Item daoOrder_item = new DAOOrder_Item();
-                int order_id = daoOrder.getIdOrder();
-                int order_status = 1;
-                LocalDate currentDate = LocalDate.now();
-                String required_date = "Chua xac nhan";
-                String shipped_date = "Chua ro";
-                Order order = new Order(order_id,currentDate.toString(),required_date,shipped_date,order_status);
-                daoOrder.insertOrder(order, cus.getCustomer_id());
+                DAOProduct daoProduct = new DAOProduct();
+                Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
+                if(quantity == null){
+                    quan = 1;
+                }else{
+                    quan = Integer.parseInt(request.getParameter("quantity"));
+                }
+                Product product = daoProduct.getProductByID(prod_id);
                 int item_id = daoOrder_item.getIdOrder_item();
-                Product pro = daoProduct.getProductByID(pro_id);
-                int quantity = 1;
-                double price = pro.getPrice();
-                double discount = 0;
-                Order_item order_item = new Order_item(item_id,order_id,pro,quantity,price,discount);
-                daoOrder_item.insertOrder_Item(order_item,pro_id);
-                response.sendRedirect("home");
+                double discount  = 0;
+                Order_item order_item = new Order_item(item_id,product,1,product.getPrice(),discount);
+                if(vector == null){
+                    vector = new Vector<Order_item>();
+                    vector.add(order_item);
+                }else{
+                    for(Order_item item : vector){
+                        System.out.println(item.getProduct().getProduct_id());
+                        if(prod_id != item.getProduct().getProduct_id()){
+                            System.out.println("xzfdstsat");
+
+                            vector.add(order_item);
+
+                        }else{
+                            item.setQuantity(item.getQuantity()+1);
+                            break;
+                        }
+                    }
+                }
+                session.setAttribute("cart_list", vector);
+                request.setAttribute("data",vector);
+                request.getRequestDispatcher("template/front-end/cart.jsp").forward(request,response);
             }
         }
     }

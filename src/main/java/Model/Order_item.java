@@ -2,7 +2,6 @@ package Model;
 
 public class Order_item {
     private int item_id;
-    private int order_id;
     private Product product;
     private int quantity;
     private double price;
@@ -16,19 +15,17 @@ public class Order_item {
     public Order_item() {
     }
 
-    public Order_item(int item_id, int order_id, Product product, int quantity, double price,
+    public Order_item(int item_id, Product product, int quantity, double price,
                       double discount) {
         this.item_id = item_id;
-        this.order_id = order_id;
         this.product = product;
         this.quantity = quantity;
         this.price = price;
         this.discount = discount;
     }
 
-    public Order_item(int item_id, int order_id, Product product, int quantity, double price, double discount, String feedback, String feedback_date, double start_rating) {
+    public Order_item(int item_id, Product product, int quantity, double price, double discount, String feedback, String feedback_date, double start_rating) {
         this.item_id = item_id;
-        this.order_id = order_id;
         this.product = product;
         this.quantity = quantity;
         this.price = price;
@@ -38,25 +35,7 @@ public class Order_item {
         this.start_rating = start_rating;
     }
 
-    @Override
-    public String toString() {
-        return "Order_item{" +
-                "item_id=" + item_id +
-                ", order_id=" + order_id +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                ", discount=" + discount +
-                '}';
-    }
 
-    public int getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
-    }
 
     public Product getProduct() {
         return product;
