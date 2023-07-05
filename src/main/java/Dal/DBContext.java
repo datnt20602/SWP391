@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 
                 rs=state.executeQuery(sql);
             } catch (SQLException ex) {
-                Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("getData: " + ex.getMessage());
             }
             return rs;
         }

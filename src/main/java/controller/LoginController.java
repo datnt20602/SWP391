@@ -33,10 +33,17 @@ public class LoginController extends HttpServlet {
             }
         } else {
             DAOStaff DaoS = new DAOStaff();
-            if (DaoS.login(user, pass) != null) {
-                Staff st = DaoS.login(user, pass);
-                session.setAttribute("staff", st);
-                response.sendRedirect("home");
+            Staff staff = DaoS.login(user, pass);
+            if ( staff != null && staff.getPass().equals(pass)) {
+                if(staff.getActive()==1){
+                    session.setAttribute("staff", staff);
+                    response.sendRedirect("home");
+                }else{
+                    session.setAttribute("staff",staff);
+                    response.sendRedirect("activeAccount");
+                }
+
+
             } else {
                 DAOAdmin DaoA = new DAOAdmin();
                 if (DaoA.login(user, pass) != null) {

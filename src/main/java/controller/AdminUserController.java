@@ -1,8 +1,10 @@
 package controller;
 
+import Dal.DAOAdmin;
 import Dal.DAOCustomer;
 
 import Dal.DAOStaff;
+import Model.Admin;
 import Model.Customer;
 import Model.Staff;
 import jakarta.servlet.*;
@@ -52,6 +54,7 @@ public class AdminUserController extends HttpServlet {
 
         int page = 1;
         DAOCustomer DAOCustomer = new DAOCustomer();
+
         if (page_raw != null && !page_raw.equals("1")) {
             page = Integer.parseInt(page_raw);
         }
@@ -63,6 +66,29 @@ public class AdminUserController extends HttpServlet {
             int id = Integer.parseInt(id_raw);
             DAOCustomer.delete(id);
         }
+//        if(option.equals("updateProfile")) {
+//            DAOAdmin DAOAdmin = new DAOAdmin();
+//            String Aid_raw = request.getParameter("adminId");
+//            String AName_raw = request.getParameter("adminName");
+//            String AEmail_raw = request.getParameter("adminEmail");
+//            String APhone = request.getParameter("adminPhone");
+//            String street = request.getParameter("adminStreet");
+//            String city = request.getParameter("adminCity");
+//            String pass = request.getParameter("adminPass");
+//
+//            int aid = Integer.parseInt(Aid_raw);
+//            HttpSession session = request.getSession();
+//            Admin admin = (Admin) session.getAttribute("admin");
+//            admin.setAdmin_id(aid);
+//            admin.setName(AName_raw);
+//            admin.setEmail(AEmail_raw);
+//            admin.setPhone(APhone);
+//            admin.setStreet(street);
+//            admin.setCity(city);
+//            admin.setPass(pass);
+//            DAOAdmin.update(admin);
+//            session.setAttribute("admin", admin);
+//        }
         List<Customer> listCustomer = DAOCustomer.searchCustomer(name, ((page - 1) * 5));
 
         int totalCustomer = DAOCustomer.getTotalCustomer(name);

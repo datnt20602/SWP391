@@ -1,5 +1,7 @@
 package Model;
 
+import com.google.gson.Gson;
+
 public class Admin {
     private int admin_id;
     private String name;
@@ -20,6 +22,16 @@ public class Admin {
         this.email = email;
         this.phone = phone;
         this.status = status;
+        this.street = street;
+        this.city = city;
+        this.pass = pass;
+    }
+
+    public Admin(int admin_id, String name, String email, String phone, String street, String city, String pass) {
+        this.admin_id = admin_id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
         this.street = street;
         this.city = city;
         this.pass = pass;
@@ -87,5 +99,9 @@ public class Admin {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String toJson() {
+        return new Gson().toJson(this);
     }
 }

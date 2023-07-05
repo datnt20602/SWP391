@@ -56,7 +56,9 @@ public class DAOStaff extends DBContext {
                 String name = rs.getString("name");
                 String phone = rs.getString("phone");
                 int active = rs.getInt("active");
-                Staff staff = new Staff(id, name, email, phone, active, pass);
+                int admin_id = rs.getInt("admin_id");
+                String staffPass = rs.getString("pass");
+                Staff staff = new Staff(id, name, email, phone, active, admin_id,staffPass);
                 return staff;
             }
 

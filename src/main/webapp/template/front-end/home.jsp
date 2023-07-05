@@ -6,6 +6,7 @@
 <%@page import=" java.util.Vector,Model.Product" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="Model.Customer" %>
+<%@ page import="java.util.List" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +58,7 @@
     <link id="color-link" rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/template/assets/css/style.css">
     <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 </head>
 
@@ -436,112 +438,119 @@
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                      aria-labelledby="headingOne">
                                     <div class="accordion-body">
-                                        <div class="form-floating theme-form-floating-2 search-box">
-                                            <input type="search" class="form-control" id="search"
-                                                   placeholder="Search ..">
-                                            <label for="search">Tìm...</label>
-                                        </div>
+<%--                                        <div class="form-floating theme-form-floating-2 search-box">--%>
+<%--                                            <input type="search" class="form-control" id="search"--%>
+<%--                                                   placeholder="Search ..">--%>
+<%--                                            <label for="search">Tìm...</label>--%>
+<%--                                        </div>--%>
 
                                         <ul class="category-list custom-padding custom-height">
-                                            <%
-                                                ResultSet rs = (ResultSet) request.getAttribute("category_name");
-                                                while (rs.next()) {
-                                            %>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="fruit">
-                                                    <label class="form-check-label" for="fruit">
-                                                        <span class="name"> <%=rs.getString("category_name")%></span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <%}%>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox">
-                                                    <label class="form-check-label" for="fruit">
-                                                        <span class="name"> Trà Chanh</span>
-                                                    </label>
-                                                </div>
-                                            </li>
+                                            <form class="w-100 h-100" id="formCategories"
+                                                  action="<%= (request.getParameter("service") == null) ? "home" : "home?service=" + request.getParameter("service")%>"
+                                                  method="get">
+                                                <c:forEach var="category" items="${listCategory}">
+                                                    <li>
+                                                        <div class="form-check ps-0 m-0 category-list-box">
+                                                            <input class="checkbox_animated" type="checkbox"
+                                                                ${categories.contains(category) ? "checked" : ""}
+                                                                   value="${category}" name="category" id="${category}"
+                                                                   class="categories">
+                                                            <label class="form-check-label" for="${category}">
+                                                                <span class="name"> ${category}</span>
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                </c:forEach>
+
+                                                <li>
+                                                    <div class="form-check ps-0 m-0 category-list-box">
+
+                                                    </div>
+                                                </li>
+                                            </form>
                                         </ul>
+                                        <script>
+                                            $(".category-list-box input[type=checkbox]").each(() => {
+                                                $(this).change(() => {
+                                                    $("#formCategories").submit();
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
 
 
+                            <%--                            <div class="accordion-item">--%>
+                            <%--                                <h2 class="accordion-header" id="headingFour">--%>
+                            <%--                                    <button class="accordion-button collapsed" type="button"--%>
+                            <%--                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"--%>
+                            <%--                                            aria-expanded="false" aria-controls="collapseFour">--%>
+                            <%--                                        <span>Giảm giá</span>--%>
+                            <%--                                    </button>--%>
+                            <%--                                </h2>--%>
+                            <%--                                <div id="collapseFour" class="accordion-collapse collapse show"--%>
+                            <%--                                     aria-labelledby="headingFour">--%>
+                            <%--                                    <div class="accordion-body">--%>
+                            <%--                                        <ul class="category-list custom-padding">--%>
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault">--%>
+                            <%--                                                        <span class="name"> 5%</span>--%>
 
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
 
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                            aria-expanded="false" aria-controls="collapseFour">
-                                        <span>Giảm giá</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse show"
-                                     aria-labelledby="headingFour">
-                                    <div class="accordion-body">
-                                        <ul class="category-list custom-padding">
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        <span class="name"> 5%</span>
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault1">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault1">--%>
+                            <%--                                                        <span class="name">5% - 10%</span>--%>
 
-                                                    </label>
-                                                </div>
-                                            </li>
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
 
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault1">
-                                                    <label class="form-check-label" for="flexCheckDefault1">
-                                                        <span class="name">5% - 10%</span>
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault2">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault2">--%>
+                            <%--                                                        <span class="name">10% - 15%</span>--%>
 
-                                                    </label>
-                                                </div>
-                                            </li>
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
 
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault2">
-                                                    <label class="form-check-label" for="flexCheckDefault2">
-                                                        <span class="name">10% - 15%</span>
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault3">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault3">--%>
+                            <%--                                                        <span class="name">15% - 25%</span>--%>
 
-                                                    </label>
-                                                </div>
-                                            </li>
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
 
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault3">
-                                                    <label class="form-check-label" for="flexCheckDefault3">
-                                                        <span class="name">15% - 25%</span>
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault4">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault4">--%>
+                            <%--                                                        <span class="name"> 25% trở lên</span>--%>
 
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault4">
-                                                    <label class="form-check-label" for="flexCheckDefault4">
-                                                        <span class="name"> 25% trở lên</span>
-
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
+                            <%--                                        </ul>--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+                            <%--                            </div>--%>
 
 
                         </div>
@@ -1100,6 +1109,14 @@
         }
     });
 
+    var urlForCategory = "";
+    var checked = document.querySelectorAll(".category-list-box input[type=checkbox]:checked");
+    checked.forEach((check) => {
+        urlForCategory += "&category=" + check.value;
+        document.querySelector("#low").href += urlForCategory;
+        document.querySelector("#high").href += urlForCategory;
+        document.querySelector("#normal").href += urlForCategory;
+    });
     let pages = ${totalPages};
 
     document.getElementById('pagination').innerHTML = createPagination(pages, ${pageNumber});
@@ -1109,15 +1126,16 @@
         let active;
         let pageCutLow = page - 1;
         let pageCutHigh = page + 1;
+
         // Show the Previous button only if you are on a page other than the first
         if (page > 1) {
-            str += '<a style="color: black" href="home?page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
+            str += '<a style="color: black" href="home?page=' + (page - 1) + urlForCategory + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
         }
         // Show all the pagination elements if there are less than 6 pages total
         if (pages < 6) {
             for (let p = 1; p <= pages; p++) {
                 active = page == p ? "active" : "";
-                str += '<a style="color: black" href="home?page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+                str += '<a style="color: black" href="home?page=' + p + urlForCategory + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
         }
         // Use "..." to collapse pages outside of a certain range
@@ -1125,7 +1143,7 @@
             // Show the very first page followed by a "..." at the beginning of the
             // pagination section (after the Previous button)
             if (page > 2) {
-                str += '<a style="color: black" href="home?page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
+                str += '<a style="color: black" href="home?page=' + 1 + urlForCategory + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
                 if (page > 3) {
                     str += `<li class="page__dots"><span>...</span></li>`;
                 }
@@ -1152,7 +1170,7 @@
                     continue
                 }
                 active = page == p ? "active" : "";
-                str += '<a style="color: black" href="home?page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+                str += '<a style="color: black" href="home?page=' + p + urlForCategory + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
             // Show the very last page preceded by a "..." at the end of the pagination
             // section (before the Next button)
@@ -1160,12 +1178,12 @@
                 if (page < pages - 2) {
                     str += '<li class="page__dots"><span>...</span></li>';
                 }
-                str += '<a style="color: black" href="home?page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
+                str += '<a style="color: black" href="home?page=' + pages + urlForCategory + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
             }
         }
         // Show the Next button only if you are on a page other than the last
         if (page < pages) {
-            str += '<a style="color: black" href="home?page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
+            str += '<a style="color: black" href="home?page=' + (page + 1) + urlForCategory + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
         }
         str += '</ul>';
         // Return the pagination string to be outputted in the pug templates
