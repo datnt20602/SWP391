@@ -1,3 +1,5 @@
+<%@ page import="java.util.Vector" %>
+<%@ page import="Model.Order_item" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -348,21 +350,26 @@
                 <div class="col-xxl-9">
                     <div class="cart-table">
                         <div class="table-responsive-xl">
-
+                    <%
+                        Vector<Order_item> vector = (Vector<Order_item>) request.getAttribute("data");
+                    %>
                             <table class="table">
                                 <tbody>
+                    <%
+                        for(Order_item item : vector){
 
+                    %>
                                     <tr class="product-box-contain">
                                         <td class="product-detail">
                                             <div class="product border-0">
                                                 <a href="productdetail" class="product-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
+                                                    <img src="<%=item.getProduct().getImage()%>"
                                                         class="img-fluid blur-up lazyload" alt="">
                                                 </a>
                                                 <div class="product-detail">
                                                     <ul>
                                                         <li class="name">
-                                                            <a href="productdetail">Matcha đá xay</a>
+                                                            <a href="productdetail"><%=item.getProduct().getProduct_name()%>></a>
                                                         </li>
 
                                                         <li class="text-content"></li>
@@ -371,7 +378,7 @@
 
                                                         <li>
                                                             <h5 class="text-content d-inline-block">Giá :</h5>
-                                                            <span> 35.000 VND </span>
+                                                            <span> <%=item.getProduct().getPrice()%>> </span>
                                                             <span class="text-content">40.000 VND</span>
                                                         </li>
 
@@ -398,7 +405,7 @@
                                                         </li>
 
                                                         <li>
-                                                            <h5>Tổng: 35.000 VND</h5>
+                                                            <h5>Tổng: <%=(item.getProduct().getPrice()*item.getQuantity())%>></h5>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -421,7 +428,7 @@
                                                             <i class="fa fa-minus ms-0" aria-hidden="true"></i>
                                                         </button>
                                                         <input class="form-control input-number qty-input" type="text"
-                                                            name="quantity" value="0">
+                                                            name="quantity" value="<%=item.getQuantity()%>">
                                                         <button type="button" class="btn qty-right-plus"
                                                             data-type="plus" data-field="">
                                                             <i class="fa fa-plus ms-0" aria-hidden="true"></i>
@@ -443,104 +450,7 @@
                                         </td>
                                     </tr>
 
-                                    <tr class="product-box-contain">
-                                        <td class="product-detail">
-                                            <div class="product border-0">
-                                                <a href="productdetail" class="product-image">
-                                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-                                                <div class="product-detail">
-                                                    <ul>
-                                                        <li class="name">
-                                                            <a href="productdetail">Cà phê đen</a>
-                                                        </li>
-
-                                                        <li class="text-content"><span class="text-title">
-                                                               </span>
-                                                        </li>
-
-                                                        <li class="text-content"><span
-                                                                class="text-title"></span> </li>
-
-                                                        <li>
-                                                            <h5 class="text-content d-inline-block">Giá :</h5>
-                                                            <span>20.000 VND</span>
-                                                            <span class="text-content">25.000 VND</span>
-                                                        </li>
-
-                                                        <li>
-
-                                                        </li>
-
-                                                        <li class="quantity">
-                                                            <div class="quantity-price">
-                                                                <div class="cart_qty">
-                                                                    <div class="input-group">
-                                                                        <button type="button" class="btn qty-left-minus"
-                                                                            data-type="minus" data-field="">
-                                                                            <i class="fa fa-minus ms-0"
-                                                                                aria-hidden="true"></i>
-                                                                        </button>
-                                                                        <input
-                                                                            class="form-control input-number qty-input"
-                                                                            type="text" name="quantity" value="0">
-                                                                        <button type="button" class="btn qty-right-plus"
-                                                                            data-type="plus" data-field="">
-                                                                            <i class="fa fa-plus ms-0"
-                                                                                aria-hidden="true"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <h5>Tổng: 20.000 VND</h5>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="price">
-                                            <h4 class="table-title text-content">Giá</h4>
-                                            <h5>20.000 VND <del class="text-content">25.000 VND</del></h5>
-
-                                        </td>
-
-                                        <td class="quantity">
-                                            <h4 class="table-title text-content">Số lượng</h4>
-                                            <div class="quantity-price">
-                                                <div class="cart_qty">
-                                                    <div class="input-group">
-                                                        <button type="button" class="btn qty-left-minus"
-                                                            data-type="minus" data-field="">
-                                                            <i class="fa fa-minus ms-0" aria-hidden="true"></i>
-                                                        </button>
-                                                        <input class="form-control input-number qty-input" type="text"
-                                                            name="quantity" value="0">
-                                                        <button type="button" class="btn qty-right-plus"
-                                                            data-type="plus" data-field="">
-                                                            <i class="fa fa-plus ms-0" aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="subtotal">
-                                            <h4 class="table-title text-content">Tổng</h4>
-                                            <h5>20.000 VND</h5>
-                                        </td>
-
-                                        <td class="save-remove">
-                                            <h4 class="table-title text-content">Tùy chọn</h4>
-
-                                            <a class="remove close_button" href="javascript:void(0)">Hủy</a>
-                                        </td>
-                                    </tr>
-
+                    <%}%>
                                 </tbody>
                             </table>
                         </div>

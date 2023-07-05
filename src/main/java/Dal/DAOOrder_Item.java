@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DAOOrder_Item extends DBContext{
-    public int insertOrder_Item(Order_item item, int pro_id) {
+    public int insertOrder_Item(Order_item item, int pro_id, int order_id){
         int n = 0;
         String sql = "INSERT INTO `drink_online_shop1`.`order_item`\n" +
                 "(`order_id`,\n" +
@@ -27,7 +27,7 @@ public class DAOOrder_Item extends DBContext{
 
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
-            pre.setInt(1, item.getOrder_id());
+            pre.setInt(1, order_id);
             pre.setInt(2, item.getItem_id());
             pre.setInt(3, pro_id);
             pre.setInt(4, item.getQuantity());
@@ -40,7 +40,7 @@ public class DAOOrder_Item extends DBContext{
         return n;
     }
 
-    public int insertFeedBack(Order_item item, double start, String fb, String fb_date) {
+    public int insertFeedBack(Order_item item, int order_id, double start, String fb, String fb_date) {
         int n = 0;
         String sql = "UPDATE `drink_online_shop1`.`order_item`\n" +
                 "SET\n" +
@@ -55,7 +55,7 @@ public class DAOOrder_Item extends DBContext{
             pre.setString(2, fb_date);
             pre.setDouble(3, start);
             pre.setInt(4, item.getItem_id());
-            pre.setInt(5, item.getOrder_id());
+            pre.setInt(5, order_id);
             n = pre.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
@@ -72,7 +72,6 @@ public class DAOOrder_Item extends DBContext{
         try {
             while (rs.next()) {
                 int item_id = rs.getInt("item_id");
-                int order_id  = rs.getInt("order_id");
                 Product pro = dao.getProductByID(rs.getInt("product_id"));
                 int quantity = rs.getInt("quantity");
                 double price = rs.getDouble("price");
@@ -96,7 +95,7 @@ public class DAOOrder_Item extends DBContext{
                 }else{
                      feedback_date ="";
                 }
-                Order_item item = new Order_item(item_id,order_id,pro,quantity,price,discount,feedback,feedback_date,start);
+                Order_item item = new Order_item(item_id,pro,quantity,price,discount,feedback,feedback_date,start);
                 vector.add(item);
             }
         } catch (SQLException e) {
@@ -105,7 +104,7 @@ public class DAOOrder_Item extends DBContext{
         return vector;
     }
 
-    public int deleteOrder_item(Order_item item) {
+    public int deleteOrder_item(Order_item item, int order_id) {
         int n = 0;
         String sql = "DELETE FROM `drink_online_shop1`.`order_item`\n" +
                 "WHERE item_id = ? and order_id = ?;\n";
@@ -113,7 +112,7 @@ public class DAOOrder_Item extends DBContext{
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
             pre.setInt(1, item.getItem_id());
-            pre.setInt(2, item.getOrder_id());
+            pre.setInt(2, order_id);
             n = pre.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);

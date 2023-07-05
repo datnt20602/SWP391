@@ -145,21 +145,18 @@ public class DAOProduct extends DBContext{
         } catch (SQLException ex) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return n;
     }
 
-    public static void main(String[] args) {
-        DAOOrder daoOrder = new DAOOrder();
-        DAOOrder_Item daoOrder_item = new DAOOrder_Item();
-        Order order = new Order(10,"e","s","sd",1);
-        Product pro = new Product(1,"sd", "wd",2,"ds","dfs",1);
-        Order_item order_item = new Order_item(11,3,pro,2,2,2);
-        int n = daoOrder.insertOrder(order,1);
-        int a = daoOrder_item.insertOrder_Item(order_item,1);
-        System.out.println(order_item.toString());
-        System.out.println(a);
-    }
-
-
+//    public static void main(String[] args) {
+//        DAOOrder daoOrder = new DAOOrder();
+//        DAOOrder_Item daoOrder_item = new DAOOrder_Item();
+//        Order order = new Order(11,"e","s","sd",1);
+//        Product pro = new Product(1,"sd", "wd",2,"ds","dfs",1);
+//        Order_item order_item = new Order_item(12,3,pro,2,2,2);
+//        int n = daoOrder.insertOrder(order,1);
+//        int a = daoOrder_item.insertOrder_Item(order_item,1);
+//        System.out.println(order_item.toString());
+//        System.out.println(a);
+//    }
 }
