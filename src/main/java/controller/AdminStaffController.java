@@ -1,9 +1,11 @@
 package controller;
 
+import Dal.DAOAdmin;
 import Dal.DAOCustomer;
 
 import Dal.DAOProduct;
 import Dal.DAOStaff;
+import Model.Admin;
 import Model.Customer;
 import Model.Product;
 import Model.Staff;
@@ -65,6 +67,29 @@ public class AdminStaffController extends HttpServlet {
             int id = Integer.parseInt(id_raw);
             DAOStaff.delete(id);
         }
+//        if(option.equals("updateProfile")) {
+//            DAOAdmin DAOAdmin = new DAOAdmin();
+//            String Aid_raw = request.getParameter("adminId");
+//            String AName_raw = request.getParameter("adminName");
+//            String AEmail_raw = request.getParameter("adminEmail");
+//            String APhone = request.getParameter("adminPhone");
+//            String street = request.getParameter("adminStreet");
+//            String city = request.getParameter("adminCity");
+//            String pass = request.getParameter("adminPass");
+//
+//            int aid = Integer.parseInt(Aid_raw);
+//            HttpSession session = request.getSession();
+//            Admin admin = (Admin) session.getAttribute("admin");
+//            admin.setAdmin_id(aid);
+//            admin.setName(AName_raw);
+//            admin.setEmail(AEmail_raw);
+//            admin.setPhone(APhone);
+//            admin.setStreet(street);
+//            admin.setCity(city);
+//            admin.setPass(pass);
+//            DAOAdmin.update(admin);
+//            session.setAttribute("admin", admin);
+//        }
         List<Staff> listStaff = DAOStaff.searchStaff(name, ((page - 1) * 5));
 
         int totalStaff = DAOStaff.getTotalStaff(name);

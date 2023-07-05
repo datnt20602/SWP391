@@ -54,7 +54,8 @@ public class DAOCustomer extends DBContext{
                 String name = rs.getString("name");
                 String phone = rs.getString("phone");
                 int active = rs.getInt("active");
-                Customer cus = new Customer(id,name,phone,email,pass,active);
+                String passCus = rs.getString("pass");
+                Customer cus = new Customer(id,name,phone,email,passCus,active);
                 return cus;
             }
 

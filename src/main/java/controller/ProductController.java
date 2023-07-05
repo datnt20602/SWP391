@@ -1,6 +1,8 @@
 package controller;
 
+import Dal.DAOAdmin;
 import Dal.DAOProduct;
+import Model.Admin;
 import Model.Product;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -51,6 +53,7 @@ public class ProductController extends HttpServlet {
         String category = "%";
         int page = 1;
         DAOProduct DAOProduct = new DAOProduct();
+        DAOAdmin DAOAdmin = new DAOAdmin();
         if (page_raw != null && !page_raw.equals("1")) {
             page = Integer.parseInt(page_raw);
         }
@@ -82,17 +85,42 @@ public class ProductController extends HttpServlet {
 
 
 
-        } else {
+        }
+        if(option.equals("updateProfile")) {
+            String Aid_raw = request.getParameter("adminId");
+            String AName_raw = request.getParameter("adminName");
+            String AEmail_raw = request.getParameter("adminEmail");
+            String APhone = request.getParameter("adminPhone");
+            String street = request.getParameter("adminStreet");
+            String city = request.getParameter("adminCity");
+            String pass = request.getParameter("adminPass");
+
+            int aid = Integer.parseInt(Aid_raw);
+            HttpSession session = request.getSession();
+            Admin admin = (Admin) session.getAttribute("admin");
+            admin.setAdmin_id(aid);
+            admin.setName(AName_raw);
+            admin.setEmail(AEmail_raw);
+            admin.setPhone(APhone);
+            admin.setStreet(street);
+            admin.setCity(city);
+            admin.setPass(pass);
+            DAOAdmin.update(admin);
+            session.setAttribute("admin", admin);
+        }
+        else {
             String id_raw = request.getParameter("productId");
             int id = Integer.parseInt(id_raw);
             DAOProduct.delete(id);
         }
         List<Product> listProduct = DAOProduct.searchProduct(name, category, ((page - 1) * 5));
+        List<Admin> listAdmin = DAOAdmin.searchAdmin();
         List<String> listCategory = DAOProduct.getListCategory();
         int totalProduct = DAOProduct.getTotalProduct(name, category);
         double totalPages = Math.ceil((double) totalProduct / 5);
 
         request.setAttribute("listProduct", listProduct);
+        request.setAttribute("listAdmin", listAdmin);
         request.setAttribute("listCategory", listCategory);
         request.setAttribute("pageNumber", page);
         request.setAttribute("totalPages", totalPages);

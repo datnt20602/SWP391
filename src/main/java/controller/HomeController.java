@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -23,6 +25,7 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String service = request.getParameter("service");
+        String[] categories = request.getParameterValues("category");
         DAOProduct dao = new DAOProduct();
         String sql = "select distinct category_name from product";
         ResultSet rs = dao.getData(sql);
@@ -33,6 +36,15 @@ public class HomeController extends HttpServlet {
         int page = 1;
 
         if (session.getAttribute("staff") != null) {
+            DAOCustomer DAOCustomer = new DAOCustomer();
+            DAOProduct DAOProduct = new DAOProduct();
+
+            int totalCustomer = DAOCustomer.getNumberCustomer();
+            int totalProduct = DAOProduct.getNumberProduct();
+
+            request.setAttribute("totalCustomer", totalCustomer);
+            request.setAttribute("totalProduct", totalProduct);
+
             request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
         } else if (session.getAttribute("admin") != null) {
             DAOCustomer DAOCustomer = new DAOCustomer();
@@ -46,39 +58,110 @@ public class HomeController extends HttpServlet {
             request.setAttribute("totalStaff", totalStaff);
             request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
         } else {
-            request.setAttribute("category_name", rs);
+            List<String> listCategory = new ArrayList<>();
+            while (true) {
+                try {
+                    if (!rs.next()) break;
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    listCategory.add(rs.getString("category_name"));
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            request.setAttribute("listCategory", listCategory);
             if (service == null) service = "displayAll";
 
             // Create get page and create total page
             if (page_raw != null && !page_raw.equals("1")) {
                 page = Integer.parseInt(page_raw);
             }
-            int totalProduct = dao.getTotalProduct();
+            int totalProduct = 0;
             double totalPages = Math.ceil((double) totalProduct / 12);
-            request.setAttribute("pageNumber", page);
-            request.setAttribute("totalPages", totalPages);
 
             // Use limit to limit result
             if (service.equals("displayAll")) {
-                vector = dao.getAll("SELECT * FROM product limit 12 offset " + ((page - 1) * 12));
-                request.setAttribute("data", vector);
-                dispath(request, response, "template/front-end/home.jsp");
-            }
+                String query = "";
+                if (categories == null || categories.length == 0) {
+                    query = "SELECT * FROM product ";
+                } else {
+                    query = "SELECT * FROM product where";
+                    for (int i = 0; i < categories.length; i++) {
+                        query += (" category_name = '" + categories[i] + "'");
+                        if (i < categories.length - 1) {
+                            query += " or";
+                        }
+                    }
+                    List cate = Arrays.asList(categories);
+                    request.setAttribute("categories", cate);
+                }
 
-            if (service.equals("displayAllReduce")) {
-                vector = dao.getAll("select * from product order by price DESC limit 12 offset " + ((page - 1) * 12));
+                totalProduct = dao.getAll(query).size();
+                totalPages = Math.ceil((double) totalProduct / 12);
+                query += " limit 12 offset " + ((page - 1) * 12);
+                vector = dao.getAll(query);
                 request.setAttribute("data", vector);
+                request.setAttribute("pageNumber", page);
+                request.setAttribute("totalPages", totalPages);
+
+                dispath(request, response, "template/front-end/home.jsp");
+            }else if (service.equals("displayAllReduce")) {
+                String query = "";
+                if (categories == null || categories.length == 0) {
+                    query = "SELECT * FROM product order by price DESC ";
+                } else {
+                    query = "SELECT * FROM product where";
+                    for (int i = 0; i < categories.length; i++) {
+                        query += (" category_name = '" + categories[i] + "'");
+                        if (i < categories.length - 1) {
+                            query += " or";
+                        }
+                    }
+                    query += " order by price DESC ";
+                    List cate = Arrays.asList(categories);
+                    request.setAttribute("categories", cate);
+                }
+
+                totalProduct = dao.getAll(query).size();
+                totalPages = Math.ceil((double) totalProduct / 12);
+                query += " limit 12 offset " + ((page - 1) * 12);
+                vector = dao.getAll(query);
+                request.setAttribute("data", vector);
+                request.setAttribute("pageNumber", page);
+                request.setAttribute("totalPages", totalPages);
+
                 dispath(request, response, "template/front-end/home.jsp");
             }
-            if (service.equals("displayAllUp")) {
-                vector = dao.getAll("select * from product order by price limit 12 offset " + ((page - 1) * 12));
+            else if (service.equals("displayAllUp")) {
+                String query = "";
+                if (categories == null || categories.length == 0) {
+                    query = "SELECT * FROM product order by price ";
+                } else {
+                    query = "SELECT * FROM product where";
+                    for (int i = 0; i < categories.length; i++) {
+                        query += (" category_name = '" + categories[i] + "'");
+                        if (i < categories.length - 1) {
+                            query += " or";
+                        }
+                    }
+                    query += " order by price ";
+                    List cate = Arrays.asList(categories);
+                    request.setAttribute("categories", cate);
+                }
+
+                totalProduct = dao.getAll(query).size();
+                totalPages = Math.ceil((double) totalProduct / 12);
+                query += " limit 12 offset " + ((page - 1) * 12);
+                vector = dao.getAll(query);
                 request.setAttribute("data", vector);
+                request.setAttribute("pageNumber", page);
+                request.setAttribute("totalPages", totalPages);
+
                 dispath(request, response, "template/front-end/home.jsp");
             }
         }
-
-
-
     }
 
 

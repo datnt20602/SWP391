@@ -300,14 +300,14 @@
             </li>
 
             <li>
-                <a href="wishlist.jsp" class="notifi-wishlist">
+                <a href="wishlist" class="notifi-wishlist">
                     <i class="iconly-Heart icli"></i>
                     <span>My Wish</span>
                 </a>
             </li>
 
             <li>
-                <a href="cart.jsp">
+                <a href="cart">
                     <i class="iconly-Bag-2 icli fly-cate"></i>
                     <span>Cart</span>
                 </a>

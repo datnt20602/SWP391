@@ -105,7 +105,7 @@
             user-select: none;
         }
 
-        #popup {
+        #popup, #popup1 {
             position: fixed;
             top: 30%;
             left: 50%;
@@ -121,7 +121,7 @@
             z-index: 9999;
         }
 
-        #popup.active {
+        #popup.active, #popup1.active {
             top: 50%;
             visibility: visible;
             opacity: 1;
@@ -159,6 +159,10 @@
             border: 1px solid black;
             top: 100%;
             left: 0;
+        }
+
+        .profile {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -266,17 +270,107 @@
 <%--        </div>--%>
 <%--    </form>--%>
 <%--</div>--%>
+<div id="popup1">
+    <form action="product" method="post">
+        <div class="wave-group">
+            <label class="label">
+                <span class="label-char" style="--index: 0">I</span>
+                <span class="label-char" style="--index: 1">d</span>
+            </label><br>
+            <input type="text" class="input" id="detailAdminId" name="adminId" readonly>
+            <span class="bar"></span>
+
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailAdminName" name="adminName" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">N</span>
+                <span class="label-char" style="--index: 1">a</span>
+                <span class="label-char" style="--index: 2">m</span>
+                <span class="label-char" style="--index: 3">e</span>
+            </label>
+        </div>
+        <div class="wave-group">
+            <label class="label">
+                Email
+            </label><br>
+            <input type="text" class="input" id="detailAdminEmail" name="adminEmail" readonly
+                   style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <br>
+
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailAdminPhone" name="adminPhone"
+                   style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">P</span>
+                <span class="label-char" style="--index: 1">h</span>
+                <span class="label-char" style="--index: 2">o</span>
+                <span class="label-char" style="--index: 3">n</span>
+                <span class="label-char" style="--index: 4">e</span>
+            </label>
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailAdminStreet" name="adminStreet"
+                   style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">S</span>
+                <span class="label-char" style="--index: 1">t</span>
+                <span class="label-char" style="--index: 2">r</span>
+                <span class="label-char" style="--index: 3">e</span>
+                <span class="label-char" style="--index: 4">e</span>
+                <span class="label-char" style="--index: 4">t</span>
+            </label>
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailAdminCity" name="adminCity" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">C</span>
+                <span class="label-char" style="--index: 1">i</span>
+                <span class="label-char" style="--index: 2">t</span>
+                <span class="label-char" style="--index: 3">y</span>
+
+            </label>
+        </div>
+        <div class="wave-group">
+            <input type="password" class="input" id="detailAdminPass" name="adminPass"
+                   style="margin-top: 20px;width: 80%" hidden="hidden">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">P</span>
+                <span class="label-char" style="--index: 1">a</span>
+                <span class="label-char" style="--index: 2">s</span>
+                <span class="label-char" style="--index: 3">s</span>
+            </label>
+        </div>
+        <div class="" style="margin-top: 20px;">
+
+            <button type="submit" name="option" value="updateProfile"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
+                Update
+            </button>
+            <button type="button" onclick="toggle1()"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
+            </button>
+        </div>
+    </form>
+</div>
 <div id="blur" class="container">
     <section id="sidebar" class="">
         <c:if test="${admin != null}">
             <a href="home" class="brand">
-                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"  style="width: 30%">
+                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" style="width: 30%">
                 <span class="text">Admin</span>
             </a>
         </c:if>
         <c:if test="${staff != null}">
             <a href="home" class="brand">
-                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"  style="width: 30%">
+                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" style="width: 30%">
                 <span class="text">Staff</span>
             </a>
         </c:if>
@@ -303,6 +397,12 @@
                         <span class="text">Nhân viên</span>
                     </a>
                 </li>
+                <li>
+                    <a href="addStaff">
+                        <i class='bx bxs-group'></i>
+                        <span class="text">Thêm Nhân viên</span>
+                    </a>
+                </li>
             </c:if>
 
         </ul>
@@ -322,9 +422,17 @@
                 <img src="/ODShop/template/assets/images/people/people.png">
             </div>
             <div id="options" style="display: none; border-radius: 10px">
-                <a href="#">Thông tin cá nhân</a><br>
+
+                <button type="button"
+                        onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
+
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
+                    Thông tin cá nhân
+                </button>
+                <br>
                 <a href="changepass">Đổi mật khẩu</a><br>
                 <a href="forgotpass">Quên mật khẩu</a>
+
             </div>
         </nav>
         <!-- NAVBAR -->
@@ -386,26 +494,27 @@
                         <c:forEach var="customer" items="${listCustomer}">
                             <tr>
                                 <td>
-                                   <h4>${customer.getCustomer_id()} </h4>
+                                    <h4>${customer.getCustomer_id()} </h4>
                                 </td>
                                 <td>
                                     <h4>${customer.getName()}</h4>
                                 </td>
                                 <td>
-                                    <h5 >${customer.getPhone()}</h5>
+                                    <h5>${customer.getPhone()}</h5>
                                 </td>
                                 <td>
                                     <h5>${customer.getEmail()}</h5>
                                 </td>
                                 <td>
-<%--                                    <button type="button"--%>
-<%--                                            onclick='toggle();loadData(JSON.stringify(${product.toJson()}))'--%>
-<%--                                            style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">--%>
-<%--                                        Chi tiết--%>
-<%--                                    </button>--%>
+                                        <%--                                    <button type="button"--%>
+                                        <%--                                            onclick='toggle();loadData(JSON.stringify(${product.toJson()}))'--%>
+                                        <%--                                            style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">--%>
+                                        <%--                                        Chi tiết--%>
+                                        <%--                                    </button>--%>
                                 </td>
                                 <td>
-                                    <button onclick="toggleDelete();alertDelete(${customer.getCustomer_id()})" style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
+                                    <button onclick="toggleDelete();alertDelete(${customer.getCustomer_id()})"
+                                            style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
                                         Xóa
                                     </button>
 
@@ -433,6 +542,26 @@
         document.getElementById("detailPass").value = data.pass;
         document.getElementById("detailStatus").value = data.status;
 
+    }
+
+    function loadDataAdmin(admin) {
+        var data1 = JSON.parse(admin);
+        console.log(data1);
+        document.getElementById("detailAdminId").value = data1.admin_id;
+        document.getElementById("detailAdminName").value = data1.name;
+        document.getElementById("detailAdminEmail").value = data1.email;
+        document.getElementById("detailAdminPhone").value = data1.phone;
+        // document.getElementById("detailAdminStatus").value = data1.status;
+        document.getElementById("detailAdminStreet").value = data1.street;
+        document.getElementById("detailAdminCity").value = data1.city;
+        document.getElementById("detailAdminPass").value = data1.pass;
+    }
+
+    function toggle1() {
+        var blur = document.getElementById('blur');
+        blur.classList.toggle('active');
+        var popup = document.getElementById('popup1');
+        popup.classList.toggle('active');
     }
 
     function alertDelete(id) {
