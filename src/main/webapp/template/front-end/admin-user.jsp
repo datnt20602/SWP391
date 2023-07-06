@@ -350,7 +350,7 @@
         </div>
         <div class="" style="margin-top: 20px;">
 
-            <button type="submit" name="option" value="updateProfile"
+            <button type="submit" name="option" value="updateProfileAdmin"
                     style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
                 Update
             </button>

@@ -86,7 +86,7 @@ public class ProductController extends HttpServlet {
 
 
         }
-        if(option.equals("updateProfile")) {
+        if(option.equals("updateProfileAdmin")) {
             String Aid_raw = request.getParameter("adminId");
             String AName_raw = request.getParameter("adminName");
             String AEmail_raw = request.getParameter("adminEmail");
