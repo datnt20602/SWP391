@@ -9,8 +9,7 @@ import Model.Staff;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import Model.Account;
-import Dal.AccountDBContext;
+
 import java.io.IOException;
 
 @WebServlet(name = "LoginController", value = "/login")
@@ -23,30 +22,38 @@ public class LoginController extends HttpServlet {
         String user = request.getParameter("Username");
         String pass = request.getParameter("Password");
         DAOCustomer DaoC = new DAOCustomer();
-        if(DaoC.login(user,pass) != null){
-            Customer cus = DaoC.login(user,pass);
-            session.setAttribute("customer", cus);
-            response.sendRedirect("home");
-        }else{
+        Customer customer = DaoC.login(user, pass);
+        if (customer != null) {
+            if (customer.getStatus() == 1) {
+                session.setAttribute("customer", customer);
+                response.sendRedirect("home");
+            } else {
+                session.setAttribute("customer", customer);
+                response.sendRedirect("activeAccount");
+            }
+        } else {
             DAOStaff DaoS = new DAOStaff();
-            if(DaoS.login(user, pass) != null){
+            if (DaoS.login(user, pass) != null) {
                 Staff st = DaoS.login(user, pass);
                 session.setAttribute("staff", st);
-                request.getRequestDispatcher("template/front-end/staff-home.jsp").forward(request, response);
-            }else{
+                response.sendRedirect("home");
+            } else {
                 DAOAdmin DaoA = new DAOAdmin();
-                if(DaoA.login(user, pass) != null){
+                if (DaoA.login(user, pass) != null) {
                     Admin ad = DaoA.login(user, pass);
                     session.setAttribute("admin", ad);
-                    request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
-                }else{
-                    
-                    response.sendRedirect("login");
+                    //request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
+                    response.sendRedirect("home");
+
+                } else {
+                    String mess = "Tài khoản hoặc mật khẩu không đúng !";
+                    request.setAttribute("mess", mess);
+                    request.getRequestDispatcher("template/front-end/login.jsp").forward(request, response);
                 }
             }
         }
-
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("template/front-end/login.jsp").forward(request, response);

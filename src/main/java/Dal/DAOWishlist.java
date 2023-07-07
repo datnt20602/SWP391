@@ -2,7 +2,6 @@ package Dal;
 
 import Model.Customer;
 import Model.Product;
-import Model.Staff;
 import Model.Wishlist;
 
 import java.sql.PreparedStatement;
@@ -78,10 +77,5 @@ public class DAOWishlist extends  DBContext{
         } catch (SQLException ex) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    public static void main(String[] args) {
-        DAOStaff dao = new DAOStaff();
-
-        System.out.println(dao.login("account2@gmail.com", "12345"));
     }
 }

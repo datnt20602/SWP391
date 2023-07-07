@@ -27,61 +27,50 @@
 <section id="sidebar">
 
     <c:if test="${admin != null}">
-        <a href="#" class="brand">
+        <a href="admin" class="brand">
             <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"  style="width: 30%">
             <span class="text">Admin</span>
         </a>
     </c:if>
     <c:if test="${staff != null}">
-        <a href="#" class="brand">
+        <a href="admin" class="brand">
             <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"  style="width: 30%">
             <span class="text">Staff</span>
         </a>
     </c:if>
 
     <ul class="side-menu top">
-        <li class="active">
-            <a href="#">
-                <i class='bx bxs-dashboard'></i>
-                <span class="text">Dashboard</span>
-            </a>
-        </li>
+
         <li>
             <a href="product">
                 <i class='bx bxs-shopping-bag-alt'></i>
-                <span class="text">My Store</span>
+                <span class="text">Cửa hàng</span>
             </a>
         </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-doughnut-chart'></i>
-                <span class="text">Analytics</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-message-dots'></i>
-                <span class="text">Message</span>
-            </a>
-        </li>
+
+        <c:if test="${admin != null}">
+            <li>
+        <a href="admin">
+            <i class='bx bxs-doughnut-chart'></i>
+            <span class="text">Khách hàng</span>
+        </a>
+    </li>
+
         <li>
             <a href="#">
                 <i class='bx bxs-group'></i>
-                <span class="text">Team</span>
+                <span class="text">Nhân viên</span>
             </a>
         </li>
+        </c:if>
+
     </ul>
     <ul class="side-menu">
-        <li>
-            <a href="#">
-                <i class='bx bxs-cog'></i>
-                <span class="text">Settings</span>
-            </a>
-        </li>
+
         <li>
             <a href="logout" class="logout">
                 <i class='bx bxs-log-out-circle'></i>
-                <span class="text">Logout</span>
+                <span class="text">Đăng xuất</span>
             </a>
         </li>
     </ul>
@@ -94,19 +83,10 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Categories</a>
-        <form action="#">
-            <div class="form-input">
-                <input type="search" placeholder="Search...">
-                <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-            </div>
-        </form>
-        <input type="checkbox" id="switch-mode" hidden>
-        <label for="switch-mode" class="switch-mode"></label>
-        <a href="#" class="notification">
-            <i class='bx bxs-bell'></i>
-            <span class="num">8</span>
-        </a>
+
+
+
+
         <a href="#" class="profile">
             <img src="${pageContext.request.contextPath}\template\assets\images\people\people.png">
         </a>
@@ -117,21 +97,18 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Dashboard</h1>
+                <h1>Khách hàng</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Dashboard</a>
+                        <a href="admin">Khách hàng</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Home</a>
+                        <a class="active" href="home">Trang chủ</a>
                     </li>
                 </ul>
             </div>
-            <a href="#" class="btn-download">
-                <i class='bx bxs-cloud-download'></i>
-                <span class="text">Download PDF</span>
-            </a>
+
         </div>
 
         <ul class="box-info">
