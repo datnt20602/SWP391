@@ -6,6 +6,7 @@
 <%@page import=" java.util.Vector,Model.Product" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="Model.Customer" %>
+<%@ page import="Dal.DAOProduct" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -102,17 +103,18 @@
 
                                 </button>
                             </div>
-
+                            <form action="search" method="get">
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input onchange="searchByName(this)" type="text" class="form-control"
+                                    <input name="searchname" type="text" class="form-control"
                                            placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn" type="button" id="button-addon2">
+                                    <button class="btn" type="submit" id="button-addon2">
                                         <i data-feather="search"></i>
                                     </button>
                                 </div>
                             </div>
+                            </form>
                         </div>
 
                         <div class="rightside-box">
@@ -696,6 +698,7 @@
                     </div>
                     <% } %>
                 </div>
+
                 <div id="pagination"></div>
 
             </div>
