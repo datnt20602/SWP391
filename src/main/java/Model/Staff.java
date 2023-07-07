@@ -4,19 +4,6 @@ public class Staff {
     private int staff_id;
     private String name;
     private String email;
-
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "staff_id=" + staff_id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", active=" + active +
-                ", pass='" + pass + '\'' +
-                '}';
-    }
-
     private String phone;
     private int active;
 
@@ -65,7 +52,17 @@ public class Staff {
         this.admin_id = admin_id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staff_id=" + staff_id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", active=" + active +
+                ", pass='" + pass + '\'' +
+                '}';
+    }
 
     public int getStaff_id() {
         return staff_id;
