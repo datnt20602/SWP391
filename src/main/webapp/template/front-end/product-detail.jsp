@@ -351,7 +351,7 @@
                                     <div class="product-main-2 no-arrow">
                                         <div>
                                             <div class="slider-image">
-                                                <img src="<%= product.getImage()%>" id="img-1" alt="">
+                                                <img src="<%= product.getImage()%>" id="img-1" alt="" width="520" height="600" >
                                             </div>
                                         </div>
                                     </div>
