@@ -340,13 +340,14 @@
                         <div class="table-responsive-xl">
                     <%
                         Vector<Order_item> vector = (Vector<Order_item>) request.getAttribute("data");
+                        if(vector != null){
                     %>
                             <table class="table">
                                 <tbody>
-                    <%
-                        for(Order_item item : vector){
+                        <%
+                            for(Order_item item : vector){
 
-                    %>
+                        %>
                                     <tr class="product-box-contain">
                                         <td class="product-detail">
                                             <div class="product border-0">
@@ -357,7 +358,7 @@
                                                 <div class="product-detail">
                                                     <ul>
                                                         <li class="name">
-                                                            <a href="productdetail"><%=item.getProduct().getProduct_name()%>></a>
+                                                            <a href="productdetail"><%=item.getProduct().getProduct_name()%></a>
                                                         </li>
 
                                                         <li class="text-content"></li>
@@ -402,7 +403,7 @@
 
                                         <td class="price">
                                             <h4 class="table-title text-content">Giá</h4>
-                                            <h5> 35.000 VND <del class="text-content">40.000 VND</del></h5>
+                                            <h5> <%=item.getProduct().getPrice()%> <del class="text-content"><%=item.getPrice()%></del></h5>
 
                                         </td>
 
@@ -428,19 +429,24 @@
 
                                         <td class="subtotal">
                                             <h4 class="table-title text-content">Tổng</h4>
-                                            <h5>35.000 VND</h5>
+                                            <h5><%=(item.getProduct().getPrice()* item.getQuantity())%></h5>
                                         </td>
 
                                         <td class="save-remove">
                                             <h4 class="table-title text-content">Tùy chọn</h4>
-                                            <a class="save notifi-wishlist" href="wishlist?service=addToWislist">Save for later</a>
-                                            <a class="remove close_button" href="javascript:void(0)">Hủy</a>
+                                            <a class="save notifi-wishlist" href="wishlist?service=addToWislist&pro_id=<%=item.getProduct().getProduct_id()%>">Save for later</a>
+                                            <a class="remove close_button" href="cart?service=delete&pro_id=<%=item.getProduct().getProduct_id()%>">Hủy</a>
                                         </td>
                                     </tr>
 
-                    <%}%>
+                        <%}%>
+
                                 </tbody>
                             </table>
+                    <%}else {%>
+
+                            <h3>Không có sản phẩm nào trong giỏ hàng </h3>
+                            <%}%>
                         </div>
                     </div>
                 </div>
@@ -463,7 +469,7 @@
                             <ul>
                                 <li>
                                     <h4>Số tiền cần trả</h4>
-                                    <h4 class="price">55.000 VND</h4>
+                                    <h4 class="price"> <%=session.getAttribute("totalMoney")%></h4>
                                 </li>
 
 <%--                                <li>--%>
@@ -477,15 +483,15 @@
                         <ul class="summery-total">
                             <li class="list-total border-top-0">
                                 <h4>Tổng (VND)</h4>
-                                <h4 class="price theme-color">55.000 VND</h4>
+                                <h4 class="price theme-color"><%=session.getAttribute("totalMoney")%></h4>
                             </li>
                         </ul>
 
                         <div class="button-group cart-button">
                             <ul>
                                 <li>
-                                    <button onclick="location.href = 'home';"
-                                        class="btn btn-animation proceed-btn fw-bold">Trang chủ</button>
+                                    <button onclick="location.href = 'checkoutController';"
+                                        class="btn btn-animation proceed-btn fw-bold">Mua Hàng</button>
                                 </li>
 
                                 <li>

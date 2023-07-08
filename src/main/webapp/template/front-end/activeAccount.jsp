@@ -86,11 +86,13 @@
 
                         <div class="middle-box">
                             <div class="location-box">
-                                <button class="btn location-button" data-bs-toggle=""
+                                <button class="btn location-button" data-bs-toggle="modal"
                                         data-bs-target="#locationModal">
-
-                                    <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
-
+                                        <span class="location-arrow">
+                                            <i data-feather="map-pin"></i>
+                                        </span>
+                                    <span class="locat-name">Vị trí của bạn </span>
+                                    <i class="fa-solid fa-angle-down"></i>
                                 </button>
                             </div>
 
@@ -127,7 +129,17 @@
                                         </div>
                                     </div>
                                 </li>
-
+                                <li class="right-side">
+                                    <a href="contact-us.html" class="delivery-login-box">
+                                        <div class="delivery-icon">
+                                            <i data-feather="phone-call"></i>
+                                        </div>
+                                        <div class="delivery-detail">
+                                            <h6>24/7 Delivery</h6>
+                                            <h5>+91 888 104 2340</h5>
+                                        </div>
+                                    </a>
+                                </li>
                                 <li class="right-side">
                                     <a href="wishlist" class="btn p-0 position-relative header-wishlist">
                                         <i data-feather="heart"></i>
@@ -460,8 +472,13 @@
                                 <a href="" class="text-content">Trang chủ</a>
                             </li>
 
+                            <li>
+                                <a href="about-us.html" class="text-content">Về chúng tôi</a>
+                            </li>
 
-
+                            <li>
+                                <a href="contact-us.html" class="text-content">Liên lạc</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -481,9 +498,11 @@
                             </li>
 
                             <li>
-                                <a href="wishlist" class="text-content"> Wishlist</a>
+                                <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
                             </li>
-
+                            <li>
+                                <a href="faq.html" class="text-content">FAQ</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
