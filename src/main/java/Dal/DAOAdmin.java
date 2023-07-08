@@ -1,11 +1,13 @@
 package Dal;
 
+import Model.Address;
 import Model.Admin;
 import Model.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -86,6 +88,14 @@ public class DAOAdmin extends DBContext{
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        DAOAddress daoAddress = new DAOAddress();
+        Vector<Address> vector = daoAddress.getAll(1);
+        for(Address item : vector){
+            System.out.println(item.toString());
+        }
     }
 
 }

@@ -252,7 +252,7 @@
                                             </c:if>
                                             <c:if test="${customer != null}">
                                                 <li class="product-box-contain">
-                                                    <a href="changepass">Thông tin cá nhân</a>
+                                                    <a href="customer">Thông tin cá nhân</a>
                                                 </li>
                                                 <li class="product-box-contain">
                                                     <a href="changepass">Đổi mật khẩu</a>
