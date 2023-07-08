@@ -18,8 +18,8 @@
     <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     <!-- My CSS -->
-    <link rel="stylesheet" type="text/css" href="/ODShop/template/assets/css/style-admin.css">
-    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/style-admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
 
     <title> Sản phẩm </title>
     <style>

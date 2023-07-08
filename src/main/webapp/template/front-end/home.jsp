@@ -57,7 +57,7 @@
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/template/assets/css/style.css">
-    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 </head>
