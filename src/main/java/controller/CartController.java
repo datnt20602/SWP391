@@ -28,20 +28,9 @@ public class CartController extends HttpServlet {
             if(cus == null){
                 response.sendRedirect("login");
             }else {
-                DAOOrder daoOrder = new DAOOrder();
-                DAOOrder_Item daoOrder_item = new DAOOrder_Item();
-                Vector<Order_item> vector = new Vector<Order_item>();
-                ArrayList <Integer> order_list = daoOrder.getOrder_id(cus.getCustomer_id(),1);
-                for(Integer i : order_list){
-                    String  sql = "select * from order_item where order_id = "+i+" ";
-                    Vector<Order_item> order_item_list = daoOrder_item.getAll(sql);
-                    for (Order_item order_item : order_item_list){
-                        vector.add(order_item);
-                    }
-                }
-                request.setAttribute("data", vector);
+                Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
+                request.setAttribute("data",vector);
                 request.getRequestDispatcher("template/front-end/cart.jsp").forward(request,response);
-
             }
         }
 
@@ -67,24 +56,30 @@ public class CartController extends HttpServlet {
                 int item_id = daoOrder_item.getIdOrder_item();
                 double discount  = 0;
                 Order_item order_item = new Order_item(item_id,product,1,product.getPrice(),discount);
+                double totalMoney = 0;
                 if(vector == null){
                     vector = new Vector<Order_item>();
+                    totalMoney += (order_item.getProduct().getPrice()*order_item.getQuantity());
                     vector.add(order_item);
                 }else{
+                    boolean check = true;
                     for(Order_item item : vector){
-                        System.out.println(item.getProduct().getProduct_id());
-                        if(prod_id != item.getProduct().getProduct_id()){
-                            System.out.println("xzfdstsat");
-
-                            vector.add(order_item);
-
-                        }else{
+                        totalMoney += (item.getProduct().getPrice()*item.getQuantity());
+                        if(prod_id == item.getProduct().getProduct_id()){
+                            check = false;
                             item.setQuantity(item.getQuantity()+1);
-                            break;
+                            totalMoney += item.getProduct().getPrice();
                         }
+                    }
+                    if(check){
+                        totalMoney += order_item.getProduct().getPrice();
+
+                        vector.add(order_item);
                     }
                 }
                 session.setAttribute("cart_list", vector);
+                System.out.println(totalMoney);
+                session.setAttribute("totalMoney", totalMoney);
                 request.setAttribute("data",vector);
                 request.getRequestDispatcher("template/front-end/cart.jsp").forward(request,response);
             }

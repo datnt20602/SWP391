@@ -264,12 +264,7 @@
 
                     </div>
 
-                    <div class="header-nav-right">
-                        <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
-                            <i data-feather="zap"></i>
-                            <span>Giảm giá hôm nay</span>
-                        </button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -322,15 +317,13 @@
 <%
     Product product = (Product) request.getAttribute("product");
 %>
-<section class="breadscrumb-section pt-0">
+<section class="breadscrumb-section pt-0" style="background-color:darkseagreen">
     <div class="container-fluid-lg">
         <div class="row">
             <div class="col-12">
-                <div class="breadscrumb-contain">
+                <div class="breadscrumb-contain" >
                     <h2><%=product.getProduct_name()%></h2>
-                    <nav>
 
-                    </nav>
                 </div>
             </div>
         </div>
@@ -351,7 +344,7 @@
                                     <div class="product-main-2 no-arrow">
                                         <div>
                                             <div class="slider-image">
-                                                <img src="<%= product.getImage()%>" id="img-1" alt="" width="514" height="600" >
+                                                <img src="<%= product.getImage()%>" id="img-1" alt="" width="410" height="500" >
                                             </div>
                                         </div>
                                     </div>
@@ -362,10 +355,10 @@
 
                     <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="right-box-contain">
-                            <h6 class="offer-top">30% Off</h6>
+                            <h6 class="offer-top">8% Off</h6>
                             <h2 class="name"><%= product.getProduct_name()%></h2>
                             <div class="price-rating">
-                                <h3 class="theme-color price">$49.50 <del class="text-content"><%=product.getPrice()%></del> <span
+                                <h3 class="price"><%= product.getPrice()%> <span
                                         class="offer theme-color">(8% off)</span></h3>
                                 <div class="product-rating custom-rate">
                                     <ul class="rating">
@@ -389,9 +382,9 @@
                                 </div>
                             </div>
 
-                            <div class="procuct-contain">
+                            <div class="product-contain">
                                 <p>
-                                    <%=product.getDescribe()%>>
+                                <h4  class="desription"><%=product.getDescribe()%> </h4>
                                 </p>
                             </div>
                             <div class="time deal-timer product-deal-timer mx-md-0 mx-auto" id="clockdiv-1"
@@ -469,8 +462,12 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
                                             data-bs-target="#description" type="button" role="tab"
-                                            aria-controls="description" aria-selected="true">Mô tả</button>
+                                            aria-controls="description" aria-selected="true">Mô tả
+
+                                    </button>
+
                                 </li>
+
 
 
                                 <li class="nav-item" role="presentation">
@@ -478,6 +475,7 @@
                                             data-bs-target="#review" type="button" role="tab" aria-controls="review"
                                             aria-selected="false">Feedback của khách hàng</button>
                                 </li>
+
                             </ul>
 
                             <div class="tab-content custom-tab" id="myTabContent">
@@ -486,7 +484,9 @@
                                     <div class="product-description">
                                         <div class="nav-desh">
                                             <p>
-                                                Phần này sẽ được thêm vào sau
+                                            <div class ="right-box-contain">
+                                            <h4 class ="offer-top" > <%=product.getDescribe()%> </h4>
+                                        </div>
                                             </p>
                                         </div>
 
