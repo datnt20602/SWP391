@@ -3,7 +3,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
-
+<style>
+    .error-message {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        color: red;
+        background-color: white;
+        padding: 10px;
+        border: 1px solid white;
+        border-radius: 4px;
+    }
+</style>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -290,14 +300,14 @@
             </li>
 
             <li>
-                <a href="wishlist.jsp" class="notifi-wishlist">
+                <a href="wishlist" class="notifi-wishlist">
                     <i class="iconly-Heart icli"></i>
                     <span>My Wish</span>
                 </a>
             </li>
 
             <li>
-                <a href="cart.jsp">
+                <a href="cart">
                     <i class="iconly-Bag-2 icli fly-cate"></i>
                     <span>Cart</span>
                 </a>
@@ -357,6 +367,12 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone" name = "phone">
+                                        <label for="phone">Phone</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating">
                                         <input type="email" class="form-control" id="email" placeholder="Email Address" name = "email">
                                         <label for="email">Địa chỉ email</label>
                                     </div>
@@ -375,18 +391,22 @@
                                                placeholder="Re-Password" name = "repass" required>
                                         <label for="password">Nhập lại mật khẩu</label>
                                     </div>
-                                    <h4>${mess}</h4>
+
                                 </div>
 
                                 <div class="col-12">
                                     <div class="forgot-box">
                                         <div class="form-check ps-0 m-0 remember-box">
-                                            <input class="checkbox_animated check-box" type="checkbox"
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">Tôi đồng ý với
-                                                <span>Điều khoản</span> và <span>Bảo mật</span></label>
+
+                                            <label>
+                                                <input type="checkbox" id="agree" name="agree" required>
+                                                Tôi đã đọc và chấp nhận các điều khoản và điều kiện.
+                                            </label>
                                         </div>
+
                                     </div>
+                                    <h2 style="background-color:#f8f9fa" class="error-message">${mess}</h2>
+
                                 </div>
 
                                 <div class="col-12">
@@ -620,6 +640,23 @@
 
     <!-- script js -->
     <script src="${pageContext.request.contextPath}/template/assets/js/script.js"></script>
+
+   <!-- script dong y dieu khoan dieu kien -->
+    <script>
+        const agreeCheckbox = document.getElementById('agree');
+        const registerBtn = document.getElementById('register-btn');
+
+        agreeCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                registerBtn.removeAttribute('disabled');
+            } else {
+                registerBtn.setAttribute('disabled', true);
+            }
+        });
+    </script>
+
+
 </body>
+
 
 </html>

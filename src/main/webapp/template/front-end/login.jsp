@@ -74,13 +74,11 @@
 
                             <div class="middle-box">
                                 <div class="location-box">
-                                    <button class="btn location-button" data-bs-toggle="modal"
-                                        data-bs-target="#locationModal">
-                                        <span class="location-arrow">
-                                            <i data-feather="map-pin"></i>
-                                        </span>
-                                        <span class="locat-name">Vị trí của bạn </span>
-                                        <i class="fa-solid fa-angle-down"></i>
+                                    <button class="btn location-button" data-bs-toggle=""
+                                            data-bs-target="#locationModal">
+
+                                        <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
+
                                     </button>
                                 </div>
 

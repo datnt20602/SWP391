@@ -1,5 +1,7 @@
 package Model;
 
+import com.google.gson.Gson;
+
 public class Product {
     private int product_id;
     private String product_name;
@@ -91,5 +93,9 @@ public class Product {
 
     public void setDescribe(String describe) {
         this.describe = describe;
+    }
+
+    public String toJson() {
+        return new Gson().toJson(this);
     }
 }

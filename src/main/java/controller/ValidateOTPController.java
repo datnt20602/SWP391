@@ -1,6 +1,9 @@
 package controller;
 
-import Model.Account;
+
+import Model.Admin;
+import Model.Customer;
+import Model.Staff;
 import OTPFunction.MailSending;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -16,16 +19,43 @@ public class ValidateOTPController extends HttpServlet {
         MailSending mail = new MailSending();
         String opt = mail.generateOtp();
         session.setAttribute("optValue", opt);
-        Account a = (Account) session.getAttribute("a");
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", a.getUsername(), opt);
-            }
-        };
-        thread.start();
-        request.setAttribute("email" , a.getUsername());
-        request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
+        Customer c = (Customer) session.getAttribute("customer");
+        Admin a = (Admin) session.getAttribute("admin");
+        Staff s = (Staff) session.getAttribute("staff");
+        if(c != null){
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", c.getEmail(), opt);
+                }
+            };
+            thread.start();
+            request.setAttribute("email" , c.getEmail());
+            request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
+        }
+        if(a != null){
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", a.getEmail(), opt);
+                }
+            };
+            thread.start();
+            request.setAttribute("email" , a.getEmail());
+            request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
+        }
+        if(s != null){
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", s.getEmail(), opt);
+                }
+            };
+            thread.start();
+            request.setAttribute("email" , s.getEmail());
+            request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
+        }
+
     }
 
     @Override

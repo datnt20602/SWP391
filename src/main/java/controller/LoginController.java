@@ -32,16 +32,15 @@ public class LoginController extends HttpServlet {
             if(DaoS.login(user, pass) != null){
                 Staff st = DaoS.login(user, pass);
                 session.setAttribute("staff", st);
-                request.getRequestDispatcher("template/front-end/staff-home.jsp").forward(request, response);
+
             }else{
                 DAOAdmin DaoA = new DAOAdmin();
                 if(DaoA.login(user, pass) != null){
                     Admin ad = DaoA.login(user, pass);
                     session.setAttribute("admin", ad);
-                    request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
-                }else{
 
-                    response.sendRedirect("login");
+                }else{
+                    response.sendRedirect("home");
                 }
             }
         }

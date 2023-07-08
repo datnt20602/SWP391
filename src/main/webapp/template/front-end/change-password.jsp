@@ -74,13 +74,11 @@
 
                         <div class="middle-box">
                             <div class="location-box">
-                                <button class="btn location-button" data-bs-toggle="modal"
+                                <button class="btn location-button" data-bs-toggle=""
                                         data-bs-target="#locationModal">
-                                        <span class="location-arrow">
-                                            <i data-feather="map-pin"></i>
-                                        </span>
-                                    <span class="locat-name">Vị trí</span>
-                                    <i class="fa-solid fa-angle-down"></i>
+
+                                    <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
+
                                 </button>
                             </div>
 
@@ -212,15 +210,15 @@
                                         <ul class="user-box-name">
                                             <li class="product-box-contain">
                                                 <i></i>
-                                                <a href="home">Back to Home</a>
+                                                <a href="home">Về trang chủ</a>
                                             </li>
 
                                             <li class="product-box-contain">
-                                                <a href="logout">Log out</a>
+                                                <a href="logout">Đăng xuất</a>
                                             </li>
 
                                             <li class="product-box-contain">
-                                                <a href="forgot.jsp">Forgot Password</a>
+                                                <a href="forgotpass">Quên mật khẩu</a>
                                             </li>
                                         </ul>
                                     </div>
