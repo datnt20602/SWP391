@@ -140,8 +140,8 @@
                                             <i data-feather="phone-call"></i>
                                         </div>
                                         <div class="delivery-detail">
-                                            <h6>24/7 Delivery</h6>
-                                            <h5>+91 888 104 2340</h5>
+                                            <h6>Giao hàng 24/7</h6>
+                                            <h5>+84 373801816</h5>
                                         </div>
                                     </a>
                                 </li>

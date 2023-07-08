@@ -1,12 +1,7 @@
 package controller;
 
-import Dal.DAOAddress;
-import Dal.DAOProduct;
-import Dal.DAOWishlist;
-import Model.Address;
-import Model.Customer;
-import Model.Product;
-import Model.Wishlist;
+import Dal.*;
+import Model.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -36,7 +31,20 @@ public class CustomerController extends HttpServlet {
         DAOAddress daoAddress = new DAOAddress();
         Vector<Address> addressVector = daoAddress.getAll(cus.getCustomer_id());
 
+        //datatotal Order
+        DAOOrder daoOrder = new DAOOrder();
+        int totalOrder = daoOrder.getQuantityOrder(cus.getCustomer_id(),1);
+        //data total wishlist
+        int totalWishList = daoWishlist.totalWishList(cus.getCustomer_id());
 
+        //data ordere detail
+        DAOOrder_Item daoOrder_item = new DAOOrder_Item();
+        Vector<Order_item> order_itemVector = daoOrder_item.getAll(cus.getCustomer_id());
+
+
+        request.setAttribute("order_itemVector", order_itemVector);
+        request.setAttribute("totalOrder",totalOrder);
+        request.setAttribute("totalWishList", totalWishList);
         request.setAttribute("address", addressVector);
         request.setAttribute("wishlist", vector);
         request.getRequestDispatcher("template/front-end/user-dashboard.jsp").forward(request,response);

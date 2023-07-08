@@ -79,6 +79,26 @@ public class DAOWishlist extends  DBContext{
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public int totalWishList (int cus_id){
+        int n = 0;
+        String sql = "SELECT count(product_id) as quantity FROM drink_online_shop1.wishlist where customer_id = ?;";
+        try{
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setInt(1,cus_id);
+            ResultSet rs = pre.executeQuery();
+            try {
+                while (rs.next()) {
+                    n = rs.getInt("quantity");
+                }
+            } catch (SQLException e) {
+                Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return n;
+    }
+
     public static void main(String[] args) {
         DAOStaff dao = new DAOStaff();
 

@@ -11,6 +11,8 @@ public class Order_item {
     private String feedback_date = null;
     private double start_rating = 0;
 
+    private String order_status  = null;
+
 
     public Order_item() {
     }
@@ -24,7 +26,7 @@ public class Order_item {
         this.discount = discount;
     }
 
-    public Order_item(int item_id, Product product, int quantity, double price, double discount, String feedback, String feedback_date, double start_rating) {
+    public Order_item(int item_id, Product product, int quantity, double price, double discount, String feedback, String feedback_date, double start_rating, String order_status) {
         this.item_id = item_id;
         this.product = product;
         this.quantity = quantity;
@@ -33,9 +35,16 @@ public class Order_item {
         this.feedback = feedback;
         this.feedback_date = feedback_date;
         this.start_rating = start_rating;
+        this.order_status = order_status;
     }
 
+    public String getOrder_status() {
+        return order_status;
+    }
 
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
+    }
 
     public Product getProduct() {
         return product;

@@ -1,6 +1,7 @@
 <%@ page import="java.util.Vector" %>
 <%@ page import="Model.Address" %>
 <%@ page import="Model.Order_item" %>
+<%@ page import="Model.Customer" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -82,19 +83,17 @@
 
                         <div class="middle-box">
                             <div class="location-box">
-                                <button class="btn location-button" data-bs-toggle="modal"
+                                <button class="btn location-button" data-bs-toggle=""
                                         data-bs-target="#locationModal">
-                                        <span class="location-arrow">
-                                            <i data-feather="map-pin"></i>
-                                        </span>
-                                    <span class="locat-name">Vị trí của bạn</span>
-                                    <i class="fa-solid fa-angle-down"></i>
+
+                                    <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
+
                                 </button>
                             </div>
 
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Tìm kiếm..."
+                                    <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
@@ -131,8 +130,8 @@
                                             <i data-feather="phone-call"></i>
                                         </div>
                                         <div class="delivery-detail">
-                                            <h6>24/7 Delivery</h6>
-                                            <h5>+91 888 104 2340</h5>
+                                            <h6>Giao hàng 24/7</h6>
+                                            <h5>+84 373801816</h5>
                                         </div>
                                     </a>
                                 </li>
@@ -193,14 +192,12 @@
                                             </ul>
 
                                             <div class="price-box">
-                                                <h5>Total :</h5>
-                                                <h4 class="theme-color fw-bold">$106.58</h4>
+                                                <h5>Tổng :</h5>
+                                                <h4 class="theme-color fw-bold">50.000 VND</h4>
                                             </div>
 
                                             <div class="button-group">
                                                 <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
-                                                <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Thanh toán</a>
                                             </div>
                                         </div>
                                     </div>
@@ -210,15 +207,24 @@
                                         <div class="delivery-icon">
                                             <i data-feather="user"></i>
                                         </div>
+
                                         <div class="delivery-detail">
-                                            <h6>Hello,</h6>
-                                            <h5>My Account</h5>
+                                            <%
+                                                Customer cus = (Customer) session.getAttribute("customer");
+                                                if(cus != null)
+                                                {
+                                            %>
+                                            <h5><%=cus.getName()%></h5>
+                                            <%
+                                                }
+                                            %>
                                         </div>
+
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
-                                            <c:if test="${acc == null}">
+                                            <c:if test="${customer == null}">
                                                 <li class="product-box-contain">
                                                     <i></i>
                                                     <a href="login">Đăng nhập</a>
@@ -234,11 +240,13 @@
                                                     <a href="forgotpass">Quên mật khẩu</a>
                                                 </li>
                                             </c:if>
-                                            <c:if test="${acc != null}">
+                                            <c:if test="${customer != null}">
+                                                <li class="product-box-contain">
+                                                    <a href="customer">Thông tin cá nhân</a>
+                                                </li>
                                                 <li class="product-box-contain">
                                                     <a href="changepass">Đổi mật khẩu</a>
                                                 </li>
-
                                                 <li class="product-box-contain">
                                                     <a href="logout">Đăng xuất</a>
                                                 </li>
@@ -349,6 +357,7 @@
 
 <!-- Checkout section Start -->
 <section class="checkout-section-2 section-b-space">
+    <form action="ordersuccess" method="post">
     <div class="container-fluid-lg">
         <div class="row g-sm-4 g-3">
             <div class="col-lg-8">
@@ -380,8 +389,8 @@
                                                 <div class="delivery-address-box">
                                                     <div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="jack"
-                                                                   id="flexRadioDefault2" checked="checked">
+                                                            <input class="form-check-input" type="radio" name="addressID"
+                                                                   id="flexRadioDefault2" checked="checked" value="<%=item.getAddress_id()%>">
                                                         </div>
 
                                                         <div class="label">
@@ -448,8 +457,7 @@
                                                         <div class="custom-form-check form-check mb-0">
                                                             <label class="form-check-label" for="cash"><input
                                                                     class="form-check-input mt-0" type="radio"
-                                                                    name="flexRadioDefault" id="cash" checked> Cash
-                                                                On Delivery</label>
+                                                                    name="flexRadioDefault" value="1" id="cash" checked> Thanh toán khi nhận hàng </label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,14 +465,12 @@
                                                      class="accordion-collapse collapse show"
                                                      data-bs-parent="#accordionFlushExample">
                                                     <div class="accordion-body">
-                                                        <p class="cod-review">Pay digitally with SMS Pay
-                                                            Link. Cash may not be accepted in COVID restricted
-                                                            areas. <a href="javascript:void(0)">Know more.</a>
+                                                        <p class="cod-review">Khi nhận hàng bạn được kiểm tra rồi thanh toán !
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
 
                                             <div class="accordion-item">
                                                 <div class="accordion-header" id="flush-headingTwo">
@@ -474,183 +480,17 @@
                                                         <div class="custom-form-check form-check mb-0">
                                                             <label class="form-check-label" for="banking"><input
                                                                     class="form-check-input mt-0" type="radio"
-                                                                    name="flexRadioDefault" id="banking">Net
-                                                                Banking</label>
+                                                                    name="flexRadioDefault" value="2" id="banking" >Chuyển khoản ngân hàng</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                                      data-bs-parent="#accordionFlushExample">
                                                     <div class="accordion-body">
-                                                        <h5 class="text-uppercase mb-4">Select Your Bank
-                                                        </h5>
-                                                        <div class="row g-2">
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="bank1">
-                                                                    <label class="form-check-label"
-                                                                           for="bank1">Industrial & Commercial
-                                                                        Bank</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="bank2">
-                                                                    <label class="form-check-label"
-                                                                           for="bank2">Agricultural Bank</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="bank3">
-                                                                    <label class="form-check-label" for="bank3">Bank
-                                                                        of America</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="bank4">
-                                                                    <label class="form-check-label"
-                                                                           for="bank4">Construction Bank Corp.</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="bank5">
-                                                                    <label class="form-check-label" for="bank5">HSBC
-                                                                        Holdings</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="bank6">
-                                                                    <label class="form-check-label"
-                                                                           for="bank6">JPMorgan Chase & Co.</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-12">
-                                                                <div class="select-option">
-                                                                    <div class="form-floating theme-form-floating">
-                                                                        <select
-                                                                                class="form-select theme-form-select"
-                                                                                aria-label="Default select example">
-                                                                            <option value="hsbc">HSBC Holdings
-                                                                            </option>
-                                                                            <option value="loyds">Lloyds Banking
-                                                                                Group</option>
-                                                                            <option value="natwest">Nat West Group
-                                                                            </option>
-                                                                            <option value="Barclays">Barclays
-                                                                            </option>
-                                                                            <option value="other">Others Bank
-                                                                            </option>
-                                                                        </select>
-                                                                        <label>Select Other Bank</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="accordion-item">
-                                                <div class="accordion-header" id="flush-headingThree">
-                                                    <div class="accordion-button collapsed"
-                                                         data-bs-toggle="collapse"
-                                                         data-bs-target="#flush-collapseThree">
-                                                        <div class="custom-form-check form-check mb-0">
-                                                            <label class="form-check-label" for="wallet"><input
-                                                                    class="form-check-input mt-0" type="radio"
-                                                                    name="flexRadioDefault" id="wallet">My
-                                                                Wallet</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                                     data-bs-parent="#accordionFlushExample">
-                                                    <div class="accordion-body">
-                                                        <h5 class="text-uppercase mb-4">Select Your Wallet
-                                                        </h5>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <label class="form-check-label"
-                                                                           for="amazon"><input
-                                                                            class="form-check-input mt-0"
-                                                                            type="radio" name="flexRadioDefault"
-                                                                            id="amazon">Amazon Pay</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="gpay">
-                                                                    <label class="form-check-label"
-                                                                           for="gpay">Google Pay</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="airtel">
-                                                                    <label class="form-check-label"
-                                                                           for="airtel">Airtel Money</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="paytm">
-                                                                    <label class="form-check-label"
-                                                                           for="paytm">Paytm Pay</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="jio">
-                                                                    <label class="form-check-label" for="jio">JIO
-                                                                        Money</label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="custom-form-check form-check">
-                                                                    <input class="form-check-input mt-0"
-                                                                           type="radio" name="flexRadioDefault"
-                                                                           id="free">
-                                                                    <label class="form-check-label"
-                                                                           for="free">Freecharge</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <h5 class="text-uppercase mb-4">Chuyển khoản vào ngân hàng của chúng tôi</h5>
+                                                        <img style="width: 300px;height: 400px;"
+                                                                src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-6/358085863_1975151149526710_4494173388623438017_n.jpg?stp=cp6_dst-jpg&_nc_cat=105&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=OZhlEx6fiqsAX8ZF-zR&_nc_ht=scontent.fhan5-2.fna&oh=00_AfArnc5fGFNOOlcTl0Gz4f5wVD92l9O0Y-btaSt8a5SPHQ&oe=64ADB96D">
+                                                        <h5 class="text-uppercase mb-4">Khi chùng tôi nhận được tiền bạn đơn hàng của bạn sẽ được ship ngay</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -701,11 +541,12 @@
                             </li>
                         </ul>
                     </div>
-                    <button class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Place Order</button>
+                    <button type="submit" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Place Order</button>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 </section>
 <!-- Checkout section End -->
 

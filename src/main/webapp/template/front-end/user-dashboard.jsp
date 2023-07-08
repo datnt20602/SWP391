@@ -69,236 +69,243 @@
   </div>
   <!-- Loader End -->
 
-  <!-- Header Start -->
-  <header class="pb-md-4 pb-0">
+<!-- Header Start -->
+<header class="pb-md-4 pb-0">
 
 
-    <div class="top-nav top-header sticky-header">
-      <div class="container-fluid-lg">
-        <div class="row">
-          <div class="col-12">
-            <div class="navbar-top">
-              <button class="navbar-toggler d-xl-none d-inline navbar-menu-button" type="button"
-                      data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
-                                  <span class="navbar-toggler-icon">
-                                      <i class="fa-solid fa-bars"></i>
-                                  </span>
-              </button>
-              <a href="home" class="web-logo nav-logo">
-                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
-                     class="img-fluid blur-up lazyload" alt="">
-              </a>
-
-              <div class="middle-box">
-                <div class="location-box">
-                  <button class="btn location-button" data-bs-toggle="modal"
-                          data-bs-target="#locationModal">
-                                          <span class="location-arrow">
-                                              <i data-feather="map-pin"></i>
-                                          </span>
-                    <span class="locat-name">Vị trí của bạn</span>
-                    <i class="fa-solid fa-angle-down"></i>
-                  </button>
-                </div>
-
-                <div class="search-box">
-                  <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Tìm kiếm..."
-                           aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn" type="button" id="button-addon2">
-                      <i data-feather="search"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="rightside-box">
-                <div class="search-full">
-                  <div class="input-group">
-                                          <span class="input-group-text">
-                                              <i data-feather="search" class="font-light"></i>
-                                          </span>
-                    <input type="text" class="form-control search-type" placeholder="Search here..">
-                    <span class="input-group-text close-search">
-                                              <i data-feather="x" class="font-light"></i>
-                                          </span>
-                  </div>
-                </div>
-                <ul class="right-side-menu">
-                  <li class="right-side">
-                    <div class="delivery-login-box">
-                      <div class="delivery-icon">
-                        <div class="search-box">
-                          <i data-feather="search"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="right-side">
-                    <a href="contact-us.html" class="delivery-login-box">
-                      <div class="delivery-icon">
-                        <i data-feather="phone-call"></i>
-                      </div>
-                      <div class="delivery-detail">
-                        <h6>24/7 Delivery</h6>
-                        <h5>+91 888 104 2340</h5>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="right-side">
-                    <a href="wishlist" class="btn p-0 position-relative header-wishlist">
-                      <i data-feather="heart"></i>
-                    </a>
-                  </li>
-                  <li class="right-side">
-                    <div class="onhover-dropdown header-badge">
-                      <button type="button" class="btn p-0 position-relative header-wishlist">
-                        <i data-feather="shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge">2
-                                                      <span class="visually-hidden">unread messages</span>
-                                                  </span>
-                      </button>
-
-                      <div class="onhover-div">
-                        <ul class="cart-list">
-                          <li class="product-box-contain">
-                            <div class="drop-cart">
-                              <a href="productdetail" class="drop-image">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
-                                     class="blur-up lazyload" alt="">
-                              </a>
-
-                              <div class="drop-contain">
-                                <a href="productdetail">
-                                  <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                </a>
-                                <h6><span>1 x</span> $80.58</h6>
-                                <button class="close-button close_button">
-                                  <i class="fa-solid fa-xmark"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </li>
-
-                          <li class="product-box-contain">
-                            <div class="drop-cart">
-                              <a href="productdetail" class="drop-image">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                     class="blur-up lazyload" alt="">
-                              </a>
-
-                              <div class="drop-contain">
-                                <a href="productdetail">
-                                  <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                  </h5>
-                                </a>
-                                <h6><span>1 x</span> $25.68</h6>
-                                <button class="close-button close_button">
-                                  <i class="fa-solid fa-xmark"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-
-                        <div class="price-box">
-                          <h5>Total :</h5>
-                          <h4 class="theme-color fw-bold">$106.58</h4>
-                        </div>
-
-                        <div class="button-group">
-                          <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
-                          <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                      text-white">Thanh toán</a>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="right-side onhover-dropdown">
-                    <div class="delivery-login-box">
-                      <div class="delivery-icon">
-                        <i data-feather="user"></i>
-                      </div>
-                      <div class="delivery-detail">
-                        <h6>Hello,</h6>
-                        <h5>My Account</h5>
-                      </div>
-                    </div>
-
-                    <div class="onhover-div onhover-div-login">
-                      <ul class="user-box-name">
-                        <c:if test="${acc == null}">
-                          <li class="product-box-contain">
-                            <i></i>
-                            <a href="login">Đăng nhập</a>
-                          </li>
-
-                          <li class="product-box-contain">
-                            <a href="signup">Đăng kí</a>
-                          </li>
-
-
-
-                          <li class="product-box-contain">
-                            <a href="forgotpass">Quên mật khẩu</a>
-                          </li>
-                        </c:if>
-                        <c:if test="${acc != null}">
-                          <li class="product-box-contain">
-                            <a href="changepass">Đổi mật khẩu</a>
-                          </li>
-
-                          <li class="product-box-contain">
-                            <a href="logout">Đăng xuất</a>
-                          </li>
-                        </c:if>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="top-nav top-header sticky-header">
     <div class="container-fluid-lg">
       <div class="row">
         <div class="col-12">
-          <div class="header-nav">
+          <div class="navbar-top">
+            <button class="navbar-toggler d-xl-none d-inline navbar-menu-button" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
+                                <span class="navbar-toggler-icon">
+                                    <i class="fa-solid fa-bars"></i>
+                                </span>
+            </button>
+            <a href="home" class="web-logo nav-logo">
+              <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
+                   class="img-fluid blur-up lazyload" alt="">
+            </a>
 
+            <div class="middle-box">
+              <div class="location-box">
+                <button class="btn location-button" data-bs-toggle=""
+                        data-bs-target="#locationModal">
 
-            <div class="header-nav-middle">
-              <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
-                <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
-                  <div class="offcanvas-header navbar-shadow">
-                    <h5>Menu</h5>
-                    <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
-                  </div>
-                  <div class="offcanvas-body">
-                    <ul class="navbar-nav">
+                  <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
 
+                </button>
+              </div>
 
-                    </ul>
-                  </div>
+              <div class="search-box">
+                <div class="input-group">
+                  <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
+                         aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <button class="btn" type="button" id="button-addon2">
+                    <i data-feather="search"></i>
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div class="header-nav-right">
-              <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
-                <i data-feather="zap"></i>
-                <span>Giảm giá hôm nay</span>
-              </button>
+            <div class="rightside-box">
+              <div class="search-full">
+                <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="search" class="font-light"></i>
+                                        </span>
+                  <input type="text" class="form-control search-type" placeholder="Search here..">
+                  <span class="input-group-text close-search">
+                                            <i data-feather="x" class="font-light"></i>
+                                        </span>
+                </div>
+              </div>
+              <ul class="right-side-menu">
+                <li class="right-side">
+                  <div class="delivery-login-box">
+                    <div class="delivery-icon">
+                      <div class="search-box">
+                        <i data-feather="search"></i>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="right-side">
+                  <a href="contact-us.html" class="delivery-login-box">
+                    <div class="delivery-icon">
+                      <i data-feather="phone-call"></i>
+                    </div>
+                    <div class="delivery-detail">
+                      <h6>Giao hàng 24/7</h6>
+                      <h5>+84 373801816</h5>
+                    </div>
+                  </a>
+                </li>
+                <li class="right-side">
+                  <a href="wishlist" class="btn p-0 position-relative header-wishlist">
+                    <i data-feather="heart"></i>
+                  </a>
+                </li>
+                <li class="right-side">
+                  <div class="onhover-dropdown header-badge">
+                    <button type="button" class="btn p-0 position-relative header-wishlist">
+                      <i data-feather="shopping-cart"></i>
+                      <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                                    <span class="visually-hidden">unread messages</span>
+                                                </span>
+                    </button>
+
+                    <div class="onhover-div">
+                      <ul class="cart-list">
+                        <li class="product-box-contain">
+                          <div class="drop-cart">
+                            <a href="productdetail" class="drop-image">
+                              <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
+                                   class="blur-up lazyload" alt="">
+                            </a>
+
+                            <div class="drop-contain">
+                              <a href="productdetail">
+                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
+                              </a>
+                              <h6><span>1 x</span> $80.58</h6>
+                              <button class="close-button close_button">
+                                <i class="fa-solid fa-xmark"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="product-box-contain">
+                          <div class="drop-cart">
+                            <a href="productdetail" class="drop-image">
+                              <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
+                                   class="blur-up lazyload" alt="">
+                            </a>
+
+                            <div class="drop-contain">
+                              <a href="productdetail">
+                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
+                                </h5>
+                              </a>
+                              <h6><span>1 x</span> $25.68</h6>
+                              <button class="close-button close_button">
+                                <i class="fa-solid fa-xmark"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+
+                      <div class="price-box">
+                        <h5>Tổng :</h5>
+                        <h4 class="theme-color fw-bold">50.000 VND</h4>
+                      </div>
+
+                      <div class="button-group">
+                        <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="right-side onhover-dropdown">
+                  <div class="delivery-login-box">
+                    <div class="delivery-icon">
+                      <i data-feather="user"></i>
+                    </div>
+
+                    <div class="delivery-detail">
+                      <%
+                        Customer cus = (Customer) session.getAttribute("customer");
+                        if(cus != null)
+                        {
+                      %>
+                      <h5><%=cus.getName()%></h5>
+                      <%
+                        }
+                      %>
+                    </div>
+
+                  </div>
+
+                  <div class="onhover-div onhover-div-login">
+                    <ul class="user-box-name">
+                      <c:if test="${customer == null}">
+                        <li class="product-box-contain">
+                          <i></i>
+                          <a href="login">Đăng nhập</a>
+                        </li>
+
+                        <li class="product-box-contain">
+                          <a href="signup">Đăng kí</a>
+                        </li>
+
+
+
+                        <li class="product-box-contain">
+                          <a href="forgotpass">Quên mật khẩu</a>
+                        </li>
+                      </c:if>
+                      <c:if test="${customer != null}">
+                        <li class="product-box-contain">
+                          <a href="customer">Thông tin cá nhân</a>
+                        </li>
+                        <li class="product-box-contain">
+                          <a href="changepass">Đổi mật khẩu</a>
+                        </li>
+                        <li class="product-box-contain">
+                          <a href="logout">Đăng xuất</a>
+                        </li>
+                      </c:if>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </header>
-  <!-- Header End -->
+  </div>
+
+  <div class="container-fluid-lg">
+    <div class="row">
+      <div class="col-12">
+        <div class="header-nav">
+
+
+          <div class="header-nav-middle">
+            <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+              <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
+                <div class="offcanvas-header navbar-shadow">
+                  <h5>Menu</h5>
+                  <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
+                          aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav">
+
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="header-nav-right">
+            <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
+              <i data-feather="zap"></i>
+              <span>Giảm giá hôm nay</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Header End -->
 
   <!-- mobile fix menu start -->
   <div class="mobile-menu d-md-none d-block mobile-cart">
@@ -452,10 +459,10 @@
                   <div class="title">
                     <h2>My Dashboard</h2>
                     <span class="title-leaf">
-                                              <svg class="icon-width bg-gray">
-                                                  <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
-                                              </svg>
-                                          </span>
+                        <svg class="icon-width bg-gray">
+                            <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
+                        </svg>
+                    </span>
                   </div>
 
                   <div class="dashboard-user-name">
@@ -466,25 +473,17 @@
                     <div class="row g-sm-4 g-3">
                       <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                         <div class="totle-contain">
-                          <img src="../assets/images/svg/order.svg"
-                               class="img-1 blur-up lazyload" alt="">
-                          <img src="../assets/images/svg/order.svg" class="blur-up lazyload"
-                               alt="">
                           <div class="totle-detail">
-                            <h5>Total Order</h5>
-                            <h3>3658</h3>
+                            <h5>Tổng ca sản phẩm đã đặt</h5>
+                            <h3><%= request.getAttribute("totalOrder")%></h3>
                           </div>
                         </div>
                       </div>
 
                       <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                         <div class="totle-contain">
-                          <img src="../assets/images/svg/pending.svg"
-                               class="img-1 blur-up lazyload" alt="">
-                          <img src="../assets/images/svg/pending.svg" class="blur-up lazyload"
-                               alt="">
                           <div class="totle-detail">
-                            <h5>Total Pending Order</h5>
+                            <h5>Số sản phẩm đã nhận được</h5>
                             <h3>254</h3>
                           </div>
                         </div>
@@ -492,13 +491,9 @@
 
                       <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                         <div class="totle-contain">
-                          <img src="../assets/images/svg/wishlist.svg"
-                               class="img-1 blur-up lazyload" alt="">
-                          <img src="../assets/images/svg/wishlist.svg"
-                               class="blur-up lazyload" alt="">
                           <div class="totle-detail">
-                            <h5>Total Wishlist</h5>
-                            <h3></h3>
+                            <h5>Số sản phẩm ưa thích</h5>
+                            <h3><%=request.getAttribute("totalWishList")%></h3>
                           </div>
                         </div>
                       </div>
@@ -506,18 +501,18 @@
                   </div>
 
                   <div class="dashboard-title">
-                    <h3>Account Information</h3>
+                    <h3>Thông tin tài khoản </h3>
                   </div>
 
                   <div class="row g-4">
                     <div class="col-xxl-6">
                       <div class="dashboard-contant-title">
-                        <h4>Contact Information</h4>
+                        <h4>Thông tin liên lạc </h4>
                       </div>
                       <div class="dashboard-detail">
                         <h6 class="text-content"><%=customer.getName()%></h6>
                         <h6 class="text-content"><%=customer.getEmail()%></h6>
-                        <a href="changepass" style="color: lawngreen">Change Password</a>
+                        <a href="changepass" style="color: lawngreen">Thay đổi mật khẩu</a>
                       </div>
                     </div>
                   </div>
@@ -594,7 +589,14 @@
                                           </span>
                   </div>
 
+
                   <div class="order-contain">
+                    <%
+                      Vector<Order_item> orderItemVector = (Vector<Order_item>) request.getAttribute("order_itemVector");
+                      if(orderItemVector != null){
+                        for(Order_item item : orderItemVector){
+
+                    %>
                     <div class="order-box dashboard-bg-box">
                       <div class="order-container">
                         <div class="order-icon">
@@ -602,30 +604,26 @@
                         </div>
 
                         <div class="order-detail">
-                          <h4>Delivere <span>Panding</span></h4>
-                          <h6 class="text-content">Gouda parmesan caerphilly mozzarella
-                            cottage cheese cauliflower cheese taleggio gouda.</h6>
+                          <h4>Đơn Hàng <span><%=item.getOrder_status()%></span></h4>
                         </div>
                       </div>
 
                       <div class="product-order-detail">
                         <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="../assets/images/vegetable/product/1.png"
+                          <img src="<%=item.getProduct().getImage()%>" style="height: 100px;width: 100px"
                                class="blur-up lazyload" alt="">
                         </a>
 
                         <div class="order-wrap">
                           <a href="product-left-thumbnail.html">
-                            <h3>Fantasy Crunchy Choco Chip Cookies</h3>
+                            <h3><%=item.getProduct().getProduct_name()%></h3>
                           </a>
-                          <p class="text-content">Cheddar dolcelatte gouda. Macaroni cheese
-                            cheese strings feta halloumi cottage cheese jarlsberg cheese
-                            triangles say cheese.</p>
+                          <p class="text-content"><%=item.getProduct().getDescribe()%></p>
                           <ul class="product-size">
                             <li>
                               <div class="size-box">
-                                <h6 class="text-content">Price : </h6>
-                                <h5>$20.68</h5>
+                                <h6 class="text-content">Giá : </h6>
+                                <h5>$<%=item.getPrice()%></h5>
                               </div>
                             </li>
 
@@ -664,245 +662,17 @@
                             <li>
                               <div class="size-box">
                                 <h6 class="text-content">Quantity : </h6>
-                                <h5>250 G</h5>
+                                <h5><%=item.getQuantity()%></h5>
                               </div>
                             </li>
                           </ul>
                         </div>
                       </div>
                     </div>
-
-                    <div class="order-box dashboard-bg-box">
-                      <div class="order-container">
-                        <div class="order-icon">
-                          <i data-feather="box"></i>
-                        </div>
-
-                        <div class="order-detail">
-                          <h4>Delivered <span class="success-bg">Success</span></h4>
-                          <h6 class="text-content">Cheese on toast cheesy grin cheesy grin
-                            cottage cheese caerphilly everyone loves cottage cheese the big
-                            cheese.</h6>
-                        </div>
-                      </div>
-
-                      <div class="product-order-detail">
-                        <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="../assets/images/vegetable/product/2.png" alt=""
-                               class="blur-up lazyload">
-                        </a>
-
-                        <div class="order-wrap">
-                          <a href="product-left-thumbnail.html">
-                            <h3>Cold Brew Coffee Instant Coffee 50 g</h3>
-                          </a>
-                          <p class="text-content">Pecorino paneer port-salut when the cheese
-                            comes out everybody's happy red leicester mascarpone blue
-                            castello cauliflower cheese.</p>
-                          <ul class="product-size">
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Price : </h6>
-                                <h5>$20.68</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Rate : </h6>
-                                <div class="product-rating ms-2">
-                                  <ul class="rating">
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star"></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Sold By : </h6>
-                                <h5>Fresho</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Quantity : </h6>
-                                <h5>250 G</h5>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="order-box dashboard-bg-box">
-                      <div class="order-container">
-                        <div class="order-icon">
-                          <i data-feather="box"></i>
-                        </div>
-
-                        <div class="order-detail">
-                          <h4>Delivere <span>Panding</span></h4>
-                          <h6 class="text-content">Cheesy grin boursin cheesy grin cheesecake
-                            blue castello cream cheese lancashire melted cheese.</h6>
-                        </div>
-                      </div>
-
-                      <div class="product-order-detail">
-                        <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="../assets/images/vegetable/product/3.png" alt=""
-                               class="blur-up lazyload">
-                        </a>
-
-                        <div class="order-wrap">
-                          <a href="product-left-thumbnail.html">
-                            <h3>Peanut Butter Bite Premium Butter Cookies 600 g</h3>
-                          </a>
-                          <p class="text-content">Cow bavarian bergkase mascarpone paneer
-                            squirty cheese fromage frais cheese slices when the cheese comes
-                            out everybody's happy.</p>
-                          <ul class="product-size">
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Price : </h6>
-                                <h5>$20.68</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Rate : </h6>
-                                <div class="product-rating ms-2">
-                                  <ul class="rating">
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star"></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Sold By : </h6>
-                                <h5>Fresho</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Quantity : </h6>
-                                <h5>250 G</h5>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="order-box dashboard-bg-box">
-                      <div class="order-container">
-                        <div class="order-icon">
-                          <i data-feather="box"></i>
-                        </div>
-
-                        <div class="order-detail">
-                          <h4>Delivered <span class="success-bg">Success</span></h4>
-                          <h6 class="text-content">Caerphilly port-salut parmesan pecorino
-                            croque monsieur dolcelatte melted cheese cheese and wine.</h6>
-                        </div>
-                      </div>
-
-                      <div class="product-order-detail">
-                        <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="../assets/images/vegetable/product/4.png"
-                               class="blur-up lazyload" alt="">
-                        </a>
-
-                        <div class="order-wrap">
-                          <a href="product-left-thumbnail.html">
-                            <h3>SnackAmor Combo Pack of Jowar Stick and Jowar Chips</h3>
-                          </a>
-                          <p class="text-content">The big cheese cream cheese pepper jack
-                            cheese slices danish fontina everyone loves cheese on toast
-                            bavarian bergkase.</p>
-                          <ul class="product-size">
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Price : </h6>
-                                <h5>$20.68</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Rate : </h6>
-                                <div class="product-rating ms-2">
-                                  <ul class="rating">
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star"></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Sold By : </h6>
-                                <h5>Fresho</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Quantity : </h6>
-                                <h5>250 G</h5>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                    <%
+                        }
+                      }
+                    %>
                   </div>
                 </div>
               </div>

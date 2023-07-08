@@ -32,7 +32,7 @@ public class DAOOrder_Item extends DBContext{
             pre.setInt(3, pro_id);
             pre.setInt(4, item.getQuantity());
             pre.setDouble(5, item.getPrice());
-            pre.setDouble(6,item.getDiscount());
+            pre.setDouble(6,1);
             n = pre.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
@@ -65,11 +65,16 @@ public class DAOOrder_Item extends DBContext{
 
 
 
-    public Vector<Order_item> getAll(String sql) {
+    public Vector<Order_item> getAll(int cus_id) {
+        String sql = "SELECT item_id,product_id,quantity,price,discount,feedback,star_rating,feedback_date, order_status\n" +
+                "FROM order_item\n" +
+                "JOIN orders ON order_item.order_id = orders.order_id where customer_id =? ;";
         DAOProduct dao = new DAOProduct();
         Vector<Order_item> vector = new Vector<Order_item>();
-        ResultSet rs = this.getData(sql);
         try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setInt(1, cus_id);
+            ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 int item_id = rs.getInt("item_id");
                 Product pro = dao.getProductByID(rs.getInt("product_id"));
@@ -95,7 +100,12 @@ public class DAOOrder_Item extends DBContext{
                 }else{
                      feedback_date ="";
                 }
-                Order_item item = new Order_item(item_id,pro,quantity,price,discount,feedback,feedback_date,start);
+                int order_status = rs.getInt("order_status");
+                String status = "";
+                if(order_status == 1) status = "Xử lý đơn hàng";
+                if(order_status == 2) status = "Đang Ship";
+                if(order_status == 3) status = "Đã giao hàng";
+                Order_item item = new Order_item(item_id,pro,quantity,price,discount,feedback,feedback_date,start,status);
                 vector.add(item);
             }
         } catch (SQLException e) {
