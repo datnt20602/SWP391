@@ -66,10 +66,11 @@ public class DAOOrder_Item extends DBContext{
 
 
     public Vector<Order_item> getAll(int cus_id) {
-        String sql = "SELECT item_id,product_id,quantity,price,discount,feedback,star_rating,feedback_date, order_status\n" +
+        String sql = "SELECT item_id,product_id,quantity,price,discount,feedback,star_rating,feedback_date, order_status,order_item.order_id\n" +
                 "FROM order_item\n" +
                 "JOIN orders ON order_item.order_id = orders.order_id where customer_id =? ;";
         DAOProduct dao = new DAOProduct();
+        DAOOrder daoOrder = new DAOOrder();
         Vector<Order_item> vector = new Vector<Order_item>();
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
@@ -81,6 +82,7 @@ public class DAOOrder_Item extends DBContext{
                 int quantity = rs.getInt("quantity");
                 double price = rs.getDouble("price");
                 double discount = rs.getDouble("discount");
+                Order order = daoOrder.getOrderByID(rs.getInt("order_id"));
                 double start;
                 String feedback,feedback_date;
                 //neu star chua co thi gan = null
@@ -105,7 +107,8 @@ public class DAOOrder_Item extends DBContext{
                 if(order_status == 1) status = "Xử lý đơn hàng";
                 if(order_status == 2) status = "Đang Ship";
                 if(order_status == 3) status = "Đã giao hàng";
-                Order_item item = new Order_item(item_id,pro,quantity,price,discount,feedback,feedback_date,start,status);
+                Order_item item = new Order_item(item_id,pro,quantity,price,discount,order,feedback
+                        ,feedback_date,0);
                 vector.add(item);
             }
         } catch (SQLException e) {

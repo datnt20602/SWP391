@@ -81,7 +81,7 @@ public class DAOCustomer extends DBContext{
     }
     public Customer searchByEmail (String email){
         String sql = "select * from customer where email = ? ";
-
+        Customer cus = null;
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
             pre.setString(1, email);
@@ -92,10 +92,32 @@ public class DAOCustomer extends DBContext{
                 String phone = rs.getString("phone");
                 int active = rs.getInt("active");
                 String pass = rs.getString("pass");
-                Customer cus = new Customer(id,name,phone,email,pass,active);
-                return cus;
+                cus = new Customer(id,name,phone,email,pass,active);
             }
-
+            return cus;
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
+    public Customer getCustomerByID(int cus_id){
+        String sql = "select * from customer where customer_id = ? ";
+        Customer cus = null;
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setInt(1, cus_id);
+            ResultSet rs =  pre.executeQuery();
+            while (rs.next()) {
+                String email = rs.getString("email");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                int active = rs.getInt("active");
+                String pass = rs.getString("pass");
+                String birthday = rs.getString("birthday");
+                int gender = rs.getInt("gender");
+                cus = new Customer(cus_id,name,phone,email,pass,active,gender,birthday);
+            }
+            return cus;
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -107,21 +129,24 @@ public class DAOCustomer extends DBContext{
         String sql = "UPDATE `drink_online_shop1`.`customer`\n" +
                 "SET\n" +
                 "`name` = ?,\n" +
-                "`phone` = ?,\n" +
+                "`phone` =?,\n" +
                 "`email` = ?,\n" +
                 "`active` = ?,\n" +
-                "`pass` = ?\n" +
-                "WHERE `customer_id` = ?;";
+                "`pass` = ?,\n" +
+                "`birthday` = ?,\n" +
+                "`gender` = ?\n" +
+                "WHERE `customer_id` = ?;\n";
 
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
-            pre.setInt(6, cus.getCustomer_id());
+            pre.setInt(8, cus.getCustomer_id());
             pre.setString(1, cus.getName());
             pre.setString(2, cus.getPhone());
             pre.setString(3, cus.getEmail());
             pre.setInt(4, cus.getStatus());
             pre.setString(5,cus.getPass());
-
+            pre.setString(6,cus.getBirthday());
+            pre.setInt(7,cus.getGender());
             pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOCustomer.class.getName()).log(Level.SEVERE, null, ex);

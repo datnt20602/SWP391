@@ -85,6 +85,28 @@ public class DAOAddress extends DBContext{
         return vector;
     }
 
+    public Address getAddressByID (int address_id){
+        String sql = "SELECT * FROM drink_online_shop1.address where address_id = ?;";
+        Address address = null;
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setInt(1, address_id);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("address_id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String address_name = rs.getString("address_name");
+                String ten_goi_nho = rs.getString("ten_goi_nho");
+                address = new Address(id,name,email,phone,address_name,ten_goi_nho);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return address;
+    }
+
     public int getIdAddress(){
         String sql = "SELECT address_id FROM address ORDER BY address_id DESC LIMIT 1;";
         ResultSet rs = this.getData(sql);

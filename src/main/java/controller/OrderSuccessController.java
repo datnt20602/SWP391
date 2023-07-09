@@ -49,8 +49,8 @@ public class OrderSuccessController extends HttpServlet {
         String required_date = "Van chua xac nhan";
         String shipped_date = "Van chua xac dinh";
         int order_status = 1;
-        Order order = new Order(order_id,order_date,required_date,shipped_date,order_status,payment_method);
-        daoOrder.insertOrder(order,customer.getCustomer_id(),add_id);
+        Order order = new Order(order_id,order_date,order_status,required_date,shipped_date,customer,payment_method,adr);
+        daoOrder.insertOrder(order);
 
         //insert Order_item
         DAOOrder_Item daoOrder_item = new DAOOrder_Item();
