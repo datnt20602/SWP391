@@ -15,7 +15,7 @@ import java.util.logging.Logger;
         public DBContext() {
             try {
                 String user = "root";
-                String pass = "123456";
+                String pass = "dat2062002";
                 String url = "jdbc:mysql://localhost:3306/drink_online_shop1";
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, pass);
