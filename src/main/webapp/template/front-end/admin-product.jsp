@@ -339,15 +339,16 @@
                 </label>
             </div>
             <div class="wave-group">
-                <input type="password" class="input" id="detailAdminPass" name="adminPass"
-                       style="margin-top: 20px;width: 80%" hidden="hidden">
-                <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">P</span>
                     <span class="label-char" style="--index: 1">a</span>
                     <span class="label-char" style="--index: 2">s</span>
                     <span class="label-char" style="--index: 3">s</span>
-                </label>
+                </label><br>
+                <input type="password" class="input" id="detailAdminPass" name="adminPass"
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+
+
             </div>
             <div class="" style="margin-top: 20px;">
 

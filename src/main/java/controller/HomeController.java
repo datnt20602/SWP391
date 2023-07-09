@@ -1,8 +1,10 @@
 package controller;
 import Dal.DAOCustomer;
+import Dal.DAOOrder_Item;
 import Dal.DAOProduct;
 import Dal.DAOStaff;
 import Model.Admin;
+import Model.Order_item;
 import Model.Product;
 import Model.Staff;
 import com.mysql.cj.xdevapi.Result;
@@ -31,9 +33,6 @@ public class HomeController extends HttpServlet {
         ResultSet rs = dao.getData(sql);
         HttpSession session = request.getSession();
         Vector<Product> vector = new Vector<>();
-        String page_raw = request.getParameter("page");
-
-        int page = 1;
 
         if (session.getAttribute("staff") != null) {
             DAOCustomer DAOCustomer = new DAOCustomer();
@@ -50,14 +49,33 @@ public class HomeController extends HttpServlet {
             DAOCustomer DAOCustomer = new DAOCustomer();
             DAOProduct DAOProduct = new DAOProduct();
             DAOStaff DAOStaff = new DAOStaff();
+            DAOOrder_Item daoOrderItem = new DAOOrder_Item();
+            String productName = "";
+            int page = 1;
+            String page_raw = request.getParameter("page");
+            String product_name = request.getParameter("product");
+            if (page_raw != null && !page_raw.equals("1")) {
+                page = Integer.parseInt("page_raw");
+            }
+            if (product_name != null && !product_name.isEmpty()) {
+                productName = product_name;
+            }
             int totalCustomer = DAOCustomer.getNumberCustomer();
             int totalProduct = DAOProduct.getNumberProduct();
             int totalStaff = DAOStaff.getNumberStaff();
+            double totalOrder = daoOrderItem.getTotalOrder(productName);
+            double totalPages = Math.ceil((double) totalOrder/10);
+            List<Order_item> orderItems = daoOrderItem.getListOrderItemByProduct(productName, (page-1) * 10);
+            request.setAttribute("orderItems", orderItems);
             request.setAttribute("totalCustomer", totalCustomer);
             request.setAttribute("totalProduct", totalProduct);
             request.setAttribute("totalStaff", totalStaff);
+            request.setAttribute("pageNumber", page);
+            request.setAttribute("totalPages", totalPages);
             request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
         } else {
+            int page = 1;
+            String page_raw = request.getParameter("page");
             List<String> listCategory = new ArrayList<>();
             while (true) {
                 try {

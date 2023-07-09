@@ -217,4 +217,20 @@ public class DAOStaff extends DBContext {
         }
         return n;
     }
+
+    public Staff getStaffById(int id) {
+        try {
+            String query = "select * from `staff` where staff_id = ?;";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Staff(rs.getInt("staff_id"), rs.getString("name"), rs.getString("email"),
+                        rs.getString("phone"), rs.getInt("active"), rs.getString("pass"));
+            }
+        } catch (SQLException e) {
+            System.out.println("getStaffById: " + e.getMessage());
+        }
+        return null;
+    }
 }

@@ -19,7 +19,7 @@
     <c:if test="${staff != null}">
         <title>Staff</title>
     </c:if>
-
+    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
     <style>
         .wave-group {
             position: relative;
@@ -235,15 +235,17 @@
                 </label>
             </div>
             <div class="wave-group">
-                <input type="password" class="input" id="detailAdminPass" name="adminPass"
-                       style="margin-top: 20px;width: 80%" hidden="hidden">
-                <span class="bar"></span>
+
                 <label class="label">
                     <span class="label-char" style="--index: 0">P</span>
                     <span class="label-char" style="--index: 1">a</span>
                     <span class="label-char" style="--index: 2">s</span>
                     <span class="label-char" style="--index: 3">s</span>
-                </label>
+                </label><br>
+                <input type="password" class="input" id="detailAdminPass" name="adminPass"
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+
+
             </div>
             <div class="" style="margin-top: 20px;">
 
@@ -480,92 +482,52 @@
 
             <div class="table-data">
                 <div class="order">
-                    <div class="head">
-                        <h3>Recent Orders</h3>
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
-                    </div>
+                    <form class="" action="staff" method="get">
+                        <div class="head">
+                            <h3>Order</h3>
+                            <h2>${errorMessage}</h2>
+
+                            <div class="wave-group">
+                                <input type="text" class="input" id="inputSearchName" name="name" value="${param.name}">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">Khách Hàng</span>
+                                </label>
+                            </div>
+                            <button id="search-button"
+                                    style="border: 1px solid #5c636a; border-radius: 5px;height: 39px;width: 39px;cursor: pointer;"
+                                    class="">
+                                <i class="bx bx-search"></i>
+                            </button>
+                        </div>
+                    </form>
                     <table>
                         <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Date Order</th>
-                            <th>Status</th>
+                            <th>Order ID</th>
+                            <th>Khách hàng</th>
+                            <th>Ngày Order </th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng </th>
+                            <th>Tổng tiền</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <img src="${pageContext.request.contextPath}\template\assets\images\people\people.png">
-                                <p>Admin 1</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="${pageContext.request.contextPath}\template\assets\images\people\people.png">
-                                <p>Admin 1</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="${pageContext.request.contextPath}\template\assets\images\people\people.png">
-                                <p>Admin 1</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status process">Process</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="${pageContext.request.contextPath}\template\assets\images\people\people.png">
-                                <p>Admin 1</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="${pageContext.request.contextPath}\template\assets\images\people\people.png">
-                                <p>Admin 1</p>
-                            </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status completed">Completed</span></td>
-                        </tr>
+                        <c:forEach var="orderItem" items="${orderItems}">
+                            <tr>
+                                <td>${orderItem.getOrder().getOrder_id()}</td>
+                                <td>${orderItem.getOrder().getCustomer().getName()}</td>
+                                <td>${orderItem.getOrder().getOrder_date()}</td>
+                                <td>${orderItem.getProduct().getProduct_name()}</td>
+                                <td>${orderItem.getQuantity()}</td>
+                                <td>${orderItem.getPrice()}</td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
-                <div class="todo">
-                    <div class="head">
-                        <h3>Todos</h3>
-                        <i class='bx bx-plus'></i>
-                        <i class='bx bx-filter'></i>
-                    </div>
-                    <ul class="todo-list">
-                        <li class="completed">
-                            <p>Todo List</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <p>Todo List</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="not-completed">
-                            <p>Todo List</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <p>Todo List</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="not-completed">
-                            <p>Todo List</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                    </ul>
-                </div>
+            </div>
+            <div id="pagination">
             </div>
         </main>
         <!-- MAIN -->
@@ -622,6 +584,79 @@
             optionsDiv.style.display = "none";
         }
 
+    }
+    let pages = ${totalPages};
+
+    document.getElementById('pagination').innerHTML = createPagination(pages, ${pageNumber});
+
+    function createPagination(pages, page) {
+        let str = '<ul class="page">';
+        let active;
+        let pageCutLow = page - 1;
+        let pageCutHigh = page + 1;
+        var name = document.getElementById("inputSearchName");
+        // Show the Previous button only if you are on a page other than the first
+        if (page > 1) {
+            str += '<a style="color: black" href="home?product=' + name.value + '&page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
+        }
+        // Show all the pagination elements if there are less than 6 pages total
+        if (pages < 6) {
+            for (let p = 1; p <= pages; p++) {
+                active = page == p ? "active" : "";
+                str += '<a style="color: black" href="home?product=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+            }
+        }
+        // Use "..." to collapse pages outside of a certain range
+        else {
+            // Show the very first page followed by a "..." at the beginning of the
+            // pagination section (after the Previous button)
+            if (page > 2) {
+                str += '<a style="color: black" href="home?product=' + name.value + '&page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
+                if (page > 3) {
+                    str += `<li class="page__dots"><span>...</span></li>`;
+                }
+            }
+            // Determine how many pages to show after the current page index
+            if (page === 1) {
+                pageCutHigh += 2;
+            } else if (page === 2) {
+                pageCutHigh += 1;
+            }
+            // Determine how many pages to show before the current page index
+            if (page === pages) {
+                pageCutLow -= 2;
+            } else if (page === pages - 1) {
+                pageCutLow -= 1;
+            }
+            // Output the indexes for pages that fall inside the range of pageCutLow
+            // and pageCutHigh
+            for (let p = pageCutLow; p <= pageCutHigh; p++) {
+                if (p === 0) {
+                    p += 1;
+                }
+                if (p > pages) {
+                    continue
+                }
+                active = page == p ? "active" : "";
+                str += '<a style="color: black" href="home?product=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+            }
+            // Show the very last page preceded by a "..." at the end of the pagination
+            // section (before the Next button)
+            if (page < pages - 1) {
+                if (page < pages - 2) {
+                    str += '<li class="page__dots"><span>...</span></li>';
+                }
+                str += '<a style="color: black" href="home?product=' + name.value + '&page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
+            }
+        }
+        // Show the Next button only if you are on a page other than the last
+        if (page < pages) {
+            str += '<a style="color: black" href="home?product=' + name.value + '&page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
+        }
+        str += '</ul>';
+        // Return the pagination string to be outputted in the pug templates
+        document.getElementById('pagination').innerHTML = str;
+        return str;
     }
 </script>
 </body>
