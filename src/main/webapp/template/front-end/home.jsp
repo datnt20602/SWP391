@@ -2,8 +2,8 @@
 <%@ page import="java.util.Vector" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@page import=" java.util.Vector,Model.Product" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import =" java.util.Vector,Model.Product" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="Model.Customer" %>
 <%@ page import="java.util.List" %>
@@ -227,9 +227,17 @@
                                             <i data-feather="user"></i>
                                         </div>
                                         <div class="delivery-detail">
-                                            <h6>Hello,</h6>
-                                            <h5>My Account</h5>
+                                            <%
+                                                Customer cus = (Customer) session.getAttribute("customer");
+                                                if(cus != null)
+                                                {
+                                            %>
+                                            <h5><%=cus.getName()%></h5>
+                                            <%
+                                                }
+                                            %>
                                         </div>
+
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -245,13 +253,14 @@
                                                 </li>
 
 
+
                                                 <li class="product-box-contain">
                                                     <a href="forgotpass">Quên mật khẩu</a>
                                                 </li>
                                             </c:if>
                                             <c:if test="${customer != null}">
                                                 <li class="product-box-contain">
-                                                    <a href="changepass">Thông tin cá nhân</a>
+                                                    <a href="customer">Thông tin cá nhân</a>
                                                 </li>
                                                 <li class="product-box-contain">
                                                     <a href="changepass">Đổi mật khẩu</a>
@@ -633,16 +642,14 @@
                         <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.6">
                             <div class="product-header">
                                 <div class="product-image">
-                                    <a href="productdetail">
+                                    <a href="productdetail?pro_id=<%=temp.getProduct_id()%>">
                                         <img src="<%=temp.getImage()%>"
                                              class="img-fluid blur-up lazyload" alt="">
                                     </a>
 
                                     <ul class="product-option">
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a style="padding-left: 95px"
-                                               href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>"
-                                               class="notifi-wishlist">
+                                            <a style="padding-left: 95px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
@@ -653,11 +660,9 @@
                                 <div class="product-detail">
                                     <span class="span-name"><%=temp.getCategory_name()%></span>
                                     <a href="productdetail">
-                                        <h5 class="name"><%=temp.getProduct_name()%>
-                                        </h5>
+                                        <h5 class="name"><%=temp.getProduct_name()%></h5>
                                     </a>
-                                    <p class="text-content mt-1 mb-2 product-content"><%=temp.getDescribe()%>
-                                    </p>
+                                    <p class="text-content mt-1 mb-2 product-content"><%=temp.getDescribe()%></p>
                                     <div class="product-rating mt-2">
                                         <ul class="rating">
                                             <li>
@@ -1195,6 +1200,7 @@
         return str;
     }
 </script>
+
 
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
 
