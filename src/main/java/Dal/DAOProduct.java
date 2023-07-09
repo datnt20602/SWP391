@@ -58,12 +58,12 @@ public class DAOProduct extends DBContext{
     }
 
     public Vector<Product> searchByName(String name){
-        String sql = "SELECT * FROM drink_online_shop1.product where product_name like ?";
+        String sql = "SELECT * FROM product where product_name like ?";
         Vector<Product> vector = new Vector<Product>();
 
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
-            pre.setString(1, "'%"+name+"%'");
+            pre.setString(1, "%"+name+"%");
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("product_id");
@@ -265,7 +265,7 @@ public class DAOProduct extends DBContext{
     }
 
 
-    
+
     public List<Product> getProductsByPageSortedByPrice(int offset, int limit, String sortOrder) {
         List<Product> products = new ArrayList<>();
 

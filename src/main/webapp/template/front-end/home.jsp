@@ -7,6 +7,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="Model.Customer" %>
 <%@ page import="java.util.List" %>
+<%@ page import="Dal.DAOProduct" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +61,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+
 </head>
 
 <body>
@@ -104,17 +107,18 @@
 
                                 </button>
                             </div>
-
+                            <form action="search" method="get">
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input onchange="searchByName(this)" type="text" class="form-control"
+                                    <input name="searchname" type="text" class="form-control"
                                            placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn" type="button" id="button-addon2">
+                                    <button class="btn" type="submit" id="button-addon2">
                                         <i data-feather="search"></i>
                                     </button>
                                 </div>
                             </div>
+                            </form>
                         </div>
 
                         <div class="rightside-box">
@@ -1191,7 +1195,6 @@
         return str;
     }
 </script>
-
 
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
 
