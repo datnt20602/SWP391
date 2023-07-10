@@ -6,6 +6,8 @@
 <%@page import =" java.util.Vector,Model.Product" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="Model.Customer" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Dal.DAOProduct" %>
 <%@ page import="Model.Order_item" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
@@ -57,6 +59,11 @@
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/template/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+
 </head>
 
 <body>
@@ -141,8 +148,8 @@
                                             <i data-feather="phone-call"></i>
                                         </div>
                                         <div class="delivery-detail">
-                                            <h6>24/7 Delivery</h6>
-                                            <h5>+91 888 104 2340</h5>
+                                            <h6>Giao hàng 24/7</h6>
+                                            <h5>+84 373801816</h5>
                                         </div>
                                     </a>
                                 </li>
@@ -201,7 +208,7 @@
                                                 %>
                                                 <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
                                                 <%
-                                                    }else {
+                                                }else {
                                                 %>
                                                 <h4 class="theme-color fw-bold">0</h4>
                                                 <%}%>
@@ -220,16 +227,17 @@
                                         </div>
 
                                         <div class="delivery-detail">
-                                        <%
-                                        Customer cus = (Customer) session.getAttribute("customer");
-                                        if(cus != null)
-                                        {
-                                        %>
+                                            <%
+                                                Customer cus = (Customer) session.getAttribute("customer");
+                                                if(cus != null)
+                                                {
+                                            %>
                                             <h5><%=cus.getName()%></h5>
-                                        <%
-                                        }
-                                        %>
+                                            <%
+                                                }
+                                            %>
                                         </div>
+
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -443,11 +451,11 @@
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                      aria-labelledby="headingOne">
                                     <div class="accordion-body">
-<%--                                        <div class="form-floating theme-form-floating-2 search-box">--%>
-<%--                                            <input type="search" class="form-control" id="search"--%>
-<%--                                                   placeholder="Search ..">--%>
-<%--                                            <label for="search">Tìm...</label>--%>
-<%--                                        </div>--%>
+                                        <%--                                        <div class="form-floating theme-form-floating-2 search-box">--%>
+                                        <%--                                            <input type="search" class="form-control" id="search"--%>
+                                        <%--                                                   placeholder="Search ..">--%>
+                                        <%--                                            <label for="search">Tìm...</label>--%>
+                                        <%--                                        </div>--%>
 
                                         <ul class="category-list custom-padding custom-height">
                                             <form class="w-100 h-100" id="formCategories"
@@ -484,6 +492,78 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <%--                            <div class="accordion-item">--%>
+                            <%--                                <h2 class="accordion-header" id="headingFour">--%>
+                            <%--                                    <button class="accordion-button collapsed" type="button"--%>
+                            <%--                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"--%>
+                            <%--                                            aria-expanded="false" aria-controls="collapseFour">--%>
+                            <%--                                        <span>Giảm giá</span>--%>
+                            <%--                                    </button>--%>
+                            <%--                                </h2>--%>
+                            <%--                                <div id="collapseFour" class="accordion-collapse collapse show"--%>
+                            <%--                                     aria-labelledby="headingFour">--%>
+                            <%--                                    <div class="accordion-body">--%>
+                            <%--                                        <ul class="category-list custom-padding">--%>
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault">--%>
+                            <%--                                                        <span class="name"> 5%</span>--%>
+
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
+
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault1">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault1">--%>
+                            <%--                                                        <span class="name">5% - 10%</span>--%>
+
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
+
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault2">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault2">--%>
+                            <%--                                                        <span class="name">10% - 15%</span>--%>
+
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
+
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault3">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault3">--%>
+                            <%--                                                        <span class="name">15% - 25%</span>--%>
+
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
+
+                            <%--                                            <li>--%>
+                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
+                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
+                            <%--                                                           id="flexCheckDefault4">--%>
+                            <%--                                                    <label class="form-check-label" for="flexCheckDefault4">--%>
+                            <%--                                                        <span class="name"> 25% trở lên</span>--%>
+
+                            <%--                                                    </label>--%>
+                            <%--                                                </div>--%>
+                            <%--                                            </li>--%>
+                            <%--                                        </ul>--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+                            <%--                            </div>--%>
 
 
                         </div>
@@ -608,26 +688,9 @@
                                         <del>$15.15</del>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
-                                        <button onclick="location.href = 'cart?service=addToCart&pro_id=<%=temp.getProduct_id()%>';"
-                                                class="btn btn-add-cart addcart-button">Add
-<%--                                            <span class="add-icon bg-light-gray">--%>
-<%--                                                    <i class="fa-solid fa-plus"></i>--%>
-<%--                                            </span>--%>
+                                        <button class="btn btn-add-cart addcart-button"
+                                                onclick="location.href = 'cart?service=addToCart&pro_id=<%=temp.getProduct_id()%>';">Add
                                         </button>
-<%--                                        <div class="cart_qty qty-box">--%>
-<%--                                            <div class="input-group bg-white">--%>
-<%--                                                <button type="button" class="qty-left-minus bg-gray"--%>
-<%--                                                        data-type="minus" data-field="">--%>
-<%--                                                    <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                                </button>--%>
-<%--                                                <input  class="form-control input-number qty-input" type="text"--%>
-<%--                                                        name="quantity" value="0">--%>
-<%--                                                <button type="button" class="qty-right-plus bg-gray"--%>
-<%--                                                        data-type="plus" data-field="">--%>
-<%--                                                    <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                                </button>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
                                     </div>
                                 </div>
                             </div>
@@ -637,29 +700,6 @@
                 </div>
                 <div id="pagination"></div>
 
-                    <ul class="pagination justify-content-center">
-
-                        <li class="page-item disabled">
-                            <a class="page-link" href="" tabindex="-1" aria-disabled="true">
-                                <i class="fa-solid fa-angles-left"></i>
-                            </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-item" href=""></a>
-                        </li>
-                        <li class="page-item" aria-current="page">
-                            <a class="page-link" href=""></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href=""></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="">
-                                <i class="fa-solid fa-angles-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>
@@ -1144,6 +1184,8 @@
         return str;
     }
 </script>
+
+
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
 
 <!-- jquery ui-->

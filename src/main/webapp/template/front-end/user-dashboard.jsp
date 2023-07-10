@@ -1368,7 +1368,7 @@
 
             <div class="col-xxl-4">
                 <div class="form-floating theme-form-floating">
-                  <input type="date" class="form-control" id="address3" name="birthday">
+                  <input type="date" class="form-control" id="address3" name="birthday" value="<%=customer1.getBirthday()%>">
                   <label for="address3">Sinh Nhật</label>
                 </div>
             </div>
