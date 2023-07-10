@@ -1,10 +1,19 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Minh1511
+  Date: 7/9/2023
+  Time: 2:58 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="java.util.Vector" %>
-<%@ page import="Model.Address" %>
-<%@ page import="Model.Order_item" %>
-<%@ page import="Model.Customer" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import =" java.util.Vector,Model.Product" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="Model.Customer" %>
+<%@ page import="Model.Order_item" %>
+<%@ page import="Model.*" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +26,7 @@
     <meta name="keywords" content="Fastkart">
     <meta name="author" content="Fastkart">
     <link rel="icon" href="${pageContext.request.contextPath}/template/assets/images/favicon/1.png" type="image/x-icon">
-    <title>Thanh Toán</title>
+    <title>cofPhe Shop</title>
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -29,23 +38,32 @@
             rel="stylesheet">
 
     <!-- bootstrap css -->
-    <link id="rtl-link" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/vendors/bootstrap.css">
+    <link id="rtl-link" rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/template/assets/css/vendors/bootstrap.css">
+
+    <!-- wow css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/animate.min.css"/>
 
     <!-- font-awesome css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/vendors/font-awesome.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/template/assets/css/vendors/font-awesome.css">
 
     <!-- feather icon css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/template/assets/css/vendors/feather-icon.css">
 
     <!-- slick css -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/vendors/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/vendors/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/template/assets/css/vendors/slick/slick.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/template/assets/css/vendors/slick/slick-theme.css">
 
     <!-- Iconly css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/bulk-style.css">
 
     <!-- Template css -->
-    <link id="color-link" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/style.css">
+    <link id="color-link" rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/template/assets/css/style.css">
 </head>
 
 <body>
@@ -61,6 +79,7 @@
 </div>
 <!-- Loader End -->
 
+<!-- Header Start -->
 <header class="pb-md-4 pb-0">
 
 
@@ -304,16 +323,28 @@
         <li class="active">
             <a href="home">
                 <i class="iconly-Home icli"></i>
-                <span>Trang chủ</span>
+                <span>Home</span>
             </a>
         </li>
 
+        <li class="mobile-category">
+            <a href="javascript:void(0)">
+                <i class="iconly-Category icli js-link"></i>
+                <span>Category</span>
+            </a>
+        </li>
 
+        <li>
+            <a href="search.html" class="search-box">
+                <i class="iconly-Search icli"></i>
+                <span>Search</span>
+            </a>
+        </li>
 
         <li>
             <a href="wishlist" class="notifi-wishlist">
                 <i class="iconly-Heart icli"></i>
-                <span>Wishlist</span>
+                <span>My Wish</span>
             </a>
         </li>
 
@@ -328,25 +359,13 @@
 <!-- mobile fix menu end -->
 
 <!-- Breadcrumb Section Start -->
-<!-- Breadcrumb Section End -->
-
-<!-- Cart Section Start -->
 <section class="breadscrumb-section pt-0">
     <div class="container-fluid-lg">
         <div class="row">
             <div class="col-12">
                 <div class="breadscrumb-contain">
-                    <h2>Thanh Toán</h2>
-                    <nav>
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item">
-                                <a href="index.html">
-                                    <i class="fa-solid fa-house"></i>
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Thanh Toán</li>
-                        </ol>
-                    </nav>
+                    <h2>Chào mừng tới cofPhe.</h2>
+
                 </div>
             </div>
         </div>
@@ -354,202 +373,200 @@
 </section>
 <!-- Breadcrumb Section End -->
 
-<!-- Checkout section Start -->
-<section class="checkout-section-2 section-b-space">
-    <form action="ordersuccess" method="post">
+<!-- Poster Section Start -->
+<section>
     <div class="container-fluid-lg">
-        <div class="row g-sm-4 g-3">
-            <div class="col-lg-8">
-                <div class="left-sidebar-checkout">
-                    <div class="checkout-detail-box">
-                        <ul>
-                            <li>
-                                <div class="checkout-icon">
-                                    <lord-icon target=".nav-item" src="https://cdn.lordicon.com/ggihhudh.json"
-                                               trigger="loop-on-hover"
-                                               colors="primary:#121331,secondary:#646e78,tertiary:#0baf9a"
-                                               class="lord-icon">
-                                    </lord-icon>
+        <div class="row">
+            <div class="col-12">
+                <div class="slider-1 slider-animate product-wrapper no-arrow">
+                    <div>
+                        <div class="banner-contain-2 hover-effect">
+                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/latte.jpg"
+                                 class="bg-img rounded-3 blur-up lazyload" alt="">
+                            <div
+                                    class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
+                                <div>
+                                    <h2>Bắt đầu ngày mới với 1 ly cà phê !</h2>
+                                    <h3>Giảm giá tới 25%</h3>
                                 </div>
-                                <div class="checkout-box">
-                                    <div class="checkout-title">
-                                        <h4>Địa chỉ giao hàng</h4>
-                                    </div>
-
-                                    <div class="checkout-detail">
-                                        <div class="row g-4">
-                                    <%
-                                        Vector<Address> addressVector = (Vector<Address>) request.getAttribute("address");
-                                        if(addressVector != null){
-                                            for(Address item : addressVector){
-
-                                    %>
-                                            <div class="col-xxl-6 col-lg-12 col-md-6">
-                                                <div class="delivery-address-box">
-                                                    <div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="addressID"
-                                                                   id="flexRadioDefault2" checked="checked" value="<%=item.getAddress_id()%>">
-                                                        </div>
-
-                                                        <div class="label">
-                                                            <label><%=item.getTen_goi_nho()%></label>
-                                                        </div>
-
-                                                        <ul class="delivery-address-detail">
-                                                            <li>
-                                                                <h4 class="fw-500"><%=item.getName()%></h4>
-                                                            </li>
-
-                                                            <li>
-                                                                <p class="text-content"><span
-                                                                        class="text-title">Address
-                                                                            :</span><%=item.getAddress_name()%>
-                                                                </p>
-                                                            </li>
-
-                                                            <li>
-                                                                <h6 class="text-content"><span
-                                                                        class="text-title">Email :</span>
-                                                                    <%=item.getEmail()%></h6>
-                                                            </li>
-
-                                                            <li>
-                                                                <h6 class="text-content mb-0"><span
-                                                                        class="text-title">Phone
-                                                                            :</span> <%=item.getPhone()%></h6>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                    <%
-
-                                            }
-                                        }
-                                    %>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="checkout-icon">
-                                    <lord-icon target=".nav-item" src="https://cdn.lordicon.com/qmcsqnle.json"
-                                               trigger="loop-on-hover" colors="primary:#0baf9a,secondary:#0baf9a"
-                                               class="lord-icon">
-                                    </lord-icon>
-                                </div>
-                                <div class="checkout-box">
-                                    <div class="checkout-title">
-                                        <h4>Phương Thức Thanh Toán</h4>
-                                    </div>
-
-                                    <div class="checkout-detail">
-                                        <div class="accordion accordion-flush custom-accordion"
-                                             id="accordionFlushExample">
-                                            <div class="accordion-item">
-                                                <div class="accordion-header" id="flush-headingFour">
-                                                    <div class="accordion-button collapsed"
-                                                         data-bs-toggle="collapse"
-                                                         data-bs-target="#flush-collapseFour">
-                                                        <div class="custom-form-check form-check mb-0">
-                                                            <label class="form-check-label" for="cash"><input
-                                                                    class="form-check-input mt-0" type="radio"
-                                                                    name="flexRadioDefault" value="1" id="cash" checked> Thanh toán khi nhận hàng </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="flush-collapseFour"
-                                                     class="accordion-collapse collapse show"
-                                                     data-bs-parent="#accordionFlushExample">
-                                                    <div class="accordion-body">
-                                                        <p class="cod-review">Khi nhận hàng bạn được kiểm tra rồi thanh toán !
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="accordion-item">
-                                                <div class="accordion-header" id="flush-headingTwo">
-                                                    <div class="accordion-button collapsed"
-                                                         data-bs-toggle="collapse"
-                                                         data-bs-target="#flush-collapseTwo">
-                                                        <div class="custom-form-check form-check mb-0">
-                                                            <label class="form-check-label" for="banking"><input
-                                                                    class="form-check-input mt-0" type="radio"
-                                                                    name="flexRadioDefault" value="2" id="banking" >Chuyển khoản ngân hàng</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                                     data-bs-parent="#accordionFlushExample">
-                                                    <div class="accordion-body">
-                                                        <h5 class="text-uppercase mb-4">Chuyển khoản vào ngân hàng của chúng tôi</h5>
-                                                        <img style="width: 300px;height: 400px;"
-                                                                src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-6/358085863_1975151149526710_4494173388623438017_n.jpg?stp=cp6_dst-jpg&_nc_cat=105&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=OZhlEx6fiqsAX8ZF-zR&_nc_ht=scontent.fhan5-2.fna&oh=00_AfArnc5fGFNOOlcTl0Gz4f5wVD92l9O0Y-btaSt8a5SPHQ&oe=64ADB96D">
-                                                        <h5 class="text-uppercase mb-4">Khi chùng tôi nhận được tiền bạn đơn hàng của bạn sẽ được ship ngay</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="right-side-summery-box">
-                    <div class="summery-box-2">
-                        <div class="summery-header">
-                            <h3>Order Summery</h3>
+                            </div>
                         </div>
-
-                        <ul class="summery-contain">
-                            <%
-                                Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
-                                for(Order_item item : vector){
-                            %>
-                            <li>
-                                <img src="<%=item.getProduct().getImage()%>"
-                                     class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                <h4><%=item.getProduct().getProduct_name()%> <span> x<%=item.getQuantity()%></span></h4>
-                                <h4 class="price">$<%=item.getProduct().getPrice()%></h4>
-                            </li>
-                            <%}%>
-                        </ul>
-
-                        <ul class="summery-total">
-                            <li>
-                                <h4>Subtotal</h4>
-                                <h4 class="price">$<%=session.getAttribute("totalMoney")%></h4>
-                            </li>
-
-                            <li>
-                                <h4>Shipping</h4>
-                                <h4 class="price">$8.90</h4>
-                            </li>
-
-                            <li class="list-total">
-                                <h4>Total (USD)</h4>
-                                <h4 class="price">$<%=session.getAttribute("totalMoney")%></h4>
-                            </li>
-                        </ul>
                     </div>
-                    <button type="submit" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Place Order</button>
+
+                    <div>
+                        <div class="banner-contain-2 hover-effect">
+                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/coffee1.jpeg"
+                                 class="bg-img rounded-3 blur-up lazyload" alt="">
+                            <div
+                                    class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
+                                <div>
+                                    <h2>Đồ uống cho một ngày tuyệt vời !</h2>
+                                    <h3>Mời bạn và bạn bè cùng thưởng thức.</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="banner-contain-2 hover-effect">
+                            <img src="${pageContext.request.contextPath}/template/assets/images/shop/coffee2.jpeg"
+                                 class="bg-img rounded-3 blur-up lazyload" alt="">
+                            <div
+                                    class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
+                                <div>
+                                    <h2>Đồng hành cùng bạn là đồ uống của chúng tôi !</h2>
+                                    <h3>Làm ơn chọn đồ uống phía dưới.</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </form>
 </section>
-<!-- Checkout section End -->
+<!-- Poster Section End -->
 
-<!-- Cart Section End -->
+<!-- Order Detail Section Start -->
+<section class="order-detail">
+    <div class="container-fluid-lg">
+        <div class="row g-sm-4 g-3">
+            <div class="col-xxl-3 col-xl-4 col-lg-6">
+                <div class="order-image">
+                    <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" class="img-fluid blur-up lazyload" alt="">
+                </div>
+            </div>
+        <%
+            Order order = (Order) request.getAttribute("data");
+        %>
+            <div class="col-xxl-9 col-xl-8 col-lg-6">
+                <div class="row g-sm-4 g-3">
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i data-feather="package" class="text-content"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Mã Order</h5>
+                                <h2 class="theme-color"><%=order.getOrder_id()%></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i data-feather="truck" class="text-content"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Công Ty Vận Chuyển</h5>
+                                <img src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/358426384_1975862572788901_3623245602581051726_n.jpg?_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=vOV0HPusQlUAX_H6s-C&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDdMxBTu8xr7nOpHqNy4D_ViNHVUpFaw-40wKlNz1TjtQ&oe=64AE9FFD"
+                                     class="img-fluid blur-up lazyload" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i class="text-content" data-feather="info"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Tên Người Nhận</h5>
+                                <h4><%= order.getAddress().getName()%></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i class="text-content" data-feather="crosshair"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Từ</h5>
+                                <h4>Hòa Lạc , Thạch Thất ,Hà Nội</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i class="text-content" data-feather="map-pin"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Điểm đến</h5>
+                                <h4><%=order.getAddress().getAddress_name()%></h4>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 overflow-hidden">
+                        <ol class="progtrckr">
+                            <li class="progtrckr-done">
+                                <h5>Đã Chuẩn Bị Xong</h5>
+                            </li>
+                            <li class="progtrckr-todo">
+                                <h5>Đang Ship</h5>
+                            </li>
+                            <li class="progtrckr-todo">
+                                <h5>Đã Nhận Được Hàng</h5>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Order Detail Section End -->
+
+<!-- Order Table Section Start -->
+<section class="order-table-section section-b-space">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table order-tab-table">
+                        <thead>
+                        <tr>
+                            <th>Mô Tả</th>
+                            <th>Ngày</th>
+                            <th>Địa Điểm</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Đóng hàng và gửi đi</td>
+                            <td><%=order.getOrder_date()%></td>
+                            <td>Hòa Lạc</td>
+                        </tr>
+
+                        <tr>
+                            <td>Đang Ship</td>
+                            <td><%=order.getRequired_date()%></td>
+                        </tr>
+
+                        <tr>
+                            <td>Giao Hàng Thành Công</td>
+                            <td><%=order.getShipped_date()%></td>
+                            <td><%=order.getAddress().getAddress_name()%></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Order Table Section End -->
 
 <!-- Footer Section Start -->
 <footer class="section-t-space">
@@ -720,6 +737,114 @@
 </footer>
 <!-- Footer Section End -->
 
+<!-- Quick View Modal Box Start -->
+<div class="modal fade theme-modal view-modal" id="view" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header p-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-sm-4 g-2">
+                    <div class="col-lg-6">
+                        <div class="slider-image">
+                            <img src="${pageContext.request.contextPath}/template/assets/images/product/category/1.jpg"
+                                 class="img-fluid blur-up lazyload"
+                                 alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="right-sidebar-modal">
+                            <h4 class="title-name">Peanut Butter Bite Premium Butter Cookies 600 g</h4>
+                            <h4 class="price">$36.99</h4>
+                            <div class="product-rating">
+                                <ul class="rating">
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star"></i>
+                                    </li>
+                                </ul>
+                                <span class="ms-2">8 Reviews</span>
+                                <span class="ms-2 text-danger">6 sold in last 16 hours</span>
+                            </div>
+
+                            <div class="product-detail">
+                                <h4>Product Details :</h4>
+                                <p>Candy canes sugar plum tart cotton candy chupa chups sugar plum chocolate I love.
+                                    Caramels marshmallow icing dessert candy canes I love soufflé I love toffee.
+                                    Marshmallow pie sweet sweet roll sesame snaps tiramisu jelly bear claw. Bonbon
+                                    muffin I love carrot cake sugar plum dessert bonbon.</p>
+                            </div>
+
+                            <ul class="brand-list">
+                                <li>
+                                    <div class="brand-box">
+                                        <h5>Brand Name:</h5>
+                                        <h6>Black Forest</h6>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="brand-box">
+                                        <h5>Product Code:</h5>
+                                        <h6>W0690034</h6>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="brand-box">
+                                        <h5>Product Type:</h5>
+                                        <h6>White Cream Cake</h6>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="select-size">
+                                <h4>Cake Size :</h4>
+                                <select class="form-select select-form-size">
+                                    <option selected>Select Size</option>
+                                    <option value="1.2">1/2 KG</option>
+                                    <option value="0">1 KG</option>
+                                    <option value="1.5">1/5 KG</option>
+                                    <option value="red">Red Roses</option>
+                                    <option value="pink">With Pink Roses</option>
+                                </select>
+                            </div>
+
+                            <div class="modal-button">
+                                <button onclick="location.href = 'cart';"
+                                        class="btn btn-md add-cart-button icon">Add
+                                    To Cart
+                                </button>
+                                <button onclick="location.href = 'product-left.html';"
+                                        class="btn theme-bg-color view-button icon text-white fw-bold btn-md">
+                                    View More Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quick View Modal Box End -->
+
 <!-- Location Modal Start -->
 <div class="modal location-modal fade theme-modal" id="locationModal" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -732,36 +857,7 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="location-list">
-                    <div class="search-input">
-                        <input type="search" class="form-control" placeholder="Vị trí của bạn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
 
-                    <div class="disabled-box">
-                        <h6>Chọn vị trí của bạn</h6>
-                    </div>
-
-                    <ul class="location-select custom-height">
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>Hà Nội</h6>
-                                <span>Min: 25 000 Vnđ</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h6>TP Hồ Chí Minh</h6>
-                                <span>Min: 30 000 Vnđ</span>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -774,8 +870,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h5 class="modal-title w-100" id="deal_today">Giảm giá hôm nay</h5>
-                    <p class="mt-1 text-content">Giảm giá đề xuất cho bạn</p>
+                    <h5 class="modal-title w-100" id="deal_today">Giảm giá</h5>
+                    <p class="mt-1 text-content">Đề xuất cho bạn.</p>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
@@ -787,13 +883,16 @@
                         <li class="list-1">
                             <div class="deal-offer-contain">
                                 <a href="home.jsp" class="deal-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/10.png" class="blur-up lazyload"
+                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/10.png"
+                                         class="blur-up lazyload"
                                          alt="">
                                 </a>
 
                                 <a href="home.jsp" class="deal-contain">
                                     <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <h6>$52.57
+                                        <del>57.62</del>
+                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -801,13 +900,16 @@
                         <li class="list-2">
                             <div class="deal-offer-contain">
                                 <a href="home.jsp" class="deal-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/11.png" class="blur-up lazyload"
+                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/11.png"
+                                         class="blur-up lazyload"
                                          alt="">
                                 </a>
 
                                 <a href="home.jsp" class="deal-contain">
                                     <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <h6>$52.57
+                                        <del>57.62</del>
+                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -815,13 +917,16 @@
                         <li class="list-3">
                             <div class="deal-offer-contain">
                                 <a href="home.jsp" class="deal-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/12.png" class="blur-up lazyload"
+                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/12.png"
+                                         class="blur-up lazyload"
                                          alt="">
                                 </a>
 
                                 <a href="home.jsp" class="deal-contain">
                                     <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <h6>$52.57
+                                        <del>57.62</del>
+                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -829,13 +934,16 @@
                         <li class="list-1">
                             <div class="deal-offer-contain">
                                 <a href="home.jsp" class="deal-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/13.png" class="blur-up lazyload"
+                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/13.png"
+                                         class="blur-up lazyload"
                                          alt="">
                                 </a>
 
                                 <a href="home.jsp" class="deal-contain">
                                     <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <h6>$52.57
+                                        <del>57.62</del>
+                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -846,6 +954,19 @@
     </div>
 </div>
 <!-- Deal Box Modal End -->
+
+<!-- Add to cart Modal Start -->
+<div class="add-cart-box">
+    <div class="add-iamge">
+        <img src="${pageContext.request.contextPath}/template/assets/images/cake/pro/1.jpg"
+             class="img-fluid blur-up lazyload" alt="">
+    </div>
+
+    <div class="add-contain">
+        <h6>Added to Cart</h6>
+    </div>
+</div>
+<!-- Add to cart Modal End -->
 
 <!-- Tap to top start -->
 <div class="theme-option">
@@ -862,6 +983,8 @@
 <!-- Bg overlay End -->
 
 <!-- latest jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
 
 <!-- jquery ui-->
@@ -869,8 +992,8 @@
 
 <!-- Bootstrap js-->
 <script src="${pageContext.request.contextPath}/template/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="${pageContext.request.contextPath}/template/assets/js/bootstrap/popper.min.js"></script>
 <script src="${pageContext.request.contextPath}/template/assets/js/bootstrap/bootstrap-notify.min.js"></script>
+<script src="${pageContext.request.contextPath}/template/assets/js/bootstrap/popper.min.js"></script>
 
 <!-- feather icon js-->
 <script src="${pageContext.request.contextPath}/template/assets/js/feather/feather.min.js"></script>
@@ -881,10 +1004,21 @@
 
 <!-- Slick js-->
 <script src="${pageContext.request.contextPath}/template/assets/js/slick/slick.js"></script>
+<script src="${pageContext.request.contextPath}/template/assets/js/slick/slick-animation.min.js"></script>
 <script src="${pageContext.request.contextPath}/template/assets/js/slick/custom_slick.js"></script>
 
+<!-- Price Range Js -->
+<script src="${pageContext.request.contextPath}/template/assets/js/ion.rangeSlider.min.js"></script>
+
 <!-- Quantity js -->
-<script src="${pageContext.request.contextPath}/template/assets/js/quantity.js"></script>
+<script src="${pageContext.request.contextPath}/template/assets/js/quantity-2.js"></script>
+
+<!-- sidebar open js -->
+<script src="${pageContext.request.contextPath}/template/assets/js/filter-sidebar.js"></script>
+
+<!-- WOW js -->
+<script src="${pageContext.request.contextPath}/template/assets/js/wow.min.js"></script>
+<script src="${pageContext.request.contextPath}/template/assets/js/custom-wow.js"></script>
 
 <!-- script js -->
 <script src="${pageContext.request.contextPath}/template/assets/js/script.js"></script>

@@ -6,17 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order_item {
-    private Order order;
     private int item_id;
     private Product product;
     private int quantity;
     private double price;
     private double discount;
-    private String feedback;
-    private String feedback_date;
-    private double start_rating;
+
+    private Order order;
+    private String feedback  = null;
+    private String feedback_date = null;
+    private double start_rating = 0;
+
+
 }

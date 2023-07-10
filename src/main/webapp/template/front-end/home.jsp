@@ -8,6 +8,7 @@
 <%@ page import="Model.Customer" %>
 <%@ page import="java.util.List" %>
 <%@ page import="Dal.DAOProduct" %>
+<%@ page import="Model.Order_item" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -107,18 +108,16 @@
 
                                 </button>
                             </div>
-                            <form action="search" method="get">
+
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input name="searchname" type="text" class="form-control"
-                                           placeholder="Tìm kiếm..."
+                                    <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn" type="submit" id="button-addon2">
+                                    <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
                                     </button>
                                 </div>
                             </div>
-                            </form>
                         </div>
 
                         <div class="rightside-box">
@@ -149,8 +148,8 @@
                                             <i data-feather="phone-call"></i>
                                         </div>
                                         <div class="delivery-detail">
-                                            <h6>24/7 Delivery</h6>
-                                            <h5>+91 888 104 2340</h5>
+                                            <h6>Giao hàng 24/7</h6>
+                                            <h5>+84 373801816</h5>
                                         </div>
                                     </a>
                                 </li>
@@ -170,49 +169,49 @@
 
                                         <div class="onhover-div">
                                             <ul class="cart-list">
+                                                <%
+                                                    Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                                    if(order_itemVector != null){
+                                                        for(Order_item item : order_itemVector){
+
+
+                                                %>
+
                                                 <li class="product-box-contain">
                                                     <div class="drop-cart">
                                                         <a href="productdetail" class="drop-image">
-                                                            <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
+                                                            <img src="<%=item.getProduct().getImage()%>"
                                                                  class="blur-up lazyload" alt="">
                                                         </a>
 
                                                         <div class="drop-contain">
                                                             <a href="productdetail">
-                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
+                                                                <h5><%=item.getProduct().getProduct_name()%></h5>
                                                             </a>
-                                                            <h6><span>1 x</span> $80.58</h6>
+                                                            <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
                                                             <button class="close-button close_button">
                                                                 <i class="fa-solid fa-xmark"></i>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </li>
-
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="productdetail" class="drop-image">
-                                                            <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                                                 class="blur-up lazyload" alt="">
-                                                        </a>
-
-                                                        <div class="drop-contain">
-                                                            <a href="productdetail">
-                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                </h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $25.68</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
                                             </ul>
 
                                             <div class="price-box">
                                                 <h5>Tổng :</h5>
-                                                <h4 class="theme-color fw-bold">50.000 VND</h4>
+                                                <%
+                                                    if(session.getAttribute("totalMoney") != null){
+                                                %>
+                                                <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
+                                                <%
+                                                }else {
+                                                %>
+                                                <h4 class="theme-color fw-bold">0</h4>
+                                                <%}%>
                                             </div>
 
                                             <div class="button-group">
@@ -226,6 +225,7 @@
                                         <div class="delivery-icon">
                                             <i data-feather="user"></i>
                                         </div>
+
                                         <div class="delivery-detail">
                                             <%
                                                 Customer cus = (Customer) session.getAttribute("customer");
@@ -449,11 +449,11 @@
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                      aria-labelledby="headingOne">
                                     <div class="accordion-body">
-<%--                                        <div class="form-floating theme-form-floating-2 search-box">--%>
-<%--                                            <input type="search" class="form-control" id="search"--%>
-<%--                                                   placeholder="Search ..">--%>
-<%--                                            <label for="search">Tìm...</label>--%>
-<%--                                        </div>--%>
+                                        <%--                                        <div class="form-floating theme-form-floating-2 search-box">--%>
+                                        <%--                                            <input type="search" class="form-control" id="search"--%>
+                                        <%--                                                   placeholder="Search ..">--%>
+                                        <%--                                            <label for="search">Tìm...</label>--%>
+                                        <%--                                        </div>--%>
 
                                         <ul class="category-list custom-padding custom-height">
                                             <form class="w-100 h-100" id="formCategories"
@@ -686,25 +686,9 @@
                                         <del>$15.15</del>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
-                                        <button class="btn btn-add-cart addcart-button">Add
-                                            <span class="add-icon bg-light-gray">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </span>
+                                        <button class="btn btn-add-cart addcart-button"
+                                                onclick="location.href = 'cart?service=addToCart&pro_id=<%=temp.getProduct_id()%>';">Add
                                         </button>
-                                        <div class="cart_qty qty-box">
-                                            <div class="input-group bg-white">
-                                                <button type="button" class="qty-left-minus bg-gray"
-                                                        data-type="minus" data-field="">
-                                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                                </button>
-                                                <input class="form-control input-number qty-input" type="text"
-                                                       name="quantity" value="0">
-                                                <button type="button" class="qty-right-plus bg-gray"
-                                                        data-type="plus" data-field="">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,6 @@
 <%@ page import="java.util.Vector" %>
 <%@ page import="Model.Order_item" %>
+<%@ page import="Model.Customer" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -59,7 +60,6 @@
     </div>
     <!-- Loader End -->
 
-    <!-- Header Start -->
     <header class="pb-md-4 pb-0">
 
 
@@ -91,7 +91,7 @@
 
                                 <div class="search-box">
                                     <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="Tìm kiếm..."
+                                        <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
                                                aria-label="Recipient's username" aria-describedby="button-addon2">
                                         <button class="btn" type="button" id="button-addon2">
                                             <i data-feather="search"></i>
@@ -122,7 +122,17 @@
                                             </div>
                                         </div>
                                     </li>
-
+                                    <li class="right-side">
+                                        <a href="contact-us.html" class="delivery-login-box">
+                                            <div class="delivery-icon">
+                                                <i data-feather="phone-call"></i>
+                                            </div>
+                                            <div class="delivery-detail">
+                                                <h6>Giao hàng 24/7</h6>
+                                                <h5>+84 373801816</h5>
+                                            </div>
+                                        </a>
+                                    </li>
                                     <li class="right-side">
                                         <a href="wishlist" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="heart"></i>
@@ -139,55 +149,53 @@
 
                                             <div class="onhover-div">
                                                 <ul class="cart-list">
+                                                    <%
+                                                        Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                                        if(order_itemVector != null){
+                                                            for(Order_item item : order_itemVector){
+
+
+                                                    %>
+
                                                     <li class="product-box-contain">
                                                         <div class="drop-cart">
                                                             <a href="productdetail" class="drop-image">
-                                                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
+                                                                <img src="<%=item.getProduct().getImage()%>"
                                                                      class="blur-up lazyload" alt="">
                                                             </a>
 
                                                             <div class="drop-contain">
                                                                 <a href="productdetail">
-                                                                    <h5>Fantasy Crunchy Choco Chip Cookies</h5>
+                                                                    <h5><%=item.getProduct().getProduct_name()%></h5>
                                                                 </a>
-                                                                <h6><span>1 x</span> $80.58</h6>
+                                                                <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
                                                                 <button class="close-button close_button">
                                                                     <i class="fa-solid fa-xmark"></i>
                                                                 </button>
                                                             </div>
                                                         </div>
                                                     </li>
-
-                                                    <li class="product-box-contain">
-                                                        <div class="drop-cart">
-                                                            <a href="productdetail" class="drop-image">
-                                                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                                                     class="blur-up lazyload" alt="">
-                                                            </a>
-
-                                                            <div class="drop-contain">
-                                                                <a href="productdetail">
-                                                                    <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                    </h5>
-                                                                </a>
-                                                                <h6><span>1 x</span> $25.68</h6>
-                                                                <button class="close-button close_button">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </ul>
 
                                                 <div class="price-box">
-                                                    <h5>Total :</h5>
-                                                    <h4 class="theme-color fw-bold">$106.58</h4>
+                                                    <h5>Tổng :</h5>
+                                                    <%
+                                                        if(session.getAttribute("totalMoney") != null){
+                                                    %>
+                                                    <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
+                                                    <%
+                                                    }else {
+                                                    %>
+                                                    <h4 class="theme-color fw-bold">0</h4>
+                                                    <%}%>
                                                 </div>
 
                                                 <div class="button-group">
                                                     <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
-                                                    <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Thanh toán</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -197,15 +205,24 @@
                                             <div class="delivery-icon">
                                                 <i data-feather="user"></i>
                                             </div>
+
                                             <div class="delivery-detail">
-                                                <h6>Hello,</h6>
-                                                <h5>My Account</h5>
+                                                <%
+                                                    Customer cus = (Customer) session.getAttribute("customer");
+                                                    if(cus != null)
+                                                    {
+                                                %>
+                                                <h5><%=cus.getName()%></h5>
+                                                <%
+                                                    }
+                                                %>
                                             </div>
+
                                         </div>
 
                                         <div class="onhover-div onhover-div-login">
                                             <ul class="user-box-name">
-                                                <c:if test="${acc == null}">
+                                                <c:if test="${customer == null}">
                                                     <li class="product-box-contain">
                                                         <i></i>
                                                         <a href="login">Đăng nhập</a>
@@ -221,11 +238,13 @@
                                                         <a href="forgotpass">Quên mật khẩu</a>
                                                     </li>
                                                 </c:if>
-                                                <c:if test="${acc != null}">
+                                                <c:if test="${customer != null}">
+                                                    <li class="product-box-contain">
+                                                        <a href="customer">Thông tin cá nhân</a>
+                                                    </li>
                                                     <li class="product-box-contain">
                                                         <a href="changepass">Đổi mật khẩu</a>
                                                     </li>
-
                                                     <li class="product-box-contain">
                                                         <a href="logout">Đăng xuất</a>
                                                     </li>
@@ -446,6 +465,9 @@
                     <%}else {%>
 
                             <h3>Không có sản phẩm nào trong giỏ hàng </h3>
+                            <button onclick="location.href = 'home';"
+                                    class="btn btn-light shopping-button text-dark">
+                                <i class="fa-solid fa-arrow-left-long"></i>Mua hàng</button>
                             <%}%>
                         </div>
                     </div>
@@ -466,26 +488,40 @@
                                     <button class="btn-apply">Apply</button>
                                 </div>
                             </div> -->
-                            <ul>
-                                <li>
-                                    <h4>Số tiền cần trả</h4>
-                                    <h4 class="price"> <%=session.getAttribute("totalMoney")%></h4>
-                                </li>
 
-<%--                                <li>--%>
-<%--                                    <h4>Coupon Discount</h4>--%>
-<%--                                    <h4 class="price">(-) 0.00</h4>--%>
-<%--                                </li>--%>
 
-                            </ul>
+                                    <%
+                                        if(session.getAttribute("totalMoney")!= null){
+                                    %>
+                                    <ul>
+                                        <li>
+                                            <h4>Số tiền cần trả</h4>
+                                            <h4 class="price"> <%=session.getAttribute("totalMoney")%>$</h4>
+                                        </li>
+                                    </ul>
+                                    <ul class="summery-total">
+                                        <li class="list-total border-top-0">
+                                            <h4>Tổng (VND)</h4>
+                                            <h4 class="price theme-color"><%=session.getAttribute("totalMoney")%>$</h4>
+                                        </li>
+                                    </ul>
+                                    <%
+                                        }else {
+                                    %>
+                                    <h4 class="price"> 0</h4>
+                                    <ul class="summery-total">
+                                        <li class="list-total border-top-0">
+                                            <h4>Tổng (VND)</h4>
+                                            <h4 class="price theme-color">0</h4>
+                                        </li>
+                                    </ul>
+                                    <%
+                                        }
+                                    %>
+
                         </div>
 
-                        <ul class="summery-total">
-                            <li class="list-total border-top-0">
-                                <h4>Tổng (VND)</h4>
-                                <h4 class="price theme-color"><%=session.getAttribute("totalMoney")%></h4>
-                            </li>
-                        </ul>
+
 
                         <div class="button-group cart-button">
                             <ul>
@@ -629,9 +665,11 @@
                                 </li>
 
                                 <li>
-                                    <a href="wishlist" class="text-content"> Wishlist</a>
+                                    <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
                                 </li>
-
+                                <li>
+                                    <a href="faq.html" class="text-content">FAQ</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -643,6 +681,15 @@
 
                         <div class="footer-contact">
                             <ul>
+                                <li>
+                                    <div class="footer-number">
+                                        <i data-feather="phone"></i>
+                                        <div class="contact-number">
+                                            <h6 class="text-content">Hotline 24/7 :</h6>
+                                            <h5>+84 376597711</h5>
+                                        </div>
+                                    </div>
+                                </li>
 
                                 <li>
                                     <div class="footer-number">

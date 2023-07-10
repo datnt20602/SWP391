@@ -10,6 +10,9 @@
 <%@ page import="Model.Product" %>
 <%@ page import="Model.Customer" %>
 <%@ page import="Model.Address" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="Dal.DAOProduct" %>
+<%@ page import="Dal.DAOCustomer" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -69,236 +72,242 @@
   </div>
   <!-- Loader End -->
 
-  <!-- Header Start -->
-  <header class="pb-md-4 pb-0">
+<header class="pb-md-4 pb-0">
 
 
-    <div class="top-nav top-header sticky-header">
-      <div class="container-fluid-lg">
-        <div class="row">
-          <div class="col-12">
-            <div class="navbar-top">
-              <button class="navbar-toggler d-xl-none d-inline navbar-menu-button" type="button"
-                      data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
-                                  <span class="navbar-toggler-icon">
-                                      <i class="fa-solid fa-bars"></i>
-                                  </span>
-              </button>
-              <a href="home" class="web-logo nav-logo">
-                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
-                     class="img-fluid blur-up lazyload" alt="">
-              </a>
-
-              <div class="middle-box">
-                <div class="location-box">
-                  <button class="btn location-button" data-bs-toggle="modal"
-                          data-bs-target="#locationModal">
-                                          <span class="location-arrow">
-                                              <i data-feather="map-pin"></i>
-                                          </span>
-                    <span class="locat-name">Vị trí của bạn</span>
-                    <i class="fa-solid fa-angle-down"></i>
-                  </button>
-                </div>
-
-                <div class="search-box">
-                  <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Tìm kiếm..."
-                           aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn" type="button" id="button-addon2">
-                      <i data-feather="search"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="rightside-box">
-                <div class="search-full">
-                  <div class="input-group">
-                                          <span class="input-group-text">
-                                              <i data-feather="search" class="font-light"></i>
-                                          </span>
-                    <input type="text" class="form-control search-type" placeholder="Search here..">
-                    <span class="input-group-text close-search">
-                                              <i data-feather="x" class="font-light"></i>
-                                          </span>
-                  </div>
-                </div>
-                <ul class="right-side-menu">
-                  <li class="right-side">
-                    <div class="delivery-login-box">
-                      <div class="delivery-icon">
-                        <div class="search-box">
-                          <i data-feather="search"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="right-side">
-                    <a href="contact-us.html" class="delivery-login-box">
-                      <div class="delivery-icon">
-                        <i data-feather="phone-call"></i>
-                      </div>
-                      <div class="delivery-detail">
-                        <h6>24/7 Delivery</h6>
-                        <h5>+91 888 104 2340</h5>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="right-side">
-                    <a href="wishlist" class="btn p-0 position-relative header-wishlist">
-                      <i data-feather="heart"></i>
-                    </a>
-                  </li>
-                  <li class="right-side">
-                    <div class="onhover-dropdown header-badge">
-                      <button type="button" class="btn p-0 position-relative header-wishlist">
-                        <i data-feather="shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge">2
-                                                      <span class="visually-hidden">unread messages</span>
-                                                  </span>
-                      </button>
-
-                      <div class="onhover-div">
-                        <ul class="cart-list">
-                          <li class="product-box-contain">
-                            <div class="drop-cart">
-                              <a href="productdetail" class="drop-image">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
-                                     class="blur-up lazyload" alt="">
-                              </a>
-
-                              <div class="drop-contain">
-                                <a href="productdetail">
-                                  <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                </a>
-                                <h6><span>1 x</span> $80.58</h6>
-                                <button class="close-button close_button">
-                                  <i class="fa-solid fa-xmark"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </li>
-
-                          <li class="product-box-contain">
-                            <div class="drop-cart">
-                              <a href="productdetail" class="drop-image">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                     class="blur-up lazyload" alt="">
-                              </a>
-
-                              <div class="drop-contain">
-                                <a href="productdetail">
-                                  <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                  </h5>
-                                </a>
-                                <h6><span>1 x</span> $25.68</h6>
-                                <button class="close-button close_button">
-                                  <i class="fa-solid fa-xmark"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-
-                        <div class="price-box">
-                          <h5>Total :</h5>
-                          <h4 class="theme-color fw-bold">$106.58</h4>
-                        </div>
-
-                        <div class="button-group">
-                          <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
-                          <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                      text-white">Thanh toán</a>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="right-side onhover-dropdown">
-                    <div class="delivery-login-box">
-                      <div class="delivery-icon">
-                        <i data-feather="user"></i>
-                      </div>
-                      <div class="delivery-detail">
-                        <h6>Hello,</h6>
-                        <h5>My Account</h5>
-                      </div>
-                    </div>
-
-                    <div class="onhover-div onhover-div-login">
-                      <ul class="user-box-name">
-                        <c:if test="${acc == null}">
-                          <li class="product-box-contain">
-                            <i></i>
-                            <a href="login">Đăng nhập</a>
-                          </li>
-
-                          <li class="product-box-contain">
-                            <a href="signup">Đăng kí</a>
-                          </li>
-
-
-
-                          <li class="product-box-contain">
-                            <a href="forgotpass">Quên mật khẩu</a>
-                          </li>
-                        </c:if>
-                        <c:if test="${acc != null}">
-                          <li class="product-box-contain">
-                            <a href="changepass">Đổi mật khẩu</a>
-                          </li>
-
-                          <li class="product-box-contain">
-                            <a href="logout">Đăng xuất</a>
-                          </li>
-                        </c:if>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="top-nav top-header sticky-header">
     <div class="container-fluid-lg">
       <div class="row">
         <div class="col-12">
-          <div class="header-nav">
+          <div class="navbar-top">
+            <button class="navbar-toggler d-xl-none d-inline navbar-menu-button" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
+                                <span class="navbar-toggler-icon">
+                                    <i class="fa-solid fa-bars"></i>
+                                </span>
+            </button>
+            <a href="home" class="web-logo nav-logo">
+              <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
+                   class="img-fluid blur-up lazyload" alt="">
+            </a>
 
+            <div class="middle-box">
+              <div class="location-box">
+                <button class="btn location-button" data-bs-toggle=""
+                        data-bs-target="#locationModal">
 
-            <div class="header-nav-middle">
-              <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
-                <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
-                  <div class="offcanvas-header navbar-shadow">
-                    <h5>Menu</h5>
-                    <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
-                  </div>
-                  <div class="offcanvas-body">
-                    <ul class="navbar-nav">
+                  <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
 
+                </button>
+              </div>
 
-                    </ul>
-                  </div>
+              <div class="search-box">
+                <div class="input-group">
+                  <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
+                         aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <button class="btn" type="button" id="button-addon2">
+                    <i data-feather="search"></i>
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div class="header-nav-right">
-              <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
-                <i data-feather="zap"></i>
-                <span>Giảm giá hôm nay</span>
-              </button>
+            <div class="rightside-box">
+              <div class="search-full">
+                <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="search" class="font-light"></i>
+                                        </span>
+                  <input type="text" class="form-control search-type" placeholder="Search here..">
+                  <span class="input-group-text close-search">
+                                            <i data-feather="x" class="font-light"></i>
+                                        </span>
+                </div>
+              </div>
+              <ul class="right-side-menu">
+                <li class="right-side">
+                  <div class="delivery-login-box">
+                    <div class="delivery-icon">
+                      <div class="search-box">
+                        <i data-feather="search"></i>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="right-side">
+                  <a href="contact-us.html" class="delivery-login-box">
+                    <div class="delivery-icon">
+                      <i data-feather="phone-call"></i>
+                    </div>
+                    <div class="delivery-detail">
+                      <h6>Giao hàng 24/7</h6>
+                      <h5>+84 373801816</h5>
+                    </div>
+                  </a>
+                </li>
+                <li class="right-side">
+                  <a href="wishlist" class="btn p-0 position-relative header-wishlist">
+                    <i data-feather="heart"></i>
+                  </a>
+                </li>
+                <li class="right-side">
+                  <div class="onhover-dropdown header-badge">
+                    <button type="button" class="btn p-0 position-relative header-wishlist">
+                      <i data-feather="shopping-cart"></i>
+                      <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                                    <span class="visually-hidden">unread messages</span>
+                                                </span>
+                    </button>
+
+                    <div class="onhover-div">
+                      <ul class="cart-list">
+                        <%
+                          Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                          if(order_itemVector != null){
+                            for(Order_item item : order_itemVector){
+
+
+                        %>
+
+                        <li class="product-box-contain">
+                          <div class="drop-cart">
+                            <a href="productdetail" class="drop-image">
+                              <img src="<%=item.getProduct().getImage()%>"
+                                   class="blur-up lazyload" alt="">
+                            </a>
+
+                            <div class="drop-contain">
+                              <a href="productdetail">
+                                <h5><%=item.getProduct().getProduct_name()%></h5>
+                              </a>
+                              <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
+                              <button class="close-button close_button">
+                                <i class="fa-solid fa-xmark"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </li>
+                        <%
+                            }
+                          }
+                        %>
+                      </ul>
+
+                      <div class="price-box">
+                        <h5>Tổng :</h5>
+                        <%
+                          if(session.getAttribute("totalMoney") != null){
+                        %>
+                        <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
+                        <%
+                        }else {
+                        %>
+                        <h4 class="theme-color fw-bold">0</h4>
+                        <%}%>
+                      </div>
+
+                      <div class="button-group">
+                        <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="right-side onhover-dropdown">
+                  <div class="delivery-login-box">
+                    <div class="delivery-icon">
+                      <i data-feather="user"></i>
+                    </div>
+
+                    <div class="delivery-detail">
+                      <%
+                        Customer cus = (Customer) session.getAttribute("customer");
+                        if(cus != null)
+                        {
+                      %>
+                      <h5><%=cus.getName()%></h5>
+                      <%
+                        }
+                      %>
+                    </div>
+
+                  </div>
+
+                  <div class="onhover-div onhover-div-login">
+                    <ul class="user-box-name">
+                      <c:if test="${customer == null}">
+                        <li class="product-box-contain">
+                          <i></i>
+                          <a href="login">Đăng nhập</a>
+                        </li>
+
+                        <li class="product-box-contain">
+                          <a href="signup">Đăng kí</a>
+                        </li>
+
+
+
+                        <li class="product-box-contain">
+                          <a href="forgotpass">Quên mật khẩu</a>
+                        </li>
+                      </c:if>
+                      <c:if test="${customer != null}">
+                        <li class="product-box-contain">
+                          <a href="customer">Thông tin cá nhân</a>
+                        </li>
+                        <li class="product-box-contain">
+                          <a href="changepass">Đổi mật khẩu</a>
+                        </li>
+                        <li class="product-box-contain">
+                          <a href="logout">Đăng xuất</a>
+                        </li>
+                      </c:if>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </header>
-  <!-- Header End -->
+  </div>
+
+  <div class="container-fluid-lg">
+    <div class="row">
+      <div class="col-12">
+        <div class="header-nav">
+
+
+          <div class="header-nav-middle">
+            <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+              <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
+                <div class="offcanvas-header navbar-shadow">
+                  <h5>Menu</h5>
+                  <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
+                          aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav">
+
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="header-nav-right">
+            <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
+              <i data-feather="zap"></i>
+              <span>Giảm giá hôm nay</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Header End -->
 
   <!-- mobile fix menu start -->
   <div class="mobile-menu d-md-none d-block mobile-cart">
@@ -370,14 +379,14 @@
             </div>
             <div class="profile-box">
               <div class="cover-image">
-                <img src="../assets/images/inner-page/cover-img.jpg" class="img-fluid blur-up lazyload"
+                <img src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/358098426_1975977059444119_5277271698372852794_n.jpg?_nc_cat=108&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=jJJz3TJS9mQAX8ib3J5&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDjmXKJMzeH3z1CmpxjFqQDUYx6a7l01kmWgW5Ivl3RAQ&oe=64B0897D" class="img-fluid blur-up lazyload"
                      alt="">
               </div>
 
               <div class="profile-contain">
                 <div class="profile-image">
                   <div class="position-relative">
-                    <img src="../assets/images/inner-page/user/1.jpg"
+                    <img src="https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-6/358477420_1975978956110596_8333290528906963940_n.jpg?stp=cp6_dst-jpg&_nc_cat=100&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=JSakV887q_4AX-b-sFE&_nc_ht=scontent.fhan5-11.fna&oh=00_AfAkcLRg4BO3a3r6DtSyG-2vhEPCEqyG26bAZLfXIeLzPg&oe=64B07E3E"
                          class="blur-up lazyload update_img" alt="">
                     <div class="cover-icon">
                       <i class="fa-solid fa-pen">
@@ -430,13 +439,6 @@
                         aria-controls="pills-profile" aria-selected="false"><i data-feather="user"></i>
                   Profile</button>
               </li>
-
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-security" type="button" role="tab"
-                        aria-controls="pills-security" aria-selected="false"><i data-feather="shield"></i>
-                  Privacy</button>
-              </li>
             </ul>
           </div>
         </div>
@@ -452,10 +454,10 @@
                   <div class="title">
                     <h2>My Dashboard</h2>
                     <span class="title-leaf">
-                                              <svg class="icon-width bg-gray">
-                                                  <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
-                                              </svg>
-                                          </span>
+                        <svg class="icon-width bg-gray">
+                            <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
+                        </svg>
+                    </span>
                   </div>
 
                   <div class="dashboard-user-name">
@@ -466,25 +468,17 @@
                     <div class="row g-sm-4 g-3">
                       <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                         <div class="totle-contain">
-                          <img src="../assets/images/svg/order.svg"
-                               class="img-1 blur-up lazyload" alt="">
-                          <img src="../assets/images/svg/order.svg" class="blur-up lazyload"
-                               alt="">
                           <div class="totle-detail">
-                            <h5>Total Order</h5>
-                            <h3>3658</h3>
+                            <h5>Tổng ca sản phẩm đã đặt</h5>
+                            <h3><%= request.getAttribute("totalOrder")%></h3>
                           </div>
                         </div>
                       </div>
 
                       <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                         <div class="totle-contain">
-                          <img src="../assets/images/svg/pending.svg"
-                               class="img-1 blur-up lazyload" alt="">
-                          <img src="../assets/images/svg/pending.svg" class="blur-up lazyload"
-                               alt="">
                           <div class="totle-detail">
-                            <h5>Total Pending Order</h5>
+                            <h5>Số sản phẩm đã nhận được</h5>
                             <h3>254</h3>
                           </div>
                         </div>
@@ -492,32 +486,24 @@
 
                       <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                         <div class="totle-contain">
-                          <img src="../assets/images/svg/wishlist.svg"
-                               class="img-1 blur-up lazyload" alt="">
-                          <img src="../assets/images/svg/wishlist.svg"
-                               class="blur-up lazyload" alt="">
                           <div class="totle-detail">
-                            <h5>Total Wishlist</h5>
-                            <h3></h3>
+                            <h5>Số sản phẩm ưa thích</h5>
+                            <h3><%=request.getAttribute("totalWishList")%></h3>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="dashboard-title">
-                    <h3>Account Information</h3>
-                  </div>
 
                   <div class="row g-4">
                     <div class="col-xxl-6">
                       <div class="dashboard-contant-title">
-                        <h4>Contact Information</h4>
+                        <h4>Thông tin liên lạc </h4>
                       </div>
                       <div class="dashboard-detail">
                         <h6 class="text-content"><%=customer.getName()%></h6>
                         <h6 class="text-content"><%=customer.getEmail()%></h6>
-                        <a href="changepass" style="color: lawngreen">Change Password</a>
                       </div>
                     </div>
                   </div>
@@ -586,7 +572,7 @@
                    aria-labelledby="pills-order-tab">
                 <div class="dashboard-order">
                   <div class="title">
-                    <h2>My Orders History</h2>
+                    <h2>Lịch sử mua hàng</h2>
                     <span class="title-leaf title-leaf-gray">
                                               <svg class="icon-width bg-gray">
                                                   <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
@@ -594,7 +580,15 @@
                                           </span>
                   </div>
 
+
                   <div class="order-contain">
+                    <%
+                      ResultSet rs = (ResultSet) request.getAttribute("order_item");
+                      if(rs != null){
+                        while (rs.next()){
+                          DAOProduct daoProduct = new DAOProduct();
+                          Product product = daoProduct.getProductByID(rs.getInt("product_id"));
+                    %>
                     <div class="order-box dashboard-bg-box">
                       <div class="order-container">
                         <div class="order-icon">
@@ -602,307 +596,65 @@
                         </div>
 
                         <div class="order-detail">
-                          <h4>Delivere <span>Panding</span></h4>
-                          <h6 class="text-content">Gouda parmesan caerphilly mozzarella
-                            cottage cheese cauliflower cheese taleggio gouda.</h6>
+                          <%
+                            int order_status = rs.getInt("order_status");
+                            if(order_status == 1){
+                          %>
+                          <h4>Đơn Hàng <span>Đang chuẩn bị đơn hàng</span></h4>
+                          <%
+                            }
+                            if(order_status == 2){
+                          %>
+                          <h4>Đơn Hàng <span>Đang ship hàng </span></h4>
+                          <%
+                            }
+                            if(order_status == 3){
+                          %>
+                          <h4>Đơn Hàng <span>Đã giao hàng</span></h4>
+                          <%}%>
                         </div>
                       </div>
 
                       <div class="product-order-detail">
                         <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="../assets/images/vegetable/product/1.png"
+                          <img src="<%=product.getImage()%>" style="height: 100px;width: 100px"
                                class="blur-up lazyload" alt="">
                         </a>
 
                         <div class="order-wrap">
                           <a href="product-left-thumbnail.html">
-                            <h3>Fantasy Crunchy Choco Chip Cookies</h3>
+                            <h3><%=product.getProduct_name()%></h3>
                           </a>
-                          <p class="text-content">Cheddar dolcelatte gouda. Macaroni cheese
-                            cheese strings feta halloumi cottage cheese jarlsberg cheese
-                            triangles say cheese.</p>
+                          <p class="text-content"><%=product.getDescribe()%></p>
                           <ul class="product-size">
                             <li>
                               <div class="size-box">
-                                <h6 class="text-content">Price : </h6>
-                                <h5>$20.68</h5>
+                                <h6 class="text-content">Giá : </h6>
+                                <h5>$<%=rs.getDouble("price")%></h5>
                               </div>
                             </li>
 
                             <li>
                               <div class="size-box">
-                                <h6 class="text-content">Rate : </h6>
-                                <div class="product-rating ms-2">
-                                  <ul class="rating">
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star"></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Sold By : </h6>
-                                <h5>Fresho</h5>
+                                <h6 class="text-content">Ngày mua : </h6>
+                                <h5><%=rs.getString("order_date")%></h5>
                               </div>
                             </li>
 
                             <li>
                               <div class="size-box">
                                 <h6 class="text-content">Quantity : </h6>
-                                <h5>250 G</h5>
+                                <h5><%=rs.getInt("quantity")%></h5>
                               </div>
                             </li>
                           </ul>
                         </div>
                       </div>
                     </div>
-
-                    <div class="order-box dashboard-bg-box">
-                      <div class="order-container">
-                        <div class="order-icon">
-                          <i data-feather="box"></i>
-                        </div>
-
-                        <div class="order-detail">
-                          <h4>Delivered <span class="success-bg">Success</span></h4>
-                          <h6 class="text-content">Cheese on toast cheesy grin cheesy grin
-                            cottage cheese caerphilly everyone loves cottage cheese the big
-                            cheese.</h6>
-                        </div>
-                      </div>
-
-                      <div class="product-order-detail">
-                        <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="../assets/images/vegetable/product/2.png" alt=""
-                               class="blur-up lazyload">
-                        </a>
-
-                        <div class="order-wrap">
-                          <a href="product-left-thumbnail.html">
-                            <h3>Cold Brew Coffee Instant Coffee 50 g</h3>
-                          </a>
-                          <p class="text-content">Pecorino paneer port-salut when the cheese
-                            comes out everybody's happy red leicester mascarpone blue
-                            castello cauliflower cheese.</p>
-                          <ul class="product-size">
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Price : </h6>
-                                <h5>$20.68</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Rate : </h6>
-                                <div class="product-rating ms-2">
-                                  <ul class="rating">
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star"></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Sold By : </h6>
-                                <h5>Fresho</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Quantity : </h6>
-                                <h5>250 G</h5>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="order-box dashboard-bg-box">
-                      <div class="order-container">
-                        <div class="order-icon">
-                          <i data-feather="box"></i>
-                        </div>
-
-                        <div class="order-detail">
-                          <h4>Delivere <span>Panding</span></h4>
-                          <h6 class="text-content">Cheesy grin boursin cheesy grin cheesecake
-                            blue castello cream cheese lancashire melted cheese.</h6>
-                        </div>
-                      </div>
-
-                      <div class="product-order-detail">
-                        <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="../assets/images/vegetable/product/3.png" alt=""
-                               class="blur-up lazyload">
-                        </a>
-
-                        <div class="order-wrap">
-                          <a href="product-left-thumbnail.html">
-                            <h3>Peanut Butter Bite Premium Butter Cookies 600 g</h3>
-                          </a>
-                          <p class="text-content">Cow bavarian bergkase mascarpone paneer
-                            squirty cheese fromage frais cheese slices when the cheese comes
-                            out everybody's happy.</p>
-                          <ul class="product-size">
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Price : </h6>
-                                <h5>$20.68</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Rate : </h6>
-                                <div class="product-rating ms-2">
-                                  <ul class="rating">
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star"></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Sold By : </h6>
-                                <h5>Fresho</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Quantity : </h6>
-                                <h5>250 G</h5>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="order-box dashboard-bg-box">
-                      <div class="order-container">
-                        <div class="order-icon">
-                          <i data-feather="box"></i>
-                        </div>
-
-                        <div class="order-detail">
-                          <h4>Delivered <span class="success-bg">Success</span></h4>
-                          <h6 class="text-content">Caerphilly port-salut parmesan pecorino
-                            croque monsieur dolcelatte melted cheese cheese and wine.</h6>
-                        </div>
-                      </div>
-
-                      <div class="product-order-detail">
-                        <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="../assets/images/vegetable/product/4.png"
-                               class="blur-up lazyload" alt="">
-                        </a>
-
-                        <div class="order-wrap">
-                          <a href="product-left-thumbnail.html">
-                            <h3>SnackAmor Combo Pack of Jowar Stick and Jowar Chips</h3>
-                          </a>
-                          <p class="text-content">The big cheese cream cheese pepper jack
-                            cheese slices danish fontina everyone loves cheese on toast
-                            bavarian bergkase.</p>
-                          <ul class="product-size">
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Price : </h6>
-                                <h5>$20.68</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Rate : </h6>
-                                <div class="product-rating ms-2">
-                                  <ul class="rating">
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                      <i data-feather="star"></i>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Sold By : </h6>
-                                <h5>Fresho</h5>
-                              </div>
-                            </li>
-
-                            <li>
-                              <div class="size-box">
-                                <h6 class="text-content">Quantity : </h6>
-                                <h5>250 G</h5>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                    <%
+                        }
+                      }
+                    %>
                   </div>
                 </div>
               </div>
@@ -912,7 +664,7 @@
                 <div class="dashboard-address">
                   <div class="title title-flex">
                     <div>
-                      <h2>My Address Book</h2>
+                      <h2>Danh Sách Địa Chỉ</h2>
                       <span class="title-leaf">
                         <svg class="icon-width bg-gray">
                             <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
@@ -922,14 +674,19 @@
 
                     <button class="btn theme-bg-color text-white btn-sm fw-bold mt-lg-0 mt-3"
                             data-bs-toggle="modal" data-bs-target="#add-address"><i data-feather="plus"
-                                                                                    class="me-2"></i> Add New Address</button>
+                                                                                    class="me-2"></i> Thêm địa chỉ mới</button>
                   </div>
 
                   <div class="row g-sm-4 g-3">
                 <%
+
                   Vector<Address> addressVector = (Vector<Address>) request.getAttribute("address");
+                  Address adr = addressVector.get(0);
                   if(addressVector != null){
                     for(Address item : addressVector){
+                      if(item.getTen_goi_nho().startsWith("N")){
+                        adr = item;
+                      }
                 %>
                     <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
                       <div class="address-box">
@@ -975,10 +732,10 @@
                         <div class="button-group">
                           <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
                                   data-bs-target="#editProfile"><i data-feather="edit"></i>
-                            Edit</button>
+                            Sửa</button>
                           <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
                                   data-bs-target="#removeProfile"><i data-feather="trash-2"></i>
-                            Remove</button>
+                            Xóa</button>
                         </div>
                       </div>
                     </div>
@@ -1001,33 +758,17 @@
                                               </svg>
                                           </span>
                   </div>
-
+                  <%
+                    DAOCustomer daoCustomer = new DAOCustomer();
+                    Customer customer1 = daoCustomer.getCustomerByID(cus.getCustomer_id());
+                  %>
                   <div class="profile-detail dashboard-bg-box">
                     <div class="dashboard-title">
-                      <h3>Profile Name</h3>
+                      <h3><%=customer1.getName()%></h3>
                     </div>
                     <div class="profile-name-detail">
                       <div class="d-sm-flex align-items-center d-block">
                         <h3></h3>
-                        <div class="product-rating profile-rating">
-                          <ul class="rating">
-                            <li>
-                              <i data-feather="star" class="fill"></i>
-                            </li>
-                            <li>
-                              <i data-feather="star" class="fill"></i>
-                            </li>
-                            <li>
-                              <i data-feather="star" class="fill"></i>
-                            </li>
-                            <li>
-                              <i data-feather="star"></i>
-                            </li>
-                            <li>
-                              <i data-feather="star"></i>
-                            </li>
-                          </ul>
-                        </div>
                       </div>
 
                       <a href="javascript:void(0)" data-bs-toggle="modal"
@@ -1039,33 +780,30 @@
                         <li>
                           <div class="location-box">
                             <i data-feather="map-pin"></i>
-                            <h6>Downers Grove, IL</h6>
+                            <h6><%=adr.getAddress_name()%></h6>
                           </div>
                         </li>
 
                         <li>
                           <div class="location-box">
                             <i data-feather="mail"></i>
-                            <h6>vicki.pope@gmail.com</h6>
+                            <h6><%=customer1.getEmail()%></h6>
                           </div>
                         </li>
 
                         <li>
                           <div class="location-box">
                             <i data-feather="check-square"></i>
-                            <h6>Licensed for 2 years</h6>
+                            <h6>SĐT : <%=customer1.getPhone()%></h6>
                           </div>
                         </li>
                       </ul>
                     </div>
 
                     <div class="profile-description">
-                      <p>Residences can be classified by and how they are connected to
-                        neighbouring residences and land. Different types of housing tenure can
-                        be used for the same physical type.</p>
+                      <p>Hãy sống theo sách của bạn</p>
                     </div>
                   </div>
-
                   <div class="profile-about dashboard-bg-box">
                     <div class="row">
                       <div class="col-xxl-7">
@@ -1077,23 +815,47 @@
                           <table class="table">
                             <tbody>
                             <tr>
-                              <td>Gender :</td>
-                              <td>Female</td>
+                              <td>Giới tính :</td>
+                              <%
+                                if(customer1.getGender() == 0){
+                              %>
+                              <td>Chưa xác định</td>
+                              <%
+                                }else if(customer1.getGender() == 1){
+                              %>
+                              <td>Nam</td>
+                              <%
+                                }else {
+                              %>
+                              <td>Nữ</td>
+                              <%
+                                }
+                              %>
                             </tr>
                             <tr>
-                              <td>Birthday :</td>
-                              <td>21/05/1997</td>
+                              <td>Sinh Nhật :</td>
+                              <%
+                                if(customer1.getGender() == 0){
+                              %>
+                              <td>Chưa xác định</td>
+                              <%
+                              }else {
+                              %>
+                              <td><%=customer1.getBirthday()%></td>
+                              <%
+                                }
+                              %>
+
                             </tr>
                             <tr>
-                              <td>Phone Number :</td>
+                              <td>SĐT :</td>
                               <td>
-                                <a href="javascript:void(0)"> +91 846 - 547 -
-                                  210</a>
+                                <a href="javascript:void(0)"> <%= customer1.getPhone()%></a>
                               </td>
                             </tr>
                             <tr>
-                              <td>Address :</td>
-                              <td>549 Sulphur Springs Road, Downers, IL</td>
+                              <td>Địa chỉ :</td>
+                              <td><%=adr.getAddress_name()%></td>
                             </tr>
                             </tbody>
                           </table>
@@ -1109,17 +871,17 @@
                             <tr>
                               <td>Email :</td>
                               <td>
-                                <a href="javascript:void(0)">vicki.pope@gmail.com
-                                  <span data-bs-toggle="modal"
-                                        data-bs-target="#editProfile">Edit</span></a>
+                                <a href="javascript:void(0)"><%=customer1.getEmail()%>
                               </td>
                             </tr>
                             <tr>
                               <td>Password :</td>
                               <td>
                                 <a href="javascript:void(0)">●●●●●●
-                                  <span data-bs-toggle="modal"
-                                        data-bs-target="#editProfile">Edit</span></a>
+                                </a>
+                              </td>
+                              <td>
+                                <a href="changepass" style="color: lawngreen"> Đổi mật khẩu</a>
                               </td>
                             </tr>
                             </tbody>
@@ -1134,83 +896,6 @@
                         </div>
                       </div>
                     </div>
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="tab-pane fade show" id="pills-security" role="tabpanel"
-                   aria-labelledby="pills-security-tab">
-                <div class="dashboard-privacy">
-                  <div class="dashboard-bg-box">
-                    <div class="dashboard-title mb-4">
-                      <h3>Privacy</h3>
-                    </div>
-
-                    <div class="privacy-box">
-                      <div class="d-flex align-items-start">
-                        <h6>Allows others to see my profile</h6>
-                        <div class="form-check form-switch switch-radio ms-auto">
-                          <input class="form-check-input" type="checkbox" role="switch"
-                                 id="redio" aria-checked="false">
-                          <label class="form-check-label" for="redio"></label>
-                        </div>
-                      </div>
-
-                      <p class="text-content">all peoples will be able to see my profile</p>
-                    </div>
-
-                    <div class="privacy-box">
-                      <div class="d-flex align-items-start">
-                        <h6>who has save this profile only that people see my profile</h6>
-                        <div class="form-check form-switch switch-radio ms-auto">
-                          <input class="form-check-input" type="checkbox" role="switch"
-                                 id="redio2" aria-checked="false">
-                          <label class="form-check-label" for="redio2"></label>
-                        </div>
-                      </div>
-
-                      <p class="text-content">all peoples will not be able to see my profile</p>
-                    </div>
-
-                    <button class="btn theme-bg-color btn-md fw-bold mt-4 text-white">Save
-                      Changes</button>
-                  </div>
-
-                  <div class="dashboard-bg-box mt-4">
-                    <div class="dashboard-title mb-4">
-                      <h3>Account settings</h3>
-                    </div>
-
-                    <div class="privacy-box">
-                      <div class="d-flex align-items-start">
-                        <h6>Deleting Your Account Will Permanently</h6>
-                        <div class="form-check form-switch switch-radio ms-auto">
-                          <input class="form-check-input" type="checkbox" role="switch"
-                                 id="redio3" aria-checked="false">
-                          <label class="form-check-label" for="redio3"></label>
-                        </div>
-                      </div>
-                      <p class="text-content">Once your account is deleted, you will be logged out
-                        and will be unable to log in back.</p>
-                    </div>
-
-                    <div class="privacy-box">
-                      <div class="d-flex align-items-start">
-                        <h6>Deleting Your Account Will Temporary</h6>
-                        <div class="form-check form-switch switch-radio ms-auto">
-                          <input class="form-check-input" type="checkbox" role="switch"
-                                 id="redio4" aria-checked="false">
-                          <label class="form-check-label" for="redio4"></label>
-                        </div>
-                      </div>
-
-                      <p class="text-content">Once your account is deleted, you will be logged out
-                        and you will be create new account</p>
-                    </div>
-
-                    <button class="btn theme-bg-color btn-md fw-bold mt-4 text-white">Delete My
-                      Account</button>
                   </div>
                 </div>
               </div>
@@ -1635,6 +1320,7 @@
   <!-- Edit Profile Start -->
   <div class="modal fade theme-modal" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel2"
        aria-hidden="true">
+    <form action="updateCustomer" method="post">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
       <div class="modal-content">
         <div class="modal-header">
@@ -1646,178 +1332,60 @@
         <div class="modal-body">
           <div class="row g-4">
             <div class="col-xxl-12">
-              <form>
                 <div class="form-floating theme-form-floating">
-                  <input type="text" class="form-control" id="pname" value="Jack Jennas">
+                  <input type="text" class="form-control" id="pname" name="nameCus" value="<%=customer1.getName()%>">
                   <label for="pname">Full Name</label>
                 </div>
-              </form>
             </div>
 
             <div class="col-xxl-6">
-              <form>
                 <div class="form-floating theme-form-floating">
-                  <input type="email" class="form-control" id="email1" value="vicki.pope@gmail.com">
+                  <input type="email" class="form-control" name="emailCus" id="email1" value="<%=customer1.getEmail()%>">
                   <label for="email1">Email address</label>
                 </div>
-              </form>
             </div>
 
             <div class="col-xxl-6">
-              <form>
                 <div class="form-floating theme-form-floating">
-                  <input class="form-control" type="tel" value="4567891234" name="mobile" id="mobile"
+                  <input class="form-control" type="tel" value="<%=cus.getPhone()%>" name="phone" id="mobile"
                          maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value =
                                               this.value.slice(0, this.maxLength);">
-                  <label for="mobile">Email address</label>
+                  <label for="mobile">Phone</label>
                 </div>
-              </form>
-            </div>
-
-            <div class="col-12">
-              <form>
-                <div class="form-floating theme-form-floating">
-                  <input type="text" class="form-control" id="address1"
-                         value="8424 James Lane South San Francisco">
-                  <label for="address1">Add Address</label>
-                </div>
-              </form>
-            </div>
-
-            <div class="col-12">
-              <form>
-                <div class="form-floating theme-form-floating">
-                  <input type="text" class="form-control" id="address2" value="CA 94080">
-                  <label for="address2">Add Address 2</label>
-                </div>
-              </form>
             </div>
 
             <div class="col-xxl-4">
-              <form>
                 <div class="form-floating theme-form-floating">
-                  <select class="form-select" id="floatingSelect1"
+                  <select class="form-select" id="floatingSelect" name="gender"
                           aria-label="Floating label select example">
-                    <option selected>Choose Your Country</option>
-                    <option value="kindom">United Kingdom</option>
-                    <option value="states">United States</option>
-                    <option value="fra">France</option>
-                    <option value="china">China</option>
-                    <option value="spain">Spain</option>
-                    <option value="italy">Italy</option>
-                    <option value="turkey">Turkey</option>
-                    <option value="germany">Germany</option>
-                    <option value="russian">Russian Federation</option>
-                    <option value="malay">Malaysia</option>
-                    <option value="mexico">Mexico</option>
-                    <option value="austria">Austria</option>
-                    <option value="hong">Hong Kong SAR, China</option>
-                    <option value="ukraine">Ukraine</option>
-                    <option value="thailand">Thailand</option>
-                    <option value="saudi">Saudi Arabia</option>
-                    <option value="canada">Canada</option>
-                    <option value="singa">Singapore</option>
+                    <option value="1" selected>Nam</option>
+                    <option value="2">Nữ</option>
                   </select>
-                  <label for="floatingSelect">Country</label>
+                  <label for="floatingSelect">Giới tính</label>
                 </div>
-              </form>
             </div>
 
-            <div class="col-xxl-4">
-              <form>
-                <div class="form-floating theme-form-floating">
-                  <select class="form-select" id="floatingSelect">
-                    <option selected>Choose Your City</option>
-                    <option value="kindom">India</option>
-                    <option value="states">Canada</option>
-                    <option value="fra">Dubai</option>
-                    <option value="china">Los Angeles</option>
-                    <option value="spain">Thailand</option>
-                  </select>
-                  <label for="floatingSelect">City</label>
-                </div>
-              </form>
-            </div>
 
             <div class="col-xxl-4">
-              <form>
                 <div class="form-floating theme-form-floating">
-                  <input type="text" class="form-control" id="address3" value="94080">
-                  <label for="address3">Pin Code</label>
+                  <input type="date" class="form-control" id="address3" name="birthday" value="<%=customer1.getBirthday()%>">
+                  <label for="address3">Sinh Nhật</label>
                 </div>
-              </form>
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-animation btn-md fw-bold"
                   data-bs-dismiss="modal">Close</button>
-          <button type="button" data-bs-dismiss="modal"
+          <button type="submit" data-bs-dismiss="modal"
                   class="btn theme-bg-color btn-md fw-bold text-light">Save changes</button>
         </div>
       </div>
     </div>
+    </form>
   </div>
   <!-- Edit Profile End -->
 
-  <!-- Edit Card Start -->
-  <div class="modal fade theme-modal" id="editCard" tabindex="-1" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel8">Edit Card</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row g-4">
-            <div class="col-xxl-6">
-              <form>
-                <div class="form-floating theme-form-floating">
-                  <input type="text" class="form-control" id="finame" value="Mark">
-                  <label for="finame">First Name</label>
-                </div>
-              </form>
-            </div>
-
-            <div class="col-xxl-6">
-              <form>
-                <div class="form-floating theme-form-floating">
-                  <input type="text" class="form-control" id="laname" value="Jecno">
-                  <label for="laname">Last Name</label>
-                </div>
-              </form>
-            </div>
-
-            <div class="col-xxl-4">
-              <form>
-                <div class="form-floating theme-form-floating">
-                  <select class="form-select" id="floatingSelect12"
-                          aria-label="Floating label select example">
-                    <option selected>Card Type</option>
-                    <option value="kindom">Visa Card</option>
-                    <option value="states">MasterCard Card</option>
-                    <option value="fra">RuPay Card</option>
-                    <option value="china">Contactless Card</option>
-                    <option value="spain">Maestro Card</option>
-                  </select>
-                  <label for="floatingSelect12">Card Type</label>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-animation btn-md fw-bold"
-                  data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn theme-bg-color btn-md fw-bold text-light">Update Card</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Edit Card End -->
 
   <!-- Remove Profile Modal Start -->
   <div class="modal fade theme-modal remove-profile" id="removeProfile" tabindex="-1"
