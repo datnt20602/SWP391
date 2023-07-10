@@ -342,8 +342,7 @@ public class DAOProduct extends DBContext{
 
         return totalProducts;
     }
-<<<<<<<<< Temporary merge branch 1
-=========
+
 
     public static void main(String[] args) {
         Vector<Product> v =new DAOProduct().searchByName("BL");
@@ -353,5 +352,5 @@ public class DAOProduct extends DBContext{
 
         }
     }
->>>>>>>>> Temporary merge branch 2
+
 }
