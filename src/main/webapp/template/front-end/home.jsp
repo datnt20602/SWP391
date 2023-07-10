@@ -237,7 +237,6 @@
                                                 }
                                             %>
                                         </div>
-
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -251,7 +250,6 @@
                                                 <li class="product-box-contain">
                                                     <a href="signup">Đăng kí</a>
                                                 </li>
-
 
 
                                                 <li class="product-box-contain">
