@@ -37,17 +37,6 @@ public class HomeController extends HttpServlet {
         if (session.getAttribute("staff") != null) {
             DAOCustomer DAOCustomer = new DAOCustomer();
             DAOProduct DAOProduct = new DAOProduct();
-
-            int totalCustomer = DAOCustomer.getNumberCustomer();
-            int totalProduct = DAOProduct.getNumberProduct();
-
-            request.setAttribute("totalCustomer", totalCustomer);
-            request.setAttribute("totalProduct", totalProduct);
-
-            request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
-        } else if (session.getAttribute("admin") != null) {
-            DAOCustomer DAOCustomer = new DAOCustomer();
-            DAOProduct DAOProduct = new DAOProduct();
             DAOStaff DAOStaff = new DAOStaff();
             DAOOrder_Item daoOrderItem = new DAOOrder_Item();
             String productName = "";
@@ -59,6 +48,35 @@ public class HomeController extends HttpServlet {
             }
             if (product_name != null && !product_name.isEmpty()) {
                 productName = product_name;
+            }
+
+            int totalCustomer = DAOCustomer.getNumberCustomer();
+            int totalProduct = DAOProduct.getNumberProduct();
+            double totalOrder = daoOrderItem.getTotalOrder(productName);
+            double totalPages = Math.ceil((double) totalOrder/10);
+            List<Order_item> orderItems = daoOrderItem.getListOrderItemByProduct(productName, (page-1) * 10);
+
+            request.setAttribute("orderItems", orderItems);
+            request.setAttribute("totalCustomer", totalCustomer);
+            request.setAttribute("totalProduct", totalProduct);
+            request.setAttribute("pageNumber", page);
+            request.setAttribute("totalPages", totalPages);
+
+            request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
+        } else if (session.getAttribute("admin") != null) {
+            DAOCustomer DAOCustomer = new DAOCustomer();
+            DAOProduct DAOProduct = new DAOProduct();
+            DAOStaff DAOStaff = new DAOStaff();
+            DAOOrder_Item daoOrderItem = new DAOOrder_Item();
+            String productName = "%";
+            int page = 1;
+            String page_raw = request.getParameter("page");
+            String product_name = request.getParameter("product");
+            if (page_raw != null && !page_raw.equals("1")) {
+                page = Integer.parseInt("page_raw");
+            }
+            if (product_name != null && !product_name.isEmpty()) {
+                productName = product_name+ "%" ;
             }
             int totalCustomer = DAOCustomer.getNumberCustomer();
             int totalProduct = DAOProduct.getNumberProduct();

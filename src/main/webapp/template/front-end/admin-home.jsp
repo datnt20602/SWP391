@@ -19,7 +19,7 @@
     <c:if test="${staff != null}">
         <title>Staff</title>
     </c:if>
-    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
     <style>
         .wave-group {
             position: relative;
@@ -419,7 +419,7 @@
         <!-- NAVBAR -->
         <nav>
             <div class="profile" onclick="showOptions()">
-                <img src="/ODShop/template/assets/images/people/people.png">
+                <img src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
             </div>
             <div id="options" style="display: none; border-radius: 10px">
 
@@ -482,16 +482,16 @@
 
             <div class="table-data">
                 <div class="order">
-                    <form class="" action="staff" method="get">
+                    <form class="" action="home" method="get">
                         <div class="head">
                             <h3>Order</h3>
                             <h2>${errorMessage}</h2>
 
                             <div class="wave-group">
-                                <input type="text" class="input" id="inputSearchName" name="name" value="${param.name}">
+                                <input type="text" class="input" id="inputSearchName" name="product" value="${param.product}">
                                 <span class="bar"></span>
                                 <label class="label">
-                                    <span class="label-char" style="--index: 0">Khách Hàng</span>
+                                    <span class="label-char" style="--index: 0">Sản phẩm </span>
                                 </label>
                             </div>
                             <button id="search-button"

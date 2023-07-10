@@ -1,9 +1,18 @@
 package controller;
 
-import Dal.AccountDBContext;
+
+
+import Dal.DAOAdmin;
 import Dal.DAOCustomer;
-import Model.Account;
+
+import Dal.DAOStaff;
+import Model.Admin;
+
+import Dal.DAOCustomer;
+
+
 import Model.Customer;
+import Model.Staff;
 import OTPFunction.MailSending;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -17,18 +26,36 @@ public class ActiveAccountController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Customer acc = (Customer) session.getAttribute("customer");
-        MailSending mail = new MailSending();
-        String opt = mail.generateOtp();
-        session.setAttribute("optValue", opt);
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", acc.getEmail(), opt);
-            }
-        };
-        thread.start();
-        request.setAttribute("email" , acc.getEmail());
-        request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
+        Staff accStaff = (Staff) session.getAttribute("staff");
+        if (acc != null) {
+            MailSending mail = new MailSending();
+            String opt = mail.generateOtp();
+            session.setAttribute("optValue", opt);
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", acc.getEmail(), opt);
+                }
+            };
+            thread.start();
+            request.setAttribute("email", acc.getEmail());
+            request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
+        } else if (accStaff != null) {
+            MailSending mail = new MailSending();
+            String opt = mail.generateOtp();
+            session.setAttribute("optValue", opt);
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    mail.authenEmailStaff("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", accStaff.getEmail(), accStaff.getPass(), opt);
+                }
+            };
+            thread.start();
+            request.setAttribute("email", accStaff.getEmail());
+            request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
+        }
+
+
     }
 
     @Override
@@ -38,20 +65,45 @@ public class ActiveAccountController extends HttpServlet {
         String optInput = request.getParameter("opt");
         String email = request.getParameter("email");
         Customer acc = (Customer) session.getAttribute("customer");
+        Staff accStaff = (Staff) session.getAttribute("staff");
         String option = request.getParameter("option");
-        if (option.equals("active")) {
-            if (optInput.equals(optValue)) {
-                acc.setStatus(1);
-                DAOCustomer daoC = new DAOCustomer();
-                daoC.updateCustomerByPre(acc);
-                response.sendRedirect("home");
+        if (acc != null) {
+            if (option.equals("active")) {
+                if (optInput.equals(optValue)) {
+                    acc.setStatus(1);
+                    DAOCustomer daoC = new DAOCustomer();
+                    daoC.updateCustomerByPre(acc);
+                    session.setAttribute("customer", acc);
+
+                    response.sendRedirect("home");
+                } else {
+                    String mess = "Sai mã OTP, Xin hãy nhập lại";
+                    request.setAttribute("mess", mess);
+                    request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
+                }
             } else {
-                String mess = "Opt incorrect! Please check again or click send again to have a new opt";
-                request.setAttribute("mess", mess);
-                request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
+                doGet(request, response);
             }
-        } else {
-            doGet(request, response);
+        } else if (accStaff != null) {
+            if (option.equals("active")) {
+                if (optInput.equals(optValue)) {
+                    accStaff.setActive(1);
+                    //accStaff.getAdmin_id();
+                    DAOStaff daoS = new DAOStaff();
+                    daoS.updateStaffByPre(accStaff);
+                    session.setAttribute("staff", accStaff);
+
+                    response.sendRedirect("home");
+                } else {
+                    String mess = "Sai mã OTP, Xin hãy nhập lại";
+                    request.setAttribute("mess", mess);
+                    request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
+                }
+            } else {
+                doGet(request, response);
+            }
         }
+
+
     }
 }

@@ -421,7 +421,7 @@
         <!-- NAVBAR -->
         <nav>
             <div class="profile" onclick="showOptions()">
-                <img src="/ODShop/template/assets/images/people/people.png">
+                <img src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
             </div>
             <div id="options" style="display: none; border-radius: 10px">
 

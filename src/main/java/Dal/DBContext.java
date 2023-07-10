@@ -14,6 +14,9 @@ import java.util.logging.Logger;
 
         public DBContext() {
             try {
+//                String user = "azureuser";
+//                String pass = "Dat2062002";
+//                String url = "jdbc:mysql://odshop.mysql.database.azure.com:3306/drink_online_shop1";
                 String user = "root";
                 String pass = "dat2062002";
                 String url = "jdbc:mysql://localhost:3306/drink_online_shop1";
