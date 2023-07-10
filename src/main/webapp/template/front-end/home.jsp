@@ -141,8 +141,8 @@
                                             <i data-feather="phone-call"></i>
                                         </div>
                                         <div class="delivery-detail">
-                                            <h6>Giao hàng 24/7</h6>
-                                            <h5>+84 373801816</h5>
+                                            <h6>24/7 Delivery</h6>
+                                            <h5>+91 888 104 2340</h5>
                                         </div>
                                     </a>
                                 </li>
@@ -230,7 +230,6 @@
                                         }
                                         %>
                                         </div>
-
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -444,255 +443,44 @@
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                      aria-labelledby="headingOne">
                                     <div class="accordion-body">
-                                        <div class="form-floating theme-form-floating-2 search-box">
-                                            <input type="search" class="form-control" id="search"
-                                                   placeholder="Search ..">
-                                            <label for="search">Tìm...</label>
-                                        </div>
+<%--                                        <div class="form-floating theme-form-floating-2 search-box">--%>
+<%--                                            <input type="search" class="form-control" id="search"--%>
+<%--                                                   placeholder="Search ..">--%>
+<%--                                            <label for="search">Tìm...</label>--%>
+<%--                                        </div>--%>
 
-                                        <ul class="category-list custom-padding custom-height" >
-                                           <%
-                                               ResultSet rs = (ResultSet) request.getAttribute("category_name");
-                                               while (rs.next()){
-                                           %>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="fruit">
-                                                    <label class="form-check-label" for="fruit">
-                                                        <span class="name"> <%=rs.getString("category_name")%></span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <%}%>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" >
-                                                    <label class="form-check-label" for="fruit">
-                                                        <span class="name"> Trà Chanh</span>
-                                                    </label>
-                                                </div>
-                                            </li>
+                                        <ul class="category-list custom-padding custom-height">
+                                            <form class="w-100 h-100" id="formCategories"
+                                                  action="<%= (request.getParameter("service") == null) ? "home" : "home?service=" + request.getParameter("service")%>"
+                                                  method="get">
+                                                <c:forEach var="category" items="${listCategory}">
+                                                    <li>
+                                                        <div class="form-check ps-0 m-0 category-list-box">
+                                                            <input class="checkbox_animated" type="checkbox"
+                                                                ${categories.contains(category) ? "checked" : ""}
+                                                                   value="${category}" name="category" id="${category}"
+                                                                   class="categories">
+                                                            <label class="form-check-label" for="${category}">
+                                                                <span class="name"> ${category}</span>
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                </c:forEach>
+
+                                                <li>
+                                                    <div class="form-check ps-0 m-0 category-list-box">
+
+                                                    </div>
+                                                </li>
+                                            </form>
                                         </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingSix">
-                                    <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseSix"
-                                            aria-expanded="false" aria-controls="collapseSix">
-                                        <span>Đánh giá</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseSix" class="accordion-collapse collapse show"
-                                     aria-labelledby="headingSix">
-                                    <div class="accordion-body">
-                                        <ul class="category-list custom-padding">
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox">
-                                                    <div class="form-check-label">
-                                                        <ul class="rating">
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                        </ul>
-                                                        <span class="text-content">(5 Sao)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox">
-                                                    <div class="form-check-label">
-                                                        <ul class="rating">
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                        </ul>
-                                                        <span class="text-content">(4 Sao)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox">
-                                                    <div class="form-check-label">
-                                                        <ul class="rating">
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                        </ul>
-                                                        <span class="text-content">(3 Sao)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox">
-                                                    <div class="form-check-label">
-                                                        <ul class="rating">
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                        </ul>
-                                                        <span class="text-content">(2 Sao)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox">
-                                                    <div class="form-check-label">
-                                                        <ul class="rating">
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                        </ul>
-                                                        <span class="text-content">(1 Sao)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                            aria-expanded="false" aria-controls="collapseFour">
-                                        <span>Giảm giá</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse show"
-                                     aria-labelledby="headingFour">
-                                    <div class="accordion-body">
-                                        <ul class="category-list custom-padding">
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        <span class="name"> 5%</span>
-
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault1">
-                                                    <label class="form-check-label" for="flexCheckDefault1">
-                                                        <span class="name">5% - 10%</span>
-
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault2">
-                                                    <label class="form-check-label" for="flexCheckDefault2">
-                                                        <span class="name">10% - 15%</span>
-
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault3">
-                                                    <label class="form-check-label" for="flexCheckDefault3">
-                                                        <span class="name">15% - 25%</span>
-
-                                                    </label>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox"
-                                                           id="flexCheckDefault4">
-                                                    <label class="form-check-label" for="flexCheckDefault4">
-                                                        <span class="name"> 25% trở lên</span>
-
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <script>
+                                            $(".category-list-box input[type=checkbox]").each(() => {
+                                                $(this).change(() => {
+                                                    $("#formCategories").submit();
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -717,19 +505,19 @@
                             <div class="dropdown">
                                 <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
                                         data-bs-toggle="dropdown">
-                                    <span>Phổ biến nhất</span> <i class="fa-solid fa-angle-down"></i>
+                                    <span id="selectedOption">Mời chọn</span> <i class="fa-solid fa-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-                                    <li>
-                                        <a class="dropdown-item" id="low" href="home?service=displayAllUp">Giá thấp - cao</a>
+                                    <li onclick="updateSelectedOption('low')">
+                                        <a class="dropdown-item" id="low" href="home?service=displayAllUp">Giá thấp -
+                                            cao</a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" id="high" href="home?service=displayAllReduce">Giá cao - thấp</a>
+                                    <li onclick="updateSelectedOption('high')">
+                                        <a class="dropdown-item" id="high" href="home?service=displayAllReduce">Giá cao
+                                            - thấp</a>
                                     </li>
-
-                                    <li>
-                                        <a class="dropdown-item" id="off" href="javascript:void(0)">% giảm - Cao-Thấp</a>
+                                    <li onclick="updateSelectedOption('normal')">
+                                        <a class="dropdown-item" id="normal" href="home?service=displayAll">Tất cả</a>
                                     </li>
                                 </ul>
                             </div>
@@ -761,13 +549,13 @@
                         </div>
                     </div>
                 </div>
-                    <%
-                        Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
-                    %>
+                <%
+                    Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
+                %>
                 <div id="contentSearch"
-                        class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
+                     class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
                     <%
-                        for(Product temp : vector ){
+                        for (Product temp : vector) {
 
                     %>
                     <div>
@@ -847,8 +635,7 @@
                     </div>
                     <% } %>
                 </div>
-                <button onclick="loadMore()" style="background-color: blue; color: white; font-size: 16px;">Load More</button>
-                <nav class="custome-pagination">
+                <div id="pagination"></div>
 
                     <ul class="pagination justify-content-center">
 
@@ -946,7 +733,8 @@
                         </div>
 
                         <div class="footer-logo-contain">
-                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
+                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục
+                                vụ.</p>
 
                             <ul class="address">
                                 <li>
@@ -1000,7 +788,7 @@
                             </li>
 
                             <li>
-                                <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
+                                <a href="wishlist" class="text-content"> Wishlist</a>
                             </li>
                             <li>
                                 <a href="faq.html" class="text-content">FAQ</a>
@@ -1068,87 +856,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="right-sidebar-modal">
-                            <h4 class="title-name">Peanut Butter Bite Premium Butter Cookies 600 g</h4>
-                            <h4 class="price">$36.99</h4>
-                            <div class="product-rating">
-                                <ul class="rating">
-                                    <li>
-                                        <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                        <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                        <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                        <i data-feather="star" class="fill"></i>
-                                    </li>
-                                    <li>
-                                        <i data-feather="star"></i>
-                                    </li>
-                                </ul>
-                                <span class="ms-2">8 Reviews</span>
-                                <span class="ms-2 text-danger">6 sold in last 16 hours</span>
-                            </div>
 
-                            <div class="product-detail">
-                                <h4>Product Details :</h4>
-                                <p>Candy canes sugar plum tart cotton candy chupa chups sugar plum chocolate I love.
-                                    Caramels marshmallow icing dessert candy canes I love soufflé I love toffee.
-                                    Marshmallow pie sweet sweet roll sesame snaps tiramisu jelly bear claw. Bonbon
-                                    muffin I love carrot cake sugar plum dessert bonbon.</p>
-                            </div>
-
-                            <ul class="brand-list">
-                                <li>
-                                    <div class="brand-box">
-                                        <h5>Brand Name:</h5>
-                                        <h6>Black Forest</h6>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="brand-box">
-                                        <h5>Product Code:</h5>
-                                        <h6>W0690034</h6>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="brand-box">
-                                        <h5>Product Type:</h5>
-                                        <h6>White Cream Cake</h6>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <div class="select-size">
-                                <h4>Cake Size :</h4>
-                                <select class="form-select select-form-size">
-                                    <option selected>Select Size</option>
-                                    <option value="1.2">1/2 KG</option>
-                                    <option value="0">1 KG</option>
-                                    <option value="1.5">1/5 KG</option>
-                                    <option value="red">Red Roses</option>
-                                    <option value="pink">With Pink Roses</option>
-                                </select>
-                            </div>
-
-                            <div class="modal-button">
-                                <button onclick="location.href = 'cart';"
-                                        class="btn btn-md add-cart-button icon">Add
-                                    To Cart
-                                </button>
-                                <button onclick="location.href = 'product-left.html';"
-                                        class="btn theme-bg-color view-button icon text-white fw-bold btn-md">
-                                    View More Details
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1294,37 +1002,146 @@
 <!-- Bg overlay End -->
 
 <!-- latest jquery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script>
-    function loadMore(){
-        $.ajax({
-            url: 'SWP391/home?service=load', // Đường dẫn xử lý yêu cầu
-            type: 'get',
-            success: function(response) {
-                // Xử lý phản hồi từ máy chủ
-                var row =  $('#contentSearch');
-                row.innerHTML += response;
-            }
-        });
-    }
-</script>
-<script>
-    function searchByName(param){
-        const txtSearch = param.valueOf;
-        $ .ajax({
-            url : "/SWP391/SreachController",
-            type: "get",
-            data:{
-                txt : txtSearch
-            },
-            success : function (data){
-                const row = document.getElementById("contentSearch");
-                row.innerHTML = data;
-            },
-            error: function (xhr){
 
+<script>
+    function updateSelectedOption(optionId) {
+        var selectedOptionText = document.getElementById("selectedOption");
+        var selectedOptionItem = document.getElementById(optionId);
+
+        if (selectedOptionItem) {
+            selectedOptionText.innerText = selectedOptionItem.innerText;
+            localStorage.setItem("selectedOption", selectedOptionItem.innerText);
+        }
+    }
+
+    // Khôi phục giá trị đã chọn
+    var selectedOptionText = document.getElementById("selectedOption");
+    var savedOption = localStorage.getItem("selectedOption");
+    if (savedOption) {
+        selectedOptionText.innerText = savedOption;
+    }
+
+</script>
+
+<script>
+    function loadData(product) {
+        var data = JSON.parse(product);
+        console.log(data);
+        document.getElementById("detailId").value = data.product_id;
+        document.getElementById("detailName").value = data.product_name;
+        document.getElementById("detailPrice").value = parseInt(data.price).toLocaleString();
+        document.getElementById("detailImage").value = data.image;
+        document.getElementById("detailVolume").value = data.volume;
+        document.getElementById("detailDescribe").value = data.describe;
+        document.getElementById("detailCategory").value = data.category_name;
+    }
+
+    function alertDelete(id) {
+        document.getElementById("deleteId").value = id;
+    }
+
+    function toggleDelete() {
+        var blur = document.getElementById('blur');
+        blur.classList.toggle('active');
+        var deleteDiv = document.getElementById('deleteDiv');
+        deleteDiv.classList.toggle('active');
+    }
+
+    function toggle() {
+        var blur = document.getElementById('blur');
+        blur.classList.toggle('active');
+        var popup = document.getElementById('popup');
+        popup.classList.toggle('active');
+    }
+
+    var priceValue = document.querySelectorAll(".priceValue");
+    priceValue.forEach(p => {
+        var number = parseFloat(p.innerText);
+        if (!isNaN(number)) {
+            p.innerText = number.toLocaleString();
+        }
+    });
+
+    var urlForCategory = "";
+    var checked = document.querySelectorAll(".category-list-box input[type=checkbox]:checked");
+    checked.forEach((check) => {
+        urlForCategory += "&category=" + check.value;
+        document.querySelector("#low").href += urlForCategory;
+        document.querySelector("#high").href += urlForCategory;
+        document.querySelector("#normal").href += urlForCategory;
+    });
+    let pages = ${totalPages};
+
+    document.getElementById('pagination').innerHTML = createPagination(pages, ${pageNumber});
+
+    function createPagination(pages, page) {
+        let str = '<ul class="page">';
+        let active;
+        let pageCutLow = page - 1;
+        let pageCutHigh = page + 1;
+
+        // Show the Previous button only if you are on a page other than the first
+        if (page > 1) {
+            str += '<a style="color: black" href="home?page=' + (page - 1) + urlForCategory + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
+        }
+        // Show all the pagination elements if there are less than 6 pages total
+        if (pages < 6) {
+            for (let p = 1; p <= pages; p++) {
+                active = page == p ? "active" : "";
+                str += '<a style="color: black" href="home?page=' + p + urlForCategory + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
-        });
+        }
+        // Use "..." to collapse pages outside of a certain range
+        else {
+            // Show the very first page followed by a "..." at the beginning of the
+            // pagination section (after the Previous button)
+            if (page > 2) {
+                str += '<a style="color: black" href="home?page=' + 1 + urlForCategory + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
+                if (page > 3) {
+                    str += `<li class="page__dots"><span>...</span></li>`;
+                }
+            }
+            // Determine how many pages to show after the current page index
+            if (page === 1) {
+                pageCutHigh += 2;
+            } else if (page === 2) {
+                pageCutHigh += 1;
+            }
+            // Determine how many pages to show before the current page index
+            if (page === pages) {
+                pageCutLow -= 2;
+            } else if (page === pages - 1) {
+                pageCutLow -= 1;
+            }
+            // Output the indexes for pages that fall inside the range of pageCutLow
+            // and pageCutHigh
+            for (let p = pageCutLow; p <= pageCutHigh; p++) {
+                if (p === 0) {
+                    p += 1;
+                }
+                if (p > pages) {
+                    continue
+                }
+                active = page == p ? "active" : "";
+                str += '<a style="color: black" href="home?page=' + p + urlForCategory + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+            }
+            // Show the very last page preceded by a "..." at the end of the pagination
+            // section (before the Next button)
+            if (page < pages - 1) {
+                if (page < pages - 2) {
+                    str += '<li class="page__dots"><span>...</span></li>';
+                }
+                str += '<a style="color: black" href="home?page=' + pages + urlForCategory + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
+            }
+        }
+        // Show the Next button only if you are on a page other than the last
+        if (page < pages) {
+            str += '<a style="color: black" href="home?page=' + (page + 1) + urlForCategory + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
+        }
+        str += '</ul>';
+        // Return the pagination string to be outputted in the pug templates
+        document.getElementById('pagination').innerHTML = str;
+        return str;
     }
 </script>
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>

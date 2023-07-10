@@ -1,31 +1,23 @@
 package controller;
 
-
 import Dal.DAOAdmin;
 import Dal.DAOCustomer;
 import Dal.DAOStaff;
-import Dal.DAOProduct;
+import Model.Admin;
 import Model.Customer;
 import Model.Staff;
 import OTPFunction.MailSending;
-import com.mysql.cj.xdevapi.Schema;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "SignUpController", value = "/signup")
-public class SignUpController extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-    }
+@WebServlet(name = "AdminAddStaffController", value = "/addStaff")
+public class AdminAddStaffController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
+        request.getRequestDispatcher("template/front-end/admin-add-staff.jsp").forward(request, response);
     }
 
     @Override
@@ -36,19 +28,19 @@ public class SignUpController extends HttpServlet {
         String pass = request.getParameter("password");
         String repass = request.getParameter("repass");
 
-        DAOCustomer customer = new DAOCustomer();
+        DAOStaff staff = new DAOStaff();
 
-        boolean password = customer.isSecurePassword(pass);
+        boolean password = staff.isSecurePassword(pass);
         if(!password){
             request.setAttribute("mess", "Mật khẩu phải gồm 8 kí tự (Gồm 1 chữ hoa,chữ thường và kí tự đặc biệt)!");
-            request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
+            request.getRequestDispatcher("template/front-end/admin-add-staff.jsp").forward(request, response);
         }
         else if (!pass.equals(repass)) {
             request.setAttribute("mess", "Mật khẩu không khớp!");
-            request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
+            request.getRequestDispatcher("template/front-end/admin-add-staff.jsp").forward(request, response);
         } else {
             boolean check = true;
-            DAOCustomer DaoC = new DAOCustomer();
+            DAOCustomer DaoC  = new DAOCustomer();
             if (DaoC.searchByEmail(user) != null) {
                 check = false;
             }
@@ -62,16 +54,32 @@ public class SignUpController extends HttpServlet {
             }
             if (check) {
                 HttpSession session = request.getSession();
-                Customer newCustomer = new Customer(fullname, phone, user, pass, 0);
-                DaoC.insertCustomer(newCustomer);
-                Customer cus = DaoC.login(user, pass);
-                session.setAttribute("customer", cus);
-                response.sendRedirect("activeAccount");
+                Admin admin = (Admin) session.getAttribute("admin");
+                int adminId = admin.getAdmin_id();
+                Staff newStaff = new Staff(fullname, user, phone, pass, 0, adminId);
+                DaoS.insertStaff(newStaff,adminId);
+
+                // Send email to the staff
+                MailSending mail = new MailSending();
+
+
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                        mail.sendEmailPassStaff("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", newStaff.getEmail(),pass);
+                    }
+                };
+                thread.start();
+
+                request.setAttribute("email", newStaff.getEmail());
+                request.setAttribute("mess", "Thêm tài khoản thành nhân viên công!");
+                request.getRequestDispatcher("template/front-end/admin-add-staff.jsp").forward(request, response);
+
             }
 
             else {
                 request.setAttribute("mess", "Email đã tồn tại!");
-                request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
+                request.getRequestDispatcher("template/front-end/admin-add-staff.jsp").forward(request, response);
             }
         }
     }

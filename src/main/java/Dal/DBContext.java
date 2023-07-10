@@ -15,7 +15,7 @@ import java.util.logging.Logger;
         public DBContext() {
             try {
                 String user = "root";
-                String pass = "Minh2002";
+                String pass = "dat2062002";
                 String url = "jdbc:mysql://localhost:3306/drink_online_shop1";
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, pass);
@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 
                 rs=state.executeQuery(sql);
             } catch (SQLException ex) {
-                Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("getData: " + ex.getMessage());
             }
             return rs;
         }

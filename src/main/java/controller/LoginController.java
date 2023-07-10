@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
                     session.setAttribute("admin", ad);
                     request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
                 }else{
-                    
+
                     response.sendRedirect("login");
                 }
             }

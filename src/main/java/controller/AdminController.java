@@ -6,15 +6,15 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ControllerProduct", value = "/ControllerProduct")
-public class ControllerProduct extends HttpServlet {
+@WebServlet(name = "AdminController", value = "/admin")
+public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+            request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request,response);
     }
 }

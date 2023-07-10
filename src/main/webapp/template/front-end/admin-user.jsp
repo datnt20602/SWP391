@@ -168,33 +168,121 @@
 </head>
 <body>
 <div id="deleteDiv">
-    <form action="product" method="post">
-        <h3>Bạn muốn xóa sản phẩm này ?</h3>
-        <input id="deleteId" name="productId" style="display: none">
+    <form action="user" method="post">
+        <h3>Bạn muốn xóa khách hàng này ?</h3>
+        <input id="deleteId" name="customerid" style="display: none">
         <div class="" style="margin-top: 20px;">
             <button type="submit" name="option" value="delete"
                     style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
-                Delete
+                Xóa
             </button>
             <button type="button" onclick="toggleDelete()"
-                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Hủy
             </button>
         </div>
     </form>
 </div>
-<div id="popup">
+<%--<div id="popup">--%>
+<%--    <form action="product" method="post">--%>
+<%--        <div class="wave-group">--%>
+<%--            <label class="label">--%>
+<%--                <span class="label-char" style="--index: 0">I</span>--%>
+<%--                <span class="label-char" style="--index: 1">d</span>--%>
+<%--            </label><br>--%>
+<%--            <input type="text" class="input" id="detailId" name="productId" readonly>--%>
+<%--            <span class="bar"></span>--%>
+
+<%--        </div>--%>
+<%--        <div class="wave-group">--%>
+<%--            <input type="text" class="input" id="detailName" name="productName" style="margin-top: 20px;width: 80%">--%>
+<%--            <span class="bar"></span>--%>
+<%--            <label class="label">--%>
+<%--                <span class="label-char" style="--index: 0">N</span>--%>
+<%--                <span class="label-char" style="--index: 1">a</span>--%>
+<%--                <span class="label-char" style="--index: 2">m</span>--%>
+<%--                <span class="label-char" style="--index: 3">e</span>--%>
+<%--            </label>--%>
+<%--        </div>--%>
+<%--        <div class="wave-group">--%>
+<%--            <label class="label">--%>
+<%--                Danh mục--%>
+<%--            </label><br>--%>
+<%--            <input type="text" class="input" id="detailCategory" name="productCategory" readonly--%>
+<%--                   style="margin-top: 20px;width: 80%">--%>
+<%--            <span class="bar"></span>--%>
+<%--            <br>--%>
+
+<%--        </div>--%>
+<%--        <div class="wave-group">--%>
+<%--            <input type="text" class="input" id="detailPrice" name="productPrice" style="margin-top: 20px;width: 80%">--%>
+<%--            <span class="bar"></span>--%>
+<%--            <label class="label">--%>
+<%--                <span class="label-char" style="--index: 0">P</span>--%>
+<%--                <span class="label-char" style="--index: 1">r</span>--%>
+<%--                <span class="label-char" style="--index: 2">i</span>--%>
+<%--                <span class="label-char" style="--index: 3">c</span>--%>
+<%--                <span class="label-char" style="--index: 4">e</span>--%>
+<%--            </label>--%>
+<%--        </div>--%>
+<%--        <div class="wave-group">--%>
+<%--            <input type="text" class="input" id="detailImage" name="productImage" style="margin-top: 20px;width: 80%">--%>
+<%--            <span class="bar"></span>--%>
+<%--            <label class="label">--%>
+<%--                <span class="label-char" style="--index: 0">I</span>--%>
+<%--                <span class="label-char" style="--index: 1">m</span>--%>
+<%--                <span class="label-char" style="--index: 2">a</span>--%>
+<%--                <span class="label-char" style="--index: 3">g</span>--%>
+<%--                <span class="label-char" style="--index: 4">e</span>--%>
+<%--            </label>--%>
+<%--        </div>--%>
+<%--        <div class="wave-group">--%>
+<%--            <input type="text" class="input" id="detailVolume" name="productVolume" style="margin-top: 20px;width: 80%">--%>
+<%--            <span class="bar"></span>--%>
+<%--            <label class="label">--%>
+<%--                <span class="label-char" style="--index: 0">V</span>--%>
+<%--                <span class="label-char" style="--index: 1">o</span>--%>
+<%--                <span class="label-char" style="--index: 2">l</span>--%>
+<%--                <span class="label-char" style="--index: 3">u</span>--%>
+<%--                <span class="label-char" style="--index: 4">m</span>--%>
+<%--                <span class="label-char" style="--index: 5">e</span>--%>
+<%--            </label>--%>
+<%--        </div>--%>
+<%--        <div class="wave-group" style="margin-top: 20px;">--%>
+<%--            <label>--%>
+<%--                Describe--%>
+<%--            </label><br>--%>
+<%--            <textarea rows="10" cols="25" id="detailDescribe" name="productDescribe" style="width: 80%;font-size: 16px;"--%>
+<%--                      placeholder="Describe">--%>
+
+<%--            </textarea>--%>
+
+<%--        </div>--%>
+
+<%--        <div class="" style="margin-top: 20px;">--%>
+
+<%--            <button type="submit" name="option" value="update"--%>
+<%--                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">--%>
+<%--                Update--%>
+<%--            </button>--%>
+<%--            <button type="button" onclick="toggle()"--%>
+<%--                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close--%>
+<%--            </button>--%>
+<%--        </div>--%>
+<%--    </form>--%>
+<%--</div>--%>
+<div id="popup1">
     <form action="product" method="post">
         <div class="wave-group">
             <label class="label">
                 <span class="label-char" style="--index: 0">I</span>
                 <span class="label-char" style="--index: 1">d</span>
             </label><br>
-            <input type="text" class="input" id="detailId" name="productId" readonly>
+            <input type="text" class="input" id="detailAdminId" name="adminId" readonly>
             <span class="bar"></span>
 
         </div>
         <div class="wave-group">
-            <input type="text" class="input" id="detailName" name="productName" style="margin-top: 20px;width: 80%">
+            <input type="text" class="input" id="detailAdminName" name="adminName" style="margin-top: 20px;width: 80%">
             <span class="bar"></span>
             <label class="label">
                 <span class="label-char" style="--index: 0">N</span>
@@ -205,254 +293,74 @@
         </div>
         <div class="wave-group">
             <label class="label">
-                Danh mục
+                Email
             </label><br>
-            <input type="text" class="input" id="detailCategory" name="productCategory" readonly
+            <input type="text" class="input" id="detailAdminEmail" name="adminEmail" readonly
                    style="margin-top: 20px;width: 80%">
             <span class="bar"></span>
             <br>
 
         </div>
         <div class="wave-group">
-            <input type="text" class="input" id="detailPrice" name="productPrice" style="margin-top: 20px;width: 80%">
+            <input type="text" class="input" id="detailAdminPhone" name="adminPhone"
+                   style="margin-top: 20px;width: 80%">
             <span class="bar"></span>
             <label class="label">
                 <span class="label-char" style="--index: 0">P</span>
-                <span class="label-char" style="--index: 1">r</span>
-                <span class="label-char" style="--index: 2">i</span>
-                <span class="label-char" style="--index: 3">c</span>
+                <span class="label-char" style="--index: 1">h</span>
+                <span class="label-char" style="--index: 2">o</span>
+                <span class="label-char" style="--index: 3">n</span>
                 <span class="label-char" style="--index: 4">e</span>
             </label>
         </div>
         <div class="wave-group">
-            <input type="text" class="input" id="detailImage" name="productImage" style="margin-top: 20px;width: 80%">
+            <input type="text" class="input" id="detailAdminStreet" name="adminStreet"
+                   style="margin-top: 20px;width: 80%">
             <span class="bar"></span>
             <label class="label">
-                <span class="label-char" style="--index: 0">I</span>
-                <span class="label-char" style="--index: 1">m</span>
-                <span class="label-char" style="--index: 2">a</span>
-                <span class="label-char" style="--index: 3">g</span>
+                <span class="label-char" style="--index: 0">S</span>
+                <span class="label-char" style="--index: 1">t</span>
+                <span class="label-char" style="--index: 2">r</span>
+                <span class="label-char" style="--index: 3">e</span>
                 <span class="label-char" style="--index: 4">e</span>
+                <span class="label-char" style="--index: 4">t</span>
             </label>
         </div>
         <div class="wave-group">
-            <input type="text" class="input" id="detailVolume" name="productVolume" style="margin-top: 20px;width: 80%">
+            <input type="text" class="input" id="detailAdminCity" name="adminCity" style="margin-top: 20px;width: 80%">
             <span class="bar"></span>
             <label class="label">
-                <span class="label-char" style="--index: 0">V</span>
-                <span class="label-char" style="--index: 1">o</span>
-                <span class="label-char" style="--index: 2">l</span>
-                <span class="label-char" style="--index: 3">u</span>
-                <span class="label-char" style="--index: 4">m</span>
-                <span class="label-char" style="--index: 5">e</span>
+                <span class="label-char" style="--index: 0">C</span>
+                <span class="label-char" style="--index: 1">i</span>
+                <span class="label-char" style="--index: 2">t</span>
+                <span class="label-char" style="--index: 3">y</span>
+
             </label>
         </div>
-        <div class="wave-group" style="margin-top: 20px;">
-            <label>
-                Describe
+        <div class="wave-group">
+
+            <label class="label">
+                <span class="label-char" style="--index: 0">P</span>
+                <span class="label-char" style="--index: 1">a</span>
+                <span class="label-char" style="--index: 2">s</span>
+                <span class="label-char" style="--index: 3">s</span>
             </label><br>
-            <textarea rows="10" cols="25" id="detailDescribe" name="productDescribe" style="width: 80%;font-size: 16px;"
-                      placeholder="Describe">
-
-            </textarea>
+            <input type="password" class="input" id="detailAdminPass" name="adminPass"
+                   style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+            <span class="bar"></span>
 
         </div>
-
         <div class="" style="margin-top: 20px;">
 
-            <button type="submit" name="option" value="update"
+            <button type="submit" name="option" value="updateProfileAdmin"
                     style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
-                Cập nhật
+                Update
             </button>
-            <button type="button" onclick="toggle()"
-                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Hủy
+            <button type="button" onclick="toggle1()"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
             </button>
         </div>
     </form>
-</div>
-<div id="popup1">
-    <c:if test="${admin!=null}">
-        <form action="product" method="post">
-            <div class="wave-group">
-                <label class="label">
-                    <span class="label-char" style="--index: 0">I</span>
-                    <span class="label-char" style="--index: 1">d</span>
-                </label><br>
-                <input type="text" class="input" id="detailAdminId" name="adminId" readonly>
-                <span class="bar"></span>
-
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailAdminName" name="adminName" style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">N</span>
-                    <span class="label-char" style="--index: 1">a</span>
-                    <span class="label-char" style="--index: 2">m</span>
-                    <span class="label-char" style="--index: 3">e</span>
-                </label>
-            </div>
-            <div class="wave-group">
-                <label class="label">
-                    Email
-                </label><br>
-                <input type="text" class="input" id="detailAdminEmail" name="adminEmail" readonly
-                       style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <br>
-
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailAdminPhone" name="adminPhone"
-                       style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">P</span>
-                    <span class="label-char" style="--index: 1">h</span>
-                    <span class="label-char" style="--index: 2">o</span>
-                    <span class="label-char" style="--index: 3">n</span>
-                    <span class="label-char" style="--index: 4">e</span>
-                </label>
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailAdminStreet" name="adminStreet"
-                       style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">S</span>
-                    <span class="label-char" style="--index: 1">t</span>
-                    <span class="label-char" style="--index: 2">r</span>
-                    <span class="label-char" style="--index: 3">e</span>
-                    <span class="label-char" style="--index: 4">e</span>
-                    <span class="label-char" style="--index: 4">t</span>
-                </label>
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailAdminCity" name="adminCity" style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">C</span>
-                    <span class="label-char" style="--index: 1">i</span>
-                    <span class="label-char" style="--index: 2">t</span>
-                    <span class="label-char" style="--index: 3">y</span>
-
-                </label>
-            </div>
-            <div class="wave-group">
-                <label class="label">
-                    <span class="label-char" style="--index: 0">P</span>
-                    <span class="label-char" style="--index: 1">a</span>
-                    <span class="label-char" style="--index: 2">s</span>
-                    <span class="label-char" style="--index: 3">s</span>
-                </label><br>
-                <input type="password" class="input" id="detailAdminPass" name="adminPass"
-                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
-
-
-            </div>
-            <div class="" style="margin-top: 20px;">
-
-                <button type="submit" name="option" value="updateProfileAdmin"
-                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
-                    Update
-                </button>
-                <button type="button" onclick="toggle1()"
-                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
-                </button>
-            </div>
-        </form>
-    </c:if>
-    <c:if test="${staff != null}">
-        <form action="product" method="post">
-            <div class="wave-group">
-                <label class="label">
-                    <span class="label-char" style="--index: 0">I</span>
-                    <span class="label-char" style="--index: 1">d</span>
-                </label><br>
-                <input type="text" class="input" id="detailStaffId" name="staffId" readonly>
-                <span class="bar"></span>
-
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailStaffName" name="staffName" style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">N</span>
-                    <span class="label-char" style="--index: 1">a</span>
-                    <span class="label-char" style="--index: 2">m</span>
-                    <span class="label-char" style="--index: 3">e</span>
-                </label>
-            </div>
-            <div class="wave-group">
-                <label class="label">
-                    Email
-                </label><br>
-                <input type="text" class="input" id="detailStaffEmail" name="staffEmail" readonly
-                       style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <br>
-
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailStaffPhone" name="staffPhone"
-                       style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">P</span>
-                    <span class="label-char" style="--index: 1">h</span>
-                    <span class="label-char" style="--index: 2">o</span>
-                    <span class="label-char" style="--index: 3">n</span>
-                    <span class="label-char" style="--index: 4">e</span>
-                </label>
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailStaffActive" name="staffActive"
-                       style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">A</span>
-                    <span class="label-char" style="--index: 1">c</span>
-                    <span class="label-char" style="--index: 2">t</span>
-                    <span class="label-char" style="--index: 3">i</span>
-                    <span class="label-char" style="--index: 4">v</span>
-                    <span class="label-char" style="--index: 4">e</span>
-                </label>
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailStaffAid" name="staffAid" style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">A</span>
-                    <span class="label-char" style="--index: 1">i</span>
-                    <span class="label-char" style="--index: 2">d</span>
-
-
-                </label>
-            </div>
-            <div class="wave-group">
-                <input type="password" class="input" id="detailStaffPass" name="staffPass"
-                       style="margin-top: 20px;width: 80%" hidden="hidden">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">P</span>
-                    <span class="label-char" style="--index: 1">a</span>
-                    <span class="label-char" style="--index: 2">s</span>
-                    <span class="label-char" style="--index: 3">s</span>
-                </label>
-            </div>
-            <div class="" style="margin-top: 20px;">
-
-                <button type="submit" name="option" value="updateProfileStaff"
-                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
-                    Update
-                </button>
-                <button type="button" onclick="toggle1()"
-                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
-                </button>
-            </div>
-        </form>
-    </c:if>
-
 </div>
 <div id="blur" class="container">
     <section id="sidebar" class="">
@@ -535,10 +443,10 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Cửa hàng</h1>
+                    <h1>Khách hàng</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="product">Cửa hàng</a>
+                            <a href="user">Khách hàng</a>
                         </li>
                         <li><i class="bx bx-chevron-right"></i></li>
                         <li>
@@ -551,18 +459,11 @@
 
             <div class="table-data">
                 <div class="order">
-                    <form class="" action="product" method="get">
+                    <form class="" action="user" method="get">
                         <div class="head">
-                            <h3>Sản phẩm</h3>
+                            <h3>Khách hàng</h3>
                             <h2>${errorMessage}</h2>
-                            <select name="category" id="selectCategory"
-                                    style="font-size: 16px;height: 100%;padding: 10px;border-radius: 5px;width: 15%;cursor: pointer">
-                                <option selected value="all">Danh mục</option>
-                                <c:forEach var="category" items="${listCategory}">
-                                    <option ${param.category.equals(category) ? "selected" : ""}
-                                            value="${category}">${category}</option>
-                                </c:forEach>
-                            </select>
+
                             <div class="wave-group">
                                 <input type="text" class="input" id="inputSearchName" name="name" value="${param.name}">
                                 <span class="bar"></span>
@@ -585,36 +486,36 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>Hình ảnh</th>
+                            <th>Id</th>
                             <th>Tên</th>
-                            <th>Giá</th>
-                            <th>Thể tích</th>
+                            <th>Điện thoại</th>
+                            <th>Email</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="product" items="${listProduct}">
+                        <c:forEach var="customer" items="${listCustomer}">
                             <tr>
                                 <td>
-                                    <img style="max-height: 68px;" src="${product.getImage()}">
+                                    <h4>${customer.getCustomer_id()} </h4>
                                 </td>
                                 <td>
-                                    <h4>${product.getProduct_name()}</h4>
+                                    <h4>${customer.getName()}</h4>
                                 </td>
                                 <td>
-                                    <h5 class="priceValue">${product.getPrice()}</h5>
+                                    <h5>${customer.getPhone()}</h5>
                                 </td>
                                 <td>
-                                    <h5>${product.getVolume()}</h5>
+                                    <h5>${customer.getEmail()}</h5>
                                 </td>
                                 <td>
-                                    <button type="button"
-                                            onclick='toggle();loadData(JSON.stringify(${product.toJson()}))'
-                                            style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
-                                        Chi tiết
-                                    </button>
+                                        <%--                                    <button type="button"--%>
+                                        <%--                                            onclick='toggle();loadData(JSON.stringify(${product.toJson()}))'--%>
+                                        <%--                                            style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">--%>
+                                        <%--                                        Chi tiết--%>
+                                        <%--                                    </button>--%>
                                 </td>
                                 <td>
-                                    <button onclick="toggleDelete();alertDelete(${product.getProduct_id()})"
+                                    <button onclick="toggleDelete();alertDelete(${customer.getCustomer_id()})"
                                             style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
                                         Xóa
                                     </button>
@@ -633,18 +534,17 @@
     </section>
 </div>
 <script>
-    function loadData(product) {
-        var data = JSON.parse(product);
+    function loadData(customer) {
+        var data = JSON.parse(customer);
         console.log(data);
-        document.getElementById("detailId").value = data.product_id;
-        document.getElementById("detailName").value = data.product_name;
-        document.getElementById("detailPrice").value = parseInt(data.price).toLocaleString();
-        document.getElementById("detailImage").value = data.image;
-        document.getElementById("detailVolume").value = data.volume;
-        document.getElementById("detailDescribe").value = data.describe;
-        document.getElementById("detailCategory").value = data.category_name;
-    }
+        document.getElementById("detailId").value = data.customer_id;
+        document.getElementById("detailName").value = data.name;
+        document.getElementById("detailPhone").value = data.phone;
+        document.getElementById("detailEmail").value = data.email;
+        document.getElementById("detailPass").value = data.pass;
+        document.getElementById("detailStatus").value = data.status;
 
+    }
 
     function loadDataAdmin(admin) {
         var data1 = JSON.parse(admin);
@@ -684,14 +584,13 @@
         popup.classList.toggle('active');
     }
 
-
-    var priceValue = document.querySelectorAll(".priceValue");
-    priceValue.forEach(p => {
-        var number = parseFloat(p.innerText);
-        if (!isNaN(number)) {
-            p.innerText = number.toLocaleString();
-        }
-    });
+    // var priceValue = document.querySelectorAll(".priceValue");
+    // priceValue.forEach(p => {
+    //     var number = parseFloat(p.innerText);
+    //     if (!isNaN(number)) {
+    //         p.innerText = number.toLocaleString();
+    //     }
+    // });
 
     let pages = ${totalPages};
 
@@ -703,16 +602,16 @@
         let pageCutLow = page - 1;
         let pageCutHigh = page + 1;
         var name = document.getElementById("inputSearchName");
-        var category = document.getElementById("selectCategory");
+
         // Show the Previous button only if you are on a page other than the first
         if (page > 1) {
-            str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
+            str += '<a style="color: black" href="user?name=' + name.value + '&page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
         }
         // Show all the pagination elements if there are less than 6 pages total
         if (pages < 6) {
             for (let p = 1; p <= pages; p++) {
                 active = page == p ? "active" : "";
-                str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+                str += '<a style="color: black" href="user?name=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
         }
         // Use "..." to collapse pages outside of a certain range
@@ -720,7 +619,7 @@
             // Show the very first page followed by a "..." at the beginning of the
             // pagination section (after the Previous button)
             if (page > 2) {
-                str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
+                str += '<a style="color: black" href="user?name=' + name.value + '&page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
                 if (page > 3) {
                     str += `<li class="page__dots"><span>...</span></li>`;
                 }
@@ -747,7 +646,7 @@
                     continue
                 }
                 active = page == p ? "active" : "";
-                str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+                str += '<a style="color: black" href="user?name=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
             // Show the very last page preceded by a "..." at the end of the pagination
             // section (before the Next button)
@@ -755,12 +654,12 @@
                 if (page < pages - 2) {
                     str += '<li class="page__dots"><span>...</span></li>';
                 }
-                str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
+                str += '<a style="color: black" href="user?name=' + name.value + '&page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
             }
         }
         // Show the Next button only if you are on a page other than the last
         if (page < pages) {
-            str += '<a style="color: black" href="product?name=' + name.value + '&category=' + category.value + '&page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
+            str += '<a style="color: black" href="user?name=' + name.value + '&page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
         }
         str += '</ul>';
         // Return the pagination string to be outputted in the pug templates
@@ -777,6 +676,8 @@
         }
 
     }
+
+
 </script>
 </body>
 </html>

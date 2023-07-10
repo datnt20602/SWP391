@@ -56,7 +56,7 @@ public class ProductDAO extends DBContext{
             if (rs.next()) {
                 return rs.getInt("count(product_id)");
             }
-         } catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("searchProduct: " + e.getMessage());
         }
         return 0;

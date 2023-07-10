@@ -121,4 +121,79 @@ public class MailSending {
             System.out.println(e.getMessage());
         }
     }
+
+    public void authenEmailStaff(String fromEmail, String password, String toEmail,String staffPassword, String token) {
+        String host = "smtp.gmail.com";
+        String port = "587";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", port); // for TLS
+        props.put("mail.smtp.starttls.enable", "true"); // for TLS
+
+        Session session = Session.getInstance(props, new jakarta.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        });
+
+        try {
+            String content = "Email của bạn đã được đăng kí tài khoản nhân viên, dưới đấy là mật khẩu và mã OTP kích hoạt khi đăng nhập" +
+                    ":\nMật khẩu: " + staffPassword  +
+                    "\nMã OTP "+ token +
+                    "\nNote: Sau khi đăng nhập bạn sẽ được chuyển đến trang kích hoạt tài khoản!";
+
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+            message.setSubject("Authentication email Staff");
+            message.setText(content);
+            Transport.send(message);
+            System.out.println("Email sent successfully!");
+
+        } catch (MessagingException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void sendEmailPassStaff(String fromEmail, String password, String toEmail,String staffPassword) {
+        String host = "smtp.gmail.com";
+        String port = "587";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", port); // for TLS
+        props.put("mail.smtp.starttls.enable", "true"); // for TLS
+
+        Session session = Session.getInstance(props, new jakarta.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        });
+
+        try {
+            String content = "Email của bạn đã được đăng kí tài khoản nhân viên, dưới đấy là mật khẩu và mã OTP kích hoạt khi đăng nhập" +
+
+                    ":\nEmail:" +toEmail+
+                    ":\nMật khẩu: " + staffPassword  +
+
+                    "\nNote: Sau khi đăng nhập bạn sẽ được chuyển đến trang kích hoạt tài khoản!";
+
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+            message.setSubject("Send Email Password to Staff");
+            message.setText(content);
+            Transport.send(message);
+            System.out.println("Email sent successfully!");
+
+        } catch (MessagingException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

@@ -88,13 +88,11 @@
 
                         <div class="middle-box">
                             <div class="location-box">
-                                <button class="btn location-button" data-bs-toggle="modal"
+                                <button class="btn location-button" data-bs-toggle=""
                                         data-bs-target="#locationModal">
-                                        <span class="location-arrow">
-                                            <i data-feather="map-pin"></i>
-                                        </span>
-                                    <span class="locat-name">Vị trí của bạn</span>
-                                    <i class="fa-solid fa-angle-down"></i>
+
+                                    <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
+
                                 </button>
                             </div>
 
@@ -386,7 +384,7 @@
                             <div class="col-12">
                                 <div class="form-floating theme-form-floating log-in-form">
                                     <input type="email" class="form-control" id="email" placeholder="Email Address"
-                                           name="email" readonly value="${customer.getEmail()}">
+                                           name="email" readonly value="${customer.getEmail()}${admin.getEmail()}${staff.getEmail()}">
                                     <label for="email">Địa chỉ email</label>
                                 </div>
                             </div>

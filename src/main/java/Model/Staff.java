@@ -4,21 +4,10 @@ public class Staff {
     private int staff_id;
     private String name;
     private String email;
-
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "staff_id=" + staff_id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", active=" + active +
-                ", pass='" + pass + '\'' +
-                '}';
-    }
-
     private String phone;
     private int active;
+
+    private int admin_id;
     private String pass;
 
 
@@ -34,8 +23,46 @@ public class Staff {
         this.pass = pass;
     }
 
+    public Staff(String name, String email, String phone, String pass, int active, int admin_id) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.pass = pass;
+        this.active = active;
+        this.admin_id = admin_id;
+    }
 
 
+
+    public Staff(int staff_id, String name, String email, String phone, int active, int admin_id, String pass) {
+        this.staff_id = staff_id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.active = active;
+        this.admin_id = admin_id;
+        this.pass = pass;
+    }
+
+    public int getAdmin_id() {
+        return admin_id;
+    }
+
+    public void setAdmin_id(int admin_id) {
+        this.admin_id = admin_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staff_id=" + staff_id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", active=" + active +
+                ", pass='" + pass + '\'' +
+                '}';
+    }
 
     public int getStaff_id() {
         return staff_id;
@@ -78,7 +105,7 @@ public class Staff {
     }
 
     public int getActive() {
-        return active;
+        return active ;
     }
 
     public void setActive(int active) {
