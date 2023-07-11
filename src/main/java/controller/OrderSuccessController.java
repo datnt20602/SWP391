@@ -63,6 +63,9 @@ public class OrderSuccessController extends HttpServlet {
             total = total+ (item.getPrice()*item.getQuantity());
             daoOrder_item.insertOrder_Item(item,item.getProduct().getProduct_id(),order_id);
         }
+        for(Order_item od : orderItemVector){
+            System.out.println(od.getItem_id());
+        }
         session.removeAttribute("cart_list");
         session.removeAttribute("totalMoney");
         request.setAttribute("totalMoney", total);

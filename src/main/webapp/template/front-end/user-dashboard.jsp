@@ -526,7 +526,8 @@
                   <div class="row g-sm-4 g-3">
                     <%
                       Vector<Product> vector = (Vector<Product>) request.getAttribute("wishlist");
-                      for(Product item : vector){
+                      if(vector != null){
+                        for(Product item : vector){
                     %>
                     <div class="col-xxl-3 col-lg-6 col-md-4 col-sm-6">
                       <div class="product-box-3 theme-bg-white h-100">
@@ -560,7 +561,10 @@
                         </div>
                       </div>
                     </div>
-                    <%}%>
+                    <%
+                          }
+                        }
+                    %>
                   </div>
 
                 </div>
@@ -673,7 +677,7 @@
                     </div>
 
                     <button class="btn theme-bg-color text-white btn-sm fw-bold mt-lg-0 mt-3"
-                            data-bs-toggle="modal" data-bs-target="#add-address"><i data-feather="plus"
+                            data-bs-toggle="modal"  data-bs-target="#add-address"><i data-feather="plus"
                                                                                     class="me-2"></i> Thêm địa chỉ mới</button>
                   </div>
 
@@ -1208,7 +1212,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn theme-bg-color btn-md text-white" data-bs-dismiss="modal">Thêm địa chỉ</button>
+              <button type="submit"  name="addAddress" value=""class="btn theme-bg-color btn-md text-white" data-bs-dismiss="modal">Thêm địa chỉ</button>
             </div>
           </form>
       </div>

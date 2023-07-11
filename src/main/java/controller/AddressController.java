@@ -20,6 +20,7 @@ public class AddressController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Customer cus = (Customer) session.getAttribute("customer");
+        String check = request.getParameter("addAddress");
         DAOAddress dao = new DAOAddress();
         int id = dao.getIdAddress();
         String name = request.getParameter("name");
@@ -29,6 +30,10 @@ public class AddressController extends HttpServlet {
         String ten_goi_nho = request.getParameter("ten_nho");
         Address adr = new Address(id,name,email,phone,address,ten_goi_nho);
         dao.insertAddress(adr, cus.getCustomer_id());
-        response.sendRedirect("customer");
+        if(check.equals("checkout")){
+            response.sendRedirect("checkoutController");
+        }else {
+            response.sendRedirect("customer");
+        }
     }
 }

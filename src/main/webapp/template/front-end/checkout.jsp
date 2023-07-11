@@ -429,6 +429,11 @@
                                             }
                                         }
                                     %>
+                                            <div>
+                                                <button type="button"  class="btn theme-bg-color text-white btn-sm fw-bold mt-lg-0 mt-3"
+                                                        data-bs-toggle="modal" data-bs-target="#add-address"><i data-feather="plus"
+                                                                                                                class="me-2"></i> Add New Address</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -549,8 +554,51 @@
 </section>
 <!-- Checkout section End -->
 
-<!-- Cart Section End -->
+<div class="modal fade theme-modal" id="add-address" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Add a new address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form action="address" method="post">
+                <div class="modal-body">
+                    <div class="form-floating mb-4 theme-form-floating">
+                        <input type="text" class="form-control" name="name" id="fname" placeholder="Nhập tên người nhận" value="<%=cus.getName()%>">
+                        <label for="fname">Tên người nhận </label>
+                    </div>
 
+                    <div class="form-floating mb-4 theme-form-floating">
+                        <input type="email" class="form-control"name="email" id="email" placeholder="Nhập Email" value="<%=cus.getEmail()%>">
+                        <label for="email">Email </label>
+                    </div>
+
+                    <div class="form-floating mb-4 theme-form-floating">
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Số điện thoại " value="<%=cus.getPhone()%>">
+                        <label for="phone">Số điện thoại</label>
+                    </div>
+
+                    <div class="form-floating mb-4 theme-form-floating">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ">
+                        <label for="address">Địa chỉ</label>
+                    </div>
+
+                    <div class="form-floating mb-4 theme-form-floating">
+                        <input type="text" class="form-control" name="ten_nho" id="name" placeholder="Nhập Tên Gợi">
+                        <label for="name">Tên Gợi Nhớ</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"name="addAddress" value="checkout" class="btn theme-bg-color btn-md text-white" data-bs-dismiss="modal">Thêm địa chỉ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Add address modal box end -->
 <!-- Footer Section Start -->
 <footer class="section-t-space">
     <div class="container-fluid-lg">

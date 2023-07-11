@@ -169,7 +169,7 @@
                     <div class="onhover-div">
                       <ul class="cart-list">
                         <%
-                          Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                          Vector<Order_item> order_itemVector = (Vector<Order_item>) request.getAttribute("cart_list");
                           if(order_itemVector != null){
                             for(Order_item item : order_itemVector){
 
@@ -203,9 +203,9 @@
                       <div class="price-box">
                         <h5>Tổng :</h5>
                         <%
-                          if(session.getAttribute("totalMoney") != null){
+                          if(request.getAttribute("totalMoney") != null){
                         %>
-                        <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
+                        <h4 class="theme-color fw-bold">$ <%=request.getAttribute("totalMoney")%></h4>
                         <%
                         }else {
                         %>
