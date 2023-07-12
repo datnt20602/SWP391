@@ -1,5 +1,7 @@
 <%@ page import="java.util.Vector" %>
 <%@ page import="Model.Product" %>
+<%@ page import="Model.Customer" %>
+<%@ page import="Model.Order_item" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -59,7 +61,6 @@
     </div>
     <!-- Loader End -->
 
-    <!-- Header Start -->
     <header class="pb-md-4 pb-0">
 
 
@@ -69,13 +70,14 @@
                     <div class="col-12">
                         <div class="navbar-top">
                             <button class="navbar-toggler d-xl-none d-inline navbar-menu-button" type="button"
-                                data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
+                                    data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
                                 <span class="navbar-toggler-icon">
                                     <i class="fa-solid fa-bars"></i>
                                 </span>
                             </button>
                             <a href="home" class="web-logo nav-logo">
-                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" class="img-fluid blur-up lazyload" alt="">
+                                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
+                                     class="img-fluid blur-up lazyload" alt="">
                             </a>
 
                             <div class="middle-box">
@@ -90,8 +92,8 @@
 
                                 <div class="search-box">
                                     <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="Tìm kiếm..."
-                                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
+                                               aria-label="Recipient's username" aria-describedby="button-addon2">
                                         <button class="btn" type="button" id="button-addon2">
                                             <i data-feather="search"></i>
                                         </button>
@@ -127,8 +129,8 @@
                                                 <i data-feather="phone-call"></i>
                                             </div>
                                             <div class="delivery-detail">
-                                                <h6>24/7 Delivery</h6>
-                                                <h5>+91 888 104 2340</h5>
+                                                <h6>Giao hàng 24/7</h6>
+                                                <h5>+84 373801816</h5>
                                             </div>
                                         </a>
                                     </li>
@@ -148,55 +150,53 @@
 
                                             <div class="onhover-div">
                                                 <ul class="cart-list">
+                                                    <%
+                                                        Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                                        if(order_itemVector != null){
+                                                            for(Order_item item : order_itemVector){
+
+
+                                                    %>
+
                                                     <li class="product-box-contain">
                                                         <div class="drop-cart">
-                                                            <a href="product-detail.jsp" class="drop-image">
-                                                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
-                                                                    class="blur-up lazyload" alt="">
+                                                            <a href="productdetail" class="drop-image">
+                                                                <img src="<%=item.getProduct().getImage()%>"
+                                                                     class="blur-up lazyload" alt="">
                                                             </a>
 
                                                             <div class="drop-contain">
-                                                                <a href="product-detail.jsp">
-                                                                    <h5>Fantasy Crunchy Choco Chip Cookies</h5>
+                                                                <a href="productdetail">
+                                                                    <h5><%=item.getProduct().getProduct_name()%></h5>
                                                                 </a>
-                                                                <h6><span>1 x</span> $80.58</h6>
+                                                                <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
                                                                 <button class="close-button close_button">
                                                                     <i class="fa-solid fa-xmark"></i>
                                                                 </button>
                                                             </div>
                                                         </div>
                                                     </li>
-
-                                                    <li class="product-box-contain">
-                                                        <div class="drop-cart">
-                                                            <a href="product-detail.jsp" class="drop-image">
-                                                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                                                    class="blur-up lazyload" alt="">
-                                                            </a>
-
-                                                            <div class="drop-contain">
-                                                                <a href="product-detail.jsp">
-                                                                    <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                    </h5>
-                                                                </a>
-                                                                <h6><span>1 x</span> $25.68</h6>
-                                                                <button class="close-button close_button">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </ul>
 
                                                 <div class="price-box">
-                                                    <h5>Total :</h5>
-                                                    <h4 class="theme-color fw-bold">$106.58</h4>
+                                                    <h5>Tổng :</h5>
+                                                    <%
+                                                        if(session.getAttribute("totalMoney") != null){
+                                                    %>
+                                                    <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
+                                                    <%
+                                                    }else {
+                                                    %>
+                                                    <h4 class="theme-color fw-bold">0</h4>
+                                                    <%}%>
                                                 </div>
 
                                                 <div class="button-group">
                                                     <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
-                                                    <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Thanh toán</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,15 +206,24 @@
                                             <div class="delivery-icon">
                                                 <i data-feather="user"></i>
                                             </div>
+
                                             <div class="delivery-detail">
-                                                <h6>Hello,</h6>
-                                                <h5>My Account</h5>
+                                                <%
+                                                    Customer cus = (Customer) session.getAttribute("customer");
+                                                    if(cus != null)
+                                                    {
+                                                %>
+                                                <h5><%=cus.getName()%></h5>
+                                                <%
+                                                    }
+                                                %>
                                             </div>
+
                                         </div>
 
                                         <div class="onhover-div onhover-div-login">
                                             <ul class="user-box-name">
-                                                <c:if test="${acc == null}">
+                                                <c:if test="${customer == null}">
                                                     <li class="product-box-contain">
                                                         <i></i>
                                                         <a href="login">Đăng nhập</a>
@@ -230,11 +239,13 @@
                                                         <a href="forgotpass">Quên mật khẩu</a>
                                                     </li>
                                                 </c:if>
-                                                <c:if test="${acc != null}">
+                                                <c:if test="${customer != null}">
+                                                    <li class="product-box-contain">
+                                                        <a href="customer">Thông tin cá nhân</a>
+                                                    </li>
                                                     <li class="product-box-contain">
                                                         <a href="changepass">Đổi mật khẩu</a>
                                                     </li>
-
                                                     <li class="product-box-contain">
                                                         <a href="logout">Đăng xuất</a>
                                                     </li>
@@ -254,11 +265,25 @@
             <div class="row">
                 <div class="col-12">
                     <div class="header-nav">
-                        <div class="header-nav-left">
 
+
+                        <div class="header-nav-middle">
+                            <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+                                <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
+                                    <div class="offcanvas-header navbar-shadow">
+                                        <h5>Menu</h5>
+                                        <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body">
+                                        <ul class="navbar-nav">
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-
 
                         <div class="header-nav-right">
                             <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
@@ -358,32 +383,15 @@
                                 <a href="product-detail.jsp">
                                     <h5 class="name"><%= temp.getProduct_name()%></h5>
                                 </a>
-                                <h6 class="unit mt-1"><%=temp.getVolume()%>></h6>
+                                <h6 class="unit mt-1"><%=temp.getVolume()%></h6>
                                 <h5 class="price">
-                                    <span class="theme-color">$<%=temp.getPrice()%>></span>
+                                    <span class="theme-color">$<%=temp.getPrice()%></span>
                                     <del>$15.15</del>
                                 </h5>
 
                                 <div class="add-to-cart-box bg-white mt-2">
-                                    <button class="btn btn-add-cart addcart-button">Add
-                                        <span class="add-icon bg-light-gray">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                    </button>
-                                    <div class="cart_qty qty-box">
-                                        <div class="input-group bg-white">
-                                            <button type="button" class="qty-left-minus bg-gray" data-type="minus"
-                                                data-field="">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </button>
-                                            <input class="form-control input-number qty-input" type="text"
-                                                name="quantity" value="0">
-                                            <button type="button" class="qty-right-plus bg-gray" data-type="plus"
-                                                data-field="">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <button class="btn btn-add-cart addcart-button"
+                                            onclick="location.href = 'cart?service=addToCart&pro_id=<%=temp.getProduct_id()%>';">Add</button>
                                 </div>
                             </div>
                         </div>

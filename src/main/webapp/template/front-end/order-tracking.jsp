@@ -1,4 +1,10 @@
-<%@ page import="Model.Product" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Minh1511
+  Date: 7/9/2023
+  Time: 2:58 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="java.util.Vector" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -6,9 +12,8 @@
 <%@page import =" java.util.Vector,Model.Product" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="Model.Customer" %>
-<%@ page import="java.util.List" %>
-<%@ page import="Dal.DAOProduct" %>
 <%@ page import="Model.Order_item" %>
+<%@ page import="Model.*" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -59,11 +64,6 @@
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/template/assets/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
-
 </head>
 
 <body>
@@ -237,6 +237,7 @@
                                                 }
                                             %>
                                         </div>
+
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -250,6 +251,7 @@
                                                 <li class="product-box-contain">
                                                     <a href="signup">Đăng kí</a>
                                                 </li>
+
 
 
                                                 <li class="product-box-contain">
@@ -425,284 +427,146 @@
 </section>
 <!-- Poster Section End -->
 
-<!-- Shop Section Start -->
-<section class="section-b-space shop-section">
+<!-- Order Detail Section Start -->
+<section class="order-detail">
     <div class="container-fluid-lg">
-        <div class="row">
-            <div class="col-custome-3">
-                <div class="left-box wow fadeInUp">
-                    <div class="shop-left-sidebar">
-                        <div class="back-button">
-                            <h3><i class="fa-solid fa-arrow-left"></i> Back</h3>
-                        </div>
-
-
-                        <div class="accordion custome-accordion" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                        <span>Danh mục</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show"
-                                     aria-labelledby="headingOne">
-                                    <div class="accordion-body">
-                                        <%--                                        <div class="form-floating theme-form-floating-2 search-box">--%>
-                                        <%--                                            <input type="search" class="form-control" id="search"--%>
-                                        <%--                                                   placeholder="Search ..">--%>
-                                        <%--                                            <label for="search">Tìm...</label>--%>
-                                        <%--                                        </div>--%>
-
-                                        <ul class="category-list custom-padding custom-height">
-                                            <form class="w-100 h-100" id="formCategories"
-                                                  action="<%= (request.getParameter("service") == null) ? "home" : "home?service=" + request.getParameter("service")%>"
-                                                  method="get">
-                                                <c:forEach var="category" items="${listCategory}">
-                                                    <li>
-                                                        <div class="form-check ps-0 m-0 category-list-box">
-                                                            <input class="checkbox_animated" type="checkbox"
-                                                                ${categories.contains(category) ? "checked" : ""}
-                                                                   value="${category}" name="category" id="${category}"
-                                                                   class="categories">
-                                                            <label class="form-check-label" for="${category}">
-                                                                <span class="name"> ${category}</span>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                </c:forEach>
-
-                                                <li>
-                                                    <div class="form-check ps-0 m-0 category-list-box">
-
-                                                    </div>
-                                                </li>
-                                            </form>
-                                        </ul>
-                                        <script>
-                                            $(".category-list-box input[type=checkbox]").each(() => {
-                                                $(this).change(() => {
-                                                    $("#formCategories").submit();
-                                                });
-                                            });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <%--                            <div class="accordion-item">--%>
-                            <%--                                <h2 class="accordion-header" id="headingFour">--%>
-                            <%--                                    <button class="accordion-button collapsed" type="button"--%>
-                            <%--                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"--%>
-                            <%--                                            aria-expanded="false" aria-controls="collapseFour">--%>
-                            <%--                                        <span>Giảm giá</span>--%>
-                            <%--                                    </button>--%>
-                            <%--                                </h2>--%>
-                            <%--                                <div id="collapseFour" class="accordion-collapse collapse show"--%>
-                            <%--                                     aria-labelledby="headingFour">--%>
-                            <%--                                    <div class="accordion-body">--%>
-                            <%--                                        <ul class="category-list custom-padding">--%>
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault">--%>
-                            <%--                                                        <span class="name"> 5%</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault1">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault1">--%>
-                            <%--                                                        <span class="name">5% - 10%</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault2">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault2">--%>
-                            <%--                                                        <span class="name">10% - 15%</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault3">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault3">--%>
-                            <%--                                                        <span class="name">15% - 25%</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault4">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault4">--%>
-                            <%--                                                        <span class="name"> 25% trở lên</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-                            <%--                                        </ul>--%>
-                            <%--                                    </div>--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
-
-
-                        </div>
-                    </div>
+        <div class="row g-sm-4 g-3">
+            <div class="col-xxl-3 col-xl-4 col-lg-6">
+                <div class="order-image">
+                    <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" class="img-fluid blur-up lazyload" alt="">
                 </div>
             </div>
+        <%
+            Order order = (Order) request.getAttribute("data");
+        %>
+            <div class="col-xxl-9 col-xl-8 col-lg-6">
+                <div class="row g-sm-4 g-3">
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i data-feather="package" class="text-content"></i>
+                            </div>
 
-            <div class="col-custome-9">
-                <div class="show-button">
-                    <div class="filter-button-group mt-0">
-                        <div class="filter-button d-inline-block d-lg-none">
-                            <a><i class="fa-solid fa-filter"></i> Filter Menu</a>
+                            <div class="order-details-name">
+                                <h5 class="text-content">Mã Order</h5>
+                                <h2 class="theme-color"><%=order.getOrder_id()%></h2>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="top-filter-menu">
-                        <div class="category-dropdown">
-                            <h5 class="text-content">Sắp xếp theo:</h5>
-                            <div class="dropdown">
-                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown">
-                                    <span id="selectedOption">Mời chọn</span> <i class="fa-solid fa-angle-down"></i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li onclick="updateSelectedOption('low')">
-                                        <a class="dropdown-item" id="low" href="home?service=displayAllUp">Giá thấp -
-                                            cao</a>
-                                    </li>
-                                    <li onclick="updateSelectedOption('high')">
-                                        <a class="dropdown-item" id="high" href="home?service=displayAllReduce">Giá cao
-                                            - thấp</a>
-                                    </li>
-                                    <li onclick="updateSelectedOption('normal')">
-                                        <a class="dropdown-item" id="normal" href="home?service=displayAll">Tất cả</a>
-                                    </li>
-                                </ul>
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i data-feather="truck" class="text-content"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Công Ty Vận Chuyển</h5>
+                                <img src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/358426384_1975862572788901_3623245602581051726_n.jpg?_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=vOV0HPusQlUAX_H6s-C&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDdMxBTu8xr7nOpHqNy4D_ViNHVUpFaw-40wKlNz1TjtQ&oe=64AE9FFD"
+                                     class="img-fluid blur-up lazyload" alt="">
                             </div>
                         </div>
+                    </div>
 
-                        <div class="grid-option d-none d-md-block">
-                            <ul>
-                                <li class="three-grid">
-                                    <a href="javascript:void(0)">
-                                        <img src="${pageContext.request.contextPath}/template/assets/svg/grid-3.svg"
-                                             class="blur-up lazyload" alt="">
-                                    </a>
-                                </li>
-                                <li class="grid-btn d-xxl-inline-block d-none active">
-                                    <a href="javascript:void(0)">
-                                        <img src="${pageContext.request.contextPath}/template/assets/svg/grid-4.svg"
-                                             class="blur-up lazyload d-lg-inline-block d-none" alt="">
-                                        <img src="${pageContext.request.contextPath}/template/assets/svg/grid.svg"
-                                             class="blur-up lazyload img-fluid d-lg-none d-inline-block" alt="">
-                                    </a>
-                                </li>
-                                <li class="list-btn">
-                                    <a href="javascript:void(0)">
-                                        <img src="${pageContext.request.contextPath}/template/assets/svg/list.svg"
-                                             class="blur-up lazyload" alt="">
-                                    </a>
-                                </li>
-                            </ul>
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i class="text-content" data-feather="info"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Tên Người Nhận</h5>
+                                <h4><%= order.getAddress().getName()%></h4>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i class="text-content" data-feather="crosshair"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Từ</h5>
+                                <h4>Hòa Lạc , Thạch Thất ,Hà Nội</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="order-details-contain">
+                            <div class="order-tracking-icon">
+                                <i class="text-content" data-feather="map-pin"></i>
+                            </div>
+
+                            <div class="order-details-name">
+                                <h5 class="text-content">Điểm đến</h5>
+                                <h4><%=order.getAddress().getAddress_name()%></h4>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 overflow-hidden">
+                        <ol class="progtrckr">
+                            <li class="progtrckr-done">
+                                <h5>Đã Chuẩn Bị Xong</h5>
+                            </li>
+                            <li class="progtrckr-todo">
+                                <h5>Đang Ship</h5>
+                            </li>
+                            <li class="progtrckr-todo">
+                                <h5>Đã Nhận Được Hàng</h5>
+                            </li>
+                        </ol>
                     </div>
                 </div>
-                <%
-                    Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
-                %>
-                <div id="contentSearch"
-                     class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
-                    <%
-                        for (Product temp : vector) {
-
-                    %>
-                    <div>
-                        <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.6">
-                            <div class="product-header">
-                                <div class="product-image">
-                                    <a href="productdetail?pro_id=<%=temp.getProduct_id()%>">
-                                        <img src="<%=temp.getImage()%>"
-                                             class="img-fluid blur-up lazyload" alt="">
-                                    </a>
-
-                                    <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a style="padding-left: 95px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
-                                                <i data-feather="heart"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-footer">
-                                <div class="product-detail">
-                                    <span class="span-name"><%=temp.getCategory_name()%></span>
-                                    <a href="productdetail">
-                                        <h5 class="name"><%=temp.getProduct_name()%></h5>
-                                    </a>
-                                    <p class="text-content mt-1 mb-2 product-content"><%=temp.getDescribe()%></p>
-                                    <div class="product-rating mt-2">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(4.0)</span>
-                                    </div>
-                                    <h6 class="unit"><%= temp.getVolume()%>ml</h6>
-                                    <h5 class="price"><span class="theme-color"><%= temp.getPrice()%></span>
-                                        <del>$15.15</del>
-                                    </h5>
-                                    <div class="add-to-cart-box bg-white">
-                                        <button class="btn btn-add-cart addcart-button"
-                                                onclick="location.href = 'cart?service=addToCart&pro_id=<%=temp.getProduct_id()%>';">Add
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
-                </div>
-                <div id="pagination"></div>
-
             </div>
         </div>
     </div>
 </section>
-<!-- Shop Section End -->
+<!-- Order Detail Section End -->
+
+<!-- Order Table Section Start -->
+<section class="order-table-section section-b-space">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table order-tab-table">
+                        <thead>
+                        <tr>
+                            <th>Mô Tả</th>
+                            <th>Ngày</th>
+                            <th>Địa Điểm</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Đóng hàng và gửi đi</td>
+                            <td><%=order.getOrder_date()%></td>
+                            <td>Hòa Lạc</td>
+                        </tr>
+
+                        <tr>
+                            <td>Đang Ship</td>
+                            <td><%=order.getRequired_date()%></td>
+                        </tr>
+
+                        <tr>
+                            <td>Giao Hàng Thành Công</td>
+                            <td><%=order.getShipped_date()%></td>
+                            <td><%=order.getAddress().getAddress_name()%></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Order Table Section End -->
 
 <!-- Footer Section Start -->
 <footer class="section-t-space">
@@ -771,8 +635,7 @@
                         </div>
 
                         <div class="footer-logo-contain">
-                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục
-                                vụ.</p>
+                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
 
                             <ul class="address">
                                 <li>
@@ -826,7 +689,7 @@
                             </li>
 
                             <li>
-                                <a href="wishlist" class="text-content"> Wishlist</a>
+                                <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
                             </li>
                             <li>
                                 <a href="faq.html" class="text-content">FAQ</a>
@@ -894,7 +757,87 @@
                         </div>
                     </div>
 
+                    <div class="col-lg-6">
+                        <div class="right-sidebar-modal">
+                            <h4 class="title-name">Peanut Butter Bite Premium Butter Cookies 600 g</h4>
+                            <h4 class="price">$36.99</h4>
+                            <div class="product-rating">
+                                <ul class="rating">
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star" class="fill"></i>
+                                    </li>
+                                    <li>
+                                        <i data-feather="star"></i>
+                                    </li>
+                                </ul>
+                                <span class="ms-2">8 Reviews</span>
+                                <span class="ms-2 text-danger">6 sold in last 16 hours</span>
+                            </div>
 
+                            <div class="product-detail">
+                                <h4>Product Details :</h4>
+                                <p>Candy canes sugar plum tart cotton candy chupa chups sugar plum chocolate I love.
+                                    Caramels marshmallow icing dessert candy canes I love soufflé I love toffee.
+                                    Marshmallow pie sweet sweet roll sesame snaps tiramisu jelly bear claw. Bonbon
+                                    muffin I love carrot cake sugar plum dessert bonbon.</p>
+                            </div>
+
+                            <ul class="brand-list">
+                                <li>
+                                    <div class="brand-box">
+                                        <h5>Brand Name:</h5>
+                                        <h6>Black Forest</h6>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="brand-box">
+                                        <h5>Product Code:</h5>
+                                        <h6>W0690034</h6>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="brand-box">
+                                        <h5>Product Type:</h5>
+                                        <h6>White Cream Cake</h6>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="select-size">
+                                <h4>Cake Size :</h4>
+                                <select class="form-select select-form-size">
+                                    <option selected>Select Size</option>
+                                    <option value="1.2">1/2 KG</option>
+                                    <option value="0">1 KG</option>
+                                    <option value="1.5">1/5 KG</option>
+                                    <option value="red">Red Roses</option>
+                                    <option value="pink">With Pink Roses</option>
+                                </select>
+                            </div>
+
+                            <div class="modal-button">
+                                <button onclick="location.href = 'cart';"
+                                        class="btn btn-md add-cart-button icon">Add
+                                    To Cart
+                                </button>
+                                <button onclick="location.href = 'product-left.html';"
+                                        class="btn theme-bg-color view-button icon text-white fw-bold btn-md">
+                                    View More Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1040,149 +983,7 @@
 <!-- Bg overlay End -->
 
 <!-- latest jquery-->
-
-<script>
-    function updateSelectedOption(optionId) {
-        var selectedOptionText = document.getElementById("selectedOption");
-        var selectedOptionItem = document.getElementById(optionId);
-
-        if (selectedOptionItem) {
-            selectedOptionText.innerText = selectedOptionItem.innerText;
-            localStorage.setItem("selectedOption", selectedOptionItem.innerText);
-        }
-    }
-
-    // Khôi phục giá trị đã chọn
-    var selectedOptionText = document.getElementById("selectedOption");
-    var savedOption = localStorage.getItem("selectedOption");
-    if (savedOption) {
-        selectedOptionText.innerText = savedOption;
-    }
-
-</script>
-
-<script>
-    function loadData(product) {
-        var data = JSON.parse(product);
-        console.log(data);
-        document.getElementById("detailId").value = data.product_id;
-        document.getElementById("detailName").value = data.product_name;
-        document.getElementById("detailPrice").value = parseInt(data.price).toLocaleString();
-        document.getElementById("detailImage").value = data.image;
-        document.getElementById("detailVolume").value = data.volume;
-        document.getElementById("detailDescribe").value = data.describe;
-        document.getElementById("detailCategory").value = data.category_name;
-    }
-
-    function alertDelete(id) {
-        document.getElementById("deleteId").value = id;
-    }
-
-    function toggleDelete() {
-        var blur = document.getElementById('blur');
-        blur.classList.toggle('active');
-        var deleteDiv = document.getElementById('deleteDiv');
-        deleteDiv.classList.toggle('active');
-    }
-
-    function toggle() {
-        var blur = document.getElementById('blur');
-        blur.classList.toggle('active');
-        var popup = document.getElementById('popup');
-        popup.classList.toggle('active');
-    }
-
-    var priceValue = document.querySelectorAll(".priceValue");
-    priceValue.forEach(p => {
-        var number = parseFloat(p.innerText);
-        if (!isNaN(number)) {
-            p.innerText = number.toLocaleString();
-        }
-    });
-
-    var urlForCategory = "";
-    var checked = document.querySelectorAll(".category-list-box input[type=checkbox]:checked");
-    checked.forEach((check) => {
-        urlForCategory += "&category=" + check.value;
-        document.querySelector("#low").href += urlForCategory;
-        document.querySelector("#high").href += urlForCategory;
-        document.querySelector("#normal").href += urlForCategory;
-    });
-    let pages = ${totalPages};
-
-    document.getElementById('pagination').innerHTML = createPagination(pages, ${pageNumber});
-
-    function createPagination(pages, page) {
-        let str = '<ul class="page">';
-        let active;
-        let pageCutLow = page - 1;
-        let pageCutHigh = page + 1;
-
-        // Show the Previous button only if you are on a page other than the first
-        if (page > 1) {
-            str += '<a style="color: black" href="home?page=' + (page - 1) + urlForCategory + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
-        }
-        // Show all the pagination elements if there are less than 6 pages total
-        if (pages < 6) {
-            for (let p = 1; p <= pages; p++) {
-                active = page == p ? "active" : "";
-                str += '<a style="color: black" href="home?page=' + p + urlForCategory + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
-            }
-        }
-        // Use "..." to collapse pages outside of a certain range
-        else {
-            // Show the very first page followed by a "..." at the beginning of the
-            // pagination section (after the Previous button)
-            if (page > 2) {
-                str += '<a style="color: black" href="home?page=' + 1 + urlForCategory + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
-                if (page > 3) {
-                    str += `<li class="page__dots"><span>...</span></li>`;
-                }
-            }
-            // Determine how many pages to show after the current page index
-            if (page === 1) {
-                pageCutHigh += 2;
-            } else if (page === 2) {
-                pageCutHigh += 1;
-            }
-            // Determine how many pages to show before the current page index
-            if (page === pages) {
-                pageCutLow -= 2;
-            } else if (page === pages - 1) {
-                pageCutLow -= 1;
-            }
-            // Output the indexes for pages that fall inside the range of pageCutLow
-            // and pageCutHigh
-            for (let p = pageCutLow; p <= pageCutHigh; p++) {
-                if (p === 0) {
-                    p += 1;
-                }
-                if (p > pages) {
-                    continue
-                }
-                active = page == p ? "active" : "";
-                str += '<a style="color: black" href="home?page=' + p + urlForCategory + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
-            }
-            // Show the very last page preceded by a "..." at the end of the pagination
-            // section (before the Next button)
-            if (page < pages - 1) {
-                if (page < pages - 2) {
-                    str += '<li class="page__dots"><span>...</span></li>';
-                }
-                str += '<a style="color: black" href="home?page=' + pages + urlForCategory + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
-            }
-        }
-        // Show the Next button only if you are on a page other than the last
-        if (page < pages) {
-            str += '<a style="color: black" href="home?page=' + (page + 1) + urlForCategory + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
-        }
-        str += '</ul>';
-        // Return the pagination string to be outputted in the pug templates
-        document.getElementById('pagination').innerHTML = str;
-        return str;
-    }
-</script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
 
