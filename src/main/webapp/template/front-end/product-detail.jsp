@@ -450,7 +450,7 @@
                             <div class="buy-box">
                                 <a href="wishlist">
                                     <i data-feather="heart"></i>
-                                    <span>Thêm vào wishlist</span>
+                                    <span>Thêm vào wishlist </span>
                                 </a>
                             </div>
                         </div>
