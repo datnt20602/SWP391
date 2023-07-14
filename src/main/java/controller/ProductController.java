@@ -63,30 +63,25 @@ public class ProductController extends HttpServlet {
         if (category_raw != null && !category_raw.equals("all")) {
             category = category_raw + "%";
         }
+        String id_raw = request.getParameter("productId");
+        String productName_raw = request.getParameter("productName");
+        String price_raw = request.getParameter("productPrice");
+        String image_raw = request.getParameter("productImage");
+        String volume_raw = request.getParameter("productVolume");
+        String describe = request.getParameter("productDescribe");
+        String productCategory = request.getParameter("productCategory");
         if (option.equals("update")) {
-
-            String id_raw = request.getParameter("productId");
-            String productName_raw = request.getParameter("productName");
-            String price_raw = request.getParameter("productPrice");
-            String image_raw = request.getParameter("productImage");
-            String volume_raw = request.getParameter("productVolume");
-            String describe = request.getParameter("productDescribe");
-            String productCategory = request.getParameter("productCategory");
-
             price_raw = price_raw.replaceAll("[^0-9,]", "");
             volume_raw = volume_raw.replaceAll("[^0-9,]", "");
             price_raw = price_raw.replace(",", "");
 
-                int id = Integer.parseInt(id_raw);
-                double price = Double.parseDouble(price_raw);
-                int volume = Integer.parseInt(volume_raw);
-                Product newProduct = new Product(id, productName_raw, productCategory, price, image_raw, describe, volume);
-                DAOProduct.update(newProduct);
+            int id = Integer.parseInt(id_raw);
+            double price = Double.parseDouble(price_raw);
+            int volume = Integer.parseInt(volume_raw);
+            Product newProduct = new Product(id, productName_raw, productCategory, price, image_raw, describe, volume);
+            DAOProduct.update(newProduct);
 
-
-
-        }
-        else if(option.equals("updateProfileAdmin")) {
+        } else if (option.equals("updateProfileAdmin")) {
             String Aid_raw = request.getParameter("adminId");
             String AName_raw = request.getParameter("adminName");
             String AEmail_raw = request.getParameter("adminEmail");
@@ -107,9 +102,16 @@ public class ProductController extends HttpServlet {
             admin.setPass(pass);
             DAOAdmin.update(admin);
             session.setAttribute("admin", admin);
-        }
-        else {
-            String id_raw = request.getParameter("productId");
+        } else if (option.equals("add")) {
+            price_raw = price_raw.replaceAll("[^0-9,]", "");
+            volume_raw = volume_raw.replaceAll("[^0-9,]", "");
+            price_raw = price_raw.replace(",", "");
+
+            double price = Double.parseDouble(price_raw);
+            int volume = Integer.parseInt(volume_raw);
+            Product newProduct = new Product(productName_raw, productCategory, price, image_raw, describe, volume);
+            DAOProduct.insert(newProduct);
+        } else {
             int id = Integer.parseInt(id_raw);
             DAOProduct.delete(id);
         }

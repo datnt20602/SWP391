@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 //                String pass = "Dat2062002";
 //                String url = "jdbc:mysql://odshop.mysql.database.azure.com:3306/drink_online_shop1";
                 String user = "root";
-                String pass = "Minh2002";
+                String pass = "dat2062002";
                 String url = "jdbc:mysql://localhost:3306/drink_online_shop1";
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, pass);
