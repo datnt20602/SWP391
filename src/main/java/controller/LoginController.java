@@ -11,7 +11,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import Model.Account;
 import Dal.AccountDBContext;
-
 import java.io.IOException;
 
 @WebServlet(name = "LoginController", value = "/login")
@@ -24,36 +23,23 @@ public class LoginController extends HttpServlet {
         String user = request.getParameter("Username");
         String pass = request.getParameter("Password");
         DAOCustomer DaoC = new DAOCustomer();
-        Customer customer = DaoC.login(user, pass);
-        if (customer != null) {
-            if (customer.getStatus() == 1) {
-                session.setAttribute("customer", customer);
-                response.sendRedirect("home");
-            } else {
-                session.setAttribute("customer", customer);
-                response.sendRedirect("activeAccount");
-            }
-        } else {
+        if(DaoC.login(user,pass) != null){
+            Customer cus = DaoC.login(user,pass);
+            session.setAttribute("customer", cus);
+            response.sendRedirect("home");
+        }else{
             DAOStaff DaoS = new DAOStaff();
-            Staff staff = DaoS.login(user, pass);
-            if (staff != null) {
-                if (staff.getActive() == 1) {
-                    session.setAttribute("staff", staff);
-                    response.sendRedirect("home");
-                    //request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request,response);
-                } else {
-                    session.setAttribute("staff", staff);
-                    response.sendRedirect("activeAccount");
-                }
-
-            } else {
+            if(DaoS.login(user, pass) != null){
+                Staff st = DaoS.login(user, pass);
+                session.setAttribute("staff", st);
+                request.getRequestDispatcher("template/front-end/staff-home.jsp").forward(request, response);
+            }else{
                 DAOAdmin DaoA = new DAOAdmin();
-                if (DaoA.login(user, pass) != null) {
+                if(DaoA.login(user, pass) != null){
                     Admin ad = DaoA.login(user, pass);
                     session.setAttribute("admin", ad);
-                    response.sendRedirect("home");
-                    //request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request,response);
-                } else {
+                    request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request, response);
+                }else{
 
                     response.sendRedirect("login");
                 }
@@ -61,7 +47,6 @@ public class LoginController extends HttpServlet {
         }
 
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("template/front-end/login.jsp").forward(request, response);

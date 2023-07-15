@@ -84,30 +84,10 @@ public class DAOCustomer extends DBContext{
 
         return null;
     }
-    public Customer searchByEmail (String email){
-        String sql = "select * from customer where email = ? ";
-        Customer cus = null;
-        try {
-            PreparedStatement pre = connection.prepareStatement(sql);
-            pre.setString(1, email);
-            ResultSet rs =  pre.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("customer_id");
-                String name = rs.getString("name");
-                String phone = rs.getString("phone");
-                int active = rs.getInt("active");
-                String pass = rs.getString("pass");
-                cus = new Customer(id,name,phone,email,pass,active);
-            }
-            return cus;
-        } catch (SQLException e) {
-            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return null;
-    }
-    public Customer getCustomerByID(int cus_id){
+
+    public  Customer getCustomerByID(int cus_id){
         String sql = "select * from customer where customer_id = ? ";
-        Customer cus = null;
+
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
             pre.setInt(1, cus_id);
@@ -118,11 +98,32 @@ public class DAOCustomer extends DBContext{
                 String phone = rs.getString("phone");
                 int active = rs.getInt("active");
                 String pass = rs.getString("pass");
-                String birthday = rs.getString("birthday");
-                int gender = rs.getInt("gender");
-                cus = new Customer(cus_id,name,phone,email,pass,active,gender,birthday);
+                Customer cus = new Customer(cus_id,name,phone,email,pass,active);
+                return cus;
             }
-            return cus;
+
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
+    public Customer searchByEmail (String email){
+        String sql = "select * from customer where email = ? ";
+
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setString(1, email);
+            ResultSet rs =  pre.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("customer_id");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                int active = rs.getInt("active");
+                String pass = rs.getString("pass");
+                Customer cus = new Customer(id,name,phone,email,pass,active);
+                return cus;
+            }
+
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -185,24 +186,21 @@ public class DAOCustomer extends DBContext{
         String sql = "UPDATE `drink_online_shop1`.`customer`\n" +
                 "SET\n" +
                 "`name` = ?,\n" +
-                "`phone` =?,\n" +
+                "`phone` = ?,\n" +
                 "`email` = ?,\n" +
                 "`active` = ?,\n" +
-                "`pass` = ?,\n" +
-                "`birthday` = ?,\n" +
-                "`gender` = ?\n" +
-                "WHERE `customer_id` = ?;\n";
+                "`pass` = ?\n" +
+                "WHERE `customer_id` = ?;";
 
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
-            pre.setInt(8, cus.getCustomer_id());
+            pre.setInt(6, cus.getCustomer_id());
             pre.setString(1, cus.getName());
             pre.setString(2, cus.getPhone());
             pre.setString(3, cus.getEmail());
             pre.setInt(4, cus.getStatus());
             pre.setString(5,cus.getPass());
-            pre.setString(6,cus.getBirthday());
-            pre.setInt(7,cus.getGender());
+
             pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DAOCustomer.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,21 +241,5 @@ public class DAOCustomer extends DBContext{
         } catch (SQLException e) {
             System.err.println("DAOCustomer-delete: " + e.getMessage());
         }
-    }
-
-    public Customer getCustomerById(int id) {
-        try {
-            String query = "select * from customer where customer_id = ?;";
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Customer(rs.getInt("customer_id"), rs.getString("name"), rs.getString("phone"),
-                        rs.getString("email"), rs.getString("pass"), rs.getInt("active"));
-            }
-        } catch (SQLException e) {
-            System.out.println("getCustomerById: " + e.getMessage());
-        }
-        return null;
     }
 }

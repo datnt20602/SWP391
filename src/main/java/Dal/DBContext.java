@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 //                String pass = "Dat2062002";
 //                String url = "jdbc:mysql://odshop.mysql.database.azure.com:3306/drink_online_shop1";
                 String user = "root";
-                String pass = "dat2062002";
+                String pass = "Minh2002";
                 String url = "jdbc:mysql://localhost:3306/drink_online_shop1";
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, pass);
@@ -35,17 +35,17 @@ import java.util.logging.Logger;
                         ResultSet.TYPE_SCROLL_SENSITIVE,
                         ResultSet.CONCUR_UPDATABLE);
 
-                rs=state.executeQuery(sql);
-            } catch (SQLException ex) {
-                System.out.println("getData: " + ex.getMessage());
-            }
-            return rs;
+            rs=state.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        public static void main(String[] args) {
-            DBContext a = new DBContext();
-            System.out.println(a.connection);
-        }
+        return rs;
     }
+
+    public static void main(String[] args) {
+        DBContext a = new DBContext();
+        System.out.println(a.connection);
+    }
+}
 
 

@@ -79,7 +79,6 @@
 </div>
 <!-- Loader End -->
 
-<!-- Header Start -->
 <header class="pb-md-4 pb-0">
 
 
@@ -158,11 +157,17 @@
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
+                                <%
+                                    Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                    int quantityOI = 0;
+                                    if(order_itemVector != null )quantityOI = order_itemVector.size();
+                                %>
                                 <li class="right-side">
                                     <div class="onhover-dropdown header-badge">
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                            <span class="position-absolute top-0 start-100 translate-middle badge">
+                                                <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
@@ -170,7 +175,7 @@
                                         <div class="onhover-div">
                                             <ul class="cart-list">
                                                 <%
-                                                    Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+
                                                     if(order_itemVector != null){
                                                         for(Order_item item : order_itemVector){
 
@@ -237,7 +242,6 @@
                                                 }
                                             %>
                                         </div>
-
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -251,7 +255,6 @@
                                                 <li class="product-box-contain">
                                                     <a href="signup">Đăng kí</a>
                                                 </li>
-
 
 
                                                 <li class="product-box-contain">

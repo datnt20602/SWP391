@@ -16,13 +16,10 @@ import java.util.Vector;
 
 @WebServlet(name = "CartController", value = "/cart")
 public class CartController extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String service = request.getParameter("service");
-        DAOProduct daoProduct = new DAOProduct();
-
         if(service==null){
             service = "display";
         }
@@ -48,20 +45,18 @@ public class CartController extends HttpServlet {
                 String quantity = request.getParameter("quantity");
                 int quan;
                 DAOOrder_Item daoOrder_item = new DAOOrder_Item();
+                DAOProduct daoProduct = new DAOProduct();
                 Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
                 if(quantity == null){
                     quan = 1;
                 }else{
                     quan = Integer.parseInt(request.getParameter("quantity"));
                 }
-                double totalMoney = 0;
                 Product product = daoProduct.getProductByID(prod_id);
-
                 int item_id = daoOrder_item.getIdOrder_item();
                 double discount  = 0;
-                Order_item order_item = new Order_item().builder().item_id(item_id).price(product.getPrice()).
-                quantity(quan).product(product).discount(discount).build();
-
+                Order_item order_item = new Order_item(item_id,product,1,product.getPrice(),discount);
+                double totalMoney = 0;
                 if(vector == null){
                     vector = new Vector<Order_item>();
                     totalMoney += (order_item.getProduct().getPrice()*order_item.getQuantity());
@@ -83,25 +78,22 @@ public class CartController extends HttpServlet {
                     }
                 }
                 session.setAttribute("cart_list", vector);
+                System.out.println(totalMoney);
                 session.setAttribute("totalMoney", totalMoney);
+                request.setAttribute("data",vector);
                 response.sendRedirect("home");
             }
         }
         if(service.equals("delete")){
             int pro_id = Integer.parseInt(request.getParameter("pro_id"));
-            Product product = daoProduct.getProductByID(pro_id);
             Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
-            Double totalMoney = (Double) session.getAttribute("totalMoney");
-            Order_item order_item ;
-            int i  = 0;
+            Order_item order_item = new Order_item();
             for(Order_item item : vector){
-                if(product.getProduct_id() == item.getProduct().getProduct_id()){
-                    totalMoney =  (totalMoney - (item.getPrice()*item.getQuantity()));
-                    i = vector.indexOf(item);
+                if(pro_id == item.getProduct().getProduct_id()){
+                    order_item = item;
                 }
             }
-            vector.remove(i);
-            session.setAttribute("totalMoney", totalMoney);
+            vector.remove(order_item);
             session.setAttribute("cart_list", vector);
             response.sendRedirect("cart");
         }
