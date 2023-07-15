@@ -77,24 +77,23 @@
                                 </span>
                         </button>
                         <a href="home" class="web-logo nav-logo">
-                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" class="img-fluid blur-up lazyload" alt="">
+                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
+                                 class="img-fluid blur-up lazyload" alt="">
                         </a>
 
                         <div class="middle-box">
                             <div class="location-box">
-                                <button class="btn location-button" data-bs-toggle="modal"
+                                <button class="btn location-button" data-bs-toggle=""
                                         data-bs-target="#locationModal">
-                                        <span class="location-arrow">
-                                            <i data-feather="map-pin"></i>
-                                        </span>
-                                    <span class="locat-name">Vị trí của bạn</span>
-                                    <i class="fa-solid fa-angle-down"></i>
+
+                                    <span class="locat-name">Chúc bạn ngày mới tốt lành.</span>
+
                                 </button>
                             </div>
 
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Tìm kiếm..."
+                                    <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
@@ -131,8 +130,8 @@
                                             <i data-feather="phone-call"></i>
                                         </div>
                                         <div class="delivery-detail">
-                                            <h6>24/7 Delivery</h6>
-                                            <h5>+91 888 104 2340</h5>
+                                            <h6>Giao hàng 24/7</h6>
+                                            <h5>+84 373801816</h5>
                                         </div>
                                     </a>
                                 </li>
@@ -141,66 +140,70 @@
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
+                                <%
+                                    Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                    int quantityOI = 0;
+                                    if(order_itemVector != null )quantityOI = order_itemVector.size();
+                                %>
                                 <li class="right-side">
                                     <div class="onhover-dropdown header-badge">
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                            <span class="position-absolute top-0 start-100 translate-middle badge">
+                                                <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
 
                                         <div class="onhover-div">
                                             <ul class="cart-list">
+                                                <%
+
+                                                    if(order_itemVector != null){
+                                                        for(Order_item item : order_itemVector){
+
+
+                                                %>
+
                                                 <li class="product-box-contain">
                                                     <div class="drop-cart">
-                                                        <a href="product-detail.jsp" class="drop-image">
-                                                            <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
+                                                        <a href="productdetail" class="drop-image">
+                                                            <img src="<%=item.getProduct().getImage()%>"
                                                                  class="blur-up lazyload" alt="">
                                                         </a>
 
                                                         <div class="drop-contain">
-                                                            <a href="product-detail.jsp">
-                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
+                                                            <a href="productdetail">
+                                                                <h5><%=item.getProduct().getProduct_name()%></h5>
                                                             </a>
-                                                            <h6><span>1 x</span> $80.58</h6>
+                                                            <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
                                                             <button class="close-button close_button">
                                                                 <i class="fa-solid fa-xmark"></i>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </li>
-
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-detail.jsp" class="drop-image">
-                                                            <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                                                 class="blur-up lazyload" alt="">
-                                                        </a>
-
-                                                        <div class="drop-contain">
-                                                            <a href="product-detail.jsp">
-                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                </h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $25.68</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
                                             </ul>
 
                                             <div class="price-box">
-                                                <h5>Total :</h5>
-                                                <h4 class="theme-color fw-bold">$106.58</h4>
+                                                <h5>Tổng :</h5>
+                                                <%
+                                                    if(session.getAttribute("totalMoney") != null){
+                                                %>
+                                                <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
+                                                <%
+                                                }else {
+                                                %>
+                                                <h4 class="theme-color fw-bold">0</h4>
+                                                <%}%>
                                             </div>
 
                                             <div class="button-group">
-                                                <a href="cart.jsp" class="btn btn-sm cart-button">View Cart</a>
-                                                <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Checkout</a>
+                                                <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -210,15 +213,23 @@
                                         <div class="delivery-icon">
                                             <i data-feather="user"></i>
                                         </div>
+
                                         <div class="delivery-detail">
-                                            <h6>Hello,</h6>
-                                            <h5>My Account</h5>
+                                            <%
+                                                Customer cus = (Customer) session.getAttribute("customer");
+                                                if(cus != null)
+                                                {
+                                            %>
+                                            <h5><%=cus.getName()%></h5>
+                                            <%
+                                                }
+                                            %>
                                         </div>
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
-                                            <c:if test="${acc == null}">
+                                            <c:if test="${customer == null}">
                                                 <li class="product-box-contain">
                                                     <i></i>
                                                     <a href="login">Đăng nhập</a>
@@ -229,16 +240,17 @@
                                                 </li>
 
 
-
                                                 <li class="product-box-contain">
                                                     <a href="forgotpass">Quên mật khẩu</a>
                                                 </li>
                                             </c:if>
-                                            <c:if test="${acc != null}">
+                                            <c:if test="${customer != null}">
+                                                <li class="product-box-contain">
+                                                    <a href="customer">Thông tin cá nhân</a>
+                                                </li>
                                                 <li class="product-box-contain">
                                                     <a href="changepass">Đổi mật khẩu</a>
                                                 </li>
-
                                                 <li class="product-box-contain">
                                                     <a href="logout">Đăng xuất</a>
                                                 </li>
@@ -261,10 +273,29 @@
 
 
                     <div class="header-nav-middle">
+                        <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+                            <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
+                                <div class="offcanvas-header navbar-shadow">
+                                    <h5>Menu</h5>
+                                    <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav">
 
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-
+                    <div class="header-nav-right">
+                        <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
+                            <i data-feather="zap"></i>
+                            <span>Giảm giá hôm nay</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

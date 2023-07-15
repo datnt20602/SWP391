@@ -394,28 +394,6 @@
                                                             <span> <%=item.getProduct().getPrice()%>> </span>
                                                         </li>
 
-<%--                                                        <li>--%>
-<%--                                                        </li>--%>
-
-<%--                                                        <li class="quantity-price-box">--%>
-<%--                                                            <div class="cart_qty">--%>
-<%--                                                                <div class="input-group">--%>
-<%--                                                                    <button  type="button" class="btn qty-left-minus"--%>
-<%--                                                                        data-type="minus" data-field="">--%>
-<%--                                                                        <i class="fa fa-minus ms-0"--%>
-<%--                                                                            aria-hidden="true"></i>--%>
-<%--                                                                    </button>--%>
-<%--                                                                    <input class="form-control input-number qty-input"--%>
-<%--                                                                        type="text" name="quantity" value="0">--%>
-<%--                                                                    <button type="button" class="btn qty-right-plus"--%>
-<%--                                                                        data-type="plus" data-field="">--%>
-<%--                                                                        <i class="fa fa-plus ms-0"--%>
-<%--                                                                            aria-hidden="true"></i>--%>
-<%--                                                                    </button>--%>
-<%--                                                                </div>--%>
-<%--                                                            </div>--%>
-<%--                                                        </li>--%>
-
                                                         <li>
                                                             <h5>Tổng: <%=(item.getProduct().getPrice()*item.getQuantity())%>></h5>
                                                         </li>
