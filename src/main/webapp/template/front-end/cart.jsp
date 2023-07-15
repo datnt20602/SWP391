@@ -138,11 +138,17 @@
                                             <i data-feather="heart"></i>
                                         </a>
                                     </li>
+                                    <%
+                                        Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                        int quantityOI = 0;
+                                        if(order_itemVector != null )quantityOI = order_itemVector.size();
+                                    %>
                                     <li class="right-side">
                                         <div class="onhover-dropdown header-badge">
                                             <button type="button" class="btn p-0 position-relative header-wishlist">
                                                 <i data-feather="shopping-cart"></i>
-                                                <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                                <span class="position-absolute top-0 start-100 translate-middle badge">
+                                                <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                             </button>
@@ -150,7 +156,7 @@
                                             <div class="onhover-div">
                                                 <ul class="cart-list">
                                                     <%
-                                                        Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+
                                                         if(order_itemVector != null){
                                                             for(Order_item item : order_itemVector){
 
@@ -217,7 +223,6 @@
                                                     }
                                                 %>
                                             </div>
-
                                         </div>
 
                                         <div class="onhover-div onhover-div-login">
@@ -231,7 +236,6 @@
                                                     <li class="product-box-contain">
                                                         <a href="signup">Đăng kí</a>
                                                     </li>
-
 
 
                                                     <li class="product-box-contain">
@@ -367,6 +371,7 @@
                             for(Order_item item : vector){
 
                         %>
+                                <form>
                                     <tr class="product-box-contain">
                                         <td class="product-detail">
                                             <div class="product border-0">
@@ -387,30 +392,29 @@
                                                         <li>
                                                             <h5 class="text-content d-inline-block">Giá :</h5>
                                                             <span> <%=item.getProduct().getPrice()%>> </span>
-                                                            <span class="text-content">40.000 VND</span>
                                                         </li>
 
-                                                        <li>
-                                                        </li>
+<%--                                                        <li>--%>
+<%--                                                        </li>--%>
 
-                                                        <li class="quantity-price-box">
-                                                            <div class="cart_qty">
-                                                                <div class="input-group">
-                                                                    <button type="button" class="btn qty-left-minus"
-                                                                        data-type="minus" data-field="">
-                                                                        <i class="fa fa-minus ms-0"
-                                                                            aria-hidden="true"></i>
-                                                                    </button>
-                                                                    <input class="form-control input-number qty-input"
-                                                                        type="text" name="quantity" value="0">
-                                                                    <button type="button" class="btn qty-right-plus"
-                                                                        data-type="plus" data-field="">
-                                                                        <i class="fa fa-plus ms-0"
-                                                                            aria-hidden="true"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </li>
+<%--                                                        <li class="quantity-price-box">--%>
+<%--                                                            <div class="cart_qty">--%>
+<%--                                                                <div class="input-group">--%>
+<%--                                                                    <button  type="button" class="btn qty-left-minus"--%>
+<%--                                                                        data-type="minus" data-field="">--%>
+<%--                                                                        <i class="fa fa-minus ms-0"--%>
+<%--                                                                            aria-hidden="true"></i>--%>
+<%--                                                                    </button>--%>
+<%--                                                                    <input class="form-control input-number qty-input"--%>
+<%--                                                                        type="text" name="quantity" value="0">--%>
+<%--                                                                    <button type="button" class="btn qty-right-plus"--%>
+<%--                                                                        data-type="plus" data-field="">--%>
+<%--                                                                        <i class="fa fa-plus ms-0"--%>
+<%--                                                                            aria-hidden="true"></i>--%>
+<%--                                                                    </button>--%>
+<%--                                                                </div>--%>
+<%--                                                            </div>--%>
+<%--                                                        </li>--%>
 
                                                         <li>
                                                             <h5>Tổng: <%=(item.getProduct().getPrice()*item.getQuantity())%>></h5>
@@ -431,13 +435,13 @@
                                             <div class="quantity-price">
                                                 <div class="cart_qty">
                                                     <div class="input-group">
-                                                        <button type="button" class="btn qty-left-minus"
+                                                        <button name="minuss" id="" type="button" class="btn qty-left-minus"
                                                             data-type="minus" data-field="">
                                                             <i class="fa fa-minus ms-0" aria-hidden="true"></i>
                                                         </button>
                                                         <input class="form-control input-number qty-input" type="text"
                                                             name="quantity" value="<%=item.getQuantity()%>">
-                                                        <button type="button" class="btn qty-right-plus"
+                                                        <button name="pluss" type="button" class="btn qty-right-plus"
                                                             data-type="plus" data-field="">
                                                             <i class="fa fa-plus ms-0" aria-hidden="true"></i>
                                                         </button>
@@ -457,7 +461,7 @@
                                             <a class="remove close_button" href="cart?service=delete&pro_id=<%=item.getProduct().getProduct_id()%>">Hủy</a>
                                         </td>
                                     </tr>
-
+                                </form>
                         <%}%>
 
                                 </tbody>
@@ -853,6 +857,17 @@
     <!-- Bg overlay Start -->
     <div class="bg-overlay"></div>
     <!-- Bg overlay End -->
+
+    <script>
+        var buttonPlus = document.getElementsByClassName('btn qty-right-plus');
+        var inputt = document.getElementsByName('quantity')
+        for(var i = 0; i < buttonPlus.length; i++){
+
+            buttonPlus[i].onclick = function (e){
+                console.log('gtfhdghrtydgdf')
+            }
+        }
+    </script>
 
     <!-- latest jquery-->
     <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>

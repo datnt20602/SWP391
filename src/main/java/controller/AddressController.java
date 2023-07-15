@@ -28,8 +28,11 @@ public class AddressController extends HttpServlet {
         String phone = request.getParameter("phone");
         String address= request.getParameter("address");
         String ten_goi_nho = request.getParameter("ten_nho");
-        Address adr = new Address(id,name,email,phone,address,ten_goi_nho);
-        dao.insertAddress(adr, cus.getCustomer_id());
+        String city = request.getParameter("city");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+        Address adr = new Address(id,cus,name,email,phone,address,ten_goi_nho,city,district,ward);
+        dao.insertAddress(adr);
         if(check.equals("checkout")){
             response.sendRedirect("checkoutController");
         }else {
