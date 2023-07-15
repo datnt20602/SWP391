@@ -81,8 +81,21 @@ public class CartController extends HttpServlet {
                 System.out.println(totalMoney);
                 session.setAttribute("totalMoney", totalMoney);
                 request.setAttribute("data",vector);
-                request.getRequestDispatcher("template/front-end/cart.jsp").forward(request,response);
+                response.sendRedirect("home");
             }
+        }
+        if(service.equals("delete")){
+            int pro_id = Integer.parseInt(request.getParameter("pro_id"));
+            Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
+            Order_item order_item = new Order_item();
+            for(Order_item item : vector){
+                if(pro_id == item.getProduct().getProduct_id()){
+                    order_item = item;
+                }
+            }
+            vector.remove(order_item);
+            session.setAttribute("cart_list", vector);
+            response.sendRedirect("cart");
         }
     }
 

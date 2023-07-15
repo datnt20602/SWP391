@@ -84,6 +84,29 @@ public class DAOCustomer extends DBContext{
 
         return null;
     }
+
+    public  Customer getCustomerByID(int cus_id){
+        String sql = "select * from customer where customer_id = ? ";
+
+        try {
+            PreparedStatement pre = connection.prepareStatement(sql);
+            pre.setInt(1, cus_id);
+            ResultSet rs =  pre.executeQuery();
+            while (rs.next()) {
+                String email = rs.getString("email");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                int active = rs.getInt("active");
+                String pass = rs.getString("pass");
+                Customer cus = new Customer(cus_id,name,phone,email,pass,active);
+                return cus;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
     public Customer searchByEmail (String email){
         String sql = "select * from customer where email = ? ";
 
