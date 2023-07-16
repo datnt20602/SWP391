@@ -1,6 +1,7 @@
 package Dal;
 
 
+import Model.Admin;
 import Model.Customer;
 import Model.Product;
 import Model.Staff;
@@ -136,12 +137,12 @@ public class DAOCustomer extends DBContext{
                     "where name like ?\n" +
                     "limit 5 offset ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, name);
+            ps.setString(1, "%" + name + "%");
             ps.setInt(2, page);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 listCustomer.add(new Customer(rs.getInt("customer_id"), rs.getString("name"), rs.getString("phone"),
-                        rs.getString("email"), rs.getString("pass"), rs.getInt("active")));
+                        rs.getString("email"), rs.getString("pass"), rs.getInt("active"), rs.getInt("gender"), rs.getString("birthday")));
             }
         } catch (SQLException e) {
             System.err.println("searchCustomer: " + e.getMessage());
@@ -213,14 +214,15 @@ public class DAOCustomer extends DBContext{
 
     public void updateCustomer(Customer c, int customerId) {
         try {
-            String sql = "UPDATE customer SET name = ?, phone = ?, email = ?, active = ?, pass = ? WHERE customer_id = ?";
+            String sql = "UPDATE customer SET name = ?, phone = ?, email = ?, active = ?, pass = ?, birthday = ? WHERE customer_id = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, c.getName());
             stm.setString(2, c.getPhone());
             stm.setString(3, c.getEmail());
             stm.setInt(4, c.getStatus());
             stm.setString(5, c.getPass());
-            stm.setInt(6, customerId);
+            stm.setString(6, c.getBirthday());
+            stm.setInt(7, customerId);
             stm.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("updateCustomer: " + ex.getMessage());
@@ -260,4 +262,5 @@ public class DAOCustomer extends DBContext{
         }
         return null;
     }
+
 }

@@ -18,30 +18,37 @@ import java.util.List;
 public class AdminUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page_raw = request.getParameter("page");
-        String name_raw = request.getParameter("name");
+        if(request.getSession().getAttribute("admin") != null){
+            String page_raw = request.getParameter("page");
+            String name_raw = request.getParameter("name");
 
-        String name = "%";
+            String name = "%";
 
-        int page = 1;
-        DAOCustomer DAOCustomer = new DAOCustomer();
-        if (page_raw != null && !page_raw.equals("1")) {
-            page = Integer.parseInt(page_raw);
+            int page = 1;
+            DAOCustomer DAOCustomer = new DAOCustomer();
+            if (page_raw != null && !page_raw.equals("1")) {
+                page = Integer.parseInt(page_raw);
+            }
+            if (name_raw != null && !name_raw.isEmpty()) {
+                name = name_raw + "%";
+            }
+
+            List<Customer> listCustomer = DAOCustomer.searchCustomer(name,((page)-1)*5);
+
+            int totalCustomer = DAOCustomer.getTotalCustomer(name);
+            double totalPages = Math.ceil((double) totalCustomer / 5);
+
+            request.setAttribute("listCustomer", listCustomer);
+
+            request.setAttribute("pageNumber", page);
+            request.setAttribute("totalPages", totalPages);
+            request.getRequestDispatcher("template/front-end/admin-user.jsp").forward(request, response);
         }
-        if (name_raw != null && !name_raw.isEmpty()) {
-            name = name_raw + "%";
+        else {
+            response.sendRedirect("login");
         }
 
-        List<Customer> listCustomer = DAOCustomer.searchCustomer(name,((page)-1)*5);
 
-        int totalCustomer = DAOCustomer.getTotalCustomer(name);
-        double totalPages = Math.ceil((double) totalCustomer / 5);
-
-        request.setAttribute("listCustomer", listCustomer);
-
-        request.setAttribute("pageNumber", page);
-        request.setAttribute("totalPages", totalPages);
-        request.getRequestDispatcher("template/front-end/admin-user.jsp").forward(request, response);
     }
 
     @Override
@@ -66,29 +73,24 @@ public class AdminUserController extends HttpServlet {
             int id = Integer.parseInt(id_raw);
             DAOCustomer.delete(id);
         }
-//        if(option.equals("updateProfile")) {
-//            DAOAdmin DAOAdmin = new DAOAdmin();
-//            String Aid_raw = request.getParameter("adminId");
-//            String AName_raw = request.getParameter("adminName");
-//            String AEmail_raw = request.getParameter("adminEmail");
-//            String APhone = request.getParameter("adminPhone");
-//            String street = request.getParameter("adminStreet");
-//            String city = request.getParameter("adminCity");
-//            String pass = request.getParameter("adminPass");
-//
-//            int aid = Integer.parseInt(Aid_raw);
-//            HttpSession session = request.getSession();
-//            Admin admin = (Admin) session.getAttribute("admin");
-//            admin.setAdmin_id(aid);
-//            admin.setName(AName_raw);
-//            admin.setEmail(AEmail_raw);
-//            admin.setPhone(APhone);
-//            admin.setStreet(street);
-//            admin.setCity(city);
-//            admin.setPass(pass);
-//            DAOAdmin.update(admin);
-//            session.setAttribute("admin", admin);
-//        }
+        if(option.equals("update")) {
+            DAOCustomer customerDAO = new DAOCustomer();
+            String Aid_raw = request.getParameter("customerId");
+            String AName_raw = request.getParameter("customerName");
+            String AEmail_raw = request.getParameter("customerEmail");
+            String APhone = request.getParameter("customerPhone");
+            String cBirth = request.getParameter("customerBirth");
+            String CActive = request.getParameter("customerActive");
+
+            int aid = Integer.parseInt(Aid_raw);
+            HttpSession session = request.getSession();
+            Customer customer = DAOCustomer.getCustomerById(aid);
+            customer.setName(AName_raw);
+            customer.setPhone(APhone);
+            customer.setBirthday(cBirth);
+            customer.setStatus(Integer.parseInt(CActive));
+            customerDAO.updateCustomer(customer, customer.getCustomer_id());
+        }
         List<Customer> listCustomer = DAOCustomer.searchCustomer(name, ((page - 1) * 5));
 
         int totalCustomer = DAOCustomer.getTotalCustomer(name);

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -579,6 +580,13 @@
 
     <!-- script js -->
     <script src="${pageContext.request.contextPath}/template/assets/js/script.js"></script>
+<h1>${alertAccount}</h1>
+<script>
+    <c:if test="${alertAccount != null}">
+        alert("${alertAccount}");
+        <% session.removeAttribute("alertAccount"); %>
+    </c:if>
+</script>
 </body>
 
 </html>

@@ -17,7 +17,12 @@ import java.io.IOException;
 public class AdminAddStaffController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("template/front-end/admin-add-staff.jsp").forward(request, response);
+        if(request.getSession().getAttribute("admin") != null){
+            request.getRequestDispatcher("template/front-end/admin-add-staff.jsp").forward(request, response);
+        }
+        else {
+            response.sendRedirect("login");
+        }
     }
 
     @Override

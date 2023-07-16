@@ -20,30 +20,33 @@ import java.util.List;
 public class AdminStaffController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page_raw = request.getParameter("page");
-        String name_raw = request.getParameter("name");
+        if(request.getSession().getAttribute("admin") != null){
+            String page_raw = request.getParameter("page");
+            String name_raw = request.getParameter("name");
 
-        String name = "%";
+            String name = "%";
 
-        int page = 1;
-        DAOStaff DAOStaff = new DAOStaff();
-        if (page_raw != null && !page_raw.equals("1")) {
-            page = Integer.parseInt(page_raw);
+            int page = 1;
+            DAOStaff DAOStaff = new DAOStaff();
+            if (page_raw != null && !page_raw.equals("1")) {
+                page = Integer.parseInt(page_raw);
+            }
+            if (name_raw != null && !name_raw.isEmpty()) {
+                name = name_raw + "%";
+            }
+
+            List<Staff> listStaff = DAOStaff.searchStaff(name,((page)-1)*5);
+
+            int totalStaff = DAOStaff.getTotalStaff(name);
+            double totalPages = Math.ceil((double) totalStaff / 5);
+
+            request.setAttribute("listStaff", listStaff);
+
+            request.setAttribute("pageNumber", page);
+            request.setAttribute("totalPages", totalPages);
+            request.getRequestDispatcher("template/front-end/admin-staff.jsp").forward(request, response);
         }
-        if (name_raw != null && !name_raw.isEmpty()) {
-            name = name_raw + "%";
-        }
 
-        List<Staff> listStaff = DAOStaff.searchStaff(name,((page)-1)*5);
-
-        int totalStaff = DAOStaff.getTotalStaff(name);
-        double totalPages = Math.ceil((double) totalStaff / 5);
-
-        request.setAttribute("listStaff", listStaff);
-
-        request.setAttribute("pageNumber", page);
-        request.setAttribute("totalPages", totalPages);
-        request.getRequestDispatcher("template/front-end/admin-staff.jsp").forward(request, response);
     }
 
     @Override
