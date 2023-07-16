@@ -1,7 +1,5 @@
 package Model;
 
-import com.google.gson.Gson;
-
 public class Customer {
     private int customer_id;
     private String name;
@@ -12,7 +10,7 @@ public class Customer {
 
     private int gender;
 
-    private String birthday;
+    private String birthday = " ";
 
     public Customer() {
     }
@@ -121,9 +119,5 @@ public class Customer {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public String toJson() {
-        return new Gson().toJson(this);
     }
 }
