@@ -26,15 +26,6 @@ public class Product {
         this.volume = volume;
     }
 
-    public Product(String product_name, String category_name, double price, String image, String describe, int volume) {
-        this.product_name = product_name;
-        this.category_name = category_name;
-        this.price = price;
-        this.image = image;
-        this.describe = describe;
-        this.volume = volume;
-    }
-
     @Override
     public String toString() {
         return "Product{" +

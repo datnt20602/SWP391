@@ -18,8 +18,8 @@
     <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     <!-- My CSS -->
-    <link rel="stylesheet" type="text/css" href="/ODShop/template/assets/css/style-admin.css">
-    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/style-admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
 
     <title> Sản phẩm </title>
     <style>
@@ -338,15 +338,17 @@
             </label>
         </div>
         <div class="wave-group">
-            <input type="password" class="input" id="detailAdminPass" name="adminPass"
-                   style="margin-top: 20px;width: 80%" hidden="hidden">
-            <span class="bar"></span>
+
             <label class="label">
                 <span class="label-char" style="--index: 0">P</span>
                 <span class="label-char" style="--index: 1">a</span>
                 <span class="label-char" style="--index: 2">s</span>
                 <span class="label-char" style="--index: 3">s</span>
-            </label>
+            </label><br>
+            <input type="password" class="input" id="detailAdminPass" name="adminPass"
+                   style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+
+
         </div>
         <div class="" style="margin-top: 20px;">
 
@@ -419,7 +421,7 @@
         <!-- NAVBAR -->
         <nav>
             <div class="profile" onclick="showOptions()">
-                <img src="/ODShop/template/assets/images/people/people.png">
+                <img src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
             </div>
             <div id="options" style="display: none; border-radius: 10px">
 
@@ -441,7 +443,7 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Cửa hàng</h1>
+                    <h1>Nhân Viên</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="staff">Nhân viên</a>

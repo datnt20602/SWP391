@@ -35,17 +35,17 @@ import java.util.logging.Logger;
                         ResultSet.TYPE_SCROLL_SENSITIVE,
                         ResultSet.CONCUR_UPDATABLE);
 
-            rs=state.executeQuery(sql);
-        } catch (SQLException ex) {
-            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+                rs=state.executeQuery(sql);
+            } catch (SQLException ex) {
+                System.out.println("getData: " + ex.getMessage());
+            }
+            return rs;
         }
-        return rs;
-    }
 
-    public static void main(String[] args) {
-        DBContext a = new DBContext();
-        System.out.println(a.connection);
+        public static void main(String[] args) {
+            DBContext a = new DBContext();
+            System.out.println(a.connection);
+        }
     }
-}
 
 

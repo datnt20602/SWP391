@@ -1,4 +1,7 @@
 <%@ page import="Model.Product" %>
+<%@ page import="Model.Order_item" %>
+<%@ page import="java.util.Vector" %>
+<%@ page import="Model.Customer" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -61,7 +64,6 @@
 </div>
 <!-- Loader End -->
 
-<!-- Header Start -->
 <header class="pb-md-4 pb-0">
 
 
@@ -77,7 +79,8 @@
                                 </span>
                         </button>
                         <a href="home" class="web-logo nav-logo">
-                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" class="img-fluid blur-up lazyload" alt="">
+                            <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
+                                 class="img-fluid blur-up lazyload" alt="">
                         </a>
 
                         <div class="middle-box">
@@ -239,7 +242,6 @@
                                                 </li>
 
 
-
                                                 <li class="product-box-contain">
                                                     <a href="forgotpass">Quên mật khẩu</a>
                                                 </li>
@@ -386,11 +388,10 @@
 
                     <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="right-box-contain">
-                            <h6 class="offer-top">8% Off</h6>
                             <h2 class="name"><%= product.getProduct_name()%></h2>
                             <div class="price-rating">
-                                <h3 class="price"><%= product.getPrice()%> <span
-                                        class="offer theme-color">(8% off)</span></h3>
+                                <h3 class="price"><%= product.getPrice()%>
+
                                 <div class="product-rating custom-rate">
                                     <ul class="rating">
                                         <li>
@@ -423,58 +424,29 @@
                                 <div class="product-title">
                                     <h4>Hurry up! Sales Ends In</h4>
                                 </div>
-                                <ul>
-                                    <li>
-                                        <div class="counter d-block">
-                                            <div class="days d-block">
-                                                <h5></h5>
-                                            </div>
-                                            <h6>Days</h6>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="counter d-block">
-                                            <div class="hours d-block">
-                                                <h5></h5>
-                                            </div>
-                                            <h6>Hours</h6>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="counter d-block">
-                                            <div class="minutes d-block">
-                                                <h5></h5>
-                                            </div>
-                                            <h6>Min</h6>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="counter d-block">
-                                            <div class="seconds d-block">
-                                                <h5></h5>
-                                            </div>
-                                            <h6>Sec</h6>
-                                        </div>
-                                    </li>
-                                </ul>
+
                             </div>
-                            <form >
+                            <form action="cart" method="get">
+                                <input type="hidden" name="service" value="addToCart">
+                                <input type="hidden" name="pro_id" value="<%=product.getProduct_id()%>">
+                                <input type="hidden" name="redirect" value="dfjhdfjhg">
                                 <div class="note-box product-packege">
                                     <div class="cart_qty qty-box product-qty">
                                         <div class="input-group">
-                                            <button type="button" class="qty-right-plus" data-type="plus" data-field="">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            <button type="button" class="btn qty-left-minus"
+                                                    data-type="minus" data-field="">
+                                                <i class="fa fa-minus ms-0" aria-hidden="true"></i>
                                             </button>
                                             <input class="form-control input-number qty-input" type="text"
-                                                   name="quantity" value="0">
-                                            <button type="button" class="qty-left-minus" data-type="minus"
-                                                    data-field="">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                                   name="quantity" value="1">
+                                            <button type="button" class="btn qty-right-plus"
+                                                    data-type="plus" data-field="">
+                                                <i class="fa fa-plus ms-0" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                     </div>
 
-                                    <button onclick="location.href = 'cart';"
+                                    <button type="submit"
                                             class="btn btn-md bg-dark cart-button text-white w-100">Thêm vào giỏ hàng</button>
                                 </div>
                             </form>
@@ -516,79 +488,13 @@
                                         <div class="nav-desh">
                                             <p>
                                             <div class ="right-box-contain">
-                                            <h4 class ="offer-top" > <%=product.getDescribe()%> </h4>
-                                        </div>
+                                                <h4 class ="offer-top" > <%=product.getDescribe()%> </h4>
+                                            </div>
                                             </p>
                                         </div>
 
                                     </div>
                                 </div>
-
-                                <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
-                                    <div class="table-responsive">
-                                        <table class="table info-table">
-                                            <tbody>
-                                            <tr>
-                                                <td>Specialty</td>
-                                                <td>Vegetarian</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ingredient Type</td>
-                                                <td>Vegetarian</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Brand</td>
-                                                <td>Lavian Exotique</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Form</td>
-                                                <td>Bar Brownie</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Package Information</td>
-                                                <td>Box</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Manufacturer</td>
-                                                <td>Prayagh Nutri Product Pvt Ltd</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Item part number</td>
-                                                <td>LE 014 - 20pcs Crème Bakes (Pack of 2)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Net Quantity</td>
-                                                <td>40.00 count</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
-                                    <div class="information-box">
-                                        <ul>
-                                            <li>Store cream cakes in a refrigerator. Fondant cakes should be
-                                                stored in an air conditioned environment.</li>
-
-                                            <li>Slice and serve the cake at room temperature and make sure
-                                                it is not exposed to heat.</li>
-
-                                            <li>Use a serrated knife to cut a fondant cake.</li>
-
-                                            <li>Sculptural elements and figurines may contain wire supports
-                                                or toothpicks or wooden skewers for support.</li>
-
-                                            <li>Please check the placement of these items before serving to
-                                                small children.</li>
-
-                                            <li>The cake should be consumed within 24 hours.</li>
-
-                                            <li>Enjoy your cake!</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
                                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                                     <div class="review-box">
                                         <div class="row g-4">
@@ -780,138 +686,68 @@
 
                                                                     <div class="reply">
                                                                         <p>Bình luận mẫu
-
-                                                                            <%--                                                                                <a--%>
-                                                                            <%--                                                                                    href="javascript:void(0)">Reply</a>--%>
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </li>
-
-                                                        <%--                                                            <li>--%>
-                                                        <%--                                                                <div class="people-box">--%>
-                                                        <%--                                                                    <div>--%>
-                                                        <%--                                                                        <div class="people-image">--%>
-                                                        <%--                                                                            <img src="${pageContext.request.contextPath}/template/assets/images/review/2.jpg"--%>
-                                                        <%--                                                                                class="img-fluid blur-up lazyload"--%>
-                                                        <%--                                                                                alt="">--%>
-                                                        <%--                                                                        </div>--%>
-                                                        <%--                                                                    </div>--%>
-
-                                                        <%--                                                                    <div class="people-comment">--%>
-                                                        <%--                                                                        <a class="name"--%>
-                                                        <%--                                                                            href="javascript:void(0)">Olivia</a>--%>
-                                                        <%--                                                                        <div class="date-time">--%>
-                                                        <%--                                                                            <h6 class="text-content">01 May, 2022 at--%>
-                                                        <%--                                                                                08.31 AM</h6>--%>
-                                                        <%--                                                                            <div class="product-rating">--%>
-                                                        <%--                                                                                <ul class="rating">--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"--%>
-                                                        <%--                                                                                            class="fill"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"--%>
-                                                        <%--                                                                                            class="fill"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"--%>
-                                                        <%--                                                                                            class="fill"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                </ul>--%>
-                                                        <%--                                                                            </div>--%>
-                                                        <%--                                                                        </div>--%>
-
-                                                        <%--                                                                        <div class="reply">--%>
-                                                        <%--                                                                            <p>Tootsie roll cake danish halvah powder--%>
-                                                        <%--                                                                                Tootsie roll candy marshmallow cookie--%>
-                                                        <%--                                                                                brownie apple pie pudding brownie--%>
-                                                        <%--                                                                                chocolate bar. Jujubes gummi bears I--%>
-                                                        <%--                                                                                love powder danish oat cake tart--%>
-                                                        <%--                                                                                croissant.<a--%>
-                                                        <%--                                                                                    href="javascript:void(0)">Reply</a>--%>
-                                                        <%--                                                                            </p>--%>
-                                                        <%--                                                                        </div>--%>
-                                                        <%--                                                                    </div>--%>
-                                                        <%--                                                                </div>--%>
-                                                        <%--                                                            </li>--%>
-
-                                                        <%--                                                            <li>--%>
-                                                        <%--                                                                <div class="people-box">--%>
-                                                        <%--                                                                    <div>--%>
-                                                        <%--                                                                        <div class="people-image">--%>
-                                                        <%--                                                                            <img src="${pageContext.request.contextPath}/template/assets/images/review/3.jpg"--%>
-                                                        <%--                                                                                class="img-fluid blur-up lazyload"--%>
-                                                        <%--                                                                                alt="">--%>
-                                                        <%--                                                                        </div>--%>
-                                                        <%--                                                                    </div>--%>
-
-                                                        <%--                                                                    <div class="people-comment">--%>
-                                                        <%--                                                                        <a class="name"--%>
-                                                        <%--                                                                            href="javascript:void(0)">Gabrielle</a>--%>
-                                                        <%--                                                                        <div class="date-time">--%>
-                                                        <%--                                                                            <h6 class="text-content">21 May, 2022 at--%>
-                                                        <%--                                                                                05.52 PM</h6>--%>
-
-                                                        <%--                                                                            <div class="product-rating">--%>
-                                                        <%--                                                                                <ul class="rating">--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"--%>
-                                                        <%--                                                                                            class="fill"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"--%>
-                                                        <%--                                                                                            class="fill"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"--%>
-                                                        <%--                                                                                            class="fill"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                    <li>--%>
-                                                        <%--                                                                                        <i data-feather="star"></i>--%>
-                                                        <%--                                                                                    </li>--%>
-                                                        <%--                                                                                </ul>--%>
-                                                        <%--                                                                            </div>--%>
-                                                        <%--                                                                        </div>--%>
-
-                                                        <%--                                                                        <div class="reply">--%>
-                                                        <%--                                                                            <p>Biscuit chupa chups gummies powder I love--%>
-                                                        <%--                                                                                sweet pudding jelly beans. Lemon drops--%>
-                                                        <%--                                                                                marzipan apple pie gingerbread macaroon--%>
-                                                        <%--                                                                                croissant cotton candy pastry wafer.--%>
-                                                        <%--                                                                                Carrot cake halvah I love tart caramels--%>
-                                                        <%--                                                                                pudding icing chocolate gummi bears.--%>
-                                                        <%--                                                                                Gummi bears danish cotton candy muffin--%>
-                                                        <%--                                                                                marzipan caramels awesome feel. <a--%>
-                                                        <%--                                                                                    href="javascript:void(0)">Reply</a>--%>
-                                                        <%--                                                                            </p>--%>
-                                                        <%--                                                                        </div>--%>
-                                                        <%--                                                                    </div>--%>
-                                                        <%--                                                                </div>--%>
-                                                        <%--                                                            </li>--%>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-xl-4 col-lg-5 d-none d-lg-block wow fadeInUp">
+                <div class="right-sidebar-box">
+                    <!-- Trending Product -->
+                    <div class="pt-25">
+                        <div class="category-menu">
+                            <h3>Trending Products</h3>
+
+                            <ul class="product-list product-right-sidebar border-0 p-0">
+                                <%
+                                    Vector<Product> vector = (Vector<Product>) request.getAttribute("data");
+                                    if(vector != null){
+                                        for (Product item : vector){
+                                %>
+                                <li>
+                                    <div class="offer-product">
+                                        <a href="productdetail?pro_id=<%=item.getProduct_id()%>" class="offer-image">
+                                            <img src="<%=item.getImage()%>"
+                                                 class="img-fluid blur-up lazyload" alt="">
+                                        </a>
+
+                                        <div class="offer-detail">
+                                            <div>
+                                                <a href="productdetail?pro_id=<%=item.getProduct_id()%>">
+                                                    <h6 class="name"><%=item.getProduct_name()%></h6>
+                                                </a>
+                                                <span><%=item.getVolume()%> ml</span>
+                                                <h6 class="price theme-color">$ <%=item.getPrice()%></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </section>
@@ -1973,45 +1809,50 @@
 
 <!-- Sticky Cart Box Start -->
 <div class="sticky-bottom-cart">
-    <div class="container-fluid-lg">
-        <div class="row">
-            <div class="col-12">
-                <div class="cart-content">
-                    <div class="product-image">
-                        <img src="${pageContext.request.contextPath}/template/assets/images/product/category/1.jpg" class="img-fluid blur-up lazyload"
-                             alt="">
-                        <div class="content">
-                            <h5><%= product.getProduct_name()%></h5>
-                            <h6>$32.96<del class="text-danger">$96.00</del><span>55% off</span></h6>
-                        </div>
-                    </div>
-                    <div class="selection-section">
-                        <div class="form-group mb-0">
+    <form action="cart" method="get">
+        <input type="hidden" name="service" value="addToCart">
+        <input type="hidden" name="pro_id" value="<%=product.getProduct_id()%>">
+        <input type="hidden" name="redirect" value="dfjhdfjhg">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cart-content">
 
-                        </div>
-                        <div class="cart_qty qty-box product-qty m-0">
-                            <div class="input-group h-100">
-                                <button type="button" class="qty-left-minus" data-type="minus" data-field="">
-                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                </button>
-                                <input class="form-control input-number qty-input" type="text" name="quantity"
-                                       value="1">
-                                <button type="button" class="qty-right-plus" data-type="plus" data-field="">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>
+                        <div class="product-image">
+                            <img src="<%=product.getImage()%>" class="img-fluid blur-up lazyload"
+                                 alt="">
+                            <div class="content">
+                                <h5><%= product.getProduct_name()%></h5>
+                                <h6>$<%=product.getPrice()%></h6>
                             </div>
                         </div>
-                    </div>
-                    <div class="add-btn">
-                        <a class="btn theme-bg-color text-white wishlist-btn" href="wishlist"><i
-                                class="fa fa-bookmark"></i> Wishlist</a>
-                        <a class="btn theme-bg-color text-white" href="cart"><i
-                                class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
+                        <div class="selection-section">
+                            <div class="form-group mb-0">
+
+                            </div>
+                            <div class="cart_qty qty-box product-qty m-0">
+                                <div class="input-group h-100">
+                                    <button type="button" class="qty-left-minus" data-type="minus" data-field="">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                    <input class="form-control input-number qty-input" type="text" name="quantity"
+                                           value="1">
+                                    <button type="button" class="qty-right-plus" data-type="plus" data-field="">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-btn">
+                            <button type="submit"
+                                    class="btn btn-md bg-dark cart-button text-white w-100">Thêm vào giỏ hàng</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <!-- Sticky Cart Box End -->
 

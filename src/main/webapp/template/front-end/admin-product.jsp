@@ -18,8 +18,8 @@
     <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     <!-- My CSS -->
-    <link rel="stylesheet" type="text/css" href="/ODShop/template/assets/css/style-admin.css">
-    <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/style-admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
 
     <title> Sản phẩm </title>
     <style>
@@ -151,29 +151,6 @@
             transform: 0.5s;
         }
 
-        #addDiv {
-            position: fixed;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: fit-content;
-            padding: 50px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, .30);
-            background: #ffffff;
-            visibility: hidden;
-            opacity: 0.5;
-            transition: 0.5s;
-            z-index: 9999;
-        }
-
-        #addDiv.active {
-            top: 50%;
-            visibility: visible;
-            opacity: 1;
-            transform: 0.5s;
-        }
-
         #options {
             display: none;
             position: absolute;
@@ -187,106 +164,9 @@
         .profile {
             cursor: pointer;
         }
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Firefox */
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
     </style>
 </head>
 <body>
-<div id="addDiv">
-    <form action="product" method="post">
-        <div class="wave-group">
-            <input required type="text" class="input" name="productName" style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">N</span>
-                <span class="label-char" style="--index: 1">a</span>
-                <span class="label-char" style="--index: 2">m</span>
-                <span class="label-char" style="--index: 3">e</span>
-            </label>
-        </div>
-        <div class="wave-group">
-
-            <input required type="text" class="input" name="productCategory"
-                   style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">D</span>
-                <span class="label-char" style="--index: 1">a</span>
-                <span class="label-char" style="--index: 2">n</span>
-                <span class="label-char" style="--index: 3">h</span>
-                <span class="label-char" style="--index: 4">&nbsp;</span>
-                <span class="label-char" style="--index: 5">m</span>
-                <span class="label-char" style="--index: 6">ụ</span>
-                <span class="label-char" style="--index: 7">c</span>
-            </label>
-
-        </div>
-        <div class="wave-group">
-            <input required type="number" class="input" name="productPrice" style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">P</span>
-                <span class="label-char" style="--index: 1">r</span>
-                <span class="label-char" style="--index: 2">i</span>
-                <span class="label-char" style="--index: 3">c</span>
-                <span class="label-char" style="--index: 4">e</span>
-            </label>
-        </div>
-        <div class="wave-group">
-            <input required type="text" class="input" name="productImage" style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">I</span>
-                <span class="label-char" style="--index: 1">m</span>
-                <span class="label-char" style="--index: 2">a</span>
-                <span class="label-char" style="--index: 3">g</span>
-                <span class="label-char" style="--index: 4">e</span>
-            </label>
-        </div>
-        <div class="wave-group">
-            <input required type="number" class="input" name="productVolume" style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">V</span>
-                <span class="label-char" style="--index: 1">o</span>
-                <span class="label-char" style="--index: 2">l</span>
-                <span class="label-char" style="--index: 3">u</span>
-                <span class="label-char" style="--index: 4">m</span>
-                <span class="label-char" style="--index: 5">e</span>
-            </label>
-        </div>
-        <div class="wave-group" style="margin-top: 20px;">
-            <label>
-                Describe
-            </label><br>
-            <textarea rows="10" cols="25" name="productDescribe" style="width: 80%;font-size: 16px;"
-                      placeholder="Describe">
-
-            </textarea>
-
-        </div>
-
-        <div class="" style="margin-top: 20px;">
-
-            <button type="submit" name="option" value="add"
-                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
-                Thêm
-            </button>
-            <button type="button" onclick="toggleAddDiv()"
-                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Hủy
-            </button>
-        </div>
-    </form>
-</div>
 <div id="deleteDiv">
     <form action="product" method="post">
         <h3>Bạn muốn xóa sản phẩm này ?</h3>
@@ -459,15 +339,16 @@
                 </label>
             </div>
             <div class="wave-group">
-                <input type="password" class="input" id="detailAdminPass" name="adminPass"
-                       style="margin-top: 20px;width: 80%" hidden="hidden">
-                <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">P</span>
                     <span class="label-char" style="--index: 1">a</span>
                     <span class="label-char" style="--index: 2">s</span>
                     <span class="label-char" style="--index: 3">s</span>
-                </label>
+                </label><br>
+                <input type="password" class="input" id="detailAdminPass" name="adminPass"
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+
+
             </div>
             <div class="" style="margin-top: 20px;">
 
@@ -632,7 +513,7 @@
         <!-- NAVBAR -->
         <nav>
             <div class="profile" onclick="showOptions()">
-                <img src="/ODShop/template/assets/images/people/people.png">
+                <img src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
             </div>
             <div id="options" style="display: none; border-radius: 10px">
 
@@ -698,11 +579,7 @@
                                 <i class="bx bx-search"></i>
                             </button>
 
-                            <button id="add-button" onclick="toggleAddDiv()"
-                                    style="border: 1px solid #5c636a; border-radius: 5px;height: 39px;cursor: pointer; padding: 0 10px;"
-                                    class="" type="button">
-                                <span>Thêm sản phẩm</span>
-                            </button>
+                            <%--                    <i class="bx bx-filter"></i>--%>
                         </div>
                     </form>
                     <table>
@@ -804,13 +681,6 @@
         var blur = document.getElementById('blur');
         blur.classList.toggle('active');
         var popup = document.getElementById('popup');
-        popup.classList.toggle('active');
-    }
-
-    function toggleAddDiv() {
-        var blur = document.getElementById('blur');
-        blur.classList.toggle('active');
-        var popup = document.getElementById('addDiv');
         popup.classList.toggle('active');
     }
 
