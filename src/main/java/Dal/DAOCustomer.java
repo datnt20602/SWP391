@@ -242,4 +242,19 @@ public class DAOCustomer extends DBContext{
             System.err.println("DAOCustomer-delete: " + e.getMessage());
         }
     }
+    public Customer getCustomerById(int id) {
+        try {
+            String query = "select * from customer where customer_id = ?;";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Customer(rs.getInt("customer_id"), rs.getString("name"), rs.getString("phone"),
+                        rs.getString("email"), rs.getString("pass"), rs.getInt("active"));
+            }
+        } catch (SQLException e) {
+            System.out.println("getCustomerById: " + e.getMessage());
+        }
+        return null;
+    }
 }
