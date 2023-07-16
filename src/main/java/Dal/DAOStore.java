@@ -1,10 +1,12 @@
 package Dal;
 
+import Model.Product;
 import Model.Store;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class DAOStore extends DBContext{
     public Store getStoreById(int id) {
@@ -21,5 +23,13 @@ public class DAOStore extends DBContext{
             System.out.println("getStoreById: " + e.getMessage());
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        DAOProduct daoProduct = new DAOProduct();
+        Vector<Product> vector = daoProduct.getTop5Treending();
+        for (Product item : vector){
+            System.out.println(item.toString());
+        }
     }
 }

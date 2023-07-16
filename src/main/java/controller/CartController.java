@@ -42,10 +42,11 @@ public class CartController extends HttpServlet {
             if(cus == null){
                 response.sendRedirect("login");
             }else {
-
+                String redirect = request.getParameter("redirect");
                 int prod_id = Integer.parseInt(request.getParameter("pro_id"));
                 System.out.println(prod_id);
                 String quantity = request.getParameter("quantity");
+                System.out.println(quantity);
                 int quan;
                 DAOOrder_Item daoOrder_item = new DAOOrder_Item();
                 Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
@@ -72,7 +73,8 @@ public class CartController extends HttpServlet {
                         totalMoney += (item.getProduct().getPrice()*item.getQuantity());
                         if(prod_id == item.getProduct().getProduct_id()){
                             check = false;
-                            item.setQuantity(item.getQuantity()+1);
+                            item.setQuantity(item.getQuantity()+quan);
+                            System.out.println("item.getQuantity() : " +item.getQuantity());
                             totalMoney += item.getProduct().getPrice();
                         }
                     }
@@ -84,7 +86,11 @@ public class CartController extends HttpServlet {
                 }
                 session.setAttribute("cart_list", vector);
                 session.setAttribute("totalMoney", totalMoney);
-                response.sendRedirect("home");
+                if(redirect == null) {
+                    response.sendRedirect("home");
+                }else {
+                    response.sendRedirect("cart");
+                }
             }
         }
         if(service.equals("delete")){
@@ -103,6 +109,19 @@ public class CartController extends HttpServlet {
             vector.remove(i);
             session.setAttribute("totalMoney", totalMoney);
             session.setAttribute("cart_list", vector);
+            response.sendRedirect("cart");
+        }
+        if(service.equals("updateQuantity")){
+            Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
+            Double totalMoney = Double.valueOf(0);
+            for(Order_item item : vector){
+                int quantity = Integer.parseInt(request.getParameter("quantity"+item.getProduct().getProduct_id()+""));
+                item.setQuantity(quantity);
+                totalMoney = totalMoney + (quantity*item.getPrice());
+            }
+            System.out.println(totalMoney);
+            session.setAttribute("cart_list", vector);
+            session.setAttribute("totalMoney", totalMoney);
             response.sendRedirect("cart");
         }
     }

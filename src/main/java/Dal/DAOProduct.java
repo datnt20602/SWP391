@@ -180,6 +180,38 @@ public class DAOProduct extends DBContext{
         return listCategory;
     }
 
+    public Vector<Product> getTop5Treending(){
+        String sql = "SELECT  product_id, sum(quantity) as Top_quantity FROM drink_online_shop1.order_item " +
+                "group by product_id ORDER BY Top_quantity DESC limit 5 ;";
+        Vector<Product> vector = new Vector<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                vector.add(getProductByID(rs.getInt("product_id")));
+            }
+        } catch (SQLException e) {
+            System.err.println("getListCategory: " + e.getMessage());
+        }
+        int check =  5 - vector.size();
+        if(check ==0){
+            return vector;
+        }else {
+            String query = "SELECT product_id FROM drink_online_shop1.product ORDER BY price asc limit ?;";
+            try {
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setInt(1, check);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    vector.add(getProductByID(rs.getInt("product_id")));
+                }
+            } catch (SQLException e) {
+                System.err.println("getListCategory: " + e.getMessage());
+            }
+            return vector;
+        }
+    }
+
     public List<Product> searchProduct(String name, String category, int page) {
         List<Product> listProduct = new ArrayList<>();
         try {
