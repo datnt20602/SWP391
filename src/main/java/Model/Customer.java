@@ -126,5 +126,4 @@ public class Customer {
     public String toJson() {
         return new Gson().toJson(this);
     }
-    
 }
