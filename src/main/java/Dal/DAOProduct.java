@@ -285,6 +285,23 @@ public class DAOProduct extends DBContext{
         return product;
     }
 
+    public void insert(Product product) {
+        try {
+            String query = "insert into product (product_name, price, category_name, image, `describe`, volume) VALUE (?, ?, ?, ?, ?, ?);";
+
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, product.getProduct_name());
+            ps.setDouble(2, product.getPrice());
+            ps.setString(3, product.getCategory_name());
+            ps.setString(4, product.getImage());
+            ps.setInt(6, product.getVolume());
+            ps.setString(5, product.getDescribe());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("ProductDAO-insert: " + e.getMessage());
+        }
+    }
+
     public void delete(int id) {
         try {
             String query = "delete from product where product_id = ?;";

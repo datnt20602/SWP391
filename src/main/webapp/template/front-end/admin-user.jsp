@@ -215,7 +215,7 @@
         </div>
         <div class="wave-group">
             <label>Trạng thái</label><br>
-            <input type="number" class="input" max="2" id="detailActive" name="customerActive" style="margin-top: 20px;width: 80%">
+            <input type="number" class="input" id="detailActive" name="customerActive" style="margin-top: 20px;width: 80%">
             <span class="bar"></span>
         </div>
         <div class="wave-group">
