@@ -699,7 +699,11 @@
                                 <i class="bx bx-search"></i>
                             </button>
 
-                            <%--                    <i class="bx bx-filter"></i>--%>
+                            <button id="add-button" onclick="toggleAddDiv()"
+                                    style="border: 1px solid #5c636a; border-radius: 5px;height: 39px;cursor: pointer; padding: 0 10px;"
+                                    class="" type="button">
+                                <span>Thêm sản phẩm</span>
+                            </button>
                         </div>
                     </form>
                     <table>
