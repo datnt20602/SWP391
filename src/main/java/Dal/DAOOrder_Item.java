@@ -185,8 +185,7 @@ public class DAOOrder_Item extends DBContext{
                         .order(daoOrder.getOrderByID(rs.getInt("order_id")))
                         .product(daoProduct.getProductByID(rs.getInt("product_id")))
                         .quantity(rs.getInt("quantity")).price(rs.getDouble("price"))
-                        .discount(rs.getDouble("discount")).feedback(rs.getString("feedback"))
-                        .feedback_date(rs.getString("feedback_date")).start_rating(rs.getDouble("star_rating"))
+                        .discount(rs.getDouble("discount"))
                         .build());
             }
         } catch (SQLException e) {
