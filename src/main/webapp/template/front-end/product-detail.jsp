@@ -2,6 +2,7 @@
 <%@ page import="Model.Order_item" %>
 <%@ page import="java.util.Vector" %>
 <%@ page import="Model.Customer" %>
+<%@ page import="Model.Feedback" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -498,116 +499,40 @@
                                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                                     <div class="review-box">
                                         <div class="row g-4">
-                                            <div class="col-xl-6">
-                                                <div class="review-title">
-                                                    <h4 class="fw-500">Đánh giá</h4>
-                                                </div>
-
-                                                <div class="d-flex">
-                                                    <div class="product-rating">
-                                                        <ul class="rating">
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star" class="fill"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                            <li>
-                                                                <i data-feather="star"></i>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <h6 class="ms-3">4.2/5</h6>
-                                                </div>
-
-                                                <div class="rating-box">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="rating-list">
-                                                                <h5>5 Sao</h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                         style="width: 68%" aria-valuenow="100"
-                                                                         aria-valuemin="0" aria-valuemax="100">
-                                                                        68%
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <div class="rating-list">
-                                                                <h5>4 Sao</h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                         style="width: 67%" aria-valuenow="100"
-                                                                         aria-valuemin="0" aria-valuemax="100">
-                                                                        67%
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <div class="rating-list">
-                                                                <h5>3 Star</h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                         style="width: 42%" aria-valuenow="100"
-                                                                         aria-valuemin="0" aria-valuemax="100">
-                                                                        42%
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <div class="rating-list">
-                                                                <h5>2 Sao</h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                         style="width: 30%" aria-valuenow="100"
-                                                                         aria-valuemin="0" aria-valuemax="100">
-                                                                        30%
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <div class="rating-list">
-                                                                <h5>1 Sao</h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar"
-                                                                         style="width: 24%" aria-valuenow="100"
-                                                                         aria-valuemin="0" aria-valuemax="100">
-                                                                        24%
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
 
                                             <div class="col-xl-6">
-                                                <form >
+                                                <form action="productdetail" method="post">
+                                                    <input type="hidden" name="pro_id" value="<%=product.getProduct_id()%>">
                                                     <div class="review-title">
                                                         <h4 class="fw-500">Thêm đánh giá</h4>
                                                     </div>
 
                                                     <div class="row g-4">
+                                                        <%
+                                                            if(cus != null){
+                                                        %>
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating theme-form-floating">
+                                                                <input type="text" class="form-control"
+                                                                       placeholder="Tên" value="<%= cus.getName()%>" readonly="readonly">
+                                                                <label >Tên</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-floating theme-form-floating">
+                                                                <input type="email" class="form-control"
+                                                                       placeholder="Email" value="<%=cus.getEmail()%>" readonly="readonly">
+                                                                <label >Địa chỉ email</label>
+                                                            </div>
+                                                        </div>
+                                                        <%
+                                                            }else {
+                                                        %>
                                                         <div class="col-md-6">
                                                             <div class="form-floating theme-form-floating">
                                                                 <input type="text" class="form-control" id="name"
-                                                                       placeholder="Tên">
+                                                                       placeholder="Tên" value="" required>
                                                                 <label for="name">Tên</label>
                                                             </div>
                                                         </div>
@@ -615,87 +540,63 @@
                                                         <div class="col-md-6">
                                                             <div class="form-floating theme-form-floating">
                                                                 <input type="email" class="form-control" id="email"
-                                                                       placeholder="Email">
+                                                                       placeholder="Email" value="" required>
                                                                 <label for="email">Địa chỉ email</label>
                                                             </div>
                                                         </div>
-
+                                                        <%
+                                                            }
+                                                        %>
                                                         <div class="col-12">
                                                             <div class="form-floating theme-form-floating">
-                                                                <textarea class="form-control"
+                                                                <textarea name="content" class="form-control"
                                                                           placeholder="Nhận xét của bạn"
                                                                           id="floatingTextarea2"
-                                                                          style="height: 150px"></textarea>
+                                                                          style="height: 150px" required></textarea>
                                                                 <label for="floatingTextarea2">Nhận xét của bạn</label>
                                                             </div>
                                                         </div>
+                                                        <button type="submit"
+                                                                class="btn btn-md bg-dark cart-button text-white w-100">Đăng</button>
                                                     </div>
-                                                    <input style="margin: 5px" type="submit" name="submit" value="Đăng">
+
                                                 </form>
                                             </div>
 
-
-
-                                            <div class="col-12">
-                                                <div class="review-title">
-                                                    <h4 class="fw-500">Các đánh giá</h4>
-                                                </div>
-
-                                                <div class="review-people">
-                                                    <ul class="review-list">
-                                                        <li>
-                                                            <div class="people-box">
-                                                                <div>
-                                                                    <div class="people-image">
-                                                                        <img src="${pageContext.request.contextPath}/template/assets/images/review/1.jpg"
-                                                                             class="img-fluid blur-up lazyload"
-                                                                             alt="">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="people-comment">
-                                                                    <a class="name"
-                                                                       href="javascript:void(0)">Tracey</a>
-                                                                    <div class="date-time">
-                                                                        <h6 class="text-content">14/2/2022 -
-                                                                            12.58 AM</h6>
-
-                                                                        <div class="product-rating">
-                                                                            <ul class="rating">
-                                                                                <li>
-                                                                                    <i data-feather="star"
-                                                                                       class="fill"></i>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <i data-feather="star"
-                                                                                       class="fill"></i>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <i data-feather="star"
-                                                                                       class="fill"></i>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <i data-feather="star"></i>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <i data-feather="star"></i>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="reply">
-                                                                        <p>Bình luận mẫu
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                        </div>
+                                        <div class="review-title">
+                                            <h4 class="fw-500">Đánh giá của khách hàng</h4>
                                         </div>
 
+                                        <div class="review-people">
+                                            <ul class="review-list">
+                                                <%
+                                                    Vector<Feedback> feedbackVector = (Vector<Feedback>) request.getAttribute("feedbackVector");
+                                                    if(feedbackVector != null){
+                                                        for(Feedback item : feedbackVector){
+                                                %>
+                                                <li>
+                                                    <div class="people-box">
+                                                        <div class="people-comment">
+                                                            <a class="name"
+                                                               href="javascript:void(0)"><%=item.getCustomer().getName()%></a>
+                                                            <div class="date-time">
+                                                                <h6 class="text-content"><%=item.getDate()%></h6>
+                                                            </div>
+                                                            <div class="reply">
+                                                                <p>
+                                                                    <%= item.getContent()%>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+                                            </ul>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -751,638 +652,7 @@
         </div>
     </div>
 </section>
-<!-- Product Left Sidebar End -->
 
-<!-- Releted Product Section Start -->
-<%--    <section class="product-list-section section-b-space">--%>
-<%--        <div class="container-fluid-lg">--%>
-<%--            <div class="title">--%>
-<%--                <h2>Related Products</h2>--%>
-<%--                <span class="title-leaf">--%>
-<%--                    <svg class="icon-width">--%>
-<%--                        <use xlink:href="${pageContext.request.contextPath}/template/assets/svg/leaf.svg#leaf"></use>--%>
-<%--                    </svg>--%>
-<%--                </span>--%>
-<%--            </div>--%>
-<%--            <div class="row">--%>
-<%--                <div class="col-12">--%>
-<%--                    <div class="slider-6_1 product-wrapper">--%>
-<%--                        <div>--%>
-<%--                            <div class="product-box-3 wow fadeInUp">--%>
-<%--                                <div class="product-header">--%>
-<%--                                    <div class="product-image">--%>
-<%--                                        <a href="product-left.htm">--%>
-<%--                                            <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/11.png"--%>
-<%--                                                class="img-fluid blur-up lazyload" alt="">--%>
-<%--                                        </a>--%>
-
-<%--                                        <ul class="product-option">--%>
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">--%>
-<%--                                                <a href="javascript:void(0)" data-bs-toggle="modal"--%>
-<%--                                                    data-bs-target="#view">--%>
-<%--                                                    <i data-feather="eye"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">--%>
-<%--                                                <a href="compare.html">--%>
-<%--                                                    <i data-feather="refresh-cw"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">--%>
-<%--                                                <a href="wishlist" class="notifi-wishlist">--%>
-<%--                                                    <i data-feather="heart"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-<%--                                        </ul>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
-<%--                                <div class="product-footer">--%>
-<%--                                    <div class="product-detail">--%>
-<%--                                        <span class="span-name">Cake</span>--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <h5 class="name">Chocolate Chip Cookies 250 g</h5>--%>
-<%--                                        </a>--%>
-<%--                                        <div class="product-rating mt-2">--%>
-<%--                                            <ul class="rating">--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-<%--                                            <span>(5.0)</span>--%>
-<%--                                        </div>--%>
-<%--                                        <h6 class="unit">500 G</h6>--%>
-<%--                                        <h5 class="price"><span class="theme-color">$10.25</span> <del>$12.57</del>--%>
-<%--                                        </h5>--%>
-<%--                                        <div class="add-to-cart-box bg-white">--%>
-<%--                                            <button class="btn btn-add-cart addcart-button">Add--%>
-<%--                                                <span class="add-icon bg-light-gray">--%>
-<%--                                                    <i class="fa-solid fa-plus"></i>--%>
-<%--                                                </span>--%>
-<%--                                            </button>--%>
-<%--                                            <div class="cart_qty qty-box">--%>
-<%--                                                <div class="input-group bg-white">--%>
-<%--                                                    <button type="button" class="qty-left-minus bg-gray"--%>
-<%--                                                        data-type="minus" data-field="">--%>
-<%--                                                        <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                    <input class="form-control input-number qty-input" type="text"--%>
-<%--                                                        name="quantity" value="0">--%>
-<%--                                                    <button type="button" class="qty-right-plus bg-gray"--%>
-<%--                                                        data-type="plus" data-field="">--%>
-<%--                                                        <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div>--%>
-<%--                            <div class="product-box-3 wow fadeInUp" data-wow-delay="0.05s">--%>
-<%--                                <div class="product-header">--%>
-<%--                                    <div class="product-image">--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/2.png"--%>
-<%--                                                class="img-fluid blur-up lazyload" alt="">--%>
-<%--                                        </a>--%>
-
-<%--                                        <ul class="product-option">--%>
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">--%>
-<%--                                                <a href="javascript:void(0)" data-bs-toggle="modal"--%>
-<%--                                                    data-bs-target="#view">--%>
-<%--                                                    <i data-feather="eye"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">--%>
-<%--                                                <a href="compare.html">--%>
-<%--                                                    <i data-feather="refresh-cw"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">--%>
-<%--                                                <a href="wishlist" class="notifi-wishlist">--%>
-<%--                                                    <i data-feather="heart"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-<%--                                        </ul>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="product-footer">--%>
-<%--                                    <div class="product-detail">--%>
-<%--                                        <span class="span-name">Vegetable</span>--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <h5 class="name">Fresh Bread and Pastry Flour 200 g</h5>--%>
-<%--                                        </a>--%>
-<%--                                        <div class="product-rating mt-2">--%>
-<%--                                            <ul class="rating">--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-<%--                                            <span>(4.0)</span>--%>
-<%--                                        </div>--%>
-<%--                                        <h6 class="unit">250 ml</h6>--%>
-<%--                                        <h5 class="price"><span class="theme-color">$08.02</span> <del>$15.15</del>--%>
-<%--                                        </h5>--%>
-<%--                                        <div class="add-to-cart-box bg-white">--%>
-<%--                                            <button class="btn btn-add-cart addcart-button">Add--%>
-<%--                                                <span class="add-icon bg-light-gray">--%>
-<%--                                                    <i class="fa-solid fa-plus"></i>--%>
-<%--                                                </span>--%>
-<%--                                            </button>--%>
-<%--                                            <div class="cart_qty qty-box">--%>
-<%--                                                <div class="input-group bg-white">--%>
-<%--                                                    <button type="button" class="qty-left-minus bg-gray"--%>
-<%--                                                        data-type="minus" data-field="">--%>
-<%--                                                        <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                    <input class="form-control input-number qty-input" type="text"--%>
-<%--                                                        name="quantity" value="0">--%>
-<%--                                                    <button type="button" class="qty-right-plus bg-gray"--%>
-<%--                                                        data-type="plus" data-field="">--%>
-<%--                                                        <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div>--%>
-<%--                            <div class="product-box-3 wow fadeInUp" data-wow-delay="0.1s">--%>
-<%--                                <div class="product-header">--%>
-<%--                                    <div class="product-image">--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/3.png"--%>
-<%--                                                class="img-fluid blur-up lazyload" alt="">--%>
-<%--                                        </a>--%>
-
-<%--                                        <ul class="product-option">--%>
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">--%>
-<%--                                                <a href="javascript:void(0)" data-bs-toggle="modal"--%>
-<%--                                                    data-bs-target="#view">--%>
-<%--                                                    <i data-feather="eye"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">--%>
-<%--                                                <a href="compare.html">--%>
-<%--                                                    <i data-feather="refresh-cw"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">--%>
-<%--                                                <a href="wishlist" class="notifi-wishlist">--%>
-<%--                                                    <i data-feather="heart"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-<%--                                        </ul>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
-<%--                                <div class="product-footer">--%>
-<%--                                    <div class="product-detail">--%>
-<%--                                        <span class="span-name">Vegetable</span>--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <h5 class="name">Peanut Butter Bite Premium Butter Cookies 600 g</h5>--%>
-<%--                                        </a>--%>
-<%--                                        <div class="product-rating mt-2">--%>
-<%--                                            <ul class="rating">--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-<%--                                            <span>(2.4)</span>--%>
-<%--                                        </div>--%>
-<%--                                        <h6 class="unit">350 G</h6>--%>
-<%--                                        <h5 class="price"><span class="theme-color">$04.33</span> <del>$10.36</del>--%>
-<%--                                        </h5>--%>
-<%--                                        <div class="add-to-cart-box bg-white">--%>
-<%--                                            <button class="btn btn-add-cart addcart-button">Add--%>
-<%--                                                <span class="add-icon bg-light-gray">--%>
-<%--                                                    <i class="fa-solid fa-plus"></i>--%>
-<%--                                                </span>--%>
-<%--                                            </button>--%>
-<%--                                            <div class="cart_qty qty-box">--%>
-<%--                                                <div class="input-group bg-white">--%>
-<%--                                                    <button type="button" class="qty-left-minus bg-gray"--%>
-<%--                                                        data-type="minus" data-field="">--%>
-<%--                                                        <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                    <input class="form-control input-number qty-input" type="text"--%>
-<%--                                                        name="quantity" value="0">--%>
-<%--                                                    <button type="button" class="qty-right-plus bg-gray"--%>
-<%--                                                        data-type="plus" data-field="">--%>
-<%--                                                        <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div>--%>
-<%--                            <div class="product-box-3 wow fadeInUp" data-wow-delay="0.15s">--%>
-<%--                                <div class="product-header">--%>
-<%--                                    <div class="product-image">--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/4.png"--%>
-<%--                                                class="img-fluid blur-up lazyload" alt="">--%>
-<%--                                        </a>--%>
-
-<%--                                        <ul class="product-option">--%>
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">--%>
-<%--                                                <a href="javascript:void(0)" data-bs-toggle="modal"--%>
-<%--                                                    data-bs-target="#view">--%>
-<%--                                                    <i data-feather="eye"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">--%>
-<%--                                                <a href="compare.html">--%>
-<%--                                                    <i data-feather="refresh-cw"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">--%>
-<%--                                                <a href="wishlist" class="notifi-wishlist">--%>
-<%--                                                    <i data-feather="heart"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-<%--                                        </ul>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
-<%--                                <div class="product-footer">--%>
-<%--                                    <div class="product-detail">--%>
-<%--                                        <span class="span-name">Snacks</span>--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <h5 class="name">SnackAmor Combo Pack of Jowar Stick and Jowar Chips</h5>--%>
-<%--                                        </a>--%>
-<%--                                        <div class="product-rating mt-2">--%>
-<%--                                            <ul class="rating">--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-<%--                                            <span>(5.0)</span>--%>
-<%--                                        </div>--%>
-<%--                                        <h6 class="unit">570 G</h6>--%>
-<%--                                        <h5 class="price"><span class="theme-color">$12.52</span> <del>$13.62</del>--%>
-<%--                                        </h5>--%>
-<%--                                        <div class="add-to-cart-box bg-white">--%>
-<%--                                            <button class="btn btn-add-cart addcart-button">Add--%>
-<%--                                                <span class="add-icon bg-light-gray">--%>
-<%--                                                    <i class="fa-solid fa-plus"></i>--%>
-<%--                                                </span>--%>
-<%--                                            </button>--%>
-<%--                                            <div class="cart_qty qty-box">--%>
-<%--                                                <div class="input-group bg-white">--%>
-<%--                                                    <button type="button" class="qty-left-minus bg-gray"--%>
-<%--                                                        data-type="minus" data-field="">--%>
-<%--                                                        <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                    <input class="form-control input-number qty-input" type="text"--%>
-<%--                                                        name="quantity" value="0">--%>
-<%--                                                    <button type="button" class="qty-right-plus bg-gray"--%>
-<%--                                                        data-type="plus" data-field="">--%>
-<%--                                                        <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div>--%>
-<%--                            <div class="product-box-3 wow fadeInUp" data-wow-delay="0.2s">--%>
-<%--                                <div class="product-header">--%>
-<%--                                    <div class="product-image">--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/5.png"--%>
-<%--                                                class="img-fluid blur-up lazyload" alt="">--%>
-<%--                                        </a>--%>
-
-<%--                                        <ul class="product-option">--%>
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">--%>
-<%--                                                <a href="javascript:void(0)" data-bs-toggle="modal"--%>
-<%--                                                    data-bs-target="#view">--%>
-<%--                                                    <i data-feather="eye"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">--%>
-<%--                                                <a href="compare.html">--%>
-<%--                                                    <i data-feather="refresh-cw"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">--%>
-<%--                                                <a href="wishlist" class="notifi-wishlist">--%>
-<%--                                                    <i data-feather="heart"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-<%--                                        </ul>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
-<%--                                <div class="product-footer">--%>
-<%--                                    <div class="product-detail">--%>
-<%--                                        <span class="span-name">Snacks</span>--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <h5 class="name">Yumitos Chilli Sprinkled Potato Chips 100 g</h5>--%>
-<%--                                        </a>--%>
-<%--                                        <div class="product-rating mt-2">--%>
-<%--                                            <ul class="rating">--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-<%--                                            <span>(3.8)</span>--%>
-<%--                                        </div>--%>
-<%--                                        <h6 class="unit">100 G</h6>--%>
-<%--                                        <h5 class="price"><span class="theme-color">$10.25</span> <del>$12.36</del>--%>
-<%--                                        </h5>--%>
-<%--                                        <div class="add-to-cart-box bg-white">--%>
-<%--                                            <button class="btn btn-add-cart addcart-button">Add--%>
-<%--                                                <span class="add-icon bg-light-gray">--%>
-<%--                                                    <i class="fa-solid fa-plus"></i>--%>
-<%--                                                </span>--%>
-<%--                                            </button>--%>
-<%--                                            <div class="cart_qty qty-box">--%>
-<%--                                                <div class="input-group bg-white">--%>
-<%--                                                    <button type="button" class="qty-left-minus bg-gray"--%>
-<%--                                                        data-type="minus" data-field="">--%>
-<%--                                                        <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                    <input class="form-control input-number qty-input" type="text"--%>
-<%--                                                        name="quantity" value="0">--%>
-<%--                                                    <button type="button" class="qty-right-plus bg-gray"--%>
-<%--                                                        data-type="plus" data-field="">--%>
-<%--                                                        <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div>--%>
-<%--                            <div class="product-box-3 wow fadeInUp" data-wow-delay="0.25s">--%>
-<%--                                <div class="product-header">--%>
-<%--                                    <div class="product-image">--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/6.png"--%>
-<%--                                                class="img-fluid blur-up lazyload" alt="">--%>
-<%--                                        </a>--%>
-
-<%--                                        <ul class="product-option">--%>
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">--%>
-<%--                                                <a href="javascript:void(0)" data-bs-toggle="modal"--%>
-<%--                                                    data-bs-target="#view">--%>
-<%--                                                    <i data-feather="eye"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">--%>
-<%--                                                <a href="compare.html">--%>
-<%--                                                    <i data-feather="refresh-cw"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">--%>
-<%--                                                <a href="wishlist" class="notifi-wishlist">--%>
-<%--                                                    <i data-feather="heart"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-<%--                                        </ul>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
-<%--                                <div class="product-footer">--%>
-<%--                                    <div class="product-detail">--%>
-<%--                                        <span class="span-name">Vegetable</span>--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <h5 class="name">Fantasy Crunchy Choco Chip Cookies</h5>--%>
-<%--                                        </a>--%>
-<%--                                        <div class="product-rating mt-2">--%>
-<%--                                            <ul class="rating">--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-<%--                                            <span>(4.0)</span>--%>
-<%--                                        </div>--%>
-
-<%--                                        <h6 class="unit">550 G</h6>--%>
-
-<%--                                        <h5 class="price"><span class="theme-color">$14.25</span> <del>$16.57</del>--%>
-<%--                                        </h5>--%>
-<%--                                        <div class="add-to-cart-box bg-white">--%>
-<%--                                            <button class="btn btn-add-cart addcart-button">Add--%>
-<%--                                                <span class="add-icon bg-light-gray">--%>
-<%--                                                    <i class="fa-solid fa-plus"></i>--%>
-<%--                                                </span>--%>
-<%--                                            </button>--%>
-<%--                                            <div class="cart_qty qty-box">--%>
-<%--                                                <div class="input-group bg-white">--%>
-<%--                                                    <button type="button" class="qty-left-minus bg-gray"--%>
-<%--                                                        data-type="minus" data-field="">--%>
-<%--                                                        <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                    <input class="form-control input-number qty-input" type="text"--%>
-<%--                                                        name="quantity" value="0">--%>
-<%--                                                    <button type="button" class="qty-right-plus bg-gray"--%>
-<%--                                                        data-type="plus" data-field="">--%>
-<%--                                                        <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-
-<%--                        <div>--%>
-<%--                            <div class="product-box-3 wow fadeInUp" data-wow-delay="0.3s">--%>
-<%--                                <div class="product-header">--%>
-<%--                                    <div class="product-image">--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <img src="${pageContext.request.contextPath}/template/assets/images/cake/product/7.png" class="img-fluid" alt="">--%>
-<%--                                        </a>--%>
-
-<%--                                        <ul class="product-option">--%>
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">--%>
-<%--                                                <a href="javascript:void(0)" data-bs-toggle="modal"--%>
-<%--                                                    data-bs-target="#view">--%>
-<%--                                                    <i data-feather="eye"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">--%>
-<%--                                                <a href="compare.html">--%>
-<%--                                                    <i data-feather="refresh-cw"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-
-<%--                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">--%>
-<%--                                                <a href="wishlist" class="notifi-wishlist">--%>
-<%--                                                    <i data-feather="heart"></i>--%>
-<%--                                                </a>--%>
-<%--                                            </li>--%>
-<%--                                        </ul>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
-<%--                                <div class="product-footer">--%>
-<%--                                    <div class="product-detail">--%>
-<%--                                        <span class="span-name">Vegetable</span>--%>
-<%--                                        <a href="product-detail.jsp">--%>
-<%--                                            <h5 class="name">Fresh Bread and Pastry Flour 200 g</h5>--%>
-<%--                                        </a>--%>
-<%--                                        <div class="product-rating mt-2">--%>
-<%--                                            <ul class="rating">--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star" class="fill"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                                <li>--%>
-<%--                                                    <i data-feather="star"></i>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-<%--                                            <span>(3.8)</span>--%>
-<%--                                        </div>--%>
-
-<%--                                        <h6 class="unit">1 Kg</h6>--%>
-
-<%--                                        <h5 class="price"><span class="theme-color">$12.68</span> <del>$14.69</del>--%>
-<%--                                        </h5>--%>
-<%--                                        <div class="add-to-cart-box bg-white">--%>
-<%--                                            <button class="btn btn-add-cart addcart-button">Add--%>
-<%--                                                <span class="add-icon bg-light-gray">--%>
-<%--                                                    <i class="fa-solid fa-plus"></i>--%>
-<%--                                                </span>--%>
-<%--                                            </button>--%>
-<%--                                            <div class="cart_qty qty-box">--%>
-<%--                                                <div class="input-group bg-white">--%>
-<%--                                                    <button type="button" class="qty-left-minus bg-gray"--%>
-<%--                                                        data-type="minus" data-field="">--%>
-<%--                                                        <i class="fa fa-minus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                    <input class="form-control input-number qty-input" type="text"--%>
-<%--                                                        name="quantity" value="0">--%>
-<%--                                                    <button type="button" class="qty-right-plus bg-gray"--%>
-<%--                                                        data-type="plus" data-field="">--%>
-<%--                                                        <i class="fa fa-plus" aria-hidden="true"></i>--%>
-<%--                                                    </button>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </section>--%>
-<!-- Releted Product Section End -->
 
 <!-- Footer Section Start -->
 <footer class="section-t-space">

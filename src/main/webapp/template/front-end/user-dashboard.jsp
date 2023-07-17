@@ -591,11 +591,9 @@
 
                   <div class="order-contain">
                     <%
-                      ResultSet rs = (ResultSet) request.getAttribute("order_item");
+                      ResultSet rs = (ResultSet) request.getAttribute("order");
                       if(rs != null){
                         while (rs.next()){
-                          DAOProduct daoProduct = new DAOProduct();
-                          Product product = daoProduct.getProductByID(rs.getInt("product_id"));
                     %>
                     <div class="order-box dashboard-bg-box">
                       <div class="order-container">
@@ -624,21 +622,21 @@
                       </div>
 
                       <div class="product-order-detail">
-                        <a href="" class="order-image">
-                          <img src="<%=product.getImage()%>" style="height: 100px;width: 100px"
+                        <a href="orderdetail?ord_id=<%=rs.getInt("order_id")%>" class="order-image">
+                          <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" style="height: 100px;width: 100px"
                                class="blur-up lazyload" alt="">
                         </a>
 
                         <div class="order-wrap">
                           <a href="product-left-thumbnail.html">
-                            <h3><%=product.getProduct_name()%></h3>
+                            <h3>OrderID :<%=rs.getInt("order_id") %></h3>
                           </a>
-                          <p class="text-content"><%=product.getDescribe()%></p>
+                          <p class="text-content">Địa chỉ : <%=(rs.getString("dia_chi_cu_the")+","+rs.getString("ward")+","+rs.getString("district")+","+rs.getString("city"))%></p>
                           <ul class="product-size">
                             <li>
                               <div class="size-box">
-                                <h6 class="text-content">Giá : </h6>
-                                <h5>$<%=rs.getDouble("price")%></h5>
+                                <h6 class="text-content">Tổng giá tiền : </h6>
+                                <h5>$<%=rs.getDouble("total")%></h5>
                               </div>
                             </li>
 
@@ -651,8 +649,8 @@
 
                             <li>
                               <div class="size-box">
-                                <h6 class="text-content">Quantity : </h6>
-                                <h5><%=rs.getInt("quantity")%></h5>
+                                <h6 class="text-content">Số sản phẩm : </h6>
+                                <h5><%=rs.getInt("so_san_pham")%></h5>
                               </div>
                             </li>
                           </ul>
@@ -750,11 +748,6 @@
                                   data-bs-target="#editProfile"><i data-feather="edit"></i>
                             Sửa</button>
                           <input type="hidden" name="fieldName" value="fieldValue">
-                          <form action="home" method="post">
-                          <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                  data-bs-target="#removeProfile"><i data-feather="trash-2"></i>
-                            Xóa</button>
-                          </form>
                         </div>
                       </div>
                     </div>

@@ -360,7 +360,7 @@
 
 <!-- Checkout section Start -->
 <section class="checkout-section-2 section-b-space">
-    <form action="ordersuccess" method="post">
+    <form action="ordersuccess" method="get">
     <div class="container-fluid-lg">
         <div class="row g-sm-4 g-3">
             <div class="col-lg-8">
