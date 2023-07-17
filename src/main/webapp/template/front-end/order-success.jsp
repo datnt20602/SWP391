@@ -459,7 +459,7 @@
                     <div class="product-detail">
                       <ul>
                         <li class="name">
-                          <a href="product-left-thumbnail.html"><%=item.getProduct().getProduct_name()%>></a>
+                          <a href="product-left-thumbnail.html"><%=item.getProduct().getProduct_name()%></a>
                         </li>
 
                         <li class="text-content">Dung tích :  <%=item.getProduct().getVolume()%>ml</li>

@@ -381,7 +381,7 @@
                                         <tr class="product-box-contain">
                                             <td class="product-detail">
                                                 <div class="product border-0">
-                                                    <a href="productdetail?pro_id=<%=item.getProduct().getProduct_id()%>">
+                                                    <a href="productdetail?pro_id=<%=item.getProduct().getProduct_id()%>" class="product-image">
                                                         <img src="<%=item.getProduct().getImage()%>"
                                                             class="img-fluid blur-up lazyload" alt="">
                                                     </a>
@@ -456,7 +456,7 @@
                                 <ul>
                                     <li>
                                         <button type="submit"
-                                                class="btn btn-animation proceed-btn fw-bold">Cập nhật số lượng</button>
+                                                class="btn btn-animation proceed-btn fw-bold" >Cập nhật số lượng</button>
                                     </li>
                                 </ul>
                             </div>

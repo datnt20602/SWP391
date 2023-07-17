@@ -25,11 +25,5 @@ public class DAOStore extends DBContext{
         return null;
     }
 
-    public static void main(String[] args) {
-        DAOProduct daoProduct = new DAOProduct();
-        Vector<Product> vector = daoProduct.getTop5Treending();
-        for (Product item : vector){
-            System.out.println(item.toString());
-        }
-    }
+
 }

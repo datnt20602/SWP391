@@ -17,9 +17,6 @@ public class Order_item {
     private double discount;
 
     private Order order;
-    private String feedback  = null;
-    private String feedback_date = null;
-    private double start_rating = 0;
 
 
 }

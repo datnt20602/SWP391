@@ -383,14 +383,14 @@
             </div>
             <div class="profile-box">
               <div class="cover-image">
-                <img src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/358098426_1975977059444119_5277271698372852794_n.jpg?_nc_cat=108&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=jJJz3TJS9mQAX8ib3J5&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDjmXKJMzeH3z1CmpxjFqQDUYx6a7l01kmWgW5Ivl3RAQ&oe=64B0897D" class="img-fluid blur-up lazyload"
+                <img src="https://1.bp.blogspot.com/-xwyGCPbTr14/UMBooSB8MQI/AAAAAAAAAB0/L3tdc7Hu8Fc/s1600/facebook-timeline-52.jpg" class="img-fluid blur-up lazyload"
                      alt="">
               </div>
 
               <div class="profile-contain">
                 <div class="profile-image">
                   <div class="position-relative">
-                    <img src="https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-6/358477420_1975978956110596_8333290528906963940_n.jpg?stp=cp6_dst-jpg&_nc_cat=100&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=JSakV887q_4AX-b-sFE&_nc_ht=scontent.fhan5-11.fna&oh=00_AfAkcLRg4BO3a3r6DtSyG-2vhEPCEqyG26bAZLfXIeLzPg&oe=64B07E3E"
+                    <img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg"
                          class="blur-up lazyload update_img" alt="">
                     <div class="cover-icon">
                       <i class="fa-solid fa-pen">
@@ -591,11 +591,9 @@
 
                   <div class="order-contain">
                     <%
-                      ResultSet rs = (ResultSet) request.getAttribute("order_item");
+                      ResultSet rs = (ResultSet) request.getAttribute("order");
                       if(rs != null){
                         while (rs.next()){
-                          DAOProduct daoProduct = new DAOProduct();
-                          Product product = daoProduct.getProductByID(rs.getInt("product_id"));
                     %>
                     <div class="order-box dashboard-bg-box">
                       <div class="order-container">
@@ -624,21 +622,21 @@
                       </div>
 
                       <div class="product-order-detail">
-                        <a href="product-left-thumbnail.html" class="order-image">
-                          <img src="<%=product.getImage()%>" style="height: 100px;width: 100px"
+                        <a href="orderdetail?ord_id=<%=rs.getInt("order_id")%>" class="order-image">
+                          <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" style="height: 100px;width: 100px"
                                class="blur-up lazyload" alt="">
                         </a>
 
                         <div class="order-wrap">
                           <a href="product-left-thumbnail.html">
-                            <h3><%=product.getProduct_name()%></h3>
+                            <h3>OrderID :<%=rs.getInt("order_id") %></h3>
                           </a>
-                          <p class="text-content"><%=product.getDescribe()%></p>
+                          <p class="text-content">Địa chỉ : <%=(rs.getString("dia_chi_cu_the")+","+rs.getString("ward")+","+rs.getString("district")+","+rs.getString("city"))%></p>
                           <ul class="product-size">
                             <li>
                               <div class="size-box">
-                                <h6 class="text-content">Giá : </h6>
-                                <h5>$<%=rs.getDouble("price")%></h5>
+                                <h6 class="text-content">Tổng giá tiền : </h6>
+                                <h5>$<%=rs.getDouble("total")%></h5>
                               </div>
                             </li>
 
@@ -651,8 +649,8 @@
 
                             <li>
                               <div class="size-box">
-                                <h6 class="text-content">Quantity : </h6>
-                                <h5><%=rs.getInt("quantity")%></h5>
+                                <h6 class="text-content">Số sản phẩm : </h6>
+                                <h5><%=rs.getInt("so_san_pham")%></h5>
                               </div>
                             </li>
                           </ul>
@@ -750,11 +748,6 @@
                                   data-bs-target="#editProfile"><i data-feather="edit"></i>
                             Sửa</button>
                           <input type="hidden" name="fieldName" value="fieldValue">
-                          <form action="home" method="post">
-                          <button class="btn btn-sm add-button w-100" data-bs-toggle="modal"
-                                  data-bs-target="#removeProfile"><i data-feather="trash-2"></i>
-                            Xóa</button>
-                          </form>
                         </div>
                       </div>
                     </div>
