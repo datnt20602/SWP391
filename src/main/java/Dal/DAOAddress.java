@@ -119,7 +119,18 @@ public class DAOAddress extends DBContext{
                 String district = rs.getString("district");
                 String ward = rs.getString("ward");
                 Customer customer = daoCustomer.getCustomerByID(rs.getInt("customer_id"));
-                address = new Address(address_id,customer,name,email,phone,address_name,ten_goi_nho,city,district,ward);
+                address = new Address().builder()
+                        .address_id(address_id)
+                        .address_name(address_name)
+                        .name(name)
+                        .customer(customer)
+                        .phone(phone)
+                        .ten_goi_nho(ten_goi_nho)
+                        .district(district)
+                        .ward(ward)
+                        .city(city)
+                        .email(email)
+                        .build();
             }
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);

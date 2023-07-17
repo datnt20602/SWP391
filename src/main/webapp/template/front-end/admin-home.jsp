@@ -507,6 +507,7 @@
                             <th>Order ID</th>
                             <th>Khách hàng</th>
                             <th>Ngày Order </th>
+                            <th>Địa Chỉ</th>
                             <th>Sản phẩm</th>
                             <th>Số lượng </th>
                             <th>Tổng tiền</th>
@@ -518,6 +519,7 @@
                                 <td>${orderItem.getOrder().getOrder_id()}</td>
                                 <td>${orderItem.getOrder().getCustomer().getName()}</td>
                                 <td>${orderItem.getOrder().getOrder_date()}</td>
+                                <td>${orderItem.getOrder().getAddress().getAddress_name()}</td>
                                 <td>${orderItem.getProduct().getProduct_name()}</td>
                                 <td>${orderItem.getQuantity()}</td>
                                 <td>${orderItem.getPrice()}</td>
