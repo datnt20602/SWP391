@@ -383,14 +383,14 @@
             </div>
             <div class="profile-box">
               <div class="cover-image">
-                <img src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/358098426_1975977059444119_5277271698372852794_n.jpg?_nc_cat=108&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=jJJz3TJS9mQAX8ib3J5&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDjmXKJMzeH3z1CmpxjFqQDUYx6a7l01kmWgW5Ivl3RAQ&oe=64B0897D" class="img-fluid blur-up lazyload"
+                <img src="https://1.bp.blogspot.com/-xwyGCPbTr14/UMBooSB8MQI/AAAAAAAAAB0/L3tdc7Hu8Fc/s1600/facebook-timeline-52.jpg" class="img-fluid blur-up lazyload"
                      alt="">
               </div>
 
               <div class="profile-contain">
                 <div class="profile-image">
                   <div class="position-relative">
-                    <img src="https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-6/358477420_1975978956110596_8333290528906963940_n.jpg?stp=cp6_dst-jpg&_nc_cat=100&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=JSakV887q_4AX-b-sFE&_nc_ht=scontent.fhan5-11.fna&oh=00_AfAkcLRg4BO3a3r6DtSyG-2vhEPCEqyG26bAZLfXIeLzPg&oe=64B07E3E"
+                    <img src="https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg"
                          class="blur-up lazyload update_img" alt="">
                     <div class="cover-icon">
                       <i class="fa-solid fa-pen">
@@ -624,7 +624,7 @@
                       </div>
 
                       <div class="product-order-detail">
-                        <a href="product-left-thumbnail.html" class="order-image">
+                        <a href="" class="order-image">
                           <img src="<%=product.getImage()%>" style="height: 100px;width: 100px"
                                class="blur-up lazyload" alt="">
                         </a>
