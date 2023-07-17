@@ -143,7 +143,7 @@
                                     </div>
                                 </li>
                                 <li class="right-side">
-                                    <a href="contact-us.html" class="delivery-login-box">
+                                    <a href="contactus" class="delivery-login-box">
                                         <div class="delivery-icon">
                                             <i data-feather="phone-call"></i>
                                         </div>
@@ -733,11 +733,11 @@
                             </li>
 
                             <li>
-                                <a href="about-us.html" class="text-content">Về chúng tôi</a>
+                                <a href="" class="text-content">Về chúng tôi</a>
                             </li>
 
                             <li>
-                                <a href="contact-us.html" class="text-content">Liên lạc</a>
+                                <a href="contactus" class="text-content">Liên lạc</a>
                             </li>
                         </ul>
                     </div>
@@ -750,18 +750,13 @@
 
                     <div class="footer-contain">
                         <ul>
+
                             <li>
-                                <a href="order-success.html" class="text-content">Bạn đã mua</a>
-                            </li>
-                            <li>
-                                <a href="user-dashboard.html" class="text-content">Tài khoản</a>
+                                <a href="customer" class="text-content">Tài khoản</a>
                             </li>
 
                             <li>
                                 <a href="wishlist" class="text-content"> Wishlist</a>
-                            </li>
-                            <li>
-                                <a href="faq.html" class="text-content">FAQ</a>
                             </li>
                         </ul>
                     </div>

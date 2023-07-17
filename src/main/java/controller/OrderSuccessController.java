@@ -21,16 +21,6 @@ public class OrderSuccessController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String service  = request.getParameter("service");
-        if(service == null){
-            service = "display";
-        }
-        if(service.equals("display")) {
             HttpSession session = request.getSession();
             Customer customer = (Customer) session.getAttribute("customer");
             DAOOrder daoOrder = new DAOOrder();
@@ -79,7 +69,12 @@ public class OrderSuccessController extends HttpServlet {
             request.setAttribute("order", order);
             request.setAttribute("address", adr);
             request.getRequestDispatcher("template/front-end/order-success.jsp").forward(request, response);
-        }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 
     }
 }
