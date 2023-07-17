@@ -38,11 +38,11 @@ public class CustomerController extends HttpServlet {
         //data total wishlist
         int totalWishList = daoWishlist.totalWishList(cus.getCustomer_id());
 
-        //data ordere detail
+        //data ordere
         DAOOrder_Item daoOrder_item = new DAOOrder_Item();
-        String sql = "SELECT item_id,product_id,quantity,price,discount,feedback,star_rating,feedback_date, order_status,order_date\n" +
-                "FROM order_item\n" +
-                "JOIN orders ON order_item.order_id = orders.order_id where customer_id ="+cus.getCustomer_id()+" ;";
+        String sql = "SELECT item_id,product_id,quantity,price,discount, order_status,order_date\n" +
+                "                FROM order_item\n" +
+                "                JOIN orders ON order_item.order_id = orders.order_id where customer_id ="+cus.getCustomer_id()+" ;";
         ResultSet rs = daoOrder_item.getData(sql);
 
 
