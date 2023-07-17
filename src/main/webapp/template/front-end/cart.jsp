@@ -138,11 +138,17 @@
                                             <i data-feather="heart"></i>
                                         </a>
                                     </li>
+                                    <%
+                                        Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                        int quantityOI = 0;
+                                        if(order_itemVector != null )quantityOI = order_itemVector.size();
+                                    %>
                                     <li class="right-side">
                                         <div class="onhover-dropdown header-badge">
                                             <button type="button" class="btn p-0 position-relative header-wishlist">
                                                 <i data-feather="shopping-cart"></i>
-                                                <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                                <span class="position-absolute top-0 start-100 translate-middle badge">
+                                                <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                             </button>
@@ -150,7 +156,7 @@
                                             <div class="onhover-div">
                                                 <ul class="cart-list">
                                                     <%
-                                                        Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+
                                                         if(order_itemVector != null){
                                                             for(Order_item item : order_itemVector){
 
@@ -217,7 +223,6 @@
                                                     }
                                                 %>
                                             </div>
-
                                         </div>
 
                                         <div class="onhover-div onhover-div-login">
@@ -231,7 +236,6 @@
                                                     <li class="product-box-contain">
                                                         <a href="signup">Đăng kí</a>
                                                     </li>
-
 
 
                                                     <li class="product-box-contain">
@@ -352,195 +356,173 @@
 
     <!-- Cart Section Start -->
     <section class="cart-section section-b-space">
-        <div class="container-fluid-lg">
-            <div class="row g-sm-5 g-3">
-                <div class="col-xxl-9">
-                    <div class="cart-table">
-                        <div class="table-responsive-xl">
-                    <%
-                        Vector<Order_item> vector = (Vector<Order_item>) request.getAttribute("data");
-                        if(vector != null){
-                    %>
-                            <table class="table">
-                                <tbody>
+
+            <div class="container-fluid-lg">
+                <div class="row g-sm-5 g-3">
+
+                    <div class="col-xxl-9">
+                        <form action="cart" method="get">
+                            <input type="hidden" name="service" value="updateQuantity">
+                        <div class="cart-table">
+
+                            <div class="table-responsive-xl">
                         <%
-                            for(Order_item item : vector){
-
+                            Vector<Order_item> vector = (Vector<Order_item>) request.getAttribute("data");
+                            if(vector != null){
                         %>
-                                    <tr class="product-box-contain">
-                                        <td class="product-detail">
-                                            <div class="product border-0">
-                                                <a href="productdetail" class="product-image">
-                                                    <img src="<%=item.getProduct().getImage()%>"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-                                                <div class="product-detail">
-                                                    <ul>
-                                                        <li class="name">
-                                                            <a href="productdetail"><%=item.getProduct().getProduct_name()%></a>
-                                                        </li>
 
-                                                        <li class="text-content"></li>
+                                <table class="table">
+                                    <tbody>
+                            <%
+                                for(Order_item item : vector){
 
-                                                        <li class="text-content"></li>
+                            %>
 
-                                                        <li>
-                                                            <h5 class="text-content d-inline-block">Giá :</h5>
-                                                            <span> <%=item.getProduct().getPrice()%>> </span>
-                                                            <span class="text-content">40.000 VND</span>
-                                                        </li>
+                                        <tr class="product-box-contain">
+                                            <td class="product-detail">
+                                                <div class="product border-0">
+                                                    <a href="productdetail?pro_id=<%=item.getProduct().getProduct_id()%>">
+                                                        <img src="<%=item.getProduct().getImage()%>"
+                                                            class="img-fluid blur-up lazyload" alt="">
+                                                    </a>
+                                                    <div class="product-detail">
+                                                        <ul>
+                                                            <li class="name">
+                                                                <a href="productdetail"><%=item.getProduct().getProduct_name()%></a>
+                                                            </li>
 
-                                                        <li>
-                                                        </li>
+                                                            <li class="text-content"></li>
 
-                                                        <li class="quantity-price-box">
-                                                            <div class="cart_qty">
-                                                                <div class="input-group">
-                                                                    <button type="button" class="btn qty-left-minus"
-                                                                        data-type="minus" data-field="">
-                                                                        <i class="fa fa-minus ms-0"
-                                                                            aria-hidden="true"></i>
-                                                                    </button>
-                                                                    <input class="form-control input-number qty-input"
-                                                                        type="text" name="quantity" value="0">
-                                                                    <button type="button" class="btn qty-right-plus"
-                                                                        data-type="plus" data-field="">
-                                                                        <i class="fa fa-plus ms-0"
-                                                                            aria-hidden="true"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </li>
+                                                            <li class="text-content"></li>
 
-                                                        <li>
-                                                            <h5>Tổng: <%=(item.getProduct().getPrice()*item.getQuantity())%>></h5>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="price">
-                                            <h4 class="table-title text-content">Giá</h4>
-                                            <h5> <%=item.getProduct().getPrice()%> <del class="text-content"><%=item.getPrice()%></del></h5>
-
-                                        </td>
-
-                                        <td class="quantity">
-                                            <h4 class="table-title text-content">Số lượng</h4>
-                                            <div class="quantity-price">
-                                                <div class="cart_qty">
-                                                    <div class="input-group">
-                                                        <button type="button" class="btn qty-left-minus"
-                                                            data-type="minus" data-field="">
-                                                            <i class="fa fa-minus ms-0" aria-hidden="true"></i>
-                                                        </button>
-                                                        <input class="form-control input-number qty-input" type="text"
-                                                            name="quantity" value="<%=item.getQuantity()%>">
-                                                        <button type="button" class="btn qty-right-plus"
-                                                            data-type="plus" data-field="">
-                                                            <i class="fa fa-plus ms-0" aria-hidden="true"></i>
-                                                        </button>
+                                                            <li>
+                                                                <h5 class="text-content d-inline-block">Giá :</h5>
+                                                                <span> <%=item.getProduct().getPrice()%>> </span>
+                                                            </li>
+                                                            <li>
+                                                                <h5>Tổng: <%=(item.getProduct().getPrice()*item.getQuantity())%>></h5>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
 
-                                        <td class="subtotal">
-                                            <h4 class="table-title text-content">Tổng</h4>
-                                            <h5><%=(item.getProduct().getPrice()* item.getQuantity())%></h5>
-                                        </td>
+                                            <td class="price">
+                                                <h4 class="table-title text-content">Giá</h4>
+                                                <h5> <%=item.getProduct().getPrice()%> <del class="text-content"><%=item.getPrice()%></del></h5>
 
-                                        <td class="save-remove">
-                                            <h4 class="table-title text-content">Tùy chọn</h4>
-                                            <a class="save notifi-wishlist" href="wishlist?service=addToWislist&pro_id=<%=item.getProduct().getProduct_id()%>">Save for later</a>
-                                            <a class="remove close_button" href="cart?service=delete&pro_id=<%=item.getProduct().getProduct_id()%>">Hủy</a>
-                                        </td>
-                                    </tr>
+                                            </td>
+
+                                            <td class="quantity">
+                                                <h4 class="table-title text-content">Số lượng</h4>
+                                                <div class="quantity-price">
+                                                    <div class="cart_qty">
+                                                        <div class="input-group">
+                                                            <button name="minuss" id="" type="button" class="btn qty-left-minus"
+                                                                data-type="minus" data-field="">
+                                                                <i class="fa fa-minus ms-0" aria-hidden="true"></i>
+                                                            </button>
+                                                            <input class="form-control input-number qty-input" type="text"
+                                                                name="quantity<%=item.getProduct().getProduct_id()%>" value="<%=item.getQuantity()%>">
+                                                            <button name="pluss" type="button" class="btn qty-right-plus"
+                                                                data-type="plus" data-field="">
+                                                                <i class="fa fa-plus ms-0" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="subtotal">
+                                                <h4 class="table-title text-content">Tổng</h4>
+                                                <h5><%=(item.getProduct().getPrice()* item.getQuantity())%></h5>
+                                            </td>
+
+                                            <td class="save-remove">
+                                                <h4 class="table-title text-content">Tùy chọn</h4>
+                                                <a class="save notifi-wishlist" href="wishlist?service=addToWislist&pro_id=<%=item.getProduct().getProduct_id()%>">Save for later</a>
+                                                <a class="remove close_button" href="cart?service=delete&pro_id=<%=item.getProduct().getProduct_id()%>">Hủy</a>
+                                            </td>
+                                        </tr>
+                            <%}%>
+                                    </tbody>
+                                </table>
 
                         <%}%>
 
-                                </tbody>
-                            </table>
-                    <%}else {%>
-
-                            <h3>Không có sản phẩm nào trong giỏ hàng </h3>
-                            <button onclick="location.href = 'home';"
-                                    class="btn btn-light shopping-button text-dark">
-                                <i class="fa-solid fa-arrow-left-long"></i>Mua hàng</button>
-                            <%}%>
+                            </div>
                         </div>
+                            <div class="button-group cart-button">
+                                <ul>
+                                    <li>
+                                        <button type="submit"
+                                                class="btn btn-animation proceed-btn fw-bold">Cập nhật số lượng</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
                     </div>
-                </div>
 
-                <div class="col-xxl-3">
-                    <div class="summery-box p-sticky">
-                        <div class="summery-header">
-                            <h3>Tổng tiền</h3>
-                        </div>
+                    <div class="col-xxl-3">
+                        <div class="summery-box p-sticky">
+                            <div class="summery-header">
+                                <h3>Tổng tiền</h3>
+                            </div>
 
-                        <div class="summery-contain">
-                            <!--<div class="coupon-cart">
-                                <h6 class="text-content mb-2">Coupon Apply</h6>
-                                <div class="mb-3 coupon-box input-group">
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="Enter Coupon Code Here...">
-                                    <button class="btn-apply">Apply</button>
-                                </div>
-                            </div> -->
+                            <div class="summery-contain">
+                                <%
+                                    if(session.getAttribute("totalMoney")!= null){
+                                %>
+                                <ul>
+                                    <li>
+                                        <h4>Số tiền cần trả</h4>
+                                        <h4 class="price"> <%=session.getAttribute("totalMoney")%>$</h4>
+                                    </li>
+                                </ul>
+                                <ul class="summery-total">
+                                    <li class="list-total border-top-0">
+                                        <h4>Tổng (VND)</h4>
+                                        <h4 class="price theme-color"><%=session.getAttribute("totalMoney")%>$</h4>
+                                    </li>
+                                </ul>
+                                <%
+                                    }else {
+                                %>
+                                <h4 class="price"> 0</h4>
+                                <ul class="summery-total">
+                                    <li class="list-total border-top-0">
+                                        <h4>Tổng (VND)</h4>
+                                        <h4 class="price theme-color">0</h4>
+                                    </li>
+                                </ul>
+                                <%
+                                    }
+                                %>
 
-
-                                    <%
-                                        if(session.getAttribute("totalMoney")!= null){
-                                    %>
-                                    <ul>
-                                        <li>
-                                            <h4>Số tiền cần trả</h4>
-                                            <h4 class="price"> <%=session.getAttribute("totalMoney")%>$</h4>
-                                        </li>
-                                    </ul>
-                                    <ul class="summery-total">
-                                        <li class="list-total border-top-0">
-                                            <h4>Tổng (VND)</h4>
-                                            <h4 class="price theme-color"><%=session.getAttribute("totalMoney")%>$</h4>
-                                        </li>
-                                    </ul>
-                                    <%
-                                        }else {
-                                    %>
-                                    <h4 class="price"> 0</h4>
-                                    <ul class="summery-total">
-                                        <li class="list-total border-top-0">
-                                            <h4>Tổng (VND)</h4>
-                                            <h4 class="price theme-color">0</h4>
-                                        </li>
-                                    </ul>
-                                    <%
-                                        }
-                                    %>
-
-                        </div>
+                            </div>
 
 
+                            <div class="button-group cart-button">
+                                <ul>
+                                    <li>
+                                        <button onclick="location.href = 'checkoutController';"
+                                            class="btn btn-animation proceed-btn fw-bold">
+                                            Mua Hàng
+                                        </button>
+                                    </li>
 
-                        <div class="button-group cart-button">
-                            <ul>
-                                <li>
-                                    <button onclick="location.href = 'checkoutController';"
-                                        class="btn btn-animation proceed-btn fw-bold">Mua Hàng</button>
-                                </li>
-
-                                <li>
-                                    <button onclick="location.href = 'home';"
-                                        class="btn btn-light shopping-button text-dark">
-                                        <i class="fa-solid fa-arrow-left-long"></i>Tiếp tục mua hàng</button>
-                                </li>
-                            </ul>
+                                    <li>
+                                        <button onclick="location.href = 'home';"
+                                            class="btn btn-light shopping-button text-dark">
+                                            <i class="fa-solid fa-arrow-left-long"></i>Tiếp tục mua hàng</button>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
     </section>
     <!-- Cart Section End -->
 
@@ -853,6 +835,17 @@
     <!-- Bg overlay Start -->
     <div class="bg-overlay"></div>
     <!-- Bg overlay End -->
+
+    <script>
+        var buttonPlus = document.getElementsByClassName('btn qty-right-plus');
+        var inputt = document.getElementsByName('quantity')
+        for(var i = 0; i < buttonPlus.length; i++){
+
+            buttonPlus[i].onclick = function (e){
+                console.log('gtfhdghrtydgdf')
+            }
+        }
+    </script>
 
     <!-- latest jquery-->
     <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>

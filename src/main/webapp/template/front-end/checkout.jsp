@@ -139,11 +139,17 @@
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
+                                <%
+                                    Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                    int quantityOI = 0;
+                                    if(order_itemVector != null )quantityOI = order_itemVector.size();
+                                %>
                                 <li class="right-side">
                                     <div class="onhover-dropdown header-badge">
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                            <span class="position-absolute top-0 start-100 translate-middle badge">
+                                                <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
@@ -151,7 +157,7 @@
                                         <div class="onhover-div">
                                             <ul class="cart-list">
                                                 <%
-                                                    Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+
                                                     if(order_itemVector != null){
                                                         for(Order_item item : order_itemVector){
 
@@ -218,7 +224,6 @@
                                                 }
                                             %>
                                         </div>
-
                                     </div>
 
                                     <div class="onhover-div onhover-div-login">
@@ -232,7 +237,6 @@
                                                 <li class="product-box-contain">
                                                     <a href="signup">Đăng kí</a>
                                                 </li>
-
 
 
                                                 <li class="product-box-contain">
@@ -400,14 +404,6 @@
                                                             <li>
                                                                 <h4 class="fw-500"><%=item.getName()%></h4>
                                                             </li>
-
-                                                            <li>
-                                                                <p class="text-content"><span
-                                                                        class="text-title">Address
-                                                                            :</span><%=item.getAddress_name()%>
-                                                                </p>
-                                                            </li>
-
                                                             <li>
                                                                 <h6 class="text-content"><span
                                                                         class="text-title">Email :</span>
@@ -418,6 +414,18 @@
                                                                 <h6 class="text-content mb-0"><span
                                                                         class="text-title">Phone
                                                                             :</span> <%=item.getPhone()%></h6>
+                                                            </li>
+                                                            <li>
+                                                                <p class="text-content"><span
+                                                                        class="text-title">Địa chỉ cụ thể
+                                                                            :</span><%=item.getAddress_name()%>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="text-content"><span
+                                                                        class="text-title">Địa chỉ :
+                                                                            </span><%=item.getCity()+","+item.getDistrict()+","+item.getWard()%>
+                                                                </p>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -554,12 +562,13 @@
 </section>
 <!-- Checkout section End -->
 
+<!-- Add address modal box start -->
 <div class="modal fade theme-modal" id="add-address" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="">Add a new address</h5>
+                <h5 class="modal-title" >Add a new address</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -570,7 +579,6 @@
                         <input type="text" class="form-control" name="name" id="fname" placeholder="Nhập tên người nhận" value="<%=cus.getName()%>">
                         <label for="fname">Tên người nhận </label>
                     </div>
-
                     <div class="form-floating mb-4 theme-form-floating">
                         <input type="email" class="form-control"name="email" id="email" placeholder="Nhập Email" value="<%=cus.getEmail()%>">
                         <label for="email">Email </label>
@@ -580,10 +588,26 @@
                         <input type="text" class="form-control" name="phone" id="phone" placeholder="Số điện thoại " value="<%=cus.getPhone()%>">
                         <label for="phone">Số điện thoại</label>
                     </div>
+                    <div class="form-floating mb-4 theme-form-floating">
+                        <select name="city"  id="city" class="form-control">
+                            <option value="city" selected> Thành phố/ Tỉnh</option>
+                        </select>
+                    </div>
+                    <div class="form-floating mb-4 theme-form-floating">
+                        <select  name="district" id="district" class="form-control"  >
+                            <option value="district" selected>Huyện/Quận</option>
+                        </select>
+                    </div>
+                    <div class="form-floating mb-4 theme-form-floating">
+                        <select name="ward" id="ward" class="form-control" >
+                            <option value="ward" selected>Xã</option>
+                        </select>
+                    </div>
+
 
                     <div class="form-floating mb-4 theme-form-floating">
                         <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ">
-                        <label for="address">Địa chỉ</label>
+                        <label for="address">Địa chỉ cụ thể</label>
                     </div>
 
                     <div class="form-floating mb-4 theme-form-floating">
@@ -592,7 +616,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit"name="addAddress" value="checkout" class="btn theme-bg-color btn-md text-white" data-bs-dismiss="modal">Thêm địa chỉ</button>
+                    <button type="submit"  name="addAddress" value=""class="btn theme-bg-color btn-md text-white" data-bs-dismiss="modal">Thêm địa chỉ</button>
                 </div>
             </form>
         </div>
@@ -908,7 +932,49 @@
 <!-- Bg overlay Start -->
 <div class="bg-overlay"></div>
 <!-- Bg overlay End -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    var citis = document.getElementById("city");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+        renderCity(result.data);
+    });
 
+    function renderCity(data) {
+        for (const x of data) {
+            citis.options[citis.options.length] = new Option(x.Name, x.Name); // Change here
+        }
+        citis.onchange = function () {
+            district.length = 1;
+            ward.length = 1;
+            if (this.value != "") {
+                const result = data.filter(n => n.Name === this.value); // Change here
+
+                for (const k of result[0].Districts) {
+                    district.options[district.options.length] = new Option(k.Name, k.Name); // Change here
+                }
+            }
+        };
+        district.onchange = function () {
+            ward.length = 1;
+            const dataCity = data.filter((n) => n.Name === citis.value);
+            if (this.value != "") {
+                const selectedDistrict = dataCity[0].Districts.find(d => d.Name === this.value);
+                for (const w of selectedDistrict.Wards) {
+                    wards.options[wards.options.length] = new Option(w.Name, w.Name);
+                }
+            }
+        };
+    }
+
+</script>
 <!-- latest jquery-->
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
 

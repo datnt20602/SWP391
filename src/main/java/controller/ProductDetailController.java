@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.Vector;
 
 @WebServlet(name = "ProductDetailController", value = "/productdetail")
 public class ProductDetailController extends HttpServlet {
@@ -15,6 +16,8 @@ public class ProductDetailController extends HttpServlet {
         DAOProduct dao = new DAOProduct();
         int pro_id = Integer.parseInt(request.getParameter("pro_id"));
         Product product = dao.getProductByID(pro_id);
+        Vector<Product> vector = dao.getTop5Treending();
+        request.setAttribute("data", vector);
         request.setAttribute("product", product);
         request.getRequestDispatcher("template/front-end/product-detail.jsp").forward(request,response);
     }

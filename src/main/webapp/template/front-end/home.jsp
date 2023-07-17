@@ -158,11 +158,17 @@
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
+                                <%
+                                    Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+                                    int quantityOI = 0;
+                                    if(order_itemVector != null )quantityOI = order_itemVector.size();
+                                %>
                                 <li class="right-side">
                                     <div class="onhover-dropdown header-badge">
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">2
+                                            <span class="position-absolute top-0 start-100 translate-middle badge">
+                                                <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
@@ -170,7 +176,7 @@
                                         <div class="onhover-div">
                                             <ul class="cart-list">
                                                 <%
-                                                    Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
+
                                                     if(order_itemVector != null){
                                                         for(Order_item item : order_itemVector){
 
@@ -490,80 +496,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <%--                            <div class="accordion-item">--%>
-                            <%--                                <h2 class="accordion-header" id="headingFour">--%>
-                            <%--                                    <button class="accordion-button collapsed" type="button"--%>
-                            <%--                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"--%>
-                            <%--                                            aria-expanded="false" aria-controls="collapseFour">--%>
-                            <%--                                        <span>Giảm giá</span>--%>
-                            <%--                                    </button>--%>
-                            <%--                                </h2>--%>
-                            <%--                                <div id="collapseFour" class="accordion-collapse collapse show"--%>
-                            <%--                                     aria-labelledby="headingFour">--%>
-                            <%--                                    <div class="accordion-body">--%>
-                            <%--                                        <ul class="category-list custom-padding">--%>
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault">--%>
-                            <%--                                                        <span class="name"> 5%</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault1">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault1">--%>
-                            <%--                                                        <span class="name">5% - 10%</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault2">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault2">--%>
-                            <%--                                                        <span class="name">10% - 15%</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault3">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault3">--%>
-                            <%--                                                        <span class="name">15% - 25%</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-
-                            <%--                                            <li>--%>
-                            <%--                                                <div class="form-check ps-0 m-0 category-list-box">--%>
-                            <%--                                                    <input class="checkbox_animated" type="checkbox"--%>
-                            <%--                                                           id="flexCheckDefault4">--%>
-                            <%--                                                    <label class="form-check-label" for="flexCheckDefault4">--%>
-                            <%--                                                        <span class="name"> 25% trở lên</span>--%>
-
-                            <%--                                                    </label>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </li>--%>
-                            <%--                                        </ul>--%>
-                            <%--                                    </div>--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
-
-
                         </div>
                     </div>
                 </div>

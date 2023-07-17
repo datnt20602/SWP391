@@ -41,31 +41,6 @@ public class DAOOrder_Item extends DBContext{
         return n;
     }
 
-    public int insertFeedBack(Order_item item, int order_id, double start, String fb, String fb_date) {
-        int n = 0;
-        String sql = "UPDATE `drink_online_shop1`.`order_item`\n" +
-                "SET\n" +
-                "`feedback` = ?,\n" +
-                "`feedback_date` =?,\n" +
-                "`star_rating` = ?\n" +
-                "WHERE `item_id` = ? and `order_id` = ? ;\n";
-
-        try {
-            PreparedStatement pre = connection.prepareStatement(sql);
-            pre.setString(1, fb);
-            pre.setString(2, fb_date);
-            pre.setDouble(3, start);
-            pre.setInt(4, item.getItem_id());
-            pre.setInt(5, order_id);
-            n = pre.executeUpdate();
-        } catch (SQLException e) {
-            Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return n;
-    }
-
-
-
     public Vector<Order_item> getAll(int cus_id) {
         String sql = "SELECT item_id,product_id,quantity,price,discount,feedback,star_rating,feedback_date, order_status,order_item.order_id\n" +
                 "FROM order_item\n" +
@@ -212,6 +187,4 @@ public class DAOOrder_Item extends DBContext{
         }
         return (double) 0;
     }
-
-
 }
