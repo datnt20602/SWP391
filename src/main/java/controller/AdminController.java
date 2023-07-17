@@ -10,7 +10,13 @@ import java.io.IOException;
 public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getSession().getAttribute("admin") != null){
             request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request,response);
+        }
+        else {
+            response.sendRedirect("login");
+        }
+
     }
 
     @Override

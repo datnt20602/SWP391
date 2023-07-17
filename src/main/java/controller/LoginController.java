@@ -9,8 +9,7 @@ import Model.Staff;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import Model.Account;
-import Dal.AccountDBContext;
+
 
 import java.io.IOException;
 
@@ -29,7 +28,12 @@ public class LoginController extends HttpServlet {
             if (customer.getStatus() == 1) {
                 session.setAttribute("customer", customer);
                 response.sendRedirect("home");
-            } else {
+            } else if (customer.getStatus() == 2) {
+                session.removeAttribute("customer");
+                session.setAttribute("alertAccount", "Tài khoản của bạn đã bị khóa, vui lòng liên hệ admin");
+                response.sendRedirect("login");
+            }
+            else {
                 session.setAttribute("customer", customer);
                 response.sendRedirect("activeAccount");
             }
@@ -54,8 +58,9 @@ public class LoginController extends HttpServlet {
                     response.sendRedirect("home");
                     //request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request,response);
                 } else {
-
-                    response.sendRedirect("login");
+                    String mess = "Tài khoản hoặc mật khẩu không đúng !";
+                    request.setAttribute("mess", mess);
+                    request.getRequestDispatcher("template/front-end/login.jsp").forward(request, response);
                 }
             }
         }

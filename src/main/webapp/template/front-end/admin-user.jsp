@@ -182,94 +182,60 @@
         </div>
     </form>
 </div>
-<%--<div id="popup">--%>
-<%--    <form action="product" method="post">--%>
-<%--        <div class="wave-group">--%>
-<%--            <label class="label">--%>
-<%--                <span class="label-char" style="--index: 0">I</span>--%>
-<%--                <span class="label-char" style="--index: 1">d</span>--%>
-<%--            </label><br>--%>
-<%--            <input type="text" class="input" id="detailId" name="productId" readonly>--%>
-<%--            <span class="bar"></span>--%>
+<div id="popup">
+    <form action="user" method="post">
+        <div class="wave-group">
+            <label class="label">
+                <span class="label-char" style="--index: 0">I</span>
+                <span class="label-char" style="--index: 1">d</span>
+            </label><br>
+            <input type="text" class="input" id="detailId" name="customerId" readonly>
+            <span class="bar"></span>
 
-<%--        </div>--%>
-<%--        <div class="wave-group">--%>
-<%--            <input type="text" class="input" id="detailName" name="productName" style="margin-top: 20px;width: 80%">--%>
-<%--            <span class="bar"></span>--%>
-<%--            <label class="label">--%>
-<%--                <span class="label-char" style="--index: 0">N</span>--%>
-<%--                <span class="label-char" style="--index: 1">a</span>--%>
-<%--                <span class="label-char" style="--index: 2">m</span>--%>
-<%--                <span class="label-char" style="--index: 3">e</span>--%>
-<%--            </label>--%>
-<%--        </div>--%>
-<%--        <div class="wave-group">--%>
-<%--            <label class="label">--%>
-<%--                Danh mục--%>
-<%--            </label><br>--%>
-<%--            <input type="text" class="input" id="detailCategory" name="productCategory" readonly--%>
-<%--                   style="margin-top: 20px;width: 80%">--%>
-<%--            <span class="bar"></span>--%>
-<%--            <br>--%>
+        </div>
+        <div class="wave-group">
+            <input type="text" class="input" id="detailName" name="customerName" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">N</span>
+                <span class="label-char" style="--index: 1">a</span>
+                <span class="label-char" style="--index: 2">m</span>
+                <span class="label-char" style="--index: 3">e</span>
+            </label>
+        </div>
+        <div class="wave-group">
+            <label>số điện thoại</label><br>
+            <input type="number" class="input" id="detailPhone" name="customerPhone" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+        </div>
+        <div class="wave-group">
+            <label>Email</label><br>
+            <input readonly type="text" class="input" id="detailEmail" name="customerEmail" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+        </div>
+        <div class="wave-group">
+            <label>Trạng thái</label><br>
+            <input type="number" class="input" min="0" max="2" id="detailActive" name="customerActive" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+        </div>
+        <div class="wave-group">
+            <label>Sinh nhật</label><br>
+            <input type="date" class="input" id="detailBirth" name="customerBirth" style="margin-top: 20px;width: 80%">
+            <span class="bar"></span>
+        </div>
 
-<%--        </div>--%>
-<%--        <div class="wave-group">--%>
-<%--            <input type="text" class="input" id="detailPrice" name="productPrice" style="margin-top: 20px;width: 80%">--%>
-<%--            <span class="bar"></span>--%>
-<%--            <label class="label">--%>
-<%--                <span class="label-char" style="--index: 0">P</span>--%>
-<%--                <span class="label-char" style="--index: 1">r</span>--%>
-<%--                <span class="label-char" style="--index: 2">i</span>--%>
-<%--                <span class="label-char" style="--index: 3">c</span>--%>
-<%--                <span class="label-char" style="--index: 4">e</span>--%>
-<%--            </label>--%>
-<%--        </div>--%>
-<%--        <div class="wave-group">--%>
-<%--            <input type="text" class="input" id="detailImage" name="productImage" style="margin-top: 20px;width: 80%">--%>
-<%--            <span class="bar"></span>--%>
-<%--            <label class="label">--%>
-<%--                <span class="label-char" style="--index: 0">I</span>--%>
-<%--                <span class="label-char" style="--index: 1">m</span>--%>
-<%--                <span class="label-char" style="--index: 2">a</span>--%>
-<%--                <span class="label-char" style="--index: 3">g</span>--%>
-<%--                <span class="label-char" style="--index: 4">e</span>--%>
-<%--            </label>--%>
-<%--        </div>--%>
-<%--        <div class="wave-group">--%>
-<%--            <input type="text" class="input" id="detailVolume" name="productVolume" style="margin-top: 20px;width: 80%">--%>
-<%--            <span class="bar"></span>--%>
-<%--            <label class="label">--%>
-<%--                <span class="label-char" style="--index: 0">V</span>--%>
-<%--                <span class="label-char" style="--index: 1">o</span>--%>
-<%--                <span class="label-char" style="--index: 2">l</span>--%>
-<%--                <span class="label-char" style="--index: 3">u</span>--%>
-<%--                <span class="label-char" style="--index: 4">m</span>--%>
-<%--                <span class="label-char" style="--index: 5">e</span>--%>
-<%--            </label>--%>
-<%--        </div>--%>
-<%--        <div class="wave-group" style="margin-top: 20px;">--%>
-<%--            <label>--%>
-<%--                Describe--%>
-<%--            </label><br>--%>
-<%--            <textarea rows="10" cols="25" id="detailDescribe" name="productDescribe" style="width: 80%;font-size: 16px;"--%>
-<%--                      placeholder="Describe">--%>
+        <div class="" style="margin-top: 20px;">
 
-<%--            </textarea>--%>
-
-<%--        </div>--%>
-
-<%--        <div class="" style="margin-top: 20px;">--%>
-
-<%--            <button type="submit" name="option" value="update"--%>
-<%--                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">--%>
-<%--                Update--%>
-<%--            </button>--%>
-<%--            <button type="button" onclick="toggle()"--%>
-<%--                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close--%>
-<%--            </button>--%>
-<%--        </div>--%>
-<%--    </form>--%>
-<%--</div>--%>
+            <button type="submit" name="option" value="update"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
+                Cập nhật
+            </button>
+            <button type="button" onclick="toggle()"
+                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Đóng
+            </button>
+        </div>
+    </form>
+</div>
 <div id="popup1">
     <form action="product" method="post">
         <div class="wave-group">
@@ -515,6 +481,12 @@
                                         <%--                                    </button>--%>
                                 </td>
                                 <td>
+                                    <button onclick='toggle();loadData(JSON.stringify(${customer.toJson()}))'
+                                            style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
+                                        Cập nhật
+                                    </button>
+                                </td>
+                                <td>
                                     <button onclick="toggleDelete();alertDelete(${customer.getCustomer_id()})"
                                             style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
                                         Xóa
@@ -541,9 +513,8 @@
         document.getElementById("detailName").value = data.name;
         document.getElementById("detailPhone").value = data.phone;
         document.getElementById("detailEmail").value = data.email;
-        document.getElementById("detailPass").value = data.pass;
-        document.getElementById("detailStatus").value = data.status;
-
+        document.getElementById("detailActive").value = data.status;
+        document.getElementById("detailBirth").value = data.birthday;
     }
 
     function loadDataAdmin(admin) {
