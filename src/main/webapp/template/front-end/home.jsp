@@ -455,11 +455,6 @@
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                      aria-labelledby="headingOne">
                                     <div class="accordion-body">
-                                        <%--                                        <div class="form-floating theme-form-floating-2 search-box">--%>
-                                        <%--                                            <input type="search" class="form-control" id="search"--%>
-                                        <%--                                                   placeholder="Search ..">--%>
-                                        <%--                                            <label for="search">Tìm...</label>--%>
-                                        <%--                                        </div>--%>
 
                                         <ul class="category-list custom-padding custom-height">
                                             <form class="w-100 h-100" id="formCategories"
