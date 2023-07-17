@@ -210,7 +210,7 @@
         </div>
         <div class="wave-group">
             <label>Email</label><br>
-            <input readonly type="text" class="input" id="detailEmail" name="productName" style="margin-top: 20px;width: 80%">
+            <input readonly type="text" class="input" id="detailEmail" name="customerEmail" style="margin-top: 20px;width: 80%">
             <span class="bar"></span>
         </div>
         <div class="wave-group">
