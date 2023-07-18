@@ -448,8 +448,6 @@
                                     </tbody>
                                 </table>
 
-                        <%}%>
-
                             </div>
                         </div>
                             <div class="button-group cart-button">
@@ -459,9 +457,11 @@
                                                 class="btn btn-animation proceed-btn fw-bold" >Cập nhật số lượng</button>
                                     </li>
                                 </ul>
+
                             </div>
                         </form>
                     </div>
+                    <%}%>
 
                     <div class="col-xxl-3">
                         <div class="summery-box p-sticky">
@@ -504,13 +504,18 @@
 
                             <div class="button-group cart-button">
                                 <ul>
+                                    <%
+                                    if(vector != null){
+                                    %>
                                     <li>
                                         <button onclick="location.href = 'checkoutController';"
                                             class="btn btn-animation proceed-btn fw-bold">
                                             Mua Hàng
                                         </button>
                                     </li>
-
+                                    <%
+                                        }
+                                    %>
                                     <li>
                                         <button onclick="location.href = 'home';"
                                             class="btn btn-light shopping-button text-dark">

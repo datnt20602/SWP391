@@ -474,10 +474,10 @@
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="order-success.html" class="text-content">Bạn đã mua</a>
+                                <a href="ordersuccess" class="text-content">Bạn đã mua</a>
                             </li>
                             <li>
-                                <a href="user-dashboard.html" class="text-content">Tài khoản</a>
+                                <a href="customer" class="text-content">Tài khoản</a>
                             </li>
 
                             <li>
