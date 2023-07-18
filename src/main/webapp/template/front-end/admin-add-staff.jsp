@@ -143,6 +143,12 @@
     <ul class="side-menu top">
 
         <li>
+            <a href="home">
+                <i class='bx bxs-home'></i>
+                <span class="text">Trang chủ</span>
+            </a>
+        </li>
+        <li>
             <a href="product">
                 <i class='bx bxs-shopping-bag-alt'></i>
                 <span class="text">Cửa hàng</span>

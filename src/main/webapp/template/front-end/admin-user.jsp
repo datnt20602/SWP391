@@ -119,6 +119,7 @@
             opacity: 0.5;
             transition: 0.5s;
             z-index: 9999;
+            border-radius: 10px;
         }
 
         #popup.active, #popup1.active {
@@ -204,7 +205,7 @@
             </label>
         </div>
         <div class="wave-group">
-            <label>số điện thoại</label><br>
+            <label>Số điện thoại</label><br>
             <input type="number" class="input" id="detailPhone" name="customerPhone" style="margin-top: 20px;width: 80%">
             <span class="bar"></span>
         </div>
@@ -343,7 +344,12 @@
             </a>
         </c:if>
         <ul class="side-menu top">
-
+            <li>
+                <a href="home">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Trang chủ</span>
+                </a>
+            </li>
             <li>
                 <a href="product">
                     <i class='bx bxs-shopping-bag-alt'></i>

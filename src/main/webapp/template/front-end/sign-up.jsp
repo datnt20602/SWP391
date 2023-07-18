@@ -1,5 +1,6 @@
 <%@page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -123,74 +124,74 @@
                                         </a>
                                     </li>
                                     <li class="right-side">
-                                        <a href="wishlist.jsp" class="btn p-0 position-relative header-wishlist">
+                                        <a href="wishlist" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="heart"></i>
                                         </a>
                                     </li>
-                                    <li class="right-side">
-                                        <div class="onhover-dropdown header-badge">
-                                            <button type="button" class="btn p-0 position-relative header-wishlist">
-                                                <i data-feather="shopping-cart"></i>
-                                                <span class="position-absolute top-0 start-100 translate-middle badge">2
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
-                                            </button>
+<%--                                    <li class="right-side">--%>
+<%--                                        <div class="onhover-dropdown header-badge">--%>
+<%--&lt;%&ndash;                                            <button type="button" class="btn p-0 position-relative header-wishlist">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <i data-feather="shopping-cart"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                <span class="position-absolute top-0 start-100 translate-middle badge">2&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                    <span class="visually-hidden">unread messages</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                                </span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            </button>&ndash;%&gt;--%>
 
-                                            <div class="onhover-div">
-                                                <ul class="cart-list">
-                                                    <li class="product-box-contain">
-                                                        <div class="drop-cart">
-                                                            <a href="product-detail.jsp" class="drop-image">
-                                                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"
-                                                                    class="blur-up lazyload" alt="">
-                                                            </a>
+<%--                                            <div class="onhover-div">--%>
+<%--                                                <ul class="cart-list">--%>
+<%--                                                    <li class="product-box-contain">--%>
+<%--                                                        <div class="drop-cart">--%>
+<%--                                                            <a href="product-detail.jsp" class="drop-image">--%>
+<%--                                                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/1.png"--%>
+<%--                                                                    class="blur-up lazyload" alt="">--%>
+<%--                                                            </a>--%>
 
-                                                            <div class="drop-contain">
-                                                                <a href="product-detail.jsp">
-                                                                    <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                                </a>
-                                                                <h6><span>1 x</span> $80.58</h6>
-                                                                <button class="close-button close_button">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+<%--                                                            <div class="drop-contain">--%>
+<%--                                                                <a href="product-detail.jsp">--%>
+<%--                                                                    <h5>Fantasy Crunchy Choco Chip Cookies</h5>--%>
+<%--                                                                </a>--%>
+<%--                                                                <h6><span>1 x</span> $80.58</h6>--%>
+<%--                                                                <button class="close-button close_button">--%>
+<%--                                                                    <i class="fa-solid fa-xmark"></i>--%>
+<%--                                                                </button>--%>
+<%--                                                            </div>--%>
+<%--                                                        </div>--%>
+<%--                                                    </li>--%>
 
-                                                    <li class="product-box-contain">
-                                                        <div class="drop-cart">
-                                                            <a href="product-detail.jsp" class="drop-image">
-                                                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"
-                                                                    class="blur-up lazyload" alt="">
-                                                            </a>
+<%--                                                    <li class="product-box-contain">--%>
+<%--                                                        <div class="drop-cart">--%>
+<%--                                                            <a href="product-detail.jsp" class="drop-image">--%>
+<%--                                                                <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/2.png"--%>
+<%--                                                                    class="blur-up lazyload" alt="">--%>
+<%--                                                            </a>--%>
 
-                                                            <div class="drop-contain">
-                                                                <a href="product-detail.jsp">
-                                                                    <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                    </h5>
-                                                                </a>
-                                                                <h6><span>1 x</span> $25.68</h6>
-                                                                <button class="close-button close_button">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+<%--                                                            <div class="drop-contain">--%>
+<%--                                                                <a href="product-detail.jsp">--%>
+<%--                                                                    <h5>Peanut Butter Bite Premium Butter Cookies 600 g--%>
+<%--                                                                    </h5>--%>
+<%--                                                                </a>--%>
+<%--                                                                <h6><span>1 x</span> $25.68</h6>--%>
+<%--                                                                <button class="close-button close_button">--%>
+<%--                                                                    <i class="fa-solid fa-xmark"></i>--%>
+<%--                                                                </button>--%>
+<%--                                                            </div>--%>
+<%--                                                        </div>--%>
+<%--                                                    </li>--%>
+<%--                                                </ul>--%>
 
-                                                <div class="price-box">
-                                                    <h5>Total :</h5>
-                                                    <h4 class="theme-color fw-bold">$106.58</h4>
-                                                </div>
+<%--                                                <div class="price-box">--%>
+<%--                                                    <h5>Total :</h5>--%>
+<%--                                                    <h4 class="theme-color fw-bold">$106.58</h4>--%>
+<%--                                                </div>--%>
 
-                                                <div class="button-group">
-                                                    <a href="cart.jsp" class="btn btn-sm cart-button">View Cart</a>
-                                                    <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Checkout</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+<%--                                                <div class="button-group">--%>
+<%--                                                    <a href="cart.jsp" class="btn btn-sm cart-button">View Cart</a>--%>
+<%--                                                    <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color--%>
+<%--                                                    text-white">Checkout</a>--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
                                     <li class="right-side onhover-dropdown">
                                         <div class="delivery-login-box">
                                             <div class="delivery-icon">
@@ -654,7 +655,12 @@
             }
         });
     </script>
-
+    <script>
+        <c:if test="${alertAccount != null}">
+        alert("${alertAccount}");
+        <% session.removeAttribute("alertAccount"); %>
+        </c:if>
+    </script>
 
 </body>
 

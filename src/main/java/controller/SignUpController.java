@@ -25,6 +25,8 @@ public class SignUpController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.getAttribute("alertAccount");
         request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
     }
 

@@ -117,6 +117,7 @@
             opacity: 0.5;
             transition: 0.5s;
             z-index: 9999;
+            border-radius: 10px;
         }
 
         #popup.active, #popup1.active {
@@ -162,6 +163,30 @@
         .profile {
             cursor: pointer;
         }
+
+        .options-container {
+            display: none;
+            border-radius: 10px;
+            margin-left: 900px;
+            background-color: #ccc;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .option-item {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 7px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
@@ -179,7 +204,8 @@
 
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailAdminName" name="adminName" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailAdminName" name="adminName"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">N</span>
@@ -224,7 +250,8 @@
                 </label>
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailAdminCity" name="adminCity" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailAdminCity" name="adminCity"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">C</span>
@@ -271,7 +298,8 @@
 
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailStaffName" name="staffName" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailStaffName" name="staffName"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">N</span>
@@ -316,7 +344,8 @@
                 </label>
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailStaffAid" name="staffAid" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailStaffAid" name="staffAid"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">A</span>
@@ -356,10 +385,13 @@
     <section id="sidebar">
 
         <c:if test="${admin != null}">
-            <a href="home" class="brand">
-                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" style="width: 30%">
-                <span class="text">Admin</span>
-            </a>
+
+                <a href="home" class="brand" >
+                    <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png" style="width: 30%">
+                    <span class="text">Admin</span>
+                </a>
+
+
         </c:if>
         <c:if test="${staff != null}">
             <a href="home" class="brand">
@@ -370,6 +402,12 @@
 
         <ul class="side-menu top">
 
+            <li>
+                <a href="home">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Trang chủ</span>
+                </a>
+            </li>
             <li>
                 <a href="product">
                     <i class='bx bxs-shopping-bag-alt'></i>
@@ -418,22 +456,37 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-            <div class="profile" onclick="showOptions()">
-                <img src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
+            <div class="profile" onmouseover="showOptions()" onmouseout="hideOptions()">
+                <img style="margin-left: 1000px"
+                     src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
             </div>
-            <div id="options" style="display: none; border-radius: 10px">
-
-                <button type="button"
-                        onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
-
-                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
-                    Thông tin cá nhân
-                </button>
+            <div id="options"
+                 style="border: none"
+                 class="options-container"
+                 onmouseover="showOptions()" onmouseout="hideOptions()">
+        <span onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
+              class="option-item">
+            Thông tin cá nhân
+        </span>
                 <br>
-                <a href="changepass">Đổi mật khẩu</a><br>
-                <a href="forgotpass">Quên mật khẩu</a>
-
+                <a class="option-item" href="changepass">Đổi mật khẩu</a><br>
+                <a class="option-item" href="forgotpass">Quên mật khẩu</a>
             </div>
+
+
+            <%--            <div id="options" style="display: none; border-radius: 10px; margin-left: 1000px">--%>
+
+            <%--                <button type="button"--%>
+            <%--                        onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'--%>
+
+            <%--                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">--%>
+            <%--                    Thông tin cá nhân--%>
+            <%--                </button>--%>
+            <%--                <br>--%>
+            <%--                <a href="changepass">Đổi mật khẩu</a><br>--%>
+            <%--                <a href="forgotpass">Quên mật khẩu</a>--%>
+
+            <%--            </div>--%>
         </nav>
         <!-- NAVBAR -->
 
@@ -488,10 +541,11 @@
                             <h2>${errorMessage}</h2>
 
                             <div class="wave-group">
-                                <input type="text" class="input" id="inputSearchName" name="product" value="${param.product}">
+                                <input type="text" class="input" id="inputSearchName" name="orderproduct"
+                                       value="${param.product}">
                                 <span class="bar"></span>
                                 <label class="label">
-                                    <span class="label-char" style="--index: 0">Sản phẩm </span>
+                                    <span class="label-char" style="--index: 0">Order </span>
                                 </label>
                             </div>
                             <button id="search-button"
@@ -506,10 +560,10 @@
                         <tr>
                             <th>Order ID</th>
                             <th>Khách hàng</th>
-                            <th>Ngày Order </th>
+                            <th>Ngày Order</th>
                             <th>Địa Chỉ</th>
                             <th>Sản phẩm</th>
-                            <th>Số lượng </th>
+                            <th>Số lượng</th>
                             <th>Tổng tiền</th>
                         </tr>
                         </thead>
@@ -578,15 +632,54 @@
         popup.classList.toggle('active');
     }
 
-    function showOptions() {
-        var optionsDiv = document.getElementById("options");
-        if (optionsDiv.style.display === "none") {
-            optionsDiv.style.display = "block";
-        } else {
-            optionsDiv.style.display = "none";
-        }
+    // function showOptions() {
+    //     var optionsDiv = document.getElementById("options");
+    //     if (optionsDiv.style.display === "none") {
+    //         optionsDiv.style.display = "block";
+    //     } else {
+    //         optionsDiv.style.display = "none";
+    //     }
+    //
+    // }
 
+    var optionsDiv = document.getElementById("options");
+    var optionItems = optionsDiv.getElementsByClassName("option-item");
+    var hideOptionsTimeout;
+
+    function showOptions() {
+        clearTimeout(hideOptionsTimeout);
+        optionsDiv.style.display = "block";
+        setTimeout(function() {
+            optionsDiv.classList.add("show");
+            for (var i = 0; i < optionItems.length; i++) {
+                optionItems[i].style.opacity = "1";
+            }
+        }, 10);
     }
+
+    function hideOptions() {
+        hideOptionsTimeout = setTimeout(function() {
+            var isMouseOverOptions = false;
+            for (var i = 0; i < optionItems.length; i++) {
+                if (optionItems[i].matches(":hover")) {
+                    isMouseOverOptions = true;
+                    break;
+                }
+            }
+
+            if (!optionsDiv.matches(":hover") && !isMouseOverOptions) {
+                optionsDiv.classList.remove("show");
+                for (var i = 0; i < optionItems.length; i++) {
+                    optionItems[i].style.opacity = "0";
+                }
+                setTimeout(function() {
+                    optionsDiv.style.display = "none";
+                }, 300);
+            }
+        }, 200);
+    }
+
+
     let pages = ${totalPages};
 
     document.getElementById('pagination').innerHTML = createPagination(pages, ${pageNumber});
@@ -599,13 +692,13 @@
         var name = document.getElementById("inputSearchName");
         // Show the Previous button only if you are on a page other than the first
         if (page > 1) {
-            str += '<a style="color: black" href="home?product=' + name.value + '&page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
+            str += '<a style="color: black" href="home?orderproduct=' + name.value + '&page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
         }
         // Show all the pagination elements if there are less than 6 pages total
         if (pages < 6) {
             for (let p = 1; p <= pages; p++) {
                 active = page == p ? "active" : "";
-                str += '<a style="color: black" href="home?product=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+                str += '<a style="color: black" href="home?orderproduct=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
         }
         // Use "..." to collapse pages outside of a certain range
@@ -613,7 +706,7 @@
             // Show the very first page followed by a "..." at the beginning of the
             // pagination section (after the Previous button)
             if (page > 2) {
-                str += '<a style="color: black" href="home?product=' + name.value + '&page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
+                str += '<a style="color: black" href="home?orderproduct=' + name.value + '&page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
                 if (page > 3) {
                     str += `<li class="page__dots"><span>...</span></li>`;
                 }
@@ -640,7 +733,7 @@
                     continue
                 }
                 active = page == p ? "active" : "";
-                str += '<a style="color: black" href="home?product=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+                str += '<a style="color: black" href="home?orderproduct=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
             // Show the very last page preceded by a "..." at the end of the pagination
             // section (before the Next button)
@@ -648,12 +741,12 @@
                 if (page < pages - 2) {
                     str += '<li class="page__dots"><span>...</span></li>';
                 }
-                str += '<a style="color: black" href="home?product=' + name.value + '&page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
+                str += '<a style="color: black" href="home?orderproduct=' + name.value + '&page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
             }
         }
         // Show the Next button only if you are on a page other than the last
         if (page < pages) {
-            str += '<a style="color: black" href="home?product=' + name.value + '&page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
+            str += '<a style="color: black" href="home?orderproduct=' + name.value + '&page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
         }
         str += '</ul>';
         // Return the pagination string to be outputted in the pug templates

@@ -53,8 +53,8 @@ public class HomeController extends HttpServlet {
             int totalCustomer = DAOCustomer.getNumberCustomer();
             int totalProduct = DAOProduct.getNumberProduct();
             double totalOrder = daoOrderItem.getTotalOrder(productName);
-            double totalPages = Math.ceil((double) totalOrder/10);
-            List<Order_item> orderItems = daoOrderItem.getListOrderItemByProduct(productName, (page-1) * 10);
+            double totalPages = Math.ceil((double) totalOrder/5);
+            List<Order_item> orderItems = daoOrderItem.getListOrderItemByProduct(productName, (page-1) * 5);
 
             request.setAttribute("orderItems", orderItems);
             request.setAttribute("totalCustomer", totalCustomer);
@@ -73,7 +73,7 @@ public class HomeController extends HttpServlet {
             String page_raw = request.getParameter("page");
             String product_name = request.getParameter("product");
             if (page_raw != null && !page_raw.equals("1")) {
-                page = Integer.parseInt("page_raw");
+                page = Integer.parseInt(page_raw);
             }
             if (product_name != null && !product_name.isEmpty()) {
                 productName = product_name+ "%" ;
@@ -82,8 +82,8 @@ public class HomeController extends HttpServlet {
             int totalProduct = DAOProduct.getNumberProduct();
             int totalStaff = DAOStaff.getNumberStaff();
             double totalOrder = daoOrderItem.getTotalOrder(productName);
-            double totalPages = Math.ceil((double) totalOrder/10);
-            List<Order_item> orderItems = daoOrderItem.getListOrderItemByProduct(productName, (page-1) * 10);
+            double totalPages = Math.ceil((double) totalOrder/5);
+            List<Order_item> orderItems = daoOrderItem.getListOrderItemByProduct(productName, (page-1) * 5);
             request.setAttribute("orderItems", orderItems);
             request.setAttribute("totalCustomer", totalCustomer);
             request.setAttribute("totalProduct", totalProduct);

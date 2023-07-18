@@ -119,6 +119,7 @@
             opacity: 0.5;
             transition: 0.5s;
             z-index: 9999;
+            border-radius: 10px;
         }
 
         #popup.active, #popup1.active {
@@ -165,6 +166,8 @@
             opacity: 0.5;
             transition: 0.5s;
             z-index: 9999;
+            border-radius: 10px;
+
         }
 
         #addDiv.active {
@@ -589,11 +592,16 @@
             </a>
         </c:if>
         <ul class="side-menu top">
-
+            <li>
+                <a href="home">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Trang chủ</span>
+                </a>
+            </li>
             <li>
                 <a href="product">
                     <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">Cửa hàng</span>
+                    <span class="text">Sản phẩm</span>
                 </a>
             </li>
 
@@ -655,10 +663,10 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Cửa hàng</h1>
+                    <h1>Sản phẩm</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="product">Cửa hàng</a>
+                            <a href="product">Sản phẩm</a>
                         </li>
                         <li><i class="bx bx-chevron-right"></i></li>
                         <li>
