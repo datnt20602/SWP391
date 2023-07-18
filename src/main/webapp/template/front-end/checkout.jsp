@@ -568,7 +568,7 @@
     <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" >Add a new address</h5>
+                <h5 class="modal-title" >Thêm địa chỉ</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -616,7 +616,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit"  name="addAddress" value=""class="btn theme-bg-color btn-md text-white" data-bs-dismiss="modal">Thêm địa chỉ</button>
+                    <button type="submit"  name="addAddress" value="checkout"class="btn theme-bg-color btn-md text-white" data-bs-dismiss="modal">Thêm địa chỉ</button>
                 </div>
             </form>
         </div>
