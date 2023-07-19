@@ -597,7 +597,7 @@
                                     </div>
                                     <h6 class="unit"><%= temp.getVolume()%>ml</h6>
                                     <h5 class="price"><span class="theme-color"><%= temp.getPrice()%></span>
-                                        <del>$15.15</del>
+                                        <del>40000.0VND</del>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
                                         <button class="btn btn-add-cart addcart-button"
