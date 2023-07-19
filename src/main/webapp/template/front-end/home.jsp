@@ -561,7 +561,7 @@
 
                                     <ul class="product-option">
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a style="padding-left: 95px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
+                                            <a style="padding-left: 86px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
