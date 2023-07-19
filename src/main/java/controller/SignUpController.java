@@ -37,15 +37,22 @@ public class SignUpController extends HttpServlet {
         String phone = request.getParameter("phone");
         String pass = request.getParameter("password");
         String repass = request.getParameter("repass");
+        HttpSession session = request.getSession();
 
         DAOCustomer customer = new DAOCustomer();
 
         boolean password = customer.isSecurePassword(pass);
         if(!password){
+            session.setAttribute("enteredFullname", fullname);
+            session.setAttribute("enteredEmail", user);
+            session.setAttribute("enteredPhone", phone);
             request.setAttribute("mess", "Mật khẩu phải gồm 8 kí tự (Gồm 1 chữ hoa,chữ thường và kí tự đặc biệt)!");
             request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
         }
         else if (!pass.equals(repass)) {
+            session.setAttribute("enteredFullname", fullname);
+            session.setAttribute("enteredEmail", user);
+            session.setAttribute("enteredPhone", phone);
             request.setAttribute("mess", "Mật khẩu không khớp!");
             request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
         } else {
@@ -63,7 +70,7 @@ public class SignUpController extends HttpServlet {
                 check = false;
             }
             if (check) {
-                HttpSession session = request.getSession();
+
                 Customer newCustomer = new Customer(fullname, phone, user, pass, 0);
                 DaoC.insertCustomer(newCustomer);
                 Customer cus = DaoC.login(user, pass);
@@ -72,6 +79,9 @@ public class SignUpController extends HttpServlet {
             }
 
             else {
+                session.setAttribute("enteredFullname", fullname);
+                session.setAttribute("enteredEmail", user);
+                session.setAttribute("enteredPhone", phone);
                 request.setAttribute("mess", "Email đã tồn tại!");
                 request.getRequestDispatcher("template/front-end/sign-up.jsp").forward(request, response);
             }

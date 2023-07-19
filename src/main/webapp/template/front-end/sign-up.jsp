@@ -266,7 +266,7 @@
                         <div class="header-nav-right">
                             <button class="btn deal-button" data-bs-toggle="modal" data-bs-target="#deal-box">
                                 <i data-feather="zap"></i>
-                                <span>Deal Today</span>
+                                <span>Giảm giá hôm nay</span>
                             </button>
                         </div>
                     </div>
@@ -362,19 +362,19 @@
                             <form class="row g-4" action="signup" method="post">
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
-                                        <input type="text" class="form-control" id="fullname" placeholder="Full Name" name = "fullname">
+                                        <input type="text" class="form-control" id="fullname" placeholder="Full Name" name = "fullname" value="${enteredFullname}">
                                         <label for="fullname">Họ Tên</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
-                                        <input type="text" class="form-control" id="phone" placeholder="Phone" name = "phone">
-                                        <label for="phone">Phone</label>
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone" name = "phone" value="${enteredPhone}">
+                                        <label for="phone">Điện thoại</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Email Address" name = "email">
+                                        <input type="email" class="form-control" id="email" placeholder="Email Address" name = "email" value="${enteredEmail}">
                                         <label for="email">Địa chỉ email</label>
                                     </div>
                                 </div>
@@ -401,7 +401,7 @@
 
                                             <label>
                                                 <input type="checkbox" id="agree" name="agree" required>
-                                                Tôi đã đọc và chấp nhận các điều khoản và điều kiện.
+                                                Tôi đã đọc và chấp nhận các <a href="term" target="_blank">điều khoản và điều kiện</a>.
                                             </label>
                                         </div>
 
@@ -533,11 +533,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="about-us.html" class="text-content">Về chúng tôi</a>
-                                </li>
-
-                                <li>
-                                    <a href="contact-us.html" class="text-content">Liên lạc</a>
+                                    <a href="contactus" class="text-content">Liên lạc</a>
                                 </li>
                             </ul>
                         </div>
@@ -551,18 +547,16 @@
                         <div class="footer-contain">
                             <ul>
                                 <li>
-                                    <a href="order-success.html" class="text-content">Bạn đã mua</a>
+                                    <a href="cart" class="text-content">Giỏ hàng</a>
                                 </li>
                                 <li>
-                                    <a href="user-dashboard.html" class="text-content">Tài khoản</a>
+                                    <a href="user" class="text-content">Tài khoản</a>
                                 </li>
 
                                 <li>
-                                    <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
+                                    <a href="wishlist" class="text-content"> Wishlist</a>
                                 </li>
-                                <li>
-                                    <a href="faq.html" class="text-content">FAQ</a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>

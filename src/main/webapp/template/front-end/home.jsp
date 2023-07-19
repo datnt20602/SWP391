@@ -685,8 +685,7 @@
                         </div>
 
                         <div class="footer-logo-contain">
-                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục
-                                vụ.</p>
+                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
 
                             <ul class="address">
                                 <li>
@@ -715,10 +714,6 @@
                             </li>
 
                             <li>
-                                <a href="" class="text-content">Về chúng tôi</a>
-                            </li>
-
-                            <li>
                                 <a href="contactus" class="text-content">Liên lạc</a>
                             </li>
                         </ul>
@@ -732,14 +727,17 @@
 
                     <div class="footer-contain">
                         <ul>
-
                             <li>
-                                <a href="customer" class="text-content">Tài khoản</a>
+                                <a href="cart" class="text-content">Giỏ hàng</a>
+                            </li>
+                            <li>
+                                <a href="user" class="text-content">Tài khoản</a>
                             </li>
 
                             <li>
                                 <a href="wishlist" class="text-content"> Wishlist</a>
                             </li>
+
                         </ul>
                     </div>
                 </div>

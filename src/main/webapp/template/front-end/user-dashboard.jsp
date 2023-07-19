@@ -927,172 +927,166 @@
   </section>
 
   <!-- Footer Section Start -->
-  <footer class="section-t-space">
-    <div class="container-fluid-lg">
-      <div class="service-section">
-        <div class="row g-3">
-          <div class="col-12">
-            <div class="service-contain">
-              <div class="service-box">
-                <div class="service-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/svg/product.svg"
-                       class="blur-up lazyload" alt="">
-                </div>
-
-                <div class="service-detail">
-                  <h5>Đồ uống chất lượng</h5>
-                </div>
+<footer class="section-t-space">
+  <div class="container-fluid-lg">
+    <div class="service-section">
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="service-contain">
+            <div class="service-box">
+              <div class="service-image">
+                <img src="${pageContext.request.contextPath}/template/assets/svg/product.svg"
+                     class="blur-up lazyload" alt="">
               </div>
 
-              <div class="service-box">
-                <div class="service-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/svg/delivery.svg"
-                       class="blur-up lazyload" alt="">
-                </div>
+              <div class="service-detail">
+                <h5>Đồ uống chất lượng</h5>
+              </div>
+            </div>
 
-                <div class="service-detail">
-                  <h5>Miễn phí vận chuyển trong vòng 3km</h5>
-                </div>
+            <div class="service-box">
+              <div class="service-image">
+                <img src="${pageContext.request.contextPath}/template/assets/svg/delivery.svg"
+                     class="blur-up lazyload" alt="">
               </div>
 
-              <div class="service-box">
-                <div class="service-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/svg/discount.svg"
-                       class="blur-up lazyload" alt="">
-                </div>
+              <div class="service-detail">
+                <h5>Miễn phí vận chuyển trong vòng 3km</h5>
+              </div>
+            </div>
 
-                <div class="service-detail">
-                  <h5>Nhiều ưu đãi</h5>
-                </div>
+            <div class="service-box">
+              <div class="service-image">
+                <img src="${pageContext.request.contextPath}/template/assets/svg/discount.svg"
+                     class="blur-up lazyload" alt="">
               </div>
 
-              <div class="service-box">
-                <div class="service-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/svg/market.svg"
-                       class="blur-up lazyload" alt="">
-                </div>
+              <div class="service-detail">
+                <h5>Nhiều ưu đãi</h5>
+              </div>
+            </div>
 
-                <div class="service-detail">
-                  <h5>Phù hợp với túi tiền</h5>
-                </div>
+            <div class="service-box">
+              <div class="service-image">
+                <img src="${pageContext.request.contextPath}/template/assets/svg/market.svg"
+                     class="blur-up lazyload" alt="">
+              </div>
+
+              <div class="service-detail">
+                <h5>Phù hợp với túi tiền</h5>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="main-footer section-b-space section-t-space">
-        <div class="row g-md-4 g-3">
-          <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="footer-logo">
-              <div class="theme-logo">
-                <a href="home">
-                  <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
-                       class="blur-up lazyload" alt="">
-                </a>
-              </div>
-
-              <div class="footer-logo-contain">
-                <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
-
-                <ul class="address">
-                  <li>
-                    <i data-feather="home"></i>
-                    <a href="javascript:void(0)">Hòa Lạc, Thạch Thất, Hà Nội</a>
-                  </li>
-                  <li>
-                    <i data-feather="mail"></i>
-                    <a href="javascript:void(0)">cofphe@gmail.com</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-xl col-lg-2 col-sm-3">
-            <div class="footer-title">
-              <h4>Đường dẫn hữu dụng</h4>
-            </div>
-
-            <div class="footer-contain">
-              <ul>
-                <li>
-                  <a href="home" class="text-content">Trang chủ</a>
-                </li>
-
-                <li>
-                  <a href="about-us.html" class="text-content">Về chúng tôi</a>
-                </li>
-
-                <li>
-                  <a href="contact-us.html" class="text-content">Liên lạc</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-2 col-sm-3">
-            <div class="footer-title">
-              <h4>Xem thông tin</h4>
-            </div>
-
-            <div class="footer-contain">
-              <ul>
-                <li>
-                  <a href="order-success.html" class="text-content">Bạn đã mua</a>
-                </li>
-                <li>
-                  <a href="user-dashboard.html" class="text-content">Tài khoản</a>
-                </li>
-
-                <li>
-                  <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
-                </li>
-                <li>
-                  <a href="faq.html" class="text-content">FAQ</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="footer-title">
-              <h4>Liên lạc với chúng tôi:</h4>
-            </div>
-
-            <div class="footer-contact">
-              <ul>
-                <li>
-                  <div class="footer-number">
-                    <i data-feather="phone"></i>
-                    <div class="contact-number">
-                      <h6 class="text-content">Hotline 24/7 :</h6>
-                      <h5>+84 376597711</h5>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="footer-number">
-                    <i data-feather="mail"></i>
-                    <div class="contact-number">
-                      <h6 class="text-content">Địa chỉ email:</h6>
-                      <h5>cofphe@gmail.com</h5>
-                    </div>
-                  </div>
-                </li>
-
-
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
     </div>
-  </footer>
+
+    <div class="main-footer section-b-space section-t-space">
+      <div class="row g-md-4 g-3">
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="footer-logo">
+            <div class="theme-logo">
+              <a href="home">
+                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
+                     class="blur-up lazyload" alt="">
+              </a>
+            </div>
+
+            <div class="footer-logo-contain">
+              <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
+
+              <ul class="address">
+                <li>
+                  <i data-feather="home"></i>
+                  <a href="javascript:void(0)">Hòa Lạc, Thạch Thất, Hà Nội</a>
+                </li>
+                <li>
+                  <i data-feather="mail"></i>
+                  <a href="javascript:void(0)">cofphe@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xl col-lg-2 col-sm-3">
+          <div class="footer-title">
+            <h4>Đường dẫn hữu dụng</h4>
+          </div>
+
+          <div class="footer-contain">
+            <ul>
+              <li>
+                <a href="home" class="text-content">Trang chủ</a>
+              </li>
+
+              <li>
+                <a href="contactus" class="text-content">Liên lạc</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-3">
+          <div class="footer-title">
+            <h4>Xem thông tin</h4>
+          </div>
+
+          <div class="footer-contain">
+            <ul>
+              <li>
+                <a href="cart" class="text-content">Giỏ hàng</a>
+              </li>
+              <li>
+                <a href="user" class="text-content">Tài khoản</a>
+              </li>
+
+              <li>
+                <a href="wishlist" class="text-content"> Wishlist</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="footer-title">
+            <h4>Liên lạc với chúng tôi:</h4>
+          </div>
+
+          <div class="footer-contact">
+            <ul>
+              <li>
+                <div class="footer-number">
+                  <i data-feather="phone"></i>
+                  <div class="contact-number">
+                    <h6 class="text-content">Hotline 24/7 :</h6>
+                    <h5>+84 376597711</h5>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="footer-number">
+                  <i data-feather="mail"></i>
+                  <div class="contact-number">
+                    <h6 class="text-content">Địa chỉ email:</h6>
+                    <h5>cofphe@gmail.com</h5>
+                  </div>
+                </div>
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</footer>
   <!-- Footer Section End -->
 
   <!-- Deal Box Modal Start -->

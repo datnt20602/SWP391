@@ -484,7 +484,7 @@
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="footer-logo">
                         <div class="theme-logo">
-                            <a href="">
+                            <a href="home">
                                 <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
                                      class="blur-up lazyload" alt="">
                             </a>
@@ -495,7 +495,7 @@
 
                             <ul class="address">
                                 <li>
-                                    <i data-feather=""></i>
+                                    <i data-feather="home"></i>
                                     <a href="javascript:void(0)">Hòa Lạc, Thạch Thất, Hà Nội</a>
                                 </li>
                                 <li>
@@ -516,15 +516,11 @@
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="" class="text-content">Trang chủ</a>
+                                <a href="home" class="text-content">Trang chủ</a>
                             </li>
 
                             <li>
-                                <a href="about-us.html" class="text-content">Về chúng tôi</a>
-                            </li>
-
-                            <li>
-                                <a href="contact-us.html" class="text-content">Liên lạc</a>
+                                <a href="contactus" class="text-content">Liên lạc</a>
                             </li>
                         </ul>
                     </div>
@@ -538,18 +534,16 @@
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="order-success.html" class="text-content">Bạn đã mua</a>
+                                <a href="cart" class="text-content">Giỏ hàng</a>
                             </li>
                             <li>
-                                <a href="user-dashboard.html" class="text-content">Tài khoản</a>
+                                <a href="user" class="text-content">Tài khoản</a>
                             </li>
 
                             <li>
-                                <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
+                                <a href="wishlist" class="text-content"> Wishlist</a>
                             </li>
-                            <li>
-                                <a href="faq.html" class="text-content">FAQ</a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
