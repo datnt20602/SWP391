@@ -190,6 +190,28 @@
         .profile {
             cursor: pointer;
         }
+        .options-container {
+            display: none;
+            border-radius: 10px;
+            margin-left: 900px;
+            background-color: #ccc;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .option-item {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 7px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .show {
+            opacity: 1;
+        }
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -640,22 +662,37 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-            <div class="profile" onclick="showOptions()">
-                <img src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
+            <div class="profile" onmouseover="showOptions()" onmouseout="hideOptions()">
+                <img style="margin-left: 1000px"
+                     src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
             </div>
-            <div id="options" style="display: none; border-radius: 10px">
-
-                <button type="button"
-                        onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
-
-                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
-                    Thông tin cá nhân
-                </button>
+            <div id="options"
+                 style="border: none"
+                 class="options-container"
+                 onmouseover="showOptions()" onmouseout="hideOptions()">
+        <span onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
+              class="option-item">
+            Thông tin cá nhân
+        </span>
                 <br>
-                <a href="changepass">Đổi mật khẩu</a><br>
-                <a href="forgotpass">Quên mật khẩu</a>
-
+                <a class="option-item" href="changepass">Đổi mật khẩu</a><br>
+                <a class="option-item" href="forgotpass">Quên mật khẩu</a>
             </div>
+
+
+            <%--            <div id="options" style="display: none; border-radius: 10px; margin-left: 1000px">--%>
+
+            <%--                <button type="button"--%>
+            <%--                        onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'--%>
+
+            <%--                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">--%>
+            <%--                    Thông tin cá nhân--%>
+            <%--                </button>--%>
+            <%--                <br>--%>
+            <%--                <a href="changepass">Đổi mật khẩu</a><br>--%>
+            <%--                <a href="forgotpass">Quên mật khẩu</a>--%>
+
+            <%--            </div>--%>
         </nav>
         <!-- NAVBAR -->
 
@@ -907,14 +944,49 @@
         return str;
     }
 
-    function showOptions() {
-        var optionsDiv = document.getElementById("options");
-        if (optionsDiv.style.display === "none") {
-            optionsDiv.style.display = "block";
-        } else {
-            optionsDiv.style.display = "none";
-        }
+    // function showOptions() {
+    //     var optionsDiv = document.getElementById("options");
+    //     if (optionsDiv.style.display === "none") {
+    //         optionsDiv.style.display = "block";
+    //     } else {
+    //         optionsDiv.style.display = "none";
+    //     }
+    // }
+    var optionsDiv = document.getElementById("options");
+    var optionItems = optionsDiv.getElementsByClassName("option-item");
+    var hideOptionsTimeout;
 
+    function showOptions() {
+        clearTimeout(hideOptionsTimeout);
+        optionsDiv.style.display = "block";
+        setTimeout(function() {
+            optionsDiv.classList.add("show");
+            for (var i = 0; i < optionItems.length; i++) {
+                optionItems[i].style.opacity = "1";
+            }
+        }, 10);
+    }
+
+    function hideOptions() {
+        hideOptionsTimeout = setTimeout(function() {
+            var isMouseOverOptions = false;
+            for (var i = 0; i < optionItems.length; i++) {
+                if (optionItems[i].matches(":hover")) {
+                    isMouseOverOptions = true;
+                    break;
+                }
+            }
+
+            if (!optionsDiv.matches(":hover") && !isMouseOverOptions) {
+                optionsDiv.classList.remove("show");
+                for (var i = 0; i < optionItems.length; i++) {
+                    optionItems[i].style.opacity = "0";
+                }
+                setTimeout(function() {
+                    optionsDiv.style.display = "none";
+                }, 300);
+            }
+        }, 200);
     }
 </script>
 </body>
