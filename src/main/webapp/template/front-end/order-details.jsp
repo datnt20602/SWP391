@@ -382,7 +382,7 @@
               <tr>
                 <td class="product-detail">
                   <div class="product border-0">
-                    <a href="product.left-sidebar.html" class="product-image">
+                    <a  class="product-image">
                       <img src="<%=item.getProduct().getImage()%>"
                            class="img-fluid blur-up lazyload" alt="">
                     </a>

@@ -46,7 +46,6 @@ public class DAOWishlist extends  DBContext{
             while (rs.next()) {
                 pro_list.add(Integer.parseInt(rs.getString("product_id")));
                 wishlist_id = Integer.parseInt(rs.getString("idwishlist"));
-                System.out.println(rs.getString("idwishlist"));
             }
         } catch (SQLException e) {
             Logger.getLogger(DAOProduct.class.getName()).log(Level.SEVERE, null, e);
