@@ -378,7 +378,7 @@
                                     <div class="product-main-2 no-arrow">
                                         <div>
                                             <div class="slider-image">
-                                                <img src="<%= product.getImage()%>" id="img-1" alt="" width="410" height="500" >
+                                                <img src="<%= product.getImage()%>" id="img-1" alt="" width="500" height="500" >
                                             </div>
                                         </div>
                                     </div>
@@ -391,7 +391,7 @@
                         <div class="right-box-contain">
                             <h2 class="name"><%= product.getProduct_name()%></h2>
                             <div class="price-rating">
-                                <h3 class="price"><%= product.getPrice()%>
+                                <h3 class="price"><%= product.getPrice()%>VND </h3>
 
                                 <div class="product-rating custom-rate">
                                     <ul class="rating">
@@ -423,7 +423,7 @@
                             <div class="time deal-timer product-deal-timer mx-md-0 mx-auto" id="clockdiv-1"
                                  data-hours="1" data-minutes="2" data-seconds="3">
                                 <div class="product-title">
-                                    <h4>Hurry up! Sales Ends In</h4>
+                                    <h4>Nhanh tay thêm vào giỏ hàng!</h4>
                                 </div>
 
                             </div>
@@ -614,7 +614,7 @@
                     <!-- Trending Product -->
                     <div class="pt-25">
                         <div class="category-menu">
-                            <h3>Trending Products</h3>
+                            <h3>Sản Phẩm Thịnh Hành </h3>
 
                             <ul class="product-list product-right-sidebar border-0 p-0">
                                 <%
@@ -635,7 +635,7 @@
                                                     <h6 class="name"><%=item.getProduct_name()%></h6>
                                                 </a>
                                                 <span><%=item.getVolume()%> ml</span>
-                                                <h6 class="price theme-color">$ <%=item.getPrice()%></h6>
+                                                <h6 class="price theme-color"><%=item.getPrice()%>VND</h6>
                                             </div>
                                         </div>
                                     </div>

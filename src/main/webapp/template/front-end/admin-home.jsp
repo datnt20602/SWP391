@@ -457,10 +457,11 @@
         <!-- NAVBAR -->
         <nav>
             <div class="profile" onmouseover="showOptions()" onmouseout="hideOptions()">
-                <img style="margin-left: 1000px"
+                <img style="margin-left: 1px"
                      src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
             </div>
-            <div id="options"
+            <div class="profile"
+                 id="options"
                  style="border: none"
                  class="options-container"
                  onmouseover="showOptions()" onmouseout="hideOptions()">
