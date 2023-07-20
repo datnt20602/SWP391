@@ -276,7 +276,7 @@ $(".notifi-wishlist").on("click", function () {
     $.notify({
         icon: "fa fa-check",
         title: "Success!",
-        message: "Item Successfully added in wishlist",
+        message: $(".notifi-wishlist").css("color") === 'rgb(255, 0, 0)' ? 'Item Successfully remove in wishlist' : '"Item Successfully removed in wishlist"',
     }, {
         element: "body",
         position: null,

@@ -4,11 +4,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import =" java.util.Vector,Model.Product" %>
-<%@ page import="java.sql.ResultSet" %>
 <%@ page import="Model.Customer" %>
-<%@ page import="java.util.List" %>
-<%@ page import="Dal.DAOProduct" %>
 <%@ page import="Model.Order_item" %>
+<%@ page import="java.util.ArrayList" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +53,7 @@
 
     <!-- Iconly css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/bulk-style.css">
-
+    
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/template/assets/css/style.css">
@@ -153,33 +151,53 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="right-side">
-                                    <a href="wishlist" class="btn p-0 position-relative header-wishlist">
+                                <%
+                                    Customer cus = (Customer) session.getAttribute("customer");
+                                    int quantity;
+                                    if(cus != null) {
+                                        ArrayList<Integer> pro_list1 = (ArrayList<Integer>) session.getAttribute("quantityWishlist");
+
+                                        if (pro_list1 == null) {
+                                            quantity = 0;
+                                        } else {
+                                            quantity = pro_list1.size();
+                                        }
+                                    }else {
+                                        quantity = 0;
+                                    }
+
+                                %>
+                                <li class="right-side" >
+                                    <a href="wishlist" class="btn p-0 position-relative header-wishlist" id="wishlist">
                                         <i data-feather="heart"></i>
+                                        <span  class="position-absolute top-0 start-100 translate-middle badge"><%=quantity%>
+                                                </span>
                                     </a>
-                                </li>
+                                </li >
                                 <%
                                     Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
                                     int quantityOI = 0;
                                     if(order_itemVector != null )quantityOI = order_itemVector.size();
                                 %>
-                                <li class="right-side">
-                                    <div class="onhover-dropdown header-badge">
+                                <li class="right-side" >
+                                    <div class="onhover-dropdown header-badge"  >
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">
+                                            <span class="position-absolute top-0 start-100 translate-middle badge" id = "quantityOI">
                                                 <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
 
                                         <div class="onhover-div">
-                                            <ul class="cart-list">
+                                            <ul class="cart-list" id = "cart-list" >
                                                 <%
 
                                                     if(order_itemVector != null){
+                                                        int i = 0 ;
                                                         for(Order_item item : order_itemVector){
-
+                                                            i++;
+                                                            if(i <= 3){
 
                                                 %>
 
@@ -194,7 +212,7 @@
                                                             <a href="productdetail">
                                                                 <h5><%=item.getProduct().getProduct_name()%></h5>
                                                             </a>
-                                                            <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
+                                                            <h6><span><%=item.getQuantity()%> x</span> <%=item.getPrice()%>00 VND</h6>
                                                             <button class="close-button close_button">
                                                                 <i class="fa-solid fa-xmark"></i>
                                                             </button>
@@ -202,24 +220,11 @@
                                                     </div>
                                                 </li>
                                                 <%
+                                                            }
                                                         }
                                                     }
                                                 %>
                                             </ul>
-
-                                            <div class="price-box">
-                                                <h5>Tổng :</h5>
-                                                <%
-                                                    if(session.getAttribute("totalMoney") != null){
-                                                %>
-                                                <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
-                                                <%
-                                                }else {
-                                                %>
-                                                <h4 class="theme-color fw-bold">0</h4>
-                                                <%}%>
-                                            </div>
-
                                             <div class="button-group">
                                                 <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
                                             </div>
@@ -234,7 +239,7 @@
 
                                         <div class="delivery-detail">
                                             <%
-                                                Customer cus = (Customer) session.getAttribute("customer");
+
                                                 if(cus != null)
                                                 {
                                             %>
@@ -563,8 +568,8 @@
                         for (Product temp : vector) {
 
                     %>
-                    <div>
-                        <div class="product-box-3 h-100 wow fadeInUp" data-wow-delay="0.6">
+                    <div >
+                        <div class="product-box-3 h-100 wow fadeInUp"   data-wow-delay="0.6">
                             <div class="product-header">
                                 <div class="product-image">
                                     <a href="productdetail?pro_id=<%=temp.getProduct_id()%>">
@@ -573,9 +578,29 @@
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a style="padding-left: 95px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
-                                                <i data-feather="heart"></i>
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist" class="wishlist-li">
+                                            <%
+                                                if(cus != null){
+                                            %>
+                                            <a style="padding-left: 95px" onclick="changeFavourite(<%=temp.getProduct_id()%>)" class="notifi-wishlist" >
+                                            <%
+                                                }else{
+                                            %>
+                                                <a style="padding-left: 95px" href="login" >
+                                            <%
+                                                }
+                                            %>
+                                                <%
+                                                    ArrayList<Integer> pro_list = (ArrayList<Integer>) request.getAttribute("wishlistproductID");
+
+                                                    if(pro_list.contains(temp.getProduct_id())){
+                                                %>
+                                                <i data-feather="heart" style="color: red" id="<%=temp.getProduct_id()%>"></i>
+                                                <%
+                                                }else{
+                                                %>
+                                                <i data-feather="heart" id="<%=temp.getProduct_id()%>"></i>
+                                                <%}%>
                                             </a>
                                         </li>
                                     </ul>
@@ -609,13 +634,25 @@
                                         <span>(4.0)</span>
                                     </div>
                                     <h6 class="unit"><%= temp.getVolume()%>ml</h6>
-                                    <h5 class="price"><span class="theme-color"><%= temp.getPrice()%></span>
-                                        <del>$15.15</del>
+                                    <h5 class="price"><span class="theme-color"><%= temp.getPrice()%>00 VND</span>
+                                        <del>15.000 VND</del>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
-                                        <button class="btn btn-add-cart addcart-button"
-                                                onclick="location.href = 'cart?service=addToCart&pro_id=<%=temp.getProduct_id()%>';">Add
-                                        </button>
+                                        <%
+                                        if(cus == null){
+                                        %>
+                                        <a href="login" >
+                                            <button class="btn btn-add-cart addcart-button"
+                                                    >Mua
+                                            </button>
+                                        </a>
+                                        <%}else {%>
+                                        <a onclick="addToCart(<%=temp.getProduct_id()%>)">
+                                            <button class="btn btn-add-cart addcart-button"
+                                            >Add
+                                            </button>
+                                        </a>
+                                        <%}%>
                                     </div>
                                 </div>
                             </div>
@@ -868,10 +905,6 @@
                                 </a>
 
                                 <a href="home.jsp" class="deal-contain">
-                                    <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57
-                                        <del>57.62</del>
-                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -885,10 +918,6 @@
                                 </a>
 
                                 <a href="home.jsp" class="deal-contain">
-                                    <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57
-                                        <del>57.62</del>
-                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -919,10 +948,6 @@
                                 </a>
 
                                 <a href="home.jsp" class="deal-contain">
-                                    <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57
-                                        <del>57.62</del>
-                                        <span>500 G</span></h6>
                                 </a>
                             </div>
                         </li>
@@ -1143,6 +1168,48 @@
 
 <!-- script js -->
 <script src="${pageContext.request.contextPath}/template/assets/js/script.js"></script>
+<script type="text/javascript">
+    function changeFavourite(i){
+
+        $.ajax({
+            type : 'POST',
+            url : 'changeFavourite',
+            data : {
+                 id : i
+            },
+            success: function (data){
+                var row = document.getElementById("wishlist");
+                row.innerHTML += data
+               let temp = $('#' + i).css('color');
+               if(temp === 'rgb(255, 0, 0)'){
+                   $('#' + i).css('color','black');
+               }
+               else {
+                   $('#' + i).css('color','red');
+               }
+
+
+            }
+        })
+    }
+    function addToCart(i){
+        const spanElement = document.getElementById('quantityOI');
+        const spanValue = parseInt(spanElement.textContent) + 1;
+        $.ajax({
+            type : 'POST',
+            url : 'addToCartAjax',
+            data : {
+                id : i
+            }
+            ,
+            success: function (data){
+                spanElement.textContent = spanValue
+                var row = document.getElementById("cart-list");
+                row.innerHTML = data
+            }
+        })
+    }
+</script>
 </body>
 
 </html>

@@ -14,6 +14,7 @@
 <%@ page import="Model.Customer" %>
 <%@ page import="Model.Order_item" %>
 <%@ page import="Model.*" %>
+<%@ page import="java.util.ArrayList" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">
@@ -79,6 +80,7 @@
 </div>
 <!-- Loader End -->
 
+<!-- Header Start -->
 <header class="pb-md-4 pb-0">
 
 
@@ -142,7 +144,7 @@
                                     </div>
                                 </li>
                                 <li class="right-side">
-                                    <a href="contact-us.html" class="delivery-login-box">
+                                    <a href="contactus" class="delivery-login-box">
                                         <div class="delivery-icon">
                                             <i data-feather="phone-call"></i>
                                         </div>
@@ -152,33 +154,53 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="right-side">
-                                    <a href="wishlist" class="btn p-0 position-relative header-wishlist">
+                                <%
+                                    Customer cus = (Customer) session.getAttribute("customer");
+                                    int quantity;
+                                    if(cus != null) {
+                                        ArrayList<Integer> pro_list1 = (ArrayList<Integer>) session.getAttribute("quantityWishlist");
+
+                                        if (pro_list1 == null) {
+                                            quantity = 0;
+                                        } else {
+                                            quantity = pro_list1.size();
+                                        }
+                                    }else {
+                                        quantity = 0;
+                                    }
+
+                                %>
+                                <li class="right-side" >
+                                    <a href="wishlist" class="btn p-0 position-relative header-wishlist" id="wishlist">
                                         <i data-feather="heart"></i>
+                                        <span  class="position-absolute top-0 start-100 translate-middle badge"><%=quantity%>
+                                                </span>
                                     </a>
-                                </li>
+                                </li >
                                 <%
                                     Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
                                     int quantityOI = 0;
                                     if(order_itemVector != null )quantityOI = order_itemVector.size();
                                 %>
-                                <li class="right-side">
-                                    <div class="onhover-dropdown header-badge">
+                                <li class="right-side" >
+                                    <div class="onhover-dropdown header-badge"  >
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">
+                                            <span class="position-absolute top-0 start-100 translate-middle badge" id = "quantityOI">
                                                 <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
 
                                         <div class="onhover-div">
-                                            <ul class="cart-list">
+                                            <ul class="cart-list" id = "cart-list" >
                                                 <%
 
                                                     if(order_itemVector != null){
+                                                        int i = 0 ;
                                                         for(Order_item item : order_itemVector){
-
+                                                            i++;
+                                                            if(i <= 3){
 
                                                 %>
 
@@ -193,7 +215,7 @@
                                                             <a href="productdetail">
                                                                 <h5><%=item.getProduct().getProduct_name()%></h5>
                                                             </a>
-                                                            <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
+                                                            <h6><span><%=item.getQuantity()%> x</span> <%=item.getPrice()%>00 VND</h6>
                                                             <button class="close-button close_button">
                                                                 <i class="fa-solid fa-xmark"></i>
                                                             </button>
@@ -201,24 +223,11 @@
                                                     </div>
                                                 </li>
                                                 <%
+                                                            }
                                                         }
                                                     }
                                                 %>
                                             </ul>
-
-                                            <div class="price-box">
-                                                <h5>Tổng :</h5>
-                                                <%
-                                                    if(session.getAttribute("totalMoney") != null){
-                                                %>
-                                                <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
-                                                <%
-                                                }else {
-                                                %>
-                                                <h4 class="theme-color fw-bold">0</h4>
-                                                <%}%>
-                                            </div>
-
                                             <div class="button-group">
                                                 <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
                                             </div>
@@ -233,7 +242,6 @@
 
                                         <div class="delivery-detail">
                                             <%
-                                                Customer cus = (Customer) session.getAttribute("customer");
                                                 if(cus != null)
                                                 {
                                             %>
@@ -465,7 +473,7 @@
 
                             <div class="order-details-name">
                                 <h5 class="text-content">Công Ty Vận Chuyển</h5>
-                                <img src="https://scontent.fhan5-8.fna.fbcdn.net/v/t39.30808-6/358426384_1975862572788901_3623245602581051726_n.jpg?_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=vOV0HPusQlUAX_H6s-C&_nc_ht=scontent.fhan5-8.fna&oh=00_AfDdMxBTu8xr7nOpHqNy4D_ViNHVUpFaw-40wKlNz1TjtQ&oe=64AE9FFD"
+                                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/05/Logo-GHTK-Slogan.png"
                                      class="img-fluid blur-up lazyload" alt="">
                             </div>
                         </div>
@@ -638,7 +646,8 @@
                         </div>
 
                         <div class="footer-logo-contain">
-                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
+                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục
+                                vụ.</p>
 
                             <ul class="address">
                                 <li>
@@ -667,11 +676,11 @@
                             </li>
 
                             <li>
-                                <a href="about-us.html" class="text-content">Về chúng tôi</a>
+                                <a href="" class="text-content">Về chúng tôi</a>
                             </li>
 
                             <li>
-                                <a href="contact-us.html" class="text-content">Liên lạc</a>
+                                <a href="contactus" class="text-content">Liên lạc</a>
                             </li>
                         </ul>
                     </div>
@@ -684,18 +693,13 @@
 
                     <div class="footer-contain">
                         <ul>
+
                             <li>
-                                <a href="order-success.html" class="text-content">Bạn đã mua</a>
-                            </li>
-                            <li>
-                                <a href="user-dashboard.html" class="text-content">Tài khoản</a>
+                                <a href="customer" class="text-content">Tài khoản</a>
                             </li>
 
                             <li>
-                                <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
-                            </li>
-                            <li>
-                                <a href="faq.html" class="text-content">FAQ</a>
+                                <a href="wishlist" class="text-content"> Wishlist</a>
                             </li>
                         </ul>
                     </div>

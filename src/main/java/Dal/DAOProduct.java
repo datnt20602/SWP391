@@ -391,15 +391,4 @@ public class DAOProduct extends DBContext{
 
         return totalProducts;
     }
-
-
-    public static void main(String[] args) {
-        Vector<Product> v =new DAOProduct().searchByName("BL");
-        for (Product p: v
-             ) {
-            System.out.println(v.toString());
-
-        }
-    }
-
 }

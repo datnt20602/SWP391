@@ -13,6 +13,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="Dal.DAOProduct" %>
 <%@ page import="Dal.DAOCustomer" %>
+<%@ page import="java.util.ArrayList" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -72,6 +73,7 @@
   </div>
   <!-- Loader End -->
 
+<!-- Header Start -->
 <header class="pb-md-4 pb-0">
 
 
@@ -135,7 +137,7 @@
                   </div>
                 </li>
                 <li class="right-side">
-                  <a href="contact-us.html" class="delivery-login-box">
+                  <a href="contactus" class="delivery-login-box">
                     <div class="delivery-icon">
                       <i data-feather="phone-call"></i>
                     </div>
@@ -145,33 +147,53 @@
                     </div>
                   </a>
                 </li>
-                <li class="right-side">
-                  <a href="wishlist" class="btn p-0 position-relative header-wishlist">
+                <%
+                  Customer cus = (Customer) session.getAttribute("customer");
+                  int quantity;
+                  if(cus != null) {
+                    ArrayList<Integer> pro_list1 = (ArrayList<Integer>) session.getAttribute("quantityWishlist");
+
+                    if (pro_list1 == null) {
+                      quantity = 0;
+                    } else {
+                      quantity = pro_list1.size();
+                    }
+                  }else {
+                    quantity = 0;
+                  }
+
+                %>
+                <li class="right-side" >
+                  <a href="wishlist" class="btn p-0 position-relative header-wishlist" id="wishlist">
                     <i data-feather="heart"></i>
+                    <span  class="position-absolute top-0 start-100 translate-middle badge"><%=quantity%>
+                                                </span>
                   </a>
-                </li>
+                </li >
                 <%
                   Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
                   int quantityOI = 0;
                   if(order_itemVector != null )quantityOI = order_itemVector.size();
                 %>
-                <li class="right-side">
-                  <div class="onhover-dropdown header-badge">
+                <li class="right-side" >
+                  <div class="onhover-dropdown header-badge"  >
                     <button type="button" class="btn p-0 position-relative header-wishlist">
                       <i data-feather="shopping-cart"></i>
-                      <span class="position-absolute top-0 start-100 translate-middle badge">
+                      <span class="position-absolute top-0 start-100 translate-middle badge" id = "quantityOI">
                                                 <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                     </button>
 
                     <div class="onhover-div">
-                      <ul class="cart-list">
+                      <ul class="cart-list" id = "cart-list" >
                         <%
 
                           if(order_itemVector != null){
+                            int i = 0 ;
                             for(Order_item item : order_itemVector){
-
+                              i++;
+                              if(i <= 3){
 
                         %>
 
@@ -186,7 +208,7 @@
                               <a href="productdetail">
                                 <h5><%=item.getProduct().getProduct_name()%></h5>
                               </a>
-                              <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
+                              <h6><span><%=item.getQuantity()%> x</span> <%=item.getPrice()%>00 VND</h6>
                               <button class="close-button close_button">
                                 <i class="fa-solid fa-xmark"></i>
                               </button>
@@ -194,24 +216,11 @@
                           </div>
                         </li>
                         <%
+                              }
                             }
                           }
                         %>
                       </ul>
-
-                      <div class="price-box">
-                        <h5>Tổng :</h5>
-                        <%
-                          if(session.getAttribute("totalMoney") != null){
-                        %>
-                        <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
-                        <%
-                        }else {
-                        %>
-                        <h4 class="theme-color fw-bold">0</h4>
-                        <%}%>
-                      </div>
-
                       <div class="button-group">
                         <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
                       </div>
@@ -226,7 +235,6 @@
 
                     <div class="delivery-detail">
                       <%
-                        Customer cus = (Customer) session.getAttribute("customer");
                         if(cus != null)
                         {
                       %>
@@ -351,7 +359,7 @@
       <div class="row">
         <div class="col-12">
           <div class="breadscrumb-contain">
-            <h2>User Dashboard</h2>
+            <h2>Thong tin cá nhân</h2>
             <nav>
               <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
@@ -359,7 +367,7 @@
                     <i class="fa-solid fa-house"></i>
                   </a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">User Dashboard</li>
+                <li class="breadcrumb-item active" aria-current="page">Thong tin cá nhân</li>
               </ol>
             </nav>
           </div>
@@ -414,13 +422,13 @@
                 <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-dashboard" type="button" role="tab"
                         aria-controls="pills-dashboard" aria-selected="true"><i data-feather="home"></i>
-                  DashBoard</button>
+                  Tiểu sử</button>
               </li>
 
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order"
-                        aria-selected="false"><i data-feather="shopping-bag"></i>Order</button>
+                        aria-selected="false"><i data-feather="shopping-bag"></i>Đơn hàng</button>
               </li>
 
               <li class="nav-item" role="presentation">
@@ -434,14 +442,14 @@
                 <button class="nav-link" id="pills-address-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-address" type="button" role="tab"
                         aria-controls="pills-address" aria-selected="false"><i data-feather="map-pin"></i>
-                  Address</button>
+                  Địa Chỉ</button>
               </li>
 
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab"
                         aria-controls="pills-profile" aria-selected="false"><i data-feather="user"></i>
-                  Profile</button>
+                  Thông tin</button>
               </li>
             </ul>
           </div>
@@ -456,7 +464,7 @@
                    aria-labelledby="pills-dashboard-tab">
                 <div class="dashboard-home">
                   <div class="title">
-                    <h2>My Dashboard</h2>
+                    <h2>Trang cá nhân</h2>
                     <span class="title-leaf">
                         <svg class="icon-width bg-gray">
                             <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
@@ -483,7 +491,7 @@
                         <div class="totle-contain">
                           <div class="totle-detail">
                             <h5>Số sản phẩm đã nhận được</h5>
-                            <h3>254</h3>
+                            <h3>0</h3>
                           </div>
                         </div>
                       </div>
@@ -519,7 +527,7 @@
                 <div class="dashboard-wishlist">
 
                   <div class="title">
-                    <h2>My Wishlist History</h2>
+                    <h2>Đồ uống yêu thích</h2>
                     <span class="title-leaf title-leaf-gray">
                                               <svg class="icon-width bg-gray">
                                                   <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
@@ -553,8 +561,8 @@
                             <p class="text-content mt-1 mb-2 product-content"><%=item.getDescribe()%></p>
                             <h6 class="unit mt-1"><%=item.getVolume()%></h6>
                             <h5 class="price">
-                              <span class="theme-color"><%=item.getPrice()%></span>
-                              <del>$15.15</del>
+                              <span class="theme-color"><%=item.getPrice()%>00 VND</span>
+                              <del>15000 VND</del>
                             </h5>
                             <div class="add-to-cart-box bg-white">
                               <button onclick="location.href = 'cart?service=addToCart&pro_id=<%=item.getProduct_id()%>';"
@@ -636,7 +644,7 @@
                             <li>
                               <div class="size-box">
                                 <h6 class="text-content">Tổng giá tiền : </h6>
-                                <h5>$<%=rs.getDouble("total")%></h5>
+                                <h5><%=rs.getDouble("total")%>00 VND</h5>
                               </div>
                             </li>
 
@@ -763,7 +771,7 @@
                    aria-labelledby="pills-profile-tab">
                 <div class="dashboard-profile">
                   <div class="title">
-                    <h2>My Profile</h2>
+                    <h2>Trang cá nhân</h2>
                     <span class="title-leaf">
                                               <svg class="icon-width bg-gray">
                                                   <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
@@ -824,7 +832,7 @@
                     <div class="row">
                       <div class="col-xxl-7">
                         <div class="dashboard-title mb-3">
-                          <h3>Profile About</h3>
+                          <h3>Thông tin của tôi</h3>
                         </div>
 
                         <div class="table-responsive">
@@ -925,175 +933,170 @@
       </div>
     </div>
   </section>
-
-  <!-- Footer Section Start -->
-  <footer class="section-t-space">
-    <div class="container-fluid-lg">
-      <div class="service-section">
-        <div class="row g-3">
-          <div class="col-12">
-            <div class="service-contain">
-              <div class="service-box">
-                <div class="service-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/svg/product.svg"
-                       class="blur-up lazyload" alt="">
-                </div>
-
-                <div class="service-detail">
-                  <h5>Đồ uống chất lượng</h5>
-                </div>
+<!-- Footer Section Start -->
+<footer class="section-t-space">
+  <div class="container-fluid-lg">
+    <div class="service-section">
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="service-contain">
+            <div class="service-box">
+              <div class="service-image">
+                <img src="${pageContext.request.contextPath}/template/assets/svg/product.svg"
+                     class="blur-up lazyload" alt="">
               </div>
 
-              <div class="service-box">
-                <div class="service-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/svg/delivery.svg"
-                       class="blur-up lazyload" alt="">
-                </div>
+              <div class="service-detail">
+                <h5>Đồ uống chất lượng</h5>
+              </div>
+            </div>
 
-                <div class="service-detail">
-                  <h5>Miễn phí vận chuyển trong vòng 3km</h5>
-                </div>
+            <div class="service-box">
+              <div class="service-image">
+                <img src="${pageContext.request.contextPath}/template/assets/svg/delivery.svg"
+                     class="blur-up lazyload" alt="">
               </div>
 
-              <div class="service-box">
-                <div class="service-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/svg/discount.svg"
-                       class="blur-up lazyload" alt="">
-                </div>
+              <div class="service-detail">
+                <h5>Miễn phí vận chuyển trong vòng 3km</h5>
+              </div>
+            </div>
 
-                <div class="service-detail">
-                  <h5>Nhiều ưu đãi</h5>
-                </div>
+            <div class="service-box">
+              <div class="service-image">
+                <img src="${pageContext.request.contextPath}/template/assets/svg/discount.svg"
+                     class="blur-up lazyload" alt="">
               </div>
 
-              <div class="service-box">
-                <div class="service-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/svg/market.svg"
-                       class="blur-up lazyload" alt="">
-                </div>
+              <div class="service-detail">
+                <h5>Nhiều ưu đãi</h5>
+              </div>
+            </div>
 
-                <div class="service-detail">
-                  <h5>Phù hợp với túi tiền</h5>
-                </div>
+            <div class="service-box">
+              <div class="service-image">
+                <img src="${pageContext.request.contextPath}/template/assets/svg/market.svg"
+                     class="blur-up lazyload" alt="">
+              </div>
+
+              <div class="service-detail">
+                <h5>Phù hợp với túi tiền</h5>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="main-footer section-b-space section-t-space">
-        <div class="row g-md-4 g-3">
-          <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="footer-logo">
-              <div class="theme-logo">
-                <a href="home">
-                  <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
-                       class="blur-up lazyload" alt="">
-                </a>
-              </div>
-
-              <div class="footer-logo-contain">
-                <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
-
-                <ul class="address">
-                  <li>
-                    <i data-feather="home"></i>
-                    <a href="javascript:void(0)">Hòa Lạc, Thạch Thất, Hà Nội</a>
-                  </li>
-                  <li>
-                    <i data-feather="mail"></i>
-                    <a href="javascript:void(0)">cofphe@gmail.com</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-xl col-lg-2 col-sm-3">
-            <div class="footer-title">
-              <h4>Đường dẫn hữu dụng</h4>
-            </div>
-
-            <div class="footer-contain">
-              <ul>
-                <li>
-                  <a href="home" class="text-content">Trang chủ</a>
-                </li>
-
-                <li>
-                  <a href="about-us.html" class="text-content">Về chúng tôi</a>
-                </li>
-
-                <li>
-                  <a href="contact-us.html" class="text-content">Liên lạc</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-2 col-sm-3">
-            <div class="footer-title">
-              <h4>Xem thông tin</h4>
-            </div>
-
-            <div class="footer-contain">
-              <ul>
-                <li>
-                  <a href="order-success.html" class="text-content">Bạn đã mua</a>
-                </li>
-                <li>
-                  <a href="user-dashboard.html" class="text-content">Tài khoản</a>
-                </li>
-
-                <li>
-                  <a href="/ODShop/template/front-end/wishlist.html" class="text-content"> Wishlist</a>
-                </li>
-                <li>
-                  <a href="faq.html" class="text-content">FAQ</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="footer-title">
-              <h4>Liên lạc với chúng tôi:</h4>
-            </div>
-
-            <div class="footer-contact">
-              <ul>
-                <li>
-                  <div class="footer-number">
-                    <i data-feather="phone"></i>
-                    <div class="contact-number">
-                      <h6 class="text-content">Hotline 24/7 :</h6>
-                      <h5>+84 376597711</h5>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="footer-number">
-                    <i data-feather="mail"></i>
-                    <div class="contact-number">
-                      <h6 class="text-content">Địa chỉ email:</h6>
-                      <h5>cofphe@gmail.com</h5>
-                    </div>
-                  </div>
-                </li>
-
-
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
     </div>
-  </footer>
-  <!-- Footer Section End -->
+
+    <div class="main-footer section-b-space section-t-space">
+      <div class="row g-md-4 g-3">
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="footer-logo">
+            <div class="theme-logo">
+              <a href="home">
+                <img src="${pageContext.request.contextPath}/template/assets/images/logo/logo.png"
+                     class="blur-up lazyload" alt="">
+              </a>
+            </div>
+
+            <div class="footer-logo-contain">
+              <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục
+                vụ.</p>
+
+              <ul class="address">
+                <li>
+                  <i data-feather="home"></i>
+                  <a href="javascript:void(0)">Hòa Lạc, Thạch Thất, Hà Nội</a>
+                </li>
+                <li>
+                  <i data-feather="mail"></i>
+                  <a href="javascript:void(0)">cofphe@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xl col-lg-2 col-sm-3">
+          <div class="footer-title">
+            <h4>Đường dẫn hữu dụng</h4>
+          </div>
+
+          <div class="footer-contain">
+            <ul>
+              <li>
+                <a href="home" class="text-content">Trang chủ</a>
+              </li>
+
+              <li>
+                <a href="" class="text-content">Về chúng tôi</a>
+              </li>
+
+              <li>
+                <a href="contactus" class="text-content">Liên lạc</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-3">
+          <div class="footer-title">
+            <h4>Xem thông tin</h4>
+          </div>
+
+          <div class="footer-contain">
+            <ul>
+
+              <li>
+                <a href="customer" class="text-content">Tài khoản</a>
+              </li>
+
+              <li>
+                <a href="wishlist" class="text-content"> Wishlist</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+          <div class="footer-title">
+            <h4>Liên lạc với chúng tôi:</h4>
+          </div>
+
+          <div class="footer-contact">
+            <ul>
+              <li>
+                <div class="footer-number">
+                  <i data-feather="phone"></i>
+                  <div class="contact-number">
+                    <h6 class="text-content">Hotline 24/7 :</h6>
+                    <h5>+84 376597711</h5>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="footer-number">
+                  <i data-feather="mail"></i>
+                  <div class="contact-number">
+                    <h6 class="text-content">Địa chỉ email:</h6>
+                    <h5>cofphe@gmail.com</h5>
+                  </div>
+                </div>
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</footer>
+<!-- Footer Section End -->
 
   <!-- Deal Box Modal Start -->
   <div class="modal fade theme-modal deal-modal" id="deal-box" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -1273,78 +1276,6 @@
             <div class="disabled-box">
               <h6>Select a Location</h6>
             </div>
-
-            <ul class="location-select custom-height">
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>Alabama</h6>
-                  <span>Min: $130</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>Arizona</h6>
-                  <span>Min: $150</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>California</h6>
-                  <span>Min: $110</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>Colorado</h6>
-                  <span>Min: $140</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>Florida</h6>
-                  <span>Min: $160</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>Georgia</h6>
-                  <span>Min: $120</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>Kansas</h6>
-                  <span>Min: $170</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>Minnesota</h6>
-                  <span>Min: $120</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>New York</h6>
-                  <span>Min: $110</span>
-                </a>
-              </li>
-
-              <li>
-                <a href="javascript:void(0)">
-                  <h6>Washington</h6>
-                  <span>Min: $130</span>
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -1359,7 +1290,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-sm-down">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel2">Edit Profile</h5>
+          <h5 class="modal-title" id="exampleModalLabel2">Chỉnh sửa</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -1369,14 +1300,14 @@
             <div class="col-xxl-12">
                 <div class="form-floating theme-form-floating">
                   <input type="text" class="form-control" id="pname" name="nameCus" value="<%=customer1.getName()%>">
-                  <label for="pname">Full Name</label>
+                  <label for="pname">Họ và tên</label>
                 </div>
             </div>
 
             <div class="col-xxl-6">
                 <div class="form-floating theme-form-floating">
                   <input type="email" class="form-control" name="emailCus" id="email1" value="<%=customer1.getEmail()%>">
-                  <label for="email1">Email address</label>
+                  <label for="email1">Email </label>
                 </div>
             </div>
 

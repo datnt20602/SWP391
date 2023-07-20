@@ -1,12 +1,6 @@
 package controller;
-import Dal.DAOCustomer;
-import Dal.DAOOrder_Item;
-import Dal.DAOProduct;
-import Dal.DAOStaff;
-import Model.Admin;
-import Model.Order_item;
-import Model.Product;
-import Model.Staff;
+import Dal.*;
+import Model.*;
 import com.mysql.cj.xdevapi.Result;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -33,7 +27,14 @@ public class HomeController extends HttpServlet {
         ResultSet rs = dao.getData(sql);
         HttpSession session = request.getSession();
         Vector<Product> vector = new Vector<>();
-
+        Customer customer = (Customer) request.getSession().getAttribute("customer");
+        ArrayList<Integer> pro_list = new ArrayList<>();
+        if(customer != null){
+            DAOWishlist daoWishlist = new DAOWishlist();
+            pro_list = daoWishlist.getAll(customer.getCustomer_id()).getPro_list();
+            session.setAttribute("quantityWishlist",pro_list);
+        }
+        request.setAttribute("wishlistproductID",pro_list);
         if (session.getAttribute("staff") != null) {
             DAOCustomer DAOCustomer = new DAOCustomer();
             DAOProduct DAOProduct = new DAOProduct();
