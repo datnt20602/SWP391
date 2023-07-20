@@ -50,6 +50,16 @@
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/template/assets/css/style.css">
+    <style>
+        #reSendButton {
+            opacity: 0.3;
+            cursor: none;
+        }
+        .button-active {
+            opacity: 1;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -340,13 +350,13 @@
                                 </div>
 
                             </div>
-
+                            <input type="hidden" id="sendAgainInput" name="option" value="sendAgain">
                             <div class="col-12">
-                                <button class="btn btn-animation w-100 justify-content-center" name="option" value="active" type="submit">Active
+                                <button class="btn btn-animation w-100 justify-content-center" name="option" value="active" type="submit">Kích hoạt
                                 </button>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-animation w-100 justify-content-center" name="option" value="sendAgain" type="submit">Send mail again
+                                <button class="btn btn-animation w-100 justify-content-center" id="reSendButton" name="option" value="sendAgain" type="button">Gửi lại OTP
                                 </button>
                             </div>
                         </form>
@@ -541,6 +551,25 @@
 <!-- Bg overlay Start -->
 <div class="bg-overlay"></div>
 <!-- Bg overlay End -->
+<script>
+    // 30s sau moi duoc gui mail lai
+    var beforeDate = new Date().getTime();
+
+    var x = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = now - beforeDate;
+
+        var timeAvailable = 1000 * 30;
+
+        if (distance >= timeAvailable) {
+            clearInterval(x);
+            var reSendButton = document.getElementById("reSendButton");
+            reSendButton.style.opacity = 1;
+            reSendButton.style.cursor = "pointer";
+            reSendButton.type = "submit";
+        }
+    })
+</script>
 
 <!-- latest jquery-->
 <script src="${pageContext.request.contextPath}/template/assets/js/jquery-3.6.0.min.js"></script>
