@@ -336,19 +336,6 @@
             </a>
         </li>
 
-        <li class="mobile-category">
-            <a href="javascript:void(0)">
-                <i class="iconly-Category icli js-link"></i>
-                <span>Category</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="search.html" class="search-box">
-                <i class="iconly-Search icli"></i>
-                <span>Search</span>
-            </a>
-        </li>
 
         <li>
             <a href="wishlist" class="notifi-wishlist">
