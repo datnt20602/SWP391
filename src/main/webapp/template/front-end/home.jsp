@@ -63,7 +63,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+    <style>
 
+        .product-option {
+            display: inline-block;
+            /* justify-content: space-between; */
+            /* Các thuộc tính CSS khác của .product-option nếu có */
+        }
+
+        .heart {
+            margin: 0 auto; /* Dùng Flexbox để canh giữa phần "Compare" */
+        }
+
+    </style>
 </head>
 
 <body>
@@ -560,11 +572,13 @@
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                            <a style="padding-left: 86px" href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
+
+                                        <li class="heart" data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                            <a  href="wishlist?service=addToWislist&pro_id=<%=temp.getProduct_id()%>" class="notifi-wishlist">
                                                 <i data-feather="heart"></i>
                                             </a>
                                         </li>
+
                                     </ul>
                                 </div>
                             </div>
