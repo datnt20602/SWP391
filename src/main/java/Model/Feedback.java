@@ -1,13 +1,13 @@
 package Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.google.gson.Gson;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
 public class Feedback {
     private Customer customer;
@@ -16,4 +16,8 @@ public class Feedback {
     private String date;
     private  String content;
     private int star_rate;
+
+    public String toJson() {
+        return new Gson().toJson(this);
+    }
 }

@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/style-admin.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/template/assets/css/pagination.css">
 
-    <title> Sản phẩm </title>
+    <title> Đánh giá </title>
     <style>
         .wave-group {
             position: relative;
@@ -191,9 +191,9 @@
 </head>
 <body>
 <div id="deleteDiv">
-    <form action="staff" method="post">
-        <h3>Bạn muốn xóa tài khoản của nhân viên này ?</h3>
-        <input id="deleteId" name="staffid" style="display: none">
+    <form action="adminfeedback" method="post">
+        <h3>Bạn muốn xóa đánh giá của khách hàng này ?</h3>
+        <input id="deleteId" name="feedback_id" style="display: none">
         <div class="" style="margin-top: 20px;">
             <button type="submit" name="option" value="delete"
                     style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
@@ -205,94 +205,64 @@
         </div>
     </form>
 </div>
-<%--<div id="popup">--%>
-<%--  <form action="product" method="post">--%>
-<%--    <div class="wave-group">--%>
-<%--      <label class="label">--%>
-<%--        <span class="label-char" style="--index: 0">I</span>--%>
-<%--        <span class="label-char" style="--index: 1">d</span>--%>
-<%--      </label><br>--%>
-<%--      <input type="text" class="input" id="detailId" name="productId" readonly>--%>
-<%--      <span class="bar"></span>--%>
+<div id="popup">
+  <form action="adminfeedback" method="post">
+    <div class="wave-group">
+      <label class="label">
+        <span class="label-char" style="--index: 0">Id</span>
 
-<%--    </div>--%>
-<%--    <div class="wave-group">--%>
-<%--      <input type="text" class="input" id="detailName" name="productName" style="margin-top: 20px;width: 80%">--%>
-<%--      <span class="bar"></span>--%>
-<%--      <label class="label">--%>
-<%--        <span class="label-char" style="--index: 0">N</span>--%>
-<%--        <span class="label-char" style="--index: 1">a</span>--%>
-<%--        <span class="label-char" style="--index: 2">m</span>--%>
-<%--        <span class="label-char" style="--index: 3">e</span>--%>
-<%--      </label>--%>
-<%--    </div>--%>
-<%--    <div class="wave-group">--%>
-<%--      <label class="label">--%>
-<%--        Danh mục--%>
-<%--      </label><br>--%>
-<%--      <input type="text" class="input" id="detailCategory" name="productCategory" readonly--%>
-<%--             style="margin-top: 20px;width: 80%">--%>
-<%--      <span class="bar"></span>--%>
-<%--      <br>--%>
+      </label><br>
+      <input type="text" class="input" id="detailFId" name="feedbackId" readonly>
+      <span class="bar"></span>
 
-<%--    </div>--%>
-<%--    <div class="wave-group">--%>
-<%--      <input type="text" class="input" id="detailPrice" name="productPrice" style="margin-top: 20px;width: 80%">--%>
-<%--      <span class="bar"></span>--%>
-<%--      <label class="label">--%>
-<%--        <span class="label-char" style="--index: 0">P</span>--%>
-<%--        <span class="label-char" style="--index: 1">r</span>--%>
-<%--        <span class="label-char" style="--index: 2">i</span>--%>
-<%--        <span class="label-char" style="--index: 3">c</span>--%>
-<%--        <span class="label-char" style="--index: 4">e</span>--%>
-<%--      </label>--%>
-<%--    </div>--%>
-<%--    <div class="wave-group">--%>
-<%--      <input type="text" class="input" id="detailImage" name="productImage" style="margin-top: 20px;width: 80%">--%>
-<%--      <span class="bar"></span>--%>
-<%--      <label class="label">--%>
-<%--        <span class="label-char" style="--index: 0">I</span>--%>
-<%--        <span class="label-char" style="--index: 1">m</span>--%>
-<%--        <span class="label-char" style="--index: 2">a</span>--%>
-<%--        <span class="label-char" style="--index: 3">g</span>--%>
-<%--        <span class="label-char" style="--index: 4">e</span>--%>
-<%--      </label>--%>
-<%--    </div>--%>
-<%--    <div class="wave-group">--%>
-<%--      <input type="text" class="input" id="detailVolume" name="productVolume" style="margin-top: 20px;width: 80%">--%>
-<%--      <span class="bar"></span>--%>
-<%--      <label class="label">--%>
-<%--        <span class="label-char" style="--index: 0">V</span>--%>
-<%--        <span class="label-char" style="--index: 1">o</span>--%>
-<%--        <span class="label-char" style="--index: 2">l</span>--%>
-<%--        <span class="label-char" style="--index: 3">u</span>--%>
-<%--        <span class="label-char" style="--index: 4">m</span>--%>
-<%--        <span class="label-char" style="--index: 5">e</span>--%>
-<%--      </label>--%>
-<%--    </div>--%>
-<%--    <div class="wave-group" style="margin-top: 20px;">--%>
-<%--      <label>--%>
-<%--        Describe--%>
-<%--      </label><br>--%>
-<%--      <textarea rows="10" cols="25" id="detailDescribe" name="productDescribe" style="width: 80%;font-size: 16px;"--%>
-<%--                placeholder="Describe">--%>
+    </div>
+    <div class="wave-group">
+      <span class="bar"></span>
+      <label class="label">
+        <span class="label-char" style="--index: 0">Nội dung</span>
 
-<%--            </textarea>--%>
+      </label><br>
+<%--        <input type="text" class="input" id="detailContent" name="feedbackContent" style="margin-top: 20px;width: 80%">--%>
+        <textarea class="input" id="detailContent" name="feedbackContent" style="margin-top: 20px; width: 80%;" rows="5"></textarea>
 
-<%--    </div>--%>
+    </div>
+    <div class="wave-group">
+      <label class="label">
+        Ngày
+      </label><br>
+      <input type="text" class="input" id="detailDate" name="feedbackDate"
+             style="margin-top: 20px;width: 80%">
+      <span class="bar"></span>
+      <br>
 
-<%--    <div class="" style="margin-top: 20px;">--%>
+    </div>
+    <div class="wave-group">
+      <span class="bar"></span>
+      <label class="label">
+        <span class="label-char" style="--index: 0">Khách hàng</span>
 
-<%--      <button type="submit" name="option" value="update"--%>
-<%--              style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">--%>
-<%--        Update--%>
-<%--      </button>--%>
-<%--      <button type="button" onclick="toggle()"--%>
-<%--              style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close--%>
-<%--      </button>--%>
-<%--    </div>--%>
-<%--  </form>--%>
-<%--</div>--%>
+      </label><br>
+        <input type="text" class="input" id="detailCusId" name="customerName" style="margin-top: 20px;width: 80%">
+
+    </div>
+    <div class="wave-group">
+      <input type="text" class="input" id="detailProId" name="productName" style="margin-top: 20px;width: 80%">
+      <span class="bar"></span>
+      <label class="label">
+        <span class="label-char" style="--index: 0">Sản phẩm</span>
+
+      </label>
+    </div>
+
+
+
+    <div class="" style="margin-top: 20px;">
+      <button type="button" onclick="toggle()"
+              style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Đóng
+      </button>
+    </div>
+  </form>
+</div>
 <div id="popup1">
     <form action="product" method="post">
         <div class="wave-group">
@@ -409,7 +379,7 @@
             <li>
                 <a href="product">
                     <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">Cửa hàng</span>
+                    <span class="text">Sản Phẩm</span>
                 </a>
             </li>
             <li>
@@ -454,23 +424,23 @@
     <section id="content">
         <!-- NAVBAR -->
 
-            <nav>
-                <div class="profile" onmouseover="showOptions()" onmouseout="hideOptions()">
-                    <img style="margin-left: 1000px"
-                         src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
-                </div>
-                <div id="options"
-                     style="border: none"
-                     class="options-container"
-                     onmouseover="showOptions()" onmouseout="hideOptions()">
+        <nav>
+            <div class="profile" onmouseover="showOptions()" onmouseout="hideOptions()">
+                <img style="margin-left: 1000px"
+                     src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
+            </div>
+            <div id="options"
+                 style="border: none"
+                 class="options-container"
+                 onmouseover="showOptions()" onmouseout="hideOptions()">
         <span onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
               class="option-item">
             Thông tin cá nhân
         </span>
-                    <br>
-                    <a class="option-item" href="changepass">Đổi mật khẩu</a><br>
-                    <a class="option-item" href="forgotpass">Quên mật khẩu</a>
-                </div>
+                <br>
+                <a class="option-item" href="changepass">Đổi mật khẩu</a><br>
+                <a class="option-item" href="forgotpass">Quên mật khẩu</a>
+            </div>
         </nav>
         <!-- NAVBAR -->
 
@@ -478,10 +448,10 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Nhân Viên</h1>
+                    <h1>Đánh giá</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="staff">Nhân viên</a>
+                            <a href="adminfeedback">Đánh giá</a>
                         </li>
 
                         <li><i class="bx bx-chevron-right"></i></li>
@@ -495,20 +465,19 @@
 
             <div class="table-data">
                 <div class="order">
-                    <form class="" action="staff" method="get">
+                    <form class="" action="adminfeedback" method="get">
                         <div class="head">
-                            <h3>Staff</h3>
+                            <h3>Đánh giá</h3>
                             <h2>${errorMessage}</h2>
 
                             <div class="wave-group">
-                                <input type="text" class="input" id="inputSearchName" name="name" value="${param.name}">
                                 <span class="bar"></span>
                                 <label class="label">
-                                    <span class="label-char" style="--index: 0">T</span>
-                                    <span class="label-char" style="--index: 1">ê</span>
-                                    <span class="label-char" style="--index: 2">n</span>
+                                   <span>Tên sản phẩm</span>
 
-                                </label>
+                                </label><br>
+                                <input type="text" class="input" id="inputSearchName" name="name" value="${param.name}">
+
                             </div>
                             <button id="search-button"
                                     style="border: 1px solid #5c636a; border-radius: 5px;height: 39px;width: 39px;cursor: pointer;"
@@ -523,35 +492,31 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Tên</th>
-                            <th>Điện thoại</th>
-                            <th>Email</th>
-                            <th>Kich Hoạt</th>
+                            <th>Nội dung</th>
+                            <th>Thời gian</th>
+                            <th>Sản phẩm</th>
+                            <th>Khách hàng</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="staff" items="${listStaff}">
+                        <c:forEach var="feedback" items="${listFeedback}">
                             <tr>
                                 <td>
-                                    <h4>${staff.getStaff_id()} </h4>
+                                    <h4>${feedback.getFeedback_id()} </h4>
                                 </td>
                                 <td>
-                                    <h4>${staff.getName()}</h4>
+                                    <h5 style="max-width: 200px;padding-left: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${feedback.getContent()}</h5>
                                 </td>
                                 <td>
-                                    <h5>${staff.getPhone()}</h5>
+                                    <h5>${feedback.getDate()}</h5>
                                 </td>
                                 <td>
-                                    <h5>${staff.getEmail()}</h5>
+                                    <h5>${feedback.getProduct().getProduct_name()}</h5>
+
                                 </td>
                                 <td>
-                                    <c:if test="${staff.getActive() == 1}">
-                                        <h5>Đã kích hoạt</h5>
-                                    </c:if>
-                                    <c:if test="${staff.getActive() == 0}">
-                                        <h5>Chưa kích hoạt</h5>
-                                    </c:if>
-                                        <%--                  <h5>${staff.getActive()}</h5>--%>
+                                    <h5>${feedback.getCustomer().getName()}</h5>
+
                                 </td>
                                 <td>
                                         <%--                  <button type="button"--%>
@@ -561,7 +526,15 @@
                                         <%--                  </button>--%>
                                 </td>
                                 <td>
-                                    <button onclick="toggleDelete();alertDelete(${staff.getStaff_id()})"
+                                    <button type="button"
+                                            onclick='toggle();loadData(JSON.stringify(${feedback.toJson()}))'
+                                            style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
+                                        Chi tiết
+                                    </button>
+                                </td>
+                                <td>
+
+                                    <button onclick="toggleDelete();alertDelete(${feedback.getFeedback_id()})"
                                             style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
                                         Xóa
                                     </button>
@@ -580,16 +553,16 @@
     </section>
 </div>
 <script>
-    function loadData(staff) {
-        var data = JSON.parse(staff);
+    function loadData(feedback) {
+        var data = JSON.parse(feedback);
         console.log(data);
-        document.getElementById("detailId").value = data.staff_id;
-        document.getElementById("detailName").value = data.name;
-        document.getElementById("detailEmail").value = data.email;
-        document.getElementById("detailPhone").value = data.phone;
-        document.getElementById("detailPass").value = data.pass;
-        document.getElementById("detailActive").value = data.active;
-        document.getElementById("detailAdmin_id").value = data.admin_id;
+        document.getElementById("detailFId").value = data.feedback_id;
+        document.getElementById("detailContent").value = data.content;
+        document.getElementById("detailDate").value = data.date;
+        //document.getElementById("detailSrate").value = data.star_rate;
+        document.getElementById("detailCusId").value = data.customer.name;
+        document.getElementById("detailProId").value = data.product.product_name;
+
 
     }
 
@@ -652,13 +625,13 @@
 
         // Show the Previous button only if you are on a page other than the first
         if (page > 1) {
-            str += '<a style="color: black" href="staff?name=' + name.value + '&page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
+            str += '<a style="color: black" href="adminfeedback?name=' + name.value + '&page=' + (page - 1) + '"><li onclick="createPagination(pages, ' + (page - 1) + ')" class="page__btn paging">&laquo;</li></a>';
         }
         // Show all the pagination elements if there are less than 6 pages total
         if (pages < 6) {
             for (let p = 1; p <= pages; p++) {
                 active = page == p ? "active" : "";
-                str += '<a style="color: black" href="staff?name=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+                str += '<a style="color: black" href="adminfeedback?name=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
         }
         // Use "..." to collapse pages outside of a certain range
@@ -666,7 +639,7 @@
             // Show the very first page followed by a "..." at the beginning of the
             // pagination section (after the Previous button)
             if (page > 2) {
-                str += '<a style="color: black" href="staff?name=' + name.value + '&page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
+                str += '<a style="color: black" href="adminfeedback?name=' + name.value + '&page=' + 1 + '"><li onclick="createPagination(pages, 1)" class="page__numbers paging">1</li></a>';
                 if (page > 3) {
                     str += `<li class="page__dots"><span>...</span></li>`;
                 }
@@ -693,7 +666,7 @@
                     continue
                 }
                 active = page == p ? "active" : "";
-                str += '<a style="color: black" href="staff?name=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
+                str += '<a style="color: black" href="adminfeedback?name=' + name.value + '&page=' + p + '"><li onclick="createPagination(pages, ' + p + ')" class="page__numbers paging ' + active + '">' + p + '</li></a>';
             }
             // Show the very last page preceded by a "..." at the end of the pagination
             // section (before the Next button)
@@ -701,12 +674,12 @@
                 if (page < pages - 2) {
                     str += '<li class="page__dots"><span>...</span></li>';
                 }
-                str += '<a style="color: black" href="staff?name=' + name.value + '&page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
+                str += '<a style="color: black" href="adminfeedback?name=' + name.value + '&page=' + pages + '"><li onclick="createPagination(pages, pages)" class="page__numbers paging">' + pages + '</li></a>';
             }
         }
         // Show the Next button only if you are on a page other than the last
         if (page < pages) {
-            str += '<a style="color: black" href="staff?name=' + name.value + '&page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
+            str += '<a style="color: black" href="adminfeedback?name=' + name.value + '&page=' + (page + 1) + '"><li onclick="createPagination(pages, ' + (page + 1) + ')" class="page__btn paging">&raquo;</li></a>';
         }
         str += '</ul>';
         // Return the pagination string to be outputted in the pug templates
@@ -759,7 +732,6 @@
         }, 200);
     }
 </script>
-
 
 </body>
 </html>

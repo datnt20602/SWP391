@@ -378,6 +378,12 @@
                     <span class="text">Cửa hàng</span>
                 </a>
             </li>
+            <li>
+                <a href="adminfeedback">
+                    <i class='bx bxs-doughnut-chart'></i>
+                    <span class="text">Đánh giá</span>
+                </a>
+            </li>
 
             <c:if test="${admin != null}">
                 <li>
