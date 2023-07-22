@@ -233,4 +233,33 @@ public class DAOStaff extends DBContext {
         }
         return null;
     }
+
+    public Staff update(Staff staff) {
+        try {
+            String query = "UPDATE `drink_online_shop1`.`staff`\n" +
+                    "SET\n" +
+                    "`name` = ?,\n" +
+                    "`email` = ?,\n" +
+                    "`phone` = ?,\n" +
+                    "`active` = ?,\n" +
+                    "`admin_id` = ?,\n" +
+                    "`pass` = ?\n" +
+                    "WHERE `staff_id` = ?;";
+
+
+            PreparedStatement pre = connection.prepareStatement(query);
+            pre.setInt(7, staff.getStaff_id());
+            pre.setString(1, staff.getName());
+            pre.setString(2, staff.getEmail());
+            pre.setString(3, staff.getPhone());
+            pre.setInt(4, staff.getActive());
+            pre.setInt(5, staff.getAdmin_id());
+            pre.setString(6, staff.getPass());
+
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("DAOStaff-update: " + e.getMessage());
+        }
+        return staff ;
+    }
 }

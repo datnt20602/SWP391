@@ -294,96 +294,192 @@
 <%--  </form>--%>
 <%--</div>--%>
 <div id="popup1">
-    <form action="product" method="post">
-        <div class="wave-group">
-            <label class="label">
-                <span class="label-char" style="--index: 0">I</span>
-                <span class="label-char" style="--index: 1">d</span>
-            </label><br>
-            <input type="text" class="input" id="detailAdminId" name="adminId" readonly>
-            <span class="bar"></span>
+    <c:if test="${admin!=null}">
+        <form action="product" method="post">
+            <div class="wave-group">
+                <label class="label">
+                    <span class="label-char" style="--index: 0">I</span>
+                    <span class="label-char" style="--index: 1">d</span>
+                </label><br>
+                <input type="text" class="input" id="detailAdminId" name="adminId" readonly>
+                <span class="bar"></span>
 
-        </div>
-        <div class="wave-group">
-            <input type="text" class="input" id="detailAdminName" name="adminName" style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">N</span>
-                <span class="label-char" style="--index: 1">a</span>
-                <span class="label-char" style="--index: 2">m</span>
-                <span class="label-char" style="--index: 3">e</span>
-            </label>
-        </div>
-        <div class="wave-group">
-            <label class="label">
-                Email
-            </label><br>
-            <input type="text" class="input" id="detailAdminEmail" name="adminEmail" readonly
-                   style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <br>
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailAdminName" name="adminName"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">N</span>
+                    <span class="label-char" style="--index: 1">a</span>
+                    <span class="label-char" style="--index: 2">m</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                </label>
+            </div>
+            <div class="wave-group">
+                <label class="label">
+                    Email
+                </label><br>
+                <input type="text" class="input" id="detailAdminEmail" name="adminEmail" readonly
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <br>
 
-        </div>
-        <div class="wave-group">
-            <input type="text" class="input" id="detailAdminPhone" name="adminPhone"
-                   style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">P</span>
-                <span class="label-char" style="--index: 1">h</span>
-                <span class="label-char" style="--index: 2">o</span>
-                <span class="label-char" style="--index: 3">n</span>
-                <span class="label-char" style="--index: 4">e</span>
-            </label>
-        </div>
-        <div class="wave-group">
-            <input type="text" class="input" id="detailAdminStreet" name="adminStreet"
-                   style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">S</span>
-                <span class="label-char" style="--index: 1">t</span>
-                <span class="label-char" style="--index: 2">r</span>
-                <span class="label-char" style="--index: 3">e</span>
-                <span class="label-char" style="--index: 4">e</span>
-                <span class="label-char" style="--index: 4">t</span>
-            </label>
-        </div>
-        <div class="wave-group">
-            <input type="text" class="input" id="detailAdminCity" name="adminCity" style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">C</span>
-                <span class="label-char" style="--index: 1">i</span>
-                <span class="label-char" style="--index: 2">t</span>
-                <span class="label-char" style="--index: 3">y</span>
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailAdminPhone" name="adminPhone"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">P</span>
+                    <span class="label-char" style="--index: 1">h</span>
+                    <span class="label-char" style="--index: 2">o</span>
+                    <span class="label-char" style="--index: 3">n</span>
+                    <span class="label-char" style="--index: 4">e</span>
+                </label>
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailAdminStreet" name="adminStreet"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">S</span>
+                    <span class="label-char" style="--index: 1">t</span>
+                    <span class="label-char" style="--index: 2">r</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                    <span class="label-char" style="--index: 4">e</span>
+                    <span class="label-char" style="--index: 4">t</span>
+                </label>
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailAdminCity" name="adminCity"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">C</span>
+                    <span class="label-char" style="--index: 1">i</span>
+                    <span class="label-char" style="--index: 2">t</span>
+                    <span class="label-char" style="--index: 3">y</span>
 
-            </label>
-        </div>
-        <div class="wave-group">
+                </label>
+            </div>
+            <div class="wave-group">
 
-            <label class="label">
-                <span class="label-char" style="--index: 0">P</span>
-                <span class="label-char" style="--index: 1">a</span>
-                <span class="label-char" style="--index: 2">s</span>
-                <span class="label-char" style="--index: 3">s</span>
-            </label><br>
-            <input type="password" class="input" id="detailAdminPass" name="adminPass"
-                   style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">P</span>
+                    <span class="label-char" style="--index: 1">a</span>
+                    <span class="label-char" style="--index: 2">s</span>
+                    <span class="label-char" style="--index: 3">s</span>
+                </label><br>
+                <input type="password" class="input" id="detailAdminPass" name="adminPass"
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
 
 
-        </div>
-        <div class="" style="margin-top: 20px;">
+            </div>
+            <div class="" style="margin-top: 20px;">
 
-            <button type="submit" name="option" value="updateProfileAdmin"
-                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
-                Update
-            </button>
-            <button type="button" onclick="toggle1()"
-                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
-            </button>
-        </div>
-    </form>
+                <button type="submit" name="option" value="updateProfileAdmin"
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
+                    Update
+                </button>
+                <button type="button" onclick="toggle1()"
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
+                </button>
+            </div>
+        </form>
+    </c:if>
+    <c:if test="${staff != null}">
+        <form action="product" method="post">
+            <div class="wave-group">
+                <label class="label">
+                    <span class="label-char" style="--index: 0">I</span>
+                    <span class="label-char" style="--index: 1">d</span>
+                </label><br>
+                <input type="text" class="input" id="detailStaffId" name="staffId" readonly>
+                <span class="bar"></span>
+
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailStaffName" name="staffName"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">N</span>
+                    <span class="label-char" style="--index: 1">a</span>
+                    <span class="label-char" style="--index: 2">m</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                </label>
+            </div>
+            <div class="wave-group">
+                <label class="label">
+                    Email
+                </label><br>
+                <input type="text" class="input" id="detailStaffEmail" name="staffEmail" readonly
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <br>
+
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailStaffPhone" name="staffPhone"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">P</span>
+                    <span class="label-char" style="--index: 1">h</span>
+                    <span class="label-char" style="--index: 2">o</span>
+                    <span class="label-char" style="--index: 3">n</span>
+                    <span class="label-char" style="--index: 4">e</span>
+                </label>
+            </div>
+                <%--            <div class="wave-group">--%>
+                <%--                <input type="text" class="input" id="detailStaffActive" name="staffActive"--%>
+                <%--                       style="margin-top: 20px;width: 80%">--%>
+                <%--                <span class="bar"></span>--%>
+                <%--                <label class="label">--%>
+                <%--                    <span class="label-char" style="--index: 0">A</span>--%>
+                <%--                    <span class="label-char" style="--index: 1">c</span>--%>
+                <%--                    <span class="label-char" style="--index: 2">t</span>--%>
+                <%--                    <span class="label-char" style="--index: 3">i</span>--%>
+                <%--                    <span class="label-char" style="--index: 4">v</span>--%>
+                <%--                    <span class="label-char" style="--index: 4">e</span>--%>
+                <%--                </label>--%>
+                <%--            </div>--%>
+                <%--            <div class="wave-group">--%>
+                <%--                <input type="text" class="input" id="detailStaffAid" name="staffAid"--%>
+                <%--                       style="margin-top: 20px;width: 80%">--%>
+                <%--                <span class="bar"></span>--%>
+                <%--                <label class="label">--%>
+                <%--                    <span class="label-char" style="--index: 0">A</span>--%>
+                <%--                    <span class="label-char" style="--index: 1">i</span>--%>
+                <%--                    <span class="label-char" style="--index: 2">d</span>--%>
+
+
+                <%--                </label>--%>
+                <%--            </div>--%>
+            <div class="wave-group">
+                <label class="label">
+                    <span class="label-char" style="--index: 0">Pass</span>
+
+                </label><br>
+                <input type="password" class="input" id="detailStaffPass" name="staffPass"
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+                <span class="bar"></span>
+
+            </div>
+            <div class="" style="margin-top: 20px;">
+
+                <button type="submit" name="option" value="updateProfileStaff"
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
+                    Update
+                </button>
+                <button type="button" onclick="toggle1()"
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
+                </button>
+            </div>
+        </form>
+    </c:if>
+
 </div>
 <div id="blur" class="container">
     <section id="sidebar" class="">

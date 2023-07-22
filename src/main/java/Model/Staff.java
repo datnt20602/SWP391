@@ -1,5 +1,7 @@
 package Model;
 
+import com.google.gson.Gson;
+
 public class Staff {
     private int staff_id;
     private String name;
@@ -110,5 +112,9 @@ public class Staff {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public String toJson() {
+        return new Gson().toJson(this);
     }
 }

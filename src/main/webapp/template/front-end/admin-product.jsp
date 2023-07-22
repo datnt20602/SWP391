@@ -428,7 +428,8 @@
 
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailAdminName" name="adminName" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailAdminName" name="adminName"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">N</span>
@@ -473,7 +474,8 @@
                 </label>
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailAdminCity" name="adminCity" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailAdminCity" name="adminCity"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">C</span>
@@ -484,6 +486,7 @@
                 </label>
             </div>
             <div class="wave-group">
+
                 <label class="label">
                     <span class="label-char" style="--index: 0">P</span>
                     <span class="label-char" style="--index: 1">a</span>
@@ -519,7 +522,8 @@
 
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailStaffName" name="staffName" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailStaffName" name="staffName"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">N</span>
@@ -550,40 +554,40 @@
                     <span class="label-char" style="--index: 4">e</span>
                 </label>
             </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailStaffActive" name="staffActive"
-                       style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">A</span>
-                    <span class="label-char" style="--index: 1">c</span>
-                    <span class="label-char" style="--index: 2">t</span>
-                    <span class="label-char" style="--index: 3">i</span>
-                    <span class="label-char" style="--index: 4">v</span>
-                    <span class="label-char" style="--index: 4">e</span>
-                </label>
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailStaffAid" name="staffAid" style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">A</span>
-                    <span class="label-char" style="--index: 1">i</span>
-                    <span class="label-char" style="--index: 2">d</span>
+                <%--            <div class="wave-group">--%>
+                <%--                <input type="text" class="input" id="detailStaffActive" name="staffActive"--%>
+                <%--                       style="margin-top: 20px;width: 80%">--%>
+                <%--                <span class="bar"></span>--%>
+                <%--                <label class="label">--%>
+                <%--                    <span class="label-char" style="--index: 0">A</span>--%>
+                <%--                    <span class="label-char" style="--index: 1">c</span>--%>
+                <%--                    <span class="label-char" style="--index: 2">t</span>--%>
+                <%--                    <span class="label-char" style="--index: 3">i</span>--%>
+                <%--                    <span class="label-char" style="--index: 4">v</span>--%>
+                <%--                    <span class="label-char" style="--index: 4">e</span>--%>
+                <%--                </label>--%>
+                <%--            </div>--%>
+                <%--            <div class="wave-group">--%>
+                <%--                <input type="text" class="input" id="detailStaffAid" name="staffAid"--%>
+                <%--                       style="margin-top: 20px;width: 80%">--%>
+                <%--                <span class="bar"></span>--%>
+                <%--                <label class="label">--%>
+                <%--                    <span class="label-char" style="--index: 0">A</span>--%>
+                <%--                    <span class="label-char" style="--index: 1">i</span>--%>
+                <%--                    <span class="label-char" style="--index: 2">d</span>--%>
 
 
-                </label>
-            </div>
+                <%--                </label>--%>
+                <%--            </div>--%>
             <div class="wave-group">
+                <label class="label">
+                    <span class="label-char" style="--index: 0">Pass</span>
+
+                </label><br>
                 <input type="password" class="input" id="detailStaffPass" name="staffPass"
-                       style="margin-top: 20px;width: 80%" hidden="hidden">
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
                 <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">P</span>
-                    <span class="label-char" style="--index: 1">a</span>
-                    <span class="label-char" style="--index: 2">s</span>
-                    <span class="label-char" style="--index: 3">s</span>
-                </label>
+
             </div>
             <div class="" style="margin-top: 20px;">
 
@@ -676,10 +680,19 @@
                  style="border: none"
                  class="options-container"
                  onmouseover="showOptions()" onmouseout="hideOptions()">
-        <span onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
-              class="option-item">
+                <c:if test="${admin != null}">
+                    <span onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
+                          class="option-item">
             Thông tin cá nhân
         </span>
+                </c:if>
+
+                <c:if test="${staff != null}">
+                    <span onclick='toggle1();loadDataStaff(JSON.stringify(${staff.toJson()}))'
+                          class="option-item">
+            Thông tin cá nhân
+        </span>
+                </c:if>
                 <br>
                 <a class="option-item" href="changepass">Đổi mật khẩu</a><br>
                 <a class="option-item" href="forgotpass">Quên mật khẩu</a>
@@ -832,6 +845,18 @@
         document.getElementById("detailAdminStreet").value = data1.street;
         document.getElementById("detailAdminCity").value = data1.city;
         document.getElementById("detailAdminPass").value = data1.pass;
+    }
+    function loadDataStaff(staff) {
+        var data1 = JSON.parse(staff);
+        console.log(data1);
+        document.getElementById("detailStaffId").value = data1.staff_id;
+        document.getElementById("detailStaffName").value = data1.name;
+        document.getElementById("detailStaffEmail").value = data1.email;
+        document.getElementById("detailStaffPhone").value = data1.phone;
+        // document.getElementById("detailAdminStatus").value = data1.status;
+        //document.getElementById("detailAdminStreet").value = data1.street;
+        //document.getElementById("detailAdminCity").value = data1.city;
+        document.getElementById("detailStaffPass").value = data1.pass;
     }
 
     function toggle1() {

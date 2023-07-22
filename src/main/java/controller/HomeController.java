@@ -44,7 +44,7 @@ public class HomeController extends HttpServlet {
             String page_raw = request.getParameter("page");
             String product_name = request.getParameter("product");
             if (page_raw != null && !page_raw.equals("1")) {
-                page = Integer.parseInt("page_raw");
+                page = Integer.parseInt(page_raw);
             }
             if (product_name != null && !product_name.isEmpty()) {
                 productName = product_name;

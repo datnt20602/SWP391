@@ -15,7 +15,7 @@ import java.util.List;
 public class AdminFeedBackController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getSession().getAttribute("admin") != null){
+        if(request.getSession().getAttribute("admin") != null || request.getSession().getAttribute("staff") != null ){
             String page_raw = request.getParameter("page");
             String name_raw = request.getParameter("name");
             DAOFeedback DAOFeedback = new DAOFeedback();
