@@ -440,7 +440,7 @@
                                             <div>
                                                 <button type="button"  class="btn theme-bg-color text-white btn-sm fw-bold mt-lg-0 mt-3"
                                                         data-bs-toggle="modal" data-bs-target="#add-address"><i data-feather="plus"
-                                                                                                                class="me-2"></i> Add New Address</button>
+                                                                                                                class="me-2"></i> Thêm địa chỉ</button>
                                             </div>
                                         </div>
                                     </div>
@@ -519,7 +519,7 @@
                 <div class="right-side-summery-box">
                     <div class="summery-box-2">
                         <div class="summery-header">
-                            <h3>Order Summery</h3>
+                            <h3>Chi tiết Order</h3>
                         </div>
 
                         <ul class="summery-contain">
@@ -531,7 +531,7 @@
                                 <img src="<%=item.getProduct().getImage()%>"
                                      class="img-fluid blur-up lazyloaded checkout-image" alt="">
                                 <h4><%=item.getProduct().getProduct_name()%> <span> x<%=item.getQuantity()%></span></h4>
-                                <h4 class="price">$<%=item.getProduct().getPrice()%></h4>
+                                <h4 class="price"><%=item.getProduct().getPrice()%>VND</h4>
                             </li>
                             <%}%>
                         </ul>
@@ -539,17 +539,17 @@
                         <ul class="summery-total">
                             <li>
                                 <h4>Subtotal</h4>
-                                <h4 class="price">$<%=session.getAttribute("totalMoney")%></h4>
+                                <h4 class="price"><%=session.getAttribute("totalMoney")%>VND</h4>
                             </li>
 
                             <li>
                                 <h4>Shipping</h4>
-                                <h4 class="price">$8.90</h4>
+                                <h4 class="price">15.000 VND</h4>
                             </li>
 
                             <li class="list-total">
-                                <h4>Total (USD)</h4>
-                                <h4 class="price">$<%=session.getAttribute("totalMoney")%></h4>
+                                <h4>Tổng (VND)</h4>
+                                <h4 class="price"><%=session.getAttribute("totalMoney")%>VND</h4>
                             </li>
                         </ul>
                     </div>
@@ -606,7 +606,7 @@
 
 
                     <div class="form-floating mb-4 theme-form-floating">
-                        <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ" required>
                         <label for="address">Địa chỉ cụ thể</label>
                     </div>
 

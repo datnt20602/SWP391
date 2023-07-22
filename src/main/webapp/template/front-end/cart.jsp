@@ -174,7 +174,7 @@
                                                                 <a href="productdetail">
                                                                     <h5><%=item.getProduct().getProduct_name()%></h5>
                                                                 </a>
-                                                                <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
+                                                                <h6><span><%=item.getQuantity()%> x</span> <%=item.getPrice()%>VND</h6>
                                                                 <button class="close-button close_button">
                                                                     <i class="fa-solid fa-xmark"></i>
                                                                 </button>
@@ -192,7 +192,7 @@
                                                     <%
                                                         if(session.getAttribute("totalMoney") != null){
                                                     %>
-                                                    <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
+                                                    <h4 class="theme-color fw-bold"> <%=session.getAttribute("totalMoney")%>VND</h4>
                                                     <%
                                                     }else {
                                                     %>
@@ -476,13 +476,13 @@
                                 <ul>
                                     <li>
                                         <h4>Số tiền cần trả</h4>
-                                        <h4 class="price"> <%=session.getAttribute("totalMoney")%>$</h4>
+                                        <h4 class="price"> <%=session.getAttribute("totalMoney")%>VND</h4>
                                     </li>
                                 </ul>
                                 <ul class="summery-total">
                                     <li class="list-total border-top-0">
                                         <h4>Tổng (VND)</h4>
-                                        <h4 class="price theme-color"><%=session.getAttribute("totalMoney")%>$</h4>
+                                        <h4 class="price theme-color"><%=session.getAttribute("totalMoney")%>VND</h4>
                                     </li>
                                 </ul>
                                 <%
