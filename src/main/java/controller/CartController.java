@@ -1,9 +1,6 @@
 package controller;
 
-import Dal.DAOOrder;
-import Dal.DAOOrder_Item;
-import Dal.DAOProduct;
-import Dal.DAOProductInConsignment;
+import Dal.*;
 import Model.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -31,7 +28,14 @@ public class CartController extends HttpServlet {
             if(cus == null){
                 response.sendRedirect("login");
             }else {
+                double total = 0;
                 Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
+                if(vector != null) {
+                    for (Order_item item : vector) {
+                        total += item.getQuantity() * item.getPrice();
+                    }
+                }
+                session.setAttribute("totalMoney", total);
                 request.setAttribute("data",vector);
                 request.getRequestDispatcher("template/front-end/cart.jsp").forward(request,response);
             }
@@ -44,9 +48,7 @@ public class CartController extends HttpServlet {
             }else {
                 String redirect = request.getParameter("redirect");
                 int prod_id = Integer.parseInt(request.getParameter("pro_id"));
-                System.out.println(prod_id);
                 String quantity = request.getParameter("quantity");
-                System.out.println(quantity);
                 int quan;
                 DAOOrder_Item daoOrder_item = new DAOOrder_Item();
                 Vector<Order_item> vector = (Vector<Order_item>) session.getAttribute("cart_list");
@@ -58,9 +60,8 @@ public class CartController extends HttpServlet {
                 double totalMoney = 0;
                 Product product = daoProduct.getProductByID(prod_id);
 
-                int item_id = daoOrder_item.getIdOrder_item();
                 double discount  = 0;
-                Order_item order_item = new Order_item().builder().item_id(item_id).price(product.getPrice()).
+                Order_item order_item = new Order_item().builder().price(product.getPrice()).
                 quantity(quan).product(product).discount(discount).build();
 
                 if(vector == null){

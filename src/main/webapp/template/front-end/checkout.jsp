@@ -2,6 +2,7 @@
 <%@ page import="Model.Address" %>
 <%@ page import="Model.Order_item" %>
 <%@ page import="Model.Customer" %>
+<%@ page import="java.util.ArrayList" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -60,7 +61,7 @@
     <span></span>
 </div>
 <!-- Loader End -->
-
+<!-- Header Start -->
 <header class="pb-md-4 pb-0">
 
 
@@ -124,7 +125,7 @@
                                     </div>
                                 </li>
                                 <li class="right-side">
-                                    <a href="contact-us.html" class="delivery-login-box">
+                                    <a href="contactus" class="delivery-login-box">
                                         <div class="delivery-icon">
                                             <i data-feather="phone-call"></i>
                                         </div>
@@ -134,33 +135,52 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="right-side">
-                                    <a href="wishlist" class="btn p-0 position-relative header-wishlist">
+                                <%
+                                    Customer cus = (Customer) session.getAttribute("customer");
+                                    int quantity;
+                                    if(cus != null) {
+                                        ArrayList<Integer> pro_list1 = (ArrayList<Integer>) session.getAttribute("quantityWishlist");
+
+                                        if (pro_list1 == null) {
+                                            quantity = 0;
+                                        } else {
+                                            quantity = pro_list1.size();
+                                        }
+                                    }else {
+                                        quantity = 0;
+                                    }
+                                %>
+                                <li class="right-side" >
+                                    <a href="wishlist" class="btn p-0 position-relative header-wishlist" id="wishlist">
                                         <i data-feather="heart"></i>
+                                        <span  class="position-absolute top-0 start-100 translate-middle badge"><%=quantity%>
+                                                </span>
                                     </a>
-                                </li>
+                                </li >
                                 <%
                                     Vector<Order_item> order_itemVector = (Vector<Order_item>) session.getAttribute("cart_list");
                                     int quantityOI = 0;
                                     if(order_itemVector != null )quantityOI = order_itemVector.size();
                                 %>
-                                <li class="right-side">
-                                    <div class="onhover-dropdown header-badge">
+                                <li class="right-side" >
+                                    <div class="onhover-dropdown header-badge"  >
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">
+                                            <span class="position-absolute top-0 start-100 translate-middle badge" id = "quantityOI">
                                                 <%=quantityOI%>
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
 
                                         <div class="onhover-div">
-                                            <ul class="cart-list">
+                                            <ul class="cart-list" id = "cart-list" >
                                                 <%
 
                                                     if(order_itemVector != null){
+                                                        int i = 0 ;
                                                         for(Order_item item : order_itemVector){
-
+                                                            i++;
+                                                            if(i <= 3){
 
                                                 %>
 
@@ -175,7 +195,7 @@
                                                             <a href="productdetail">
                                                                 <h5><%=item.getProduct().getProduct_name()%></h5>
                                                             </a>
-                                                            <h6><span><%=item.getQuantity()%> x</span> $<%=item.getPrice()%></h6>
+                                                            <h6><span><%=item.getQuantity()%> x</span> <%=item.getPrice()%>00 VND</h6>
                                                             <button class="close-button close_button">
                                                                 <i class="fa-solid fa-xmark"></i>
                                                             </button>
@@ -183,24 +203,11 @@
                                                     </div>
                                                 </li>
                                                 <%
+                                                            }
                                                         }
                                                     }
                                                 %>
                                             </ul>
-
-                                            <div class="price-box">
-                                                <h5>Tổng :</h5>
-                                                <%
-                                                    if(session.getAttribute("totalMoney") != null){
-                                                %>
-                                                <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
-                                                <%
-                                                }else {
-                                                %>
-                                                <h4 class="theme-color fw-bold">0</h4>
-                                                <%}%>
-                                            </div>
-
                                             <div class="button-group">
                                                 <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
                                             </div>
@@ -215,7 +222,6 @@
 
                                         <div class="delivery-detail">
                                             <%
-                                                Customer cus = (Customer) session.getAttribute("customer");
                                                 if(cus != null)
                                                 {
                                             %>
@@ -501,7 +507,7 @@
                                                     <div class="accordion-body">
                                                         <h5 class="text-uppercase mb-4">Chuyển khoản vào ngân hàng của chúng tôi</h5>
                                                         <img style="width: 300px;height: 400px;"
-                                                                src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-6/358085863_1975151149526710_4494173388623438017_n.jpg?stp=cp6_dst-jpg&_nc_cat=105&cb=99be929b-3346023f&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=OZhlEx6fiqsAX8ZF-zR&_nc_ht=scontent.fhan5-2.fna&oh=00_AfArnc5fGFNOOlcTl0Gz4f5wVD92l9O0Y-btaSt8a5SPHQ&oe=64ADB96D">
+                                                                src="https://cafetaichinh.com/wp-content/uploads/2021/06/CAFETAICHINH-QR-PIC.jpg">
                                                         <h5 class="text-uppercase mb-4">Khi chùng tôi nhận được tiền bạn đơn hàng của bạn sẽ được ship ngay</h5>
                                                     </div>
                                                 </div>
@@ -519,7 +525,7 @@
                 <div class="right-side-summery-box">
                     <div class="summery-box-2">
                         <div class="summery-header">
-                            <h3>Chi tiết Order</h3>
+                            <h3>Chi tiết đơn hàng</h3>
                         </div>
 
                         <ul class="summery-contain">
@@ -545,15 +551,27 @@
                             <li>
                                 <h4>Shipping</h4>
                                 <h4 class="price">15.000 VND</h4>
+                                <h4>Tổng tiền (Chưa thuế)</h4>
+                                <h4 class="price"><%=session.getAttribute("totalMoney")%>00 VND</h4>
                             </li>
 
                             <li class="list-total">
                                 <h4>Tổng (VND)</h4>
-                                <h4 class="price"><%=session.getAttribute("totalMoney")%>VND</h4>
+                                <h4 class="price">$<%=session.getAttribute("totalMoney")%>00 VND</h4>
                             </li>
                         </ul>
                     </div>
-                    <button type="submit" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Place Order</button>
+                    <%
+                        if(addressVector.size() == 0){
+                    %>
+                    <button type="button" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold" data-bs-toggle="modal" data-bs-target="#add-address">Mua Hàng</button>
+
+                    <%
+                        }else{
+                    %>
+                    <button type="submit" class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold">Mua Hàng</button>
+
+                    <%}%>
                 </div>
             </div>
         </div>
@@ -606,7 +624,7 @@
 
 
                     <div class="form-floating mb-4 theme-form-floating">
-                        <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ" required>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ">
                         <label for="address">Địa chỉ cụ thể</label>
                     </div>
 
@@ -690,7 +708,8 @@
                         </div>
 
                         <div class="footer-logo-contain">
-                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục vụ.</p>
+                            <p>Chúng tôi là quán cà phê mà chắc chắn bạn nên thử và trải nghiệm. Rất hân hạnh được phục
+                                vụ.</p>
 
                             <ul class="address">
                                 <li>
@@ -719,6 +738,10 @@
                             </li>
 
                             <li>
+                                <a href="" class="text-content">Về chúng tôi</a>
+                            </li>
+
+                            <li>
                                 <a href="contactus" class="text-content">Liên lạc</a>
                             </li>
                         </ul>
@@ -732,17 +755,14 @@
 
                     <div class="footer-contain">
                         <ul>
+
                             <li>
-                                <a href="cart" class="text-content">Giỏ hàng</a>
-                            </li>
-                            <li>
-                                <a href="user" class="text-content">Tài khoản</a>
+                                <a href="customer" class="text-content">Tài khoản</a>
                             </li>
 
                             <li>
                                 <a href="wishlist" class="text-content"> Wishlist</a>
                             </li>
-
                         </ul>
                     </div>
                 </div>

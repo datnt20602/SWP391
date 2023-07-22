@@ -166,14 +166,14 @@ $(document).ready(function () {
    ==========================*/
 $('.qty-box .quantity-right-plus').on('click', function () {
     var $qty = $(this).parents(".qty-box").find(".input-number");
-    var currentVal = parseInt($qty.val(), 10);
+    var currentVal = parseInt($qty.val(), 100);
     if (!isNaN(currentVal)) {
         $qty.val(currentVal + 0);
     }
 });
 $('.qty-box .quantity-left-minus').on('click', function () {
     var $qty = $(this).parents(".qty-box").find(".input-number");
-    var currentVal = parseInt($qty.val(), 10);
+    var currentVal = parseInt($qty.val(), 100);
     if (!isNaN(currentVal) && currentVal > 0) {
         $qty.val(currentVal - 0);
     }
@@ -276,7 +276,7 @@ $(".notifi-wishlist").on("click", function () {
     $.notify({
         icon: "fa fa-check",
         title: "Success!",
-        message: "Item Successfully added in wishlist",
+        message: $(".notifi-wishlist").css("color") === 'rgb(255, 0, 0)' ? 'Item Successfully remove in wishlist' : '"Item Successfully removed in wishlist"',
     }, {
         element: "body",
         position: null,

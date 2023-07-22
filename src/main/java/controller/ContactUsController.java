@@ -11,7 +11,6 @@ public class ContactUsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("template/front-end/contact-us.jsp").forward(request,response);
-
     }
 
     @Override
