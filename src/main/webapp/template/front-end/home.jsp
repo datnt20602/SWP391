@@ -109,7 +109,7 @@
 
                             <div class="search-box">
                                 <div class="input-group">
-                                    <input onchange="searchByName(this)" type="text" class="form-control" placeholder="Tìm kiếm..."
+                                    <input oninput="searchByName(value)" type="search" class="form-control" placeholder="Tìm kiếm...."
                                            aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <button class="btn" type="button" id="button-addon2">
                                         <i data-feather="search"></i>
@@ -165,7 +165,6 @@
                                     }else {
                                         quantity = 0;
                                     }
-
                                 %>
                                 <li class="right-side" >
                                     <a href="wishlist" class="btn p-0 position-relative header-wishlist" id="wishlist">
@@ -188,7 +187,6 @@
                                                     <span class="visually-hidden">unread messages</span>
                                                 </span>
                                         </button>
-
                                         <div class="onhover-div">
                                             <ul class="cart-list" id = "cart-list" >
                                                 <%
@@ -200,7 +198,6 @@
                                                             if(i <= 3){
 
                                                 %>
-
                                                 <li class="product-box-contain">
                                                     <div class="drop-cart">
                                                         <a href="productdetail" class="drop-image">
@@ -474,8 +471,8 @@
                                             </form>
                                         </ul>
                                         <script>
-                                            $(".category-list-box input[type=checkbox]").each(() => {
-                                                $(this).change(() => {
+                                            $(".category-list-box input[type=checkbox]").each(function() {
+                                                $(this).change(function() {
                                                     $("#formCategories").submit();
                                                 });
                                             });
@@ -1192,6 +1189,21 @@
             success: function (data){
                 spanElement.textContent = spanValue
                 var row = document.getElementById("cart-list");
+                row.innerHTML = data
+            }
+        })
+
+    }
+    function searchByName(text){
+        $.ajax({
+            type : 'POST',
+            url : 'search',
+            data : {
+                text : text
+            }
+            ,
+            success: function (data){
+                var row = document.getElementById("contentSearch");
                 row.innerHTML = data
             }
         })
