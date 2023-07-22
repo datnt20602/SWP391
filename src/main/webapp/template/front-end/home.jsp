@@ -73,7 +73,7 @@
         }
 
         .heart {
-            margin: 0 auto; /* Dùng Flexbox để canh giữa phần "Compare" */
+            margin-right: 100px; /* Dùng Flexbox để canh giữa phần "Compare" */
         }
 
     </style>
@@ -591,15 +591,15 @@
                                     </a>
 
                                     <ul class="product-option">
-                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist" class="wishlist-li">
+                                        <li  data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist" class="heart justify-content-center d-flex w-100" style="margin-right: 0px;">
                                             <%
                                                 if(cus != null){
                                             %>
-                                            <a style="padding-left: 95px" onclick="changeFavourite(<%=temp.getProduct_id()%>)" class="notifi-wishlist" >
+                                            <a style="" onclick="changeFavourite(<%=temp.getProduct_id()%>)" class="notifi-wishlist" >
                                             <%
                                                 }else{
                                             %>
-                                                <a style="padding-left: 95px" href="login" >
+                                                <a style="" href="login" >
                                             <%
                                                 }
                                             %>

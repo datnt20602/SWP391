@@ -5,8 +5,19 @@
   Time: 1:18 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="Model.Product" %>
+<%@ page import="java.util.Vector" %>
 <%@page isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import =" java.util.Vector,Model.Product" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="Model.Customer" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Dal.DAOProduct" %>
+<%@ page import="Model.Order_item" %>
+<%@ page import="java.util.ArrayList" %>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
 <html lang="en">

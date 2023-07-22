@@ -151,8 +151,6 @@ public class ActiveAccountController extends HttpServlet {
             };
             thread.start();
             request.getRequestDispatcher("template/front-end/activeAccount.jsp").forward(request, response);
-        }else{
-            doGet(request, response);
         }
     }
 }

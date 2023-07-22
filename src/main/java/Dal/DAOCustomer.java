@@ -58,7 +58,7 @@ public class DAOCustomer extends DBContext{
     }
 
     public Customer login(String email, String pass) {
-        String sql = "select * from customer where email = ? and pass = ?";
+        String sql = "select * from customer where email = ? and pass = ? COLLATE utf8mb4_bin";
 
         try {
             PreparedStatement pre = connection.prepareStatement(sql);
