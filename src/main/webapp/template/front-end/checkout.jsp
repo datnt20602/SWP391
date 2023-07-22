@@ -446,7 +446,7 @@
                                             <div>
                                                 <button type="button"  class="btn theme-bg-color text-white btn-sm fw-bold mt-lg-0 mt-3"
                                                         data-bs-toggle="modal" data-bs-target="#add-address"><i data-feather="plus"
-                                                                                                                class="me-2"></i> Add New Address</button>
+                                                                                                                class="me-2"></i> Thêm địa chỉ</button>
                                             </div>
                                         </div>
                                     </div>
@@ -537,13 +537,20 @@
                                 <img src="<%=item.getProduct().getImage()%>"
                                      class="img-fluid blur-up lazyloaded checkout-image" alt="">
                                 <h4><%=item.getProduct().getProduct_name()%> <span> x<%=item.getQuantity()%></span></h4>
-                                <h4 class="price"><%=item.getProduct().getPrice()%>00 VND</h4>
+                                <h4 class="price"><%=item.getProduct().getPrice()%>VND</h4>
                             </li>
                             <%}%>
                         </ul>
 
                         <ul class="summery-total">
                             <li>
+                                <h4>Subtotal</h4>
+                                <h4 class="price"><%=session.getAttribute("totalMoney")%>VND</h4>
+                            </li>
+
+                            <li>
+                                <h4>Shipping</h4>
+                                <h4 class="price">15.000 VND</h4>
                                 <h4>Tổng tiền (Chưa thuế)</h4>
                                 <h4 class="price"><%=session.getAttribute("totalMoney")%>00 VND</h4>
                             </li>
@@ -1009,16 +1016,6 @@
 
 <!-- script js -->
 <script src="${pageContext.request.contextPath}/template/assets/js/script.js"></script>
-<script>
-    function validateForm() {
-        var address = document.getElementById('flexRadioDefault2').value;
-
-        if (address === '') {
-            // Hiển thị thông báo lỗi
-            alert('Vui lòng nhập  địa chỉ!');
-        }
-    }
-</script>
 </body>
 
 </html>

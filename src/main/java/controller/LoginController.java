@@ -34,8 +34,7 @@ public class LoginController extends HttpServlet {
                 session.removeAttribute("customer");
                 session.setAttribute("alertAccount", "Tài khoản của bạn đã bị khóa, vui lòng liên hệ admin");
                 response.sendRedirect("login");
-            }
-            else {
+            } else {
                 session.setAttribute("customer", customer);
                 response.sendRedirect("activeAccount");
             }
@@ -60,9 +59,33 @@ public class LoginController extends HttpServlet {
                     response.sendRedirect("home");
                     //request.getRequestDispatcher("template/front-end/admin-home.jsp").forward(request,response);
                 } else {
-                    String mess = "Tài khoản hoặc mật khẩu không đúng !";
-                    request.setAttribute("mess", mess);
-                    request.getRequestDispatcher("template/front-end/login.jsp").forward(request, response);
+//                    String mess = "Tài khoản hoặc mật khẩu không đúng !";
+//                    request.setAttribute("mess", mess);
+//                    request.getRequestDispatcher("template/front-end/login.jsp").forward(request, response);
+
+                    boolean check = true;
+
+                    if (DaoC.searchByEmail(user) != null) {
+                        check = false;
+                    }
+
+                    if (DaoS.searchByEmail(user) != null) {
+                        check = false;
+                    }
+
+                    if (DaoA.searchByEmail(user) != null) {
+                        check = false;
+                    }
+                    if (check) {
+
+                        session.setAttribute("alertAccount", "Email chưa được đăng kí tài khoản, bạn sẽ được chuyển đến trang đăng kí");
+                        response.sendRedirect("signup");
+                    } else {
+                        String email = request.getParameter("Username");
+                        session.setAttribute("alertAccount", "Nhập sai tài khoản hoặc mật khẩu, vui lòng kiểm tra lại");
+                        session.setAttribute("enteredEmail", email);
+                        response.sendRedirect("login");
+                    }
                 }
             }
         }

@@ -141,7 +141,12 @@
     </c:if>
 
     <ul class="side-menu top">
-
+        <li>
+            <a href="home">
+                <i class='bx bxs-home'></i>
+                <span class="text">Trang chủ</span>
+            </a>
+        </li>
         <li>
             <a href="product">
                 <i class='bx bxs-shopping-bag-alt'></i>
@@ -163,7 +168,6 @@
                     <span class="text">Nhân viên</span>
                 </a>
             </li>
-
             <li>
                 <a href="addStaff">
                     <i class='bx bxs-group'></i>
@@ -174,10 +178,9 @@
 
     </ul>
     <ul class="side-menu">
-
         <li>
             <a href="logout" class="logout">
-                <i class='bx bxs-log-out-circle'></i>
+                <i class="bx bxs-log-out-circle"></i>
                 <span class="text">Đăng xuất</span>
             </a>
         </li>

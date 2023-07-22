@@ -123,7 +123,7 @@ public class DAOOrder_Item extends DBContext{
                     "left join orders o on o.order_id = oi.order_id\n" +
                     "left join product p on p.product_id = oi.product_id\n" +
                     "where p.product_name like ?\n" +
-                    "limit 10 offset ?";
+                    "limit 5 offset ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, "%" + product + "%");
             ps.setInt(2, offset);

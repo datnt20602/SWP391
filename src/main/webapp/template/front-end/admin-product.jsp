@@ -119,6 +119,7 @@
             opacity: 0.5;
             transition: 0.5s;
             z-index: 9999;
+            border-radius: 10px;
         }
 
         #popup.active, #popup1.active {
@@ -165,6 +166,8 @@
             opacity: 0.5;
             transition: 0.5s;
             z-index: 9999;
+            border-radius: 10px;
+
         }
 
         #addDiv.active {
@@ -186,6 +189,28 @@
 
         .profile {
             cursor: pointer;
+        }
+        .options-container {
+            display: none;
+            border-radius: 10px;
+            margin-left: 900px;
+            background-color: #ccc;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .option-item {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 7px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .show {
+            opacity: 1;
         }
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
@@ -403,7 +428,8 @@
 
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailAdminName" name="adminName" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailAdminName" name="adminName"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">N</span>
@@ -448,7 +474,8 @@
                 </label>
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailAdminCity" name="adminCity" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailAdminCity" name="adminCity"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">C</span>
@@ -459,6 +486,7 @@
                 </label>
             </div>
             <div class="wave-group">
+
                 <label class="label">
                     <span class="label-char" style="--index: 0">P</span>
                     <span class="label-char" style="--index: 1">a</span>
@@ -494,7 +522,8 @@
 
             </div>
             <div class="wave-group">
-                <input type="text" class="input" id="detailStaffName" name="staffName" style="margin-top: 20px;width: 80%">
+                <input type="text" class="input" id="detailStaffName" name="staffName"
+                       style="margin-top: 20px;width: 80%">
                 <span class="bar"></span>
                 <label class="label">
                     <span class="label-char" style="--index: 0">N</span>
@@ -525,40 +554,40 @@
                     <span class="label-char" style="--index: 4">e</span>
                 </label>
             </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailStaffActive" name="staffActive"
-                       style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">A</span>
-                    <span class="label-char" style="--index: 1">c</span>
-                    <span class="label-char" style="--index: 2">t</span>
-                    <span class="label-char" style="--index: 3">i</span>
-                    <span class="label-char" style="--index: 4">v</span>
-                    <span class="label-char" style="--index: 4">e</span>
-                </label>
-            </div>
-            <div class="wave-group">
-                <input type="text" class="input" id="detailStaffAid" name="staffAid" style="margin-top: 20px;width: 80%">
-                <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">A</span>
-                    <span class="label-char" style="--index: 1">i</span>
-                    <span class="label-char" style="--index: 2">d</span>
+                <%--            <div class="wave-group">--%>
+                <%--                <input type="text" class="input" id="detailStaffActive" name="staffActive"--%>
+                <%--                       style="margin-top: 20px;width: 80%">--%>
+                <%--                <span class="bar"></span>--%>
+                <%--                <label class="label">--%>
+                <%--                    <span class="label-char" style="--index: 0">A</span>--%>
+                <%--                    <span class="label-char" style="--index: 1">c</span>--%>
+                <%--                    <span class="label-char" style="--index: 2">t</span>--%>
+                <%--                    <span class="label-char" style="--index: 3">i</span>--%>
+                <%--                    <span class="label-char" style="--index: 4">v</span>--%>
+                <%--                    <span class="label-char" style="--index: 4">e</span>--%>
+                <%--                </label>--%>
+                <%--            </div>--%>
+                <%--            <div class="wave-group">--%>
+                <%--                <input type="text" class="input" id="detailStaffAid" name="staffAid"--%>
+                <%--                       style="margin-top: 20px;width: 80%">--%>
+                <%--                <span class="bar"></span>--%>
+                <%--                <label class="label">--%>
+                <%--                    <span class="label-char" style="--index: 0">A</span>--%>
+                <%--                    <span class="label-char" style="--index: 1">i</span>--%>
+                <%--                    <span class="label-char" style="--index: 2">d</span>--%>
 
 
-                </label>
-            </div>
+                <%--                </label>--%>
+                <%--            </div>--%>
             <div class="wave-group">
+                <label class="label">
+                    <span class="label-char" style="--index: 0">Pass</span>
+
+                </label><br>
                 <input type="password" class="input" id="detailStaffPass" name="staffPass"
-                       style="margin-top: 20px;width: 80%" hidden="hidden">
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
                 <span class="bar"></span>
-                <label class="label">
-                    <span class="label-char" style="--index: 0">P</span>
-                    <span class="label-char" style="--index: 1">a</span>
-                    <span class="label-char" style="--index: 2">s</span>
-                    <span class="label-char" style="--index: 3">s</span>
-                </label>
+
             </div>
             <div class="" style="margin-top: 20px;">
 
@@ -589,11 +618,22 @@
             </a>
         </c:if>
         <ul class="side-menu top">
-
+            <li>
+                <a href="home">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Trang chủ</span>
+                </a>
+            </li>
             <li>
                 <a href="product">
                     <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">Cửa hàng</span>
+                    <span class="text">Sản phẩm</span>
+                </a>
+            </li>
+            <li>
+                <a href="adminfeedback">
+                    <i class='bx bxs-doughnut-chart'></i>
+                    <span class="text">Đánh giá</span>
                 </a>
             </li>
 
@@ -632,22 +672,46 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-            <div class="profile" onclick="showOptions()">
-                <img src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
+            <div class="profile" onmouseover="showOptions()" onmouseout="hideOptions()">
+                <img style="margin-left: 1000px"
+                     src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
             </div>
-            <div id="options" style="display: none; border-radius: 10px">
+            <div id="options"
+                 style="border: none"
+                 class="options-container"
+                 onmouseover="showOptions()" onmouseout="hideOptions()">
+                <c:if test="${admin != null}">
+                    <span onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
+                          class="option-item">
+            Thông tin cá nhân
+        </span>
+                </c:if>
 
-                <button type="button"
-                        onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
-
-                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
-                    Thông tin cá nhân
-                </button>
+                <c:if test="${staff != null}">
+                    <span onclick='toggle1();loadDataStaff(JSON.stringify(${staff.toJson()}))'
+                          class="option-item">
+            Thông tin cá nhân
+        </span>
+                </c:if>
                 <br>
-                <a href="changepass">Đổi mật khẩu</a><br>
-                <a href="forgotpass">Quên mật khẩu</a>
-
+                <a class="option-item" href="changepass">Đổi mật khẩu</a><br>
+                <a class="option-item" href="forgotpass">Quên mật khẩu</a>
             </div>
+
+
+            <%--            <div id="options" style="display: none; border-radius: 10px; margin-left: 1000px">--%>
+
+            <%--                <button type="button"--%>
+            <%--                        onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'--%>
+
+            <%--                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">--%>
+            <%--                    Thông tin cá nhân--%>
+            <%--                </button>--%>
+            <%--                <br>--%>
+            <%--                <a href="changepass">Đổi mật khẩu</a><br>--%>
+            <%--                <a href="forgotpass">Quên mật khẩu</a>--%>
+
+            <%--            </div>--%>
         </nav>
         <!-- NAVBAR -->
 
@@ -655,10 +719,10 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Cửa hàng</h1>
+                    <h1>Sản phẩm</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="product">Cửa hàng</a>
+                            <a href="product">Sản phẩm</a>
                         </li>
                         <li><i class="bx bx-chevron-right"></i></li>
                         <li>
@@ -782,6 +846,18 @@
         document.getElementById("detailAdminCity").value = data1.city;
         document.getElementById("detailAdminPass").value = data1.pass;
     }
+    function loadDataStaff(staff) {
+        var data1 = JSON.parse(staff);
+        console.log(data1);
+        document.getElementById("detailStaffId").value = data1.staff_id;
+        document.getElementById("detailStaffName").value = data1.name;
+        document.getElementById("detailStaffEmail").value = data1.email;
+        document.getElementById("detailStaffPhone").value = data1.phone;
+        // document.getElementById("detailAdminStatus").value = data1.status;
+        //document.getElementById("detailAdminStreet").value = data1.street;
+        //document.getElementById("detailAdminCity").value = data1.city;
+        document.getElementById("detailStaffPass").value = data1.pass;
+    }
 
     function toggle1() {
         var blur = document.getElementById('blur');
@@ -899,14 +975,49 @@
         return str;
     }
 
-    function showOptions() {
-        var optionsDiv = document.getElementById("options");
-        if (optionsDiv.style.display === "none") {
-            optionsDiv.style.display = "block";
-        } else {
-            optionsDiv.style.display = "none";
-        }
+    // function showOptions() {
+    //     var optionsDiv = document.getElementById("options");
+    //     if (optionsDiv.style.display === "none") {
+    //         optionsDiv.style.display = "block";
+    //     } else {
+    //         optionsDiv.style.display = "none";
+    //     }
+    // }
+    var optionsDiv = document.getElementById("options");
+    var optionItems = optionsDiv.getElementsByClassName("option-item");
+    var hideOptionsTimeout;
 
+    function showOptions() {
+        clearTimeout(hideOptionsTimeout);
+        optionsDiv.style.display = "block";
+        setTimeout(function() {
+            optionsDiv.classList.add("show");
+            for (var i = 0; i < optionItems.length; i++) {
+                optionItems[i].style.opacity = "1";
+            }
+        }, 10);
+    }
+
+    function hideOptions() {
+        hideOptionsTimeout = setTimeout(function() {
+            var isMouseOverOptions = false;
+            for (var i = 0; i < optionItems.length; i++) {
+                if (optionItems[i].matches(":hover")) {
+                    isMouseOverOptions = true;
+                    break;
+                }
+            }
+
+            if (!optionsDiv.matches(":hover") && !isMouseOverOptions) {
+                optionsDiv.classList.remove("show");
+                for (var i = 0; i < optionItems.length; i++) {
+                    optionItems[i].style.opacity = "0";
+                }
+                setTimeout(function() {
+                    optionsDiv.style.display = "none";
+                }, 300);
+            }
+        }, 200);
     }
 </script>
 </body>

@@ -22,7 +22,7 @@ public class ValidateOTPController extends HttpServlet {
         Customer c = (Customer) session.getAttribute("customer");
         Admin a = (Admin) session.getAttribute("admin");
         Staff s = (Staff) session.getAttribute("staff");
-        if(c != null){
+        if (c != null) {
             Thread thread = new Thread() {
                 @Override
                 public void run() {
@@ -30,10 +30,10 @@ public class ValidateOTPController extends HttpServlet {
                 }
             };
             thread.start();
-            request.setAttribute("email" , c.getEmail());
+            request.setAttribute("email", c.getEmail());
             request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
         }
-        if(a != null){
+        if (a != null) {
             Thread thread = new Thread() {
                 @Override
                 public void run() {
@@ -41,10 +41,10 @@ public class ValidateOTPController extends HttpServlet {
                 }
             };
             thread.start();
-            request.setAttribute("email" , a.getEmail());
+            request.setAttribute("email", a.getEmail());
             request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
         }
-        if(s != null){
+        if (s != null) {
             Thread thread = new Thread() {
                 @Override
                 public void run() {
@@ -52,7 +52,7 @@ public class ValidateOTPController extends HttpServlet {
                 }
             };
             thread.start();
-            request.setAttribute("email" , s.getEmail());
+            request.setAttribute("email", s.getEmail());
             request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
         }
 
@@ -63,20 +63,44 @@ public class ValidateOTPController extends HttpServlet {
         HttpSession session = request.getSession();
         String optValue = (String) session.getAttribute("optValue");
         String optInput = request.getParameter("opt");
-
         String op = request.getParameter("option");
-        if(op.equals("enter")){
-            if(optInput.equals(optValue)){
+
+        if (op.equals("enter")) {
+            if (optInput.equals(optValue)) {
                 response.sendRedirect("resetpassword");
-            }else {
-                String mess = "Sai mã OTP. Kiểm tra lại mail !";
-                request.setAttribute("mess",mess);
-                request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request,response);
-
+            } else {
+                String mess = "Sai mã OTP. Kiểm tra lại mail!";
+                request.setAttribute("mess", mess);
+                request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
             }
-        }else{
-            doGet(request,response);
-        }
+        } else if (op.equals("sendAgain")) {
+            // Gửi lại email OTP khi người dùng ấn nút "Gửi lại OTP"
+            MailSending mail = new MailSending();
+            String newOptValue = mail.generateOtp();
+            session.setAttribute("optValue", newOptValue);
 
+            // Lấy đối tượng User để gửi lại email OTP
+            Customer c = (Customer) session.getAttribute("customer");
+            Admin a = (Admin) session.getAttribute("admin");
+            Staff s = (Staff) session.getAttribute("staff");
+
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    if (c != null) {
+                        mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", c.getEmail(), newOptValue);
+                    } else if (a != null) {
+                        mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", a.getEmail(), newOptValue);
+                    } else if (s != null) {
+                        mail.authenEmail("datnguyentien.20602@gmail.com", "lygzmpkipxtylicx", s.getEmail(), newOptValue);
+                    }
+                }
+            };
+            thread.start();
+            request.getRequestDispatcher("template/front-end/ValidateOTP.jsp").forward(request, response);
+
+        }else{
+            doGet(request, response);
+        }
     }
 }

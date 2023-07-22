@@ -117,7 +117,7 @@
                                         </div>
                                     </li>
                                     <li class="right-side">
-                                        <a href="contact-us.html" class="delivery-login-box">
+                                        <a href="contactus" class="delivery-login-box">
                                             <div class="delivery-icon">
                                                 <i data-feather="phone-call"></i>
                                             </div>
@@ -240,26 +240,11 @@
     <div class="mobile-menu d-md-none d-block mobile-cart">
         <ul>
             <li class="active">
-                <a href="home.jsp">
+                <a href="home">
                     <i class="iconly-Home icli"></i>
                     <span>Home</span>
                 </a>
             </li>
-
-            <li class="mobile-category">
-                <a href="javascript:void(0)">
-                    <i class="iconly-Category icli js-link"></i>
-                    <span>Category</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="search.html" class="search-box">
-                    <i class="iconly-Search icli"></i>
-                    <span>Search</span>
-                </a>
-            </li>
-
             <li>
                 <a href="wishlist" class="notifi-wishlist">
                     <i class="iconly-Heart icli"></i>
@@ -323,7 +308,7 @@
                             <form class="row g-4" action="login" method="post">
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
-                                        <input type="email" class="form-control" id="email" placeholder="Địa chỉ email" name="Username">
+                                        <input type="email" class="form-control" id="email" placeholder="Địa chỉ email" name="Username" value="${sessionScope.enteredEmail}">
                                         <label for="email">Địa chỉ email</label>
                                     </div>
                                 </div>
@@ -472,11 +457,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="about-us.html" class="text-content">Về chúng tôi</a>
-                                </li>
-
-                                <li>
-                                    <a href="contact-us.html" class="text-content">Liên lạc</a>
+                                    <a href="contactus" class="text-content">Liên lạc</a>
                                 </li>
                             </ul>
                         </div>
@@ -490,18 +471,16 @@
                         <div class="footer-contain">
                             <ul>
                                 <li>
-                                    <a href="order-success.html" class="text-content">Bạn đã mua</a>
+                                    <a href="cart" class="text-content">Giỏ hàng</a>
                                 </li>
                                 <li>
-                                    <a href="user-dashboard.html" class="text-content">Tài khoản</a>
+                                    <a href="user" class="text-content">Tài khoản</a>
                                 </li>
 
                                 <li>
                                     <a href="wishlist" class="text-content"> Wishlist</a>
                                 </li>
-                                <li>
-                                    <a href="faq.html" class="text-content">FAQ</a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>

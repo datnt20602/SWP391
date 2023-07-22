@@ -119,6 +119,7 @@
             opacity: 0.5;
             transition: 0.5s;
             z-index: 9999;
+            border-radius: 10px;
         }
 
         #popup.active, #popup1.active {
@@ -163,6 +164,28 @@
 
         .profile {
             cursor: pointer;
+        }
+        .options-container {
+            display: none;
+            border-radius: 10px;
+            margin-left: 900px;
+            background-color: #ccc;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .option-item {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 7px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .show {
+            opacity: 1;
         }
     </style>
 </head>
@@ -271,96 +294,192 @@
 <%--  </form>--%>
 <%--</div>--%>
 <div id="popup1">
-    <form action="product" method="post">
-        <div class="wave-group">
-            <label class="label">
-                <span class="label-char" style="--index: 0">I</span>
-                <span class="label-char" style="--index: 1">d</span>
-            </label><br>
-            <input type="text" class="input" id="detailAdminId" name="adminId" readonly>
-            <span class="bar"></span>
+    <c:if test="${admin!=null}">
+        <form action="product" method="post">
+            <div class="wave-group">
+                <label class="label">
+                    <span class="label-char" style="--index: 0">I</span>
+                    <span class="label-char" style="--index: 1">d</span>
+                </label><br>
+                <input type="text" class="input" id="detailAdminId" name="adminId" readonly>
+                <span class="bar"></span>
 
-        </div>
-        <div class="wave-group">
-            <input type="text" class="input" id="detailAdminName" name="adminName" style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">N</span>
-                <span class="label-char" style="--index: 1">a</span>
-                <span class="label-char" style="--index: 2">m</span>
-                <span class="label-char" style="--index: 3">e</span>
-            </label>
-        </div>
-        <div class="wave-group">
-            <label class="label">
-                Email
-            </label><br>
-            <input type="text" class="input" id="detailAdminEmail" name="adminEmail" readonly
-                   style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <br>
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailAdminName" name="adminName"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">N</span>
+                    <span class="label-char" style="--index: 1">a</span>
+                    <span class="label-char" style="--index: 2">m</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                </label>
+            </div>
+            <div class="wave-group">
+                <label class="label">
+                    Email
+                </label><br>
+                <input type="text" class="input" id="detailAdminEmail" name="adminEmail" readonly
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <br>
 
-        </div>
-        <div class="wave-group">
-            <input type="text" class="input" id="detailAdminPhone" name="adminPhone"
-                   style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">P</span>
-                <span class="label-char" style="--index: 1">h</span>
-                <span class="label-char" style="--index: 2">o</span>
-                <span class="label-char" style="--index: 3">n</span>
-                <span class="label-char" style="--index: 4">e</span>
-            </label>
-        </div>
-        <div class="wave-group">
-            <input type="text" class="input" id="detailAdminStreet" name="adminStreet"
-                   style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">S</span>
-                <span class="label-char" style="--index: 1">t</span>
-                <span class="label-char" style="--index: 2">r</span>
-                <span class="label-char" style="--index: 3">e</span>
-                <span class="label-char" style="--index: 4">e</span>
-                <span class="label-char" style="--index: 4">t</span>
-            </label>
-        </div>
-        <div class="wave-group">
-            <input type="text" class="input" id="detailAdminCity" name="adminCity" style="margin-top: 20px;width: 80%">
-            <span class="bar"></span>
-            <label class="label">
-                <span class="label-char" style="--index: 0">C</span>
-                <span class="label-char" style="--index: 1">i</span>
-                <span class="label-char" style="--index: 2">t</span>
-                <span class="label-char" style="--index: 3">y</span>
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailAdminPhone" name="adminPhone"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">P</span>
+                    <span class="label-char" style="--index: 1">h</span>
+                    <span class="label-char" style="--index: 2">o</span>
+                    <span class="label-char" style="--index: 3">n</span>
+                    <span class="label-char" style="--index: 4">e</span>
+                </label>
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailAdminStreet" name="adminStreet"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">S</span>
+                    <span class="label-char" style="--index: 1">t</span>
+                    <span class="label-char" style="--index: 2">r</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                    <span class="label-char" style="--index: 4">e</span>
+                    <span class="label-char" style="--index: 4">t</span>
+                </label>
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailAdminCity" name="adminCity"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">C</span>
+                    <span class="label-char" style="--index: 1">i</span>
+                    <span class="label-char" style="--index: 2">t</span>
+                    <span class="label-char" style="--index: 3">y</span>
 
-            </label>
-        </div>
-        <div class="wave-group">
+                </label>
+            </div>
+            <div class="wave-group">
 
-            <label class="label">
-                <span class="label-char" style="--index: 0">P</span>
-                <span class="label-char" style="--index: 1">a</span>
-                <span class="label-char" style="--index: 2">s</span>
-                <span class="label-char" style="--index: 3">s</span>
-            </label><br>
-            <input type="password" class="input" id="detailAdminPass" name="adminPass"
-                   style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">P</span>
+                    <span class="label-char" style="--index: 1">a</span>
+                    <span class="label-char" style="--index: 2">s</span>
+                    <span class="label-char" style="--index: 3">s</span>
+                </label><br>
+                <input type="password" class="input" id="detailAdminPass" name="adminPass"
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
 
 
-        </div>
-        <div class="" style="margin-top: 20px;">
+            </div>
+            <div class="" style="margin-top: 20px;">
 
-            <button type="submit" name="option" value="updateProfileAdmin"
-                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
-                Update
-            </button>
-            <button type="button" onclick="toggle1()"
-                    style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
-            </button>
-        </div>
-    </form>
+                <button type="submit" name="option" value="updateProfileAdmin"
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
+                    Update
+                </button>
+                <button type="button" onclick="toggle1()"
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
+                </button>
+            </div>
+        </form>
+    </c:if>
+    <c:if test="${staff != null}">
+        <form action="product" method="post">
+            <div class="wave-group">
+                <label class="label">
+                    <span class="label-char" style="--index: 0">I</span>
+                    <span class="label-char" style="--index: 1">d</span>
+                </label><br>
+                <input type="text" class="input" id="detailStaffId" name="staffId" readonly>
+                <span class="bar"></span>
+
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailStaffName" name="staffName"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">N</span>
+                    <span class="label-char" style="--index: 1">a</span>
+                    <span class="label-char" style="--index: 2">m</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                </label>
+            </div>
+            <div class="wave-group">
+                <label class="label">
+                    Email
+                </label><br>
+                <input type="text" class="input" id="detailStaffEmail" name="staffEmail" readonly
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <br>
+
+            </div>
+            <div class="wave-group">
+                <input type="text" class="input" id="detailStaffPhone" name="staffPhone"
+                       style="margin-top: 20px;width: 80%">
+                <span class="bar"></span>
+                <label class="label">
+                    <span class="label-char" style="--index: 0">P</span>
+                    <span class="label-char" style="--index: 1">h</span>
+                    <span class="label-char" style="--index: 2">o</span>
+                    <span class="label-char" style="--index: 3">n</span>
+                    <span class="label-char" style="--index: 4">e</span>
+                </label>
+            </div>
+                <%--            <div class="wave-group">--%>
+                <%--                <input type="text" class="input" id="detailStaffActive" name="staffActive"--%>
+                <%--                       style="margin-top: 20px;width: 80%">--%>
+                <%--                <span class="bar"></span>--%>
+                <%--                <label class="label">--%>
+                <%--                    <span class="label-char" style="--index: 0">A</span>--%>
+                <%--                    <span class="label-char" style="--index: 1">c</span>--%>
+                <%--                    <span class="label-char" style="--index: 2">t</span>--%>
+                <%--                    <span class="label-char" style="--index: 3">i</span>--%>
+                <%--                    <span class="label-char" style="--index: 4">v</span>--%>
+                <%--                    <span class="label-char" style="--index: 4">e</span>--%>
+                <%--                </label>--%>
+                <%--            </div>--%>
+                <%--            <div class="wave-group">--%>
+                <%--                <input type="text" class="input" id="detailStaffAid" name="staffAid"--%>
+                <%--                       style="margin-top: 20px;width: 80%">--%>
+                <%--                <span class="bar"></span>--%>
+                <%--                <label class="label">--%>
+                <%--                    <span class="label-char" style="--index: 0">A</span>--%>
+                <%--                    <span class="label-char" style="--index: 1">i</span>--%>
+                <%--                    <span class="label-char" style="--index: 2">d</span>--%>
+
+
+                <%--                </label>--%>
+                <%--            </div>--%>
+            <div class="wave-group">
+                <label class="label">
+                    <span class="label-char" style="--index: 0">Pass</span>
+
+                </label><br>
+                <input type="password" class="input" id="detailStaffPass" name="staffPass"
+                       style="margin-top: 20px;width: 80%" hidden="hidden" readonly>
+                <span class="bar"></span>
+
+            </div>
+            <div class="" style="margin-top: 20px;">
+
+                <button type="submit" name="option" value="updateProfileStaff"
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a;margin-right: 20px;">
+                    Update
+                </button>
+                <button type="button" onclick="toggle1()"
+                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">Close
+                </button>
+            </div>
+        </form>
+    </c:if>
+
 </div>
 <div id="blur" class="container">
     <section id="sidebar" class="">
@@ -377,11 +496,22 @@
             </a>
         </c:if>
         <ul class="side-menu top">
-
+            <li>
+                <a href="home">
+                    <i class='bx bxs-home'></i>
+                    <span class="text">Trang chủ</span>
+                </a>
+            </li>
             <li>
                 <a href="product">
                     <i class='bx bxs-shopping-bag-alt'></i>
                     <span class="text">Cửa hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="adminfeedback">
+                    <i class='bx bxs-doughnut-chart'></i>
+                    <span class="text">Đánh giá</span>
                 </a>
             </li>
 
@@ -419,23 +549,24 @@
     </section>
     <section id="content">
         <!-- NAVBAR -->
-        <nav>
-            <div class="profile" onclick="showOptions()">
-                <img src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
-            </div>
-            <div id="options" style="display: none; border-radius: 10px">
 
-                <button type="button"
-                        onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
-
-                        style="padding: 10px;cursor: pointer;border-radius: 7px;border: 1px solid #5c636a">
-                    Thông tin cá nhân
-                </button>
-                <br>
-                <a href="changepass">Đổi mật khẩu</a><br>
-                <a href="forgotpass">Quên mật khẩu</a>
-
-            </div>
+            <nav>
+                <div class="profile" onmouseover="showOptions()" onmouseout="hideOptions()">
+                    <img style="margin-left: 1000px"
+                         src="${pageContext.request.contextPath}/template/assets/images/people/people.png">
+                </div>
+                <div id="options"
+                     style="border: none"
+                     class="options-container"
+                     onmouseover="showOptions()" onmouseout="hideOptions()">
+        <span onclick='toggle1();loadDataAdmin(JSON.stringify(${admin.toJson()}))'
+              class="option-item">
+            Thông tin cá nhân
+        </span>
+                    <br>
+                    <a class="option-item" href="changepass">Đổi mật khẩu</a><br>
+                    <a class="option-item" href="forgotpass">Quên mật khẩu</a>
+                </div>
         </nav>
         <!-- NAVBAR -->
 
@@ -679,13 +810,49 @@
         return str;
     }
 
+    // function showOptions() {
+    //     var optionsDiv = document.getElementById("options");
+    //     if (optionsDiv.style.display === "none") {
+    //         optionsDiv.style.display = "block";
+    //     } else {
+    //         optionsDiv.style.display = "none";
+    //     }
+    // }
+    var optionsDiv = document.getElementById("options");
+    var optionItems = optionsDiv.getElementsByClassName("option-item");
+    var hideOptionsTimeout;
+
     function showOptions() {
-        var optionsDiv = document.getElementById("options");
-        if (optionsDiv.style.display === "none") {
-            optionsDiv.style.display = "block";
-        } else {
-            optionsDiv.style.display = "none";
-        }
+        clearTimeout(hideOptionsTimeout);
+        optionsDiv.style.display = "block";
+        setTimeout(function() {
+            optionsDiv.classList.add("show");
+            for (var i = 0; i < optionItems.length; i++) {
+                optionItems[i].style.opacity = "1";
+            }
+        }, 10);
+    }
+
+    function hideOptions() {
+        hideOptionsTimeout = setTimeout(function() {
+            var isMouseOverOptions = false;
+            for (var i = 0; i < optionItems.length; i++) {
+                if (optionItems[i].matches(":hover")) {
+                    isMouseOverOptions = true;
+                    break;
+                }
+            }
+
+            if (!optionsDiv.matches(":hover") && !isMouseOverOptions) {
+                optionsDiv.classList.remove("show");
+                for (var i = 0; i < optionItems.length; i++) {
+                    optionItems[i].style.opacity = "0";
+                }
+                setTimeout(function() {
+                    optionsDiv.style.display = "none";
+                }, 300);
+            }
+        }, 200);
     }
 </script>
 

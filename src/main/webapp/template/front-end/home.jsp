@@ -4,7 +4,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import =" java.util.Vector,Model.Product" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page import="Model.Customer" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Dal.DAOProduct" %>
 <%@ page import="Model.Order_item" %>
 <%@ page import="java.util.ArrayList" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -53,7 +56,7 @@
 
     <!-- Iconly css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/assets/css/bulk-style.css">
-    
+
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/template/assets/css/style.css">
@@ -61,7 +64,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <link rel="stylesheet" href="/ODShop/template/assets/css/pagination.css">
+    <style>
 
+        .product-option {
+            display: inline-block;
+            /* justify-content: space-between; */
+            /* Các thuộc tính CSS khác của .product-option nếu có */
+        }
+
+        .heart {
+            margin: 0 auto; /* Dùng Flexbox để canh giữa phần "Compare" */
+        }
+
+    </style>
 </head>
 
 <body>
@@ -222,6 +237,20 @@
                                                     }
                                                 %>
                                             </ul>
+
+                                            <div class="price-box">
+                                                <h5>Tổng :</h5>
+                                                <%
+                                                    if(session.getAttribute("totalMoney") != null){
+                                                %>
+                                                <h4 class="theme-color fw-bold">$ <%=session.getAttribute("totalMoney")%></h4>
+                                                <%
+                                                }else {
+                                                %>
+                                                <h4 class="theme-color fw-bold">0</h4>
+                                                <%}%>
+                                            </div>
+
                                             <div class="button-group">
                                                 <a href="cart" class="btn btn-sm cart-button">Giỏ hàng</a>
                                             </div>
