@@ -30,7 +30,7 @@ public class AdminUserController extends HttpServlet {
                 page = Integer.parseInt(page_raw);
             }
             if (name_raw != null && !name_raw.isEmpty()) {
-                name = name_raw + "%";
+                name += name_raw + "%";
             }
 
             List<Customer> listCustomer = DAOCustomer.searchCustomer(name,((page)-1)*5);
@@ -66,7 +66,7 @@ public class AdminUserController extends HttpServlet {
             page = Integer.parseInt(page_raw);
         }
         if (name_raw != null && !name_raw.isEmpty()) {
-            name = name_raw + "%";
+            name += name_raw + "%";
         }
         if (option.equals("delete")) {
             String id_raw = request.getParameter("customerid");

@@ -29,7 +29,7 @@ public class ProductController extends HttpServlet {
                 page = Integer.parseInt(page_raw);
             }
             if (name_raw != null && !name_raw.isEmpty()) {
-                name = name_raw + "%";
+                name += name_raw + "%";
             }
             if (category_raw != null && !category_raw.equals("all")) {
                 category = category_raw + "%";
@@ -64,7 +64,7 @@ public class ProductController extends HttpServlet {
             page = Integer.parseInt(page_raw);
         }
         if (name_raw != null && !name_raw.isEmpty()) {
-            name = name_raw + "%";
+            name += name_raw + "%";
         }
         if (category_raw != null && !category_raw.equals("all")) {
             category = category_raw + "%";

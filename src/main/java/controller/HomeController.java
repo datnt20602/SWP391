@@ -46,7 +46,7 @@ public class HomeController extends HttpServlet {
             String productName = "";
             int page = 1;
             String page_raw = request.getParameter("page");
-            String product_name = request.getParameter("product");
+            String product_name = request.getParameter("orderproduct");
             if (page_raw != null && !page_raw.equals("1")) {
                 page = Integer.parseInt(page_raw);
             }
@@ -75,12 +75,12 @@ public class HomeController extends HttpServlet {
             String productName = "%";
             int page = 1;
             String page_raw = request.getParameter("page");
-            String product_name = request.getParameter("product");
+            String product_name = request.getParameter("orderproduct");
             if (page_raw != null && !page_raw.equals("1")) {
                 page = Integer.parseInt(page_raw);
             }
             if (product_name != null && !product_name.isEmpty()) {
-                productName = product_name+ "%" ;
+                productName = product_name + "%" ;
             }
             int totalCustomer = DAOCustomer.getNumberCustomer();
             int totalProduct = DAOProduct.getNumberProduct();

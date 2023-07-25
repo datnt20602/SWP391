@@ -542,6 +542,9 @@
                     <span class="text">
 						<h3>${totalStaff}</h3>
 						<p>Tổng số nhân viên</p>
+                        <c:if test="${staff != null}">
+                            <p>Không thể xem</p>
+                        </c:if>
 					</span>
                 </li>
             </ul>

@@ -32,7 +32,7 @@ public class AdminStaffController extends HttpServlet {
                 page = Integer.parseInt(page_raw);
             }
             if (name_raw != null && !name_raw.isEmpty()) {
-                name = name_raw + "%";
+                name += name_raw + "%";
             }
 
             List<Staff> listStaff = DAOStaff.searchStaff(name,((page)-1)*5);
@@ -63,7 +63,7 @@ public class AdminStaffController extends HttpServlet {
             page = Integer.parseInt(page_raw);
         }
         if (name_raw != null && !name_raw.isEmpty()) {
-            name = name_raw + "%";
+            name += name_raw + "%";
         }
         if (option.equals("delete")) {
             String id_raw = request.getParameter("staffid");
