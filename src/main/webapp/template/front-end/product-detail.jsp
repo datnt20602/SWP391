@@ -407,7 +407,7 @@
                                             <i data-feather="star"></i>
                                         </li>
                                     </ul>
-                                    <span class="review">? đánh giá</span>
+                                    <span class="review"></span>
                                 </div>
                             </div>
 
@@ -631,7 +631,7 @@
                                                     <h6 class="name"><%=item.getProduct_name()%></h6>
                                                 </a>
                                                 <span><%=item.getVolume()%> ml</span>
-                                                <h6 class="price theme-color">$ <%=item.getPrice()%></h6>
+                                                <h6 class="price theme-color"> <%=item.getPrice()%> VND</h6>
                                             </div>
                                         </div>
                                     </div>

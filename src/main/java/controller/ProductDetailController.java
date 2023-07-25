@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Vector;
 
@@ -49,9 +50,9 @@ public class ProductDetailController extends HttpServlet {
                 String content = request.getParameter("content");
                 int pro_id = Integer.parseInt(request.getParameter("pro_id"));
 
-                Date currentTime = new Date();
+                LocalDateTime currentTime = LocalDateTime.now();
                 Product product = daoProduct.getProductByID(pro_id);
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
                 String formattedTime = formatter.format(currentTime);
                 int start_rate = 5;
                 Feedback fb = new Feedback(customer,product,0, formattedTime,content,start_rate);
