@@ -22,6 +22,7 @@
     <meta name="keywords" content="Fastkart">
     <meta name="author" content="Fastkart">
     <link rel="icon" href="${pageContext.request.contextPath}/template/assets/images/favicon/1.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/fe000f9b2a.js" crossorigin="anonymous"></script>
     <title>cofPhe Shop</title>
 
     <!-- Google font -->
@@ -73,7 +74,7 @@
         }
 
         .heart {
-            margin-right: 100px; /* Dùng Flexbox để canh giữa phần "Compare" */
+            margin: 0 auto; /* Dùng Flexbox để canh giữa phần "Compare" */
         }
 
     </style>
@@ -909,61 +910,31 @@
             <div class="modal-body">
                 <div class="deal-offer-box">
                     <ul class="deal-offer-list">
-                        <li class="list-1">
-                            <div class="deal-offer-contain">
-                                <a href="home.jsp" class="deal-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/10.png"
-                                         class="blur-up lazyload"
-                                         alt="">
-                                </a>
-
-                                <a href="home.jsp" class="deal-contain">
-                                </a>
-                            </div>
-                        </li>
-
-                        <li class="list-2">
-                            <div class="deal-offer-contain">
-                                <a href="home.jsp" class="deal-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/11.png"
-                                         class="blur-up lazyload"
-                                         alt="">
-                                </a>
-
-                                <a href="home.jsp" class="deal-contain">
-                                </a>
-                            </div>
-                        </li>
-
+                        <%
+                          ResultSet rsSale = (ResultSet) request.getAttribute("rsSale");
+                          if(rsSale != null){
+                              while (rsSale.next()){
+                        %>
                         <li class="list-3">
                             <div class="deal-offer-contain">
-                                <a href="home.jsp" class="deal-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/12.png"
+                                <a  class="deal-image">
+                                    <img src="<%=rsSale.getString("image")%>"
                                          class="blur-up lazyload"
                                          alt="">
                                 </a>
 
-                                <a href="home.jsp" class="deal-contain">
-                                    <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                    <h6>$52.57
-                                        <del>57.62</del>
-                                        <span>500 G</span></h6>
+                                <a class="deal-contain">
+                                    <h5><%=rsSale.getString("product_name")%></h5>
+                                    <h6><%=rsSale.getString("price_sale")%>00 VND
+                                        <del><%=rsSale.getString("price")%>00 VND</del>
+                                        <span><%=rsSale.getString("volume") %> ml</span></h6>
                                 </a>
                             </div>
                         </li>
-
-                        <li class="list-1">
-                            <div class="deal-offer-contain">
-                                <a href="home.jsp" class="deal-image">
-                                    <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/13.png"
-                                         class="blur-up lazyload"
-                                         alt="">
-                                </a>
-
-                                <a href="home.jsp" class="deal-contain">
-                                </a>
-                            </div>
-                        </li>
+                        <%
+                                }
+                          }
+                        %>
                     </ul>
                 </div>
             </div>

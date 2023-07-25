@@ -10,6 +10,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -20,6 +21,9 @@ public class ProductDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DAOProduct dao = new DAOProduct();
+        String sqlSale = "select volume,product_name,image,price, ((100 - sale_percent)*price/100) as price_sale from sale, sale_details, product where sale.sale_id = sale_details.sale_id and product.product_id = sale_details.product_id;";
+        ResultSet rsSale = dao.getData(sqlSale);
+        request.setAttribute("rsSale", rsSale);
         DAOFeedback daoFeedback = new DAOFeedback();
         int pro_id = Integer.parseInt(request.getParameter("pro_id"));
         Vector<Feedback> feedbackVector = daoFeedback.FeedBackList(pro_id);

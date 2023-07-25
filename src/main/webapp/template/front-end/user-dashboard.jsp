@@ -320,34 +320,33 @@
 </header>
 <!-- Header End -->
 
-  <!-- mobile fix menu start -->
-  <div class="mobile-menu d-md-none d-block mobile-cart">
-    <ul>
-      <li class="active">
-        <a href="home">
-          <i class="iconly-Home icli"></i>
-          <span>Trang chủ</span>
-        </a>
-      </li>
+<!-- mobile fix menu start -->
+<div class="mobile-menu d-md-none d-block mobile-cart">
+  <ul>
+    <li class="active">
+      <a href="home">
+        <i class="iconly-Home icli"></i>
+        <span>Trang chủ</span>
+      </a>
+    </li>
 
 
+    <li>
+      <a href="wishlist" class="notifi-wishlist">
+        <i class="iconly-Heart icli"></i>
+        <span>Wishlist</span>
+      </a>
+    </li>
 
-      <li>
-        <a href="wishlist" class="notifi-wishlist">
-          <i class="iconly-Heart icli"></i>
-          <span>Wishlist</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="cart">
-          <i class="iconly-Bag-2 icli fly-cate"></i>
-          <span>Giỏ hàng</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <!-- mobile fix menu end -->
+    <li>
+      <a href="cart">
+        <i class="iconly-Bag-2 icli fly-cate"></i>
+        <span>Giỏ hàng</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- mobile fix menu end -->
 
   <!-- Breadcrumb Section Start -->
   <!-- Breadcrumb Section End -->
@@ -1097,85 +1096,55 @@
 </footer>
 <!-- Footer Section End -->
 
-  <!-- Deal Box Modal Start -->
-  <div class="modal fade theme-modal deal-modal" id="deal-box" tabindex="-1" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div>
-            <h5 class="modal-title w-100" id="deal_today">Deal Today</h5>
-            <p class="mt-1 text-content">Recommended deals for you.</p>
-          </div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
+<!-- Deal Box Modal Start -->
+<div class="modal fade theme-modal deal-modal" id="deal-box" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title w-100" id="deal_today">Giảm giá</h5>
+          <p class="mt-1 text-content">Đề xuất cho bạn.</p>
         </div>
-        <div class="modal-body">
-          <div class="deal-offer-box">
-            <ul class="deal-offer-list">
-              <li class="list-1">
-                <div class="deal-offer-contain">
-                  <a href="shop-left-sidebar.html" class="deal-image">
-                    <img src="../assets/images/vegetable/product/10.png" class="blur-up lazyload"
-                         alt="">
-                  </a>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="deal-offer-box">
+          <ul class="deal-offer-list">
+            <%
+              ResultSet rsSale = (ResultSet) request.getAttribute("rsSale");
+              if(rsSale != null){
+                while (rsSale.next()){
+            %>
+            <li class="list-3">
+              <div class="deal-offer-contain">
+                <a  class="deal-image">
+                  <img src="<%=rsSale.getString("image")%>"
+                       class="blur-up lazyload"
+                       alt="">
+                </a>
 
-                  <a href="shop-left-sidebar.html" class="deal-contain">
-                    <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
-                  </a>
-                </div>
-              </li>
-
-              <li class="list-2">
-                <div class="deal-offer-contain">
-                  <a href="shop-left-sidebar.html" class="deal-image">
-                    <img src="../assets/images/vegetable/product/11.png" class="blur-up lazyload"
-                         alt="">
-                  </a>
-
-                  <a href="shop-left-sidebar.html" class="deal-contain">
-                    <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
-                  </a>
-                </div>
-              </li>
-
-              <li class="list-3">
-                <div class="deal-offer-contain">
-                  <a href="shop-left-sidebar.html" class="deal-image">
-                    <img src="../assets/images/vegetable/product/12.png" class="blur-up lazyload"
-                         alt="">
-                  </a>
-
-                  <a href="shop-left-sidebar.html" class="deal-contain">
-                    <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
-                  </a>
-                </div>
-              </li>
-
-              <li class="list-1">
-                <div class="deal-offer-contain">
-                  <a href="shop-left-sidebar.html" class="deal-image">
-                    <img src="../assets/images/vegetable/product/13.png" class="blur-up lazyload"
-                         alt="">
-                  </a>
-
-                  <a href="shop-left-sidebar.html" class="deal-contain">
-                    <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                    <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
+                <a class="deal-contain">
+                  <h5><%=rsSale.getString("product_name")%></h5>
+                  <h6><%=rsSale.getString("price_sale")%>00 VND
+                    <del><%=rsSale.getString("price")%>00 VND</del>
+                    <span><%=rsSale.getString("volume") %> ml</span></h6>
+                </a>
+              </div>
+            </li>
+            <%
+                }
+              }
+            %>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-  <!-- Deal Box Modal End -->
+</div>
+<!-- Deal Box Modal End -->
 
   <!-- Tap to top start -->
   <div class="theme-option">

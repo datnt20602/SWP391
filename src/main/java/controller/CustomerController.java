@@ -17,6 +17,7 @@ public class CustomerController extends HttpServlet {
         HttpSession session = request.getSession();
         Customer cus = (Customer) session.getAttribute("customer");
 
+
         if(cus != null){
             //data wishlist
             DAOWishlist daoWishlist = new DAOWishlist();
@@ -38,7 +39,9 @@ public class CustomerController extends HttpServlet {
             int totalOrder = daoOrder.getQuantityOrder(cus.getCustomer_id(),1);
             //data total wishlist
             int totalWishList = daoWishlist.totalWishList(cus.getCustomer_id());
-
+            String sqlSale = "select volume,product_name,image,price, ((100 - sale_percent)*price/100) as price_sale from sale, sale_details, product where sale.sale_id = sale_details.sale_id and product.product_id = sale_details.product_id;";
+            ResultSet rsSale = daoOrder.getData(sqlSale);
+            request.setAttribute("rsSale", rsSale);
             //data ordere
             DAOOrder_Item daoOrder_item = new DAOOrder_Item();
             String sql = "select orders.order_id,order_date,sum(quantity*price) as total,count(item_id) as so_san_pham,city,dia_chi_cu_the,district,ward,address.address_id , order_status from order_item,orders, address\n" +

@@ -332,28 +332,15 @@
     <li class="active">
       <a href="home">
         <i class="iconly-Home icli"></i>
-        <span>Home</span>
+        <span>Trang chủ</span>
       </a>
     </li>
 
-    <li class="mobile-category">
-      <a href="javascript:void(0)">
-        <i class="iconly-Category icli js-link"></i>
-        <span>Category</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="search.html" class="search-box">
-        <i class="iconly-Search icli"></i>
-        <span>Search</span>
-      </a>
-    </li>
 
     <li>
       <a href="wishlist" class="notifi-wishlist">
         <i class="iconly-Heart icli"></i>
-        <span>My Wish</span>
+        <span>Wishlist</span>
       </a>
     </li>
 
@@ -819,73 +806,31 @@
       <div class="modal-body">
         <div class="deal-offer-box">
           <ul class="deal-offer-list">
-            <li class="list-1">
-              <div class="deal-offer-contain">
-                <a href="home.jsp" class="deal-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/10.png"
-                       class="blur-up lazyload"
-                       alt="">
-                </a>
-
-                <a href="home.jsp" class="deal-contain">
-                  <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                  <h6>$52.57
-                    <del>57.62</del>
-                    <span>500 G</span></h6>
-                </a>
-              </div>
-            </li>
-
-            <li class="list-2">
-              <div class="deal-offer-contain">
-                <a href="home.jsp" class="deal-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/11.png"
-                       class="blur-up lazyload"
-                       alt="">
-                </a>
-
-                <a href="home.jsp" class="deal-contain">
-                  <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                  <h6>$52.57
-                    <del>57.62</del>
-                    <span>500 G</span></h6>
-                </a>
-              </div>
-            </li>
-
+            <%
+              ResultSet rsSale = (ResultSet) request.getAttribute("rsSale");
+              if(rsSale != null){
+                while (rsSale.next()){
+            %>
             <li class="list-3">
               <div class="deal-offer-contain">
-                <a href="home.jsp" class="deal-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/12.png"
+                <a  class="deal-image">
+                  <img src="<%=rsSale.getString("image")%>"
                        class="blur-up lazyload"
                        alt="">
                 </a>
 
-                <a href="home.jsp" class="deal-contain">
-                  <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                  <h6>$52.57
-                    <del>57.62</del>
-                    <span>500 G</span></h6>
+                <a class="deal-contain">
+                  <h5><%=rsSale.getString("product_name")%></h5>
+                  <h6><%=rsSale.getString("price_sale")%>00 VND
+                    <del><%=rsSale.getString("price")%>00 VND</del>
+                    <span><%=rsSale.getString("volume") %> ml</span></h6>
                 </a>
               </div>
             </li>
-
-            <li class="list-1">
-              <div class="deal-offer-contain">
-                <a href="home.jsp" class="deal-image">
-                  <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/13.png"
-                       class="blur-up lazyload"
-                       alt="">
-                </a>
-
-                <a href="home.jsp" class="deal-contain">
-                  <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                  <h6>$52.57
-                    <del>57.62</del>
-                    <span>500 G</span></h6>
-                </a>
-              </div>
-            </li>
+            <%
+                }
+              }
+            %>
           </ul>
         </div>
       </div>

@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -25,6 +26,9 @@ public class CartController extends HttpServlet {
         }
         if(service.equals("display")){
             Customer cus = (Customer) session.getAttribute("customer");
+            String sqlSale = "select volume,product_name,image,price, ((100 - sale_percent)*price/100) as price_sale from sale, sale_details, product where sale.sale_id = sale_details.sale_id and product.product_id = sale_details.product_id;";
+            ResultSet rsSale = daoProduct.getData(sqlSale);
+            request.setAttribute("rsSale", rsSale);
             if(cus == null){
                 response.sendRedirect("login");
             }else {

@@ -27,6 +27,9 @@ public class HomeController extends HttpServlet {
         ResultSet rs = dao.getData(sql);
         HttpSession session = request.getSession();
         Vector<Product> vector = new Vector<>();
+        String sqlSale = "select volume,product_name,image,price, ((100 - sale_percent)*price/100) as price_sale from sale, sale_details, product where sale.sale_id = sale_details.sale_id and product.product_id = sale_details.product_id;";
+        ResultSet rsSale = dao.getData(sqlSale);
+        request.setAttribute("rsSale", rsSale);
         Customer customer = (Customer) request.getSession().getAttribute("customer");
         ArrayList<Integer> pro_list = new ArrayList<>();
         if(customer != null){

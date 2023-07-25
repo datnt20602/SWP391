@@ -3,6 +3,7 @@
 <%@ page import="Model.Customer" %>
 <%@ page import="Model.Order_item" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -628,13 +629,13 @@
 
     <!-- Deal Box Modal Start -->
     <div class="modal fade theme-modal deal-modal" id="deal-box" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
             <div class="modal-content">
                 <div class="modal-header">
                     <div>
-                        <h5 class="modal-title w-100" id="deal_today">Giảm giá hôm nay</h5>
-                        <p class="mt-1 text-content">Đề xuất cho bạn</p>
+                        <h5 class="modal-title w-100" id="deal_today">Giảm giá</h5>
+                        <p class="mt-1 text-content">Đề xuất cho bạn.</p>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fa-solid fa-xmark"></i>
@@ -643,61 +644,31 @@
                 <div class="modal-body">
                     <div class="deal-offer-box">
                         <ul class="deal-offer-list">
-                            <li class="list-1">
-                                <div class="deal-offer-contain">
-                                    <a href="home.jsp" class="deal-image">
-                                        <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/10.png" class="blur-up lazyload"
-                                            alt="">
-                                    </a>
-
-                                    <a href="home.jsp" class="deal-contain">
-                                        <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                        <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
-                                    </a>
-                                </div>
-                            </li>
-
-                            <li class="list-2">
-                                <div class="deal-offer-contain">
-                                    <a href="home.jsp" class="deal-image">
-                                        <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/11.png" class="blur-up lazyload"
-                                            alt="">
-                                    </a>
-
-                                    <a href="home.jsp" class="deal-contain">
-                                        <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                        <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
-                                    </a>
-                                </div>
-                            </li>
-
+                            <%
+                                ResultSet rsSale = (ResultSet) request.getAttribute("rsSale");
+                                if(rsSale != null){
+                                    while (rsSale.next()){
+                            %>
                             <li class="list-3">
                                 <div class="deal-offer-contain">
-                                    <a href="home.jsp" class="deal-image">
-                                        <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/12.png" class="blur-up lazyload"
-                                            alt="">
+                                    <a  class="deal-image">
+                                        <img src="<%=rsSale.getString("image")%>"
+                                             class="blur-up lazyload"
+                                             alt="">
                                     </a>
 
-                                    <a href="home.jsp" class="deal-contain">
-                                        <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                        <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
+                                    <a class="deal-contain">
+                                        <h5><%=rsSale.getString("product_name")%></h5>
+                                        <h6><%=rsSale.getString("price_sale")%>00 VND
+                                            <del><%=rsSale.getString("price")%>00 VND</del>
+                                            <span><%=rsSale.getString("volume") %> ml</span></h6>
                                     </a>
                                 </div>
                             </li>
-
-                            <li class="list-1">
-                                <div class="deal-offer-contain">
-                                    <a href="home.jsp" class="deal-image">
-                                        <img src="${pageContext.request.contextPath}/template/assets/images/vegetable/product/13.png" class="blur-up lazyload"
-                                            alt="">
-                                    </a>
-
-                                    <a href="home.jsp" class="deal-contain">
-                                        <h5>Blended Instant Coffee 50 g Buy 1 Get 1 Free</h5>
-                                        <h6>$52.57 <del>57.62</del> <span>500 G</span></h6>
-                                    </a>
-                                </div>
-                            </li>
+                            <%
+                                    }
+                                }
+                            %>
                         </ul>
                     </div>
                 </div>

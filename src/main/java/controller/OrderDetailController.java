@@ -9,6 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.Vector;
 
 @WebServlet(name = "OrderDetailController", value = "/orderdetail")
@@ -18,6 +19,9 @@ public class OrderDetailController extends HttpServlet {
         int order_id = Integer.parseInt(request.getParameter("ord_id"));
         DAOOrder_Item daoOrder_item = new DAOOrder_Item();
         DAOOrder daoOrder = new DAOOrder();
+        String sqlSale = "select volume,product_name,image,price, ((100 - sale_percent)*price/100) as price_sale from sale, sale_details, product where sale.sale_id = sale_details.sale_id and product.product_id = sale_details.product_id;";
+        ResultSet rsSale = daoOrder.getData(sqlSale);
+        request.setAttribute("rsSale", rsSale);
         Vector<Order_item> vector = daoOrder_item.getAll(order_id);
         double total = daoOrder_item.getTotalMoney(order_id);
         Order order = daoOrder.getOrderByID(order_id);
