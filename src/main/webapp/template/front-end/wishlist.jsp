@@ -398,7 +398,7 @@
                                 </a>
                                 <h6 class="unit mt-1"><%=temp.getVolume()%>ml</h6>
                                 <h5 class="price">
-                                    <span class="theme-color">$<%=temp.getPrice()%>00 VND</span>
+                                    <span class="theme-color"><%=temp.getPrice()%>00 VND</span>
                                     <del>15000 VND</del>
                                 </h5>
 
